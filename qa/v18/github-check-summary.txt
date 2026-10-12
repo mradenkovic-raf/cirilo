@@ -1,0 +1,8 @@
+Verified GitHub Actions log excerpts
+Run: https://github.com/mradenkovic-raf/cirilo/actions/runs/38285646101
+Commit: 0889b37a049e9b8a98088a5e2f45591ee313e688
+
+Rails and browser logic	Run bin/check	2026-10-12T17:40:13.7738662Z All is good!
+Rails and browser logic	Run bin/check	2026-10-12T17:40:28.8346002Z 225 runs, 14391 assertions, 0 failures, 0 errors, 0 skips
+Rails and browser logic	Production proxy and browser persistence	2026-10-12T17:40:33.6394380Z   "result": "PASS",
+Docker and persistent SQLite	Run bin/check-container	2026-10-12T17:40:53.1819796Z PASS: Docker build, fresh root-owned volume, Rails UID 1000, HTTPS proxy, healthcheck, CSRF, host checks, and mission persistence across containers.

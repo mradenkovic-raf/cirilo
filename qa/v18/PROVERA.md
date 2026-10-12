@@ -20,12 +20,14 @@ Datum: 2026-10-12. Obuhvat je priprema i provera hosting paketa. Javni Railway s
 
 ## Docker i GitHub CI
 
-Lokalni Docker servis je korisnik pokrenuo, ali proces nema dozvolu pristupa socket-u. Nisu menjane sistemske grupe niti prava socket-a. Stvarna Docker provera se zato izvršava na GitHub Actions runneru; rezultat će biti dopunjen kada run završi.
+Lokalni Docker servis je korisnik pokrenuo, ali proces nema dozvolu pristupa socket-u. Nisu menjane sistemske grupe niti prava socket-a. Stvarna Docker provera zato je izvršena na GitHub Actions runneru i **prošla je**.
+
+[Run 38285646101](https://github.com/mradenkovic-raf/cirilo/actions/runs/38285646101), commit `0889b37a049e9b8a98088a5e2f45591ee313e688`: oba posla (`Rails and browser logic` i `Docker and persistent SQLite`) imaju `success`. Ponovo su prošli svi Rails/JS testovi i production provera. Docker posao završio je za 1 min 33 s. [GitHub status i koraci](github-check.json), [provereni izvodi iz loga](github-check-summary.txt). Naknadna dopuna dokumentacije i rezultata ne menja provereni kod i označena je sa `[skip ci]`.
 
 `bin/check-container` gradi image, pravi nov prazan root-owned named volume (`volume-nocopy`), proverava /up, hostove, HTTPS proxy, CSRF i cookie, zatim uklanja prvi container i otvara drugi nad istom bazom i ključem. Isti cookie mora da otvori istu sačuvanu misiju. Rails PID 1 mora biti UID 1000. Probni containeri, volume, ključevi i cookie se brišu; image ostaje. Lokalna baza se nikada ne montira. [HTTP provera](container_http_check.py).
 
 ## Granice i povratak
 
-Sačuvani su tag `v17-stable-before-railway` (`9d21b09`) i konzistentna SQLite rezerva u `revisions/2026-10-12-v17-before-railway/`. Nema migracije podataka niti reseta igre zbog ove pripreme. Sve izvršene provere koriste zasebne baze. Privremeni kolačići Rails provere nastaju ispod projektnog `tmp/`, a Docker proba u sistemskom `/tmp`; oba se automatski uklanjaju.
+Sačuvani su tag `v17-stable-before-railway` (`9d21b09`) i konzistentna SQLite rezerva u `revisions/2026-10-12-v17-before-railway/`. Nema migracije podataka niti reseta igre zbog ove pripreme. [Svih osam tabela glavne baze identično je rezervi; SQLite integritet je dobar](main-preservation.json). Sve izvršene provere koriste zasebne baze. Privremeni kolačići Rails provere nastaju ispod projektnog `tmp/`, a Docker proba u sistemskom `/tmp`; oba se automatski uklanjaju. Privremeni lokalni CI log i zapis praćenja iz `/tmp` takođe su uklonjeni posle izdvajanja rezultata.
 
 Pred javni deploy ostaje kreiranje Railway servisa/volume-a, unos produkcionih promenljivih, javni domen i provera trajnosti na samom Railway-u. GitHub test nije dokaz da je to već urađeno.
