@@ -163,7 +163,13 @@ class AttemptRecorder
     completed = @session.exercises.first(@session.cursor).select do |item|
       PracticePlanner::COMPATIBLE_VERSIONS.include?(item["version"]) && !item["recovery_of"]
     end
-    source = completed.reverse.find { |item| item["kind"] == "trace" } || completed.last
+    source = if exercise["version"].to_i >= 6
+      completed.reverse.find { |item| PracticePlanner::READING_KINDS.include?(item["kind"]) } ||
+        PracticePlanner.reading_review(letter_id: exercise.fetch("letter_id"),
+          letter_case: exercise.fetch("case", "upper"), variation: @learner.completed_missions)
+    else
+      completed.reverse.find { |item| item["kind"] == "trace" } || completed.last
+    end
     unless source
       letter = Curriculum.find(exercise.fetch("letter_id"))
       letter_case = exercise.fetch("case", "upper")

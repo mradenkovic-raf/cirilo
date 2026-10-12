@@ -44,6 +44,7 @@ class AttemptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "nested writing payload grades every chosen letter and supplies word meaning" do
+    test_learner.update!(completed_missions: 1)
     session = PracticePlanner.start!(test_learner)
     session.update!(cursor: session.exercises.index { |exercise| exercise["kind"] == "fill_letters" })
     exercise = session.current_exercise

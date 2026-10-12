@@ -1,0 +1,4 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-3-ww0fec3' as your home directory temporarily.
+Hold on, I am eager loading the application.
+All is good!

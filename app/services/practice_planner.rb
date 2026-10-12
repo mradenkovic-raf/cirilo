@@ -1,16 +1,17 @@
 class PracticePlanner
-  VERSION = 5
-  COMPATIBLE_VERSIONS = [3, 4, 5].freeze
+  VERSION = 6
+  COMPATIBLE_VERSIONS = [3, 4, 5, 6].freeze
   MISSION_LENGTH = 12
+  READING_KINDS = %w[read_word picture_word build_word repair_word word_pairs sentence memory_word story_action].freeze
+  # Ten reading/letter tasks and two separated handwriting breaks. Every focus
+  # letter returns four times; handwriting is no longer required for each one.
   MISSION_PLAN = [
-    ["trace", 0], ["write_word", 1], ["read_word", 2], ["memory_word", 0],
-    ["fill_letters", 2], ["sentence", 0], ["trace", 1], ["write_word", 2],
-    ["story_action", 1], ["build_word", 2], ["fill_letters", 0], ["memory_word", 1]
+    ["read_word", 0], ["picture_word", 1], ["build_word", 0], ["trace", 0],
+    ["repair_word", 1], ["word_pairs", 2], ["sentence", 2], ["memory_word", 1],
+    ["read_word", 2], ["write_word", 1], ["story_action", 2], ["picture_word", 0]
   ].freeze
   VARIETY_ROTATION = {
-    "read_word" => %w[picture_word read_word picture_word],
-    "sentence" => %w[word_pairs word_pairs sentence],
-    "build_word" => %w[repair_word build_word repair_word]
+    "write_word" => %w[write_word fill_letters]
   }.freeze
 
   class << self
@@ -54,6 +55,12 @@ class PracticePlanner
       adapted
     end
 
+    def reading_review(letter_id:, letter_case:, variation:)
+      letter = Curriculum.find(letter_id)
+      entry = WordBank.for_letter(letter, variation: variation)
+      exercise(letter, entry, "read_word", letter_case)
+    end
+
     private
 
     def build_session!(learner)
@@ -66,8 +73,8 @@ class PracticePlanner
     def upgrade_locked!(session, learner)
       return session if session.completed?
       remaining = session.exercises.drop(session.cursor)
-      # V3 and V4 already have the current writing/recovery protocol. Never
-      # rewrite an unfinished valid mission merely to introduce new task kinds.
+      # Keep all saved V3–V6 missions intact, including the heavier old writing
+      # mix. The new balance starts with the next mission, never halfway through.
       return session if remaining.any? && remaining.all? { |exercise| COMPATIBLE_VERSIONS.include?(exercise["version"]) }
 
       focus = session.focus_letters.filter_map { |id| Curriculum.find(id) }
@@ -93,7 +100,8 @@ class PracticePlanner
         entry
       end
       MISSION_PLAN.each_with_index.map do |(kind, letter_index), index|
-        kind = VARIETY_ROTATION[kind]&.fetch(variation % 3) || kind
+        rotation = VARIETY_ROTATION[kind]
+        kind = rotation ? rotation.fetch(variation % rotation.length) : kind
         letter_case = (letter_index + variation + index).even? ? "upper" : "lower"
         task = exercise(focus.fetch(letter_index), entries.fetch(letter_index), kind, letter_case)
         task.merge!(StoryBank.exercise(variation: variation)) if kind == "story_action"

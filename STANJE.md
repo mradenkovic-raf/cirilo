@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, aplikacija v15 sa odvojenim napretkom po browseru, bez naloga i prijave. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-12, aplikacija v16 daje prednost čitanju: 10 zadataka za čitanje/slova i 2 za pisanje u novoj misiji. Odvojeni napredak po browseru, bez naloga i prijave, ostaje. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Čitanje pre pisanja — v16
+
+Korisnik je postavio čitanje i snalaženje sa slovima kao glavni cilj. Nove misije imaju 10 čitalačkih zadataka i dva pisanja: jedno slovo na četvrtom koraku, a na desetom naizmenično celu reč ili dopunu rukom. Sve postojeće vrste čitalačkih igara pojavljuju se u svakoj misiji; pisanje se ne gomila na početku. Svako ciljno slovo vraća se četiri puta, od toga najmanje tri kroz čitanje/slova. Prioritetno slovo ima i samostalno slaganje, pa konkretne zamene slova ostaju praćene.
+
+Posle greške nova misija vraća čitalački zadatak, bez dodatnog crtanja. Najviše tri ponavljanja, bez dodatnog XP-a i bez računanja samostalnog pamćenja, pa povratak na originalni zadatak. Ostaju 12 redovnih koraka, 145 XP i dosadašnje nagrade. Novi format je 6; započete misije V3–V5 čuvaju kompletno stanje i raniji recovery. Novi odnos važi tek od nove misije. Nema migracije ili resetovanja.
+
+Prošlo je **220 Rails testova / 12.930 tvrdnji i 29 JS testova**, eager loading i provera diff-a. Browser na izdvojenoj bazi potvrđuje čitalački početak, čitalačko ponavljanje posle greške sa 0 XP, povratak i 10 XP za redovan zadatak. Glavni server prikazuje nove roditeljske napomene; stvarni napredak nije menjan. [Provere](qa/v16/PROVERA.md). Prethodni kod je na tagu `v15-stable-before-reading-priority` (`b9c1ede`), a baza u `revisions/2026-10-12-v15-before-reading-priority/`. Radna grana: `reading-priority`.
+
+U [ROADMAP.md](ROADMAP.md) su predlozi za naredne igre: slogovi, slične reči, izbor cele rečenice i kratke priče. Nisu još ugrađene; prvi predlog su slogovi sa proverom značenja slike. Audio vodič ostaje odložen.
 
 ## Odvojene igre bez prijave — v15
 

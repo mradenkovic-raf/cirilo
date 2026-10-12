@@ -8,6 +8,19 @@ V8 je dodatni prolaz kroz dečji UX: jedna glavna radnja po ekranu, manje ponovl
 
 V9 dodaje izbor naziva slike, popravku jednog pogrešnog slova i spajanje tri para. Igre se smenjuju kroz misije, bez smanjivanja vežbi pisanja i bez dužih misija. Sačuvan je mirniji v8 raspored; zvučni vodič ostaje odložen.
 
+## Prioritet čitanja — dogovor 12. oktobra 2026.
+
+Korisnik je postavio čitanje i snalaženje sa slovima kao glavni cilj; praćenje oblika i pisanje su dopuna. Isporučeno u v16: svaka nova misija ima 10 čitalačkih zadataka i 2 pisanja. Posle greške dodatno se vežba čitanje, bez dodavanja novih crteža. Ostaju 12 redovnih koraka, 145 XP i postojeće nagrade. Započete stare misije zadržavaju sadržaj. Detalji i provere su u [qa/v16/PROVERA.md](qa/v16/PROVERA.md).
+
+Sledeće ideje su **predlozi, još nisu ugrađene niti odobren redosled implementacije**:
+
+1. **Slogovi koji postaju reč.** Dete spaja `СО` + `ВА` ili `РИ` + `БА`, pa bira sliku cele reči. Početni nivo ima dva sloga i malo ponuđenih delova; kasnije dodajemo višak i tri sloga. Delovi nemaju boje, oblik spojnica ili stalne položaje koji odaju redosled. Samo slaganje ne završava zadatak: izbor slike proverava značenje. Ovo je prvi preporučeni dodatak.
+2. **Jedno slovo menja značenje.** Prvo `СОК`, zatim `СКОК`: dete svaki put čita i bira odgovarajuću sliku. Druga slika i raspored odgovora se menjaju, da uspeh ne bude ponavljanje istog klika. Birati kratke stvarne reči koje se mogu jasno ilustrovati.
+3. **Koja rečenica opisuje sliku?** Uz sliku psa koji juri mačku stoje `Пас јури мачку.` i `Мачка јури пса.`, plus odgovori sa drugom radnjom. Isti likovi i slične reči traže čitanje celog iskaza, ne prepoznavanje prve imenice. Početi kraćim iskazima, pa uvoditi ovakve razlike.
+4. **Dve rečenice, jedan mali problem.** `Мила има лопту. Лопта је у ранцу.` → dete bira gde je lopta. Tekst ostaje vidljiv, pa proveravamo razumevanje i dopuštamo ponovno čitanje. Kasnije se mogu birati radnje u maloj sceni, uz postepeno povećanje dužine.
+
+Ove igre mogu da rade bez novog glasovnog servisa. Audio vodič ostaje odložen. Pedagoški smer je povezivanje slova i delova reči sa celom rečju, a zatim razumevanje povezanih rečenica, što preporučuje [IES/WWC vodič za početno čitanje](https://ies.ed.gov/ncee/wwc/practiceguide/21). Konkretne igre i srpski primeri iznad naš su predlog za ovu aplikaciju; vodič se odnosi na nastavu na engleskom i ne potvrđuje učinak naše aplikacije.
+
 ## Redosled razvoja
 
 1. **Zvučni vodič.** Isti srpski glas na svim uređajima, kratka uputstva, reakcije i izgovor reči posle uspešnog čitanja. Detaljan predlog ispod.

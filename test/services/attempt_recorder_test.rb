@@ -44,6 +44,69 @@ class AttemptRecorderTest < ActiveSupport::TestCase
     assert_equal 10, @learner.reload.xp
   end
 
+  test "first reading mistake gets a reading recovery with no XP or independent recall gain" do
+    original = @session.current_exercise.deep_dup
+    assert_equal "read_word", original.fetch("kind")
+    result = submit_wrong(original)
+    assert result.fetch(:recovery_required)
+    recovery = @session.reload.current_exercise
+    assert_equal "read_word", recovery.fetch("kind")
+    assert_equal original.fetch("letter_id"), recovery.fetch("letter_id")
+    assert_equal original.fetch("id"), recovery.fetch("recovery_of")
+    assert recovery.fetch("review_only")
+    assert recovery.fetch("zero_xp")
+    assert_equal recovery.fetch("options"), recovery.fetch("choices").map { |choice| choice.fetch("value") }
+    progress = @learner.letter_progresses.find_by!(letter_id: recovery.fetch("letter_id"))
+    before = progress.attributes.slice("review_level", "last_reviewed_at", "next_review_at", "incorrect_count")
+
+    recovered = solve_current_exercise(@session)
+    assert recovered.fetch(:correct)
+    assert_equal 0, recovered.fetch(:xp_earned)
+    assert_equal 0, @learner.reload.xp
+    assert_equal before, progress.reload.attributes.slice(*before.keys)
+    assert_equal original, @session.reload.current_exercise
+  end
+
+  test "a mistake after handwriting revisits the last reading task instead of adding more drawing" do
+    4.times { solve_current_exercise(@session) }
+    assert_equal "trace", @session.exercises.fetch(3).fetch("kind")
+    reading = @session.exercises.fetch(2)
+    original = @session.current_exercise.deep_dup
+    wrong = original.fetch("broken_word").dup
+    index = wrong.chars.each_index.find { |offset| wrong[offset] != original.fetch("answer")[offset] }
+    wrong[index] = (original.fetch("repair_options") - [wrong[index], original.fetch("answer")[index]]).first
+    result = AttemptRecorder.new(@session).submit!(exercise_id: original.fetch("id"), answer: wrong)
+
+    assert result.fetch(:recovery_required)
+    recovery = @session.reload.current_exercise
+    assert_equal reading.fetch("kind"), recovery.fetch("kind")
+    assert_equal reading.fetch("answer"), recovery.fetch("answer")
+    assert_equal reading.fetch("letter_id"), recovery.fetch("letter_id")
+    assert_equal original.fetch("id"), recovery.fetch("recovery_of")
+    before_xp = @learner.reload.xp
+    assert_equal 0, solve_current_exercise(@session).fetch(:xp_earned)
+    assert_equal before_xp, @learner.reload.xp
+    assert_equal original, @session.reload.current_exercise
+    assert_equal 2, @session.exercises.count { |item| %w[trace write_word fill_letters].include?(item.fetch("kind")) }
+  end
+
+  test "saved v3 v4 and v5 missions keep their original tracing recovery behavior" do
+    [3, 4, 5].each do |version|
+      trace = planned_exercise("trace", version: version)
+      previous = planned_exercise("read_word", version: version)
+      original = planned_exercise("read_word", version: version)
+      @session.update!(exercises: [trace, previous, original], cursor: 2)
+      submit_wrong(original)
+      recovery = @session.reload.current_exercise
+      assert_equal "trace", recovery.fetch("kind")
+      assert_equal version, recovery.fetch("version")
+      assert_equal trace.fetch("target"), recovery.fetch("target")
+      assert_equal original.fetch("id"), recovery.fetch("recovery_of")
+      assert_equal 0, solve_current_exercise(@session).fetch(:xp_earned)
+      assert_equal original, @session.reload.current_exercise
+    end
+  end
+
   test "recovery mistakes and repeated original mistakes do not add another penalty" do
     @session.update!(cursor: 2)
     original = @session.current_exercise.deep_dup
@@ -74,7 +137,10 @@ class AttemptRecorderTest < ActiveSupport::TestCase
       solve_current_exercise(@session)
     end
     assert_equal 15, @session.reload.total_exercises
-    assert_equal 3, @session.exercises.count { |item| item["recovery_of"] }
+    recoveries = @session.exercises.select { |item| item["recovery_of"] }
+    assert_equal 3, recoveries.length
+    assert recoveries.none? { |item| %w[trace write_word fill_letters].include?(item.fetch("kind")) }
+    assert_equal 2, @session.exercises.count { |item| %w[trace write_word fill_letters].include?(item.fetch("kind")) }
     assert_equal 40, @learner.reload.xp
   end
 
@@ -121,6 +187,7 @@ class AttemptRecorderTest < ActiveSupport::TestCase
     use_kind("write_word")
     exercise = @session.current_exercise
     valid = correct_attributes(exercise)
+    original_cursor = @session.cursor
     recorder = AttemptRecorder.new(@session)
     malformed = [nil, [], valid[:letter_traces].drop(1), [1, 2, 3]]
     duplicate = valid[:letter_traces].deep_dup
@@ -135,7 +202,7 @@ class AttemptRecorderTest < ActiveSupport::TestCase
       end
     end
     assert_equal 0, @session.attempts.count
-    assert_equal 1, @session.reload.cursor
+    assert_equal original_cursor, @session.reload.cursor
   end
 
   test "excellent scores for other letters cannot compensate for one missing shape" do
@@ -210,6 +277,7 @@ class AttemptRecorderTest < ActiveSupport::TestCase
   end
 
   test "empty drawing fails and malformed metrics are rejected without attempts" do
+    use_kind("trace")
     exercise = @session.current_exercise
     recorder = AttemptRecorder.new(@session)
     assert_raises(AttemptRecorder::InvalidSubmission) do

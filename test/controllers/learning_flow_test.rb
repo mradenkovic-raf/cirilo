@@ -34,10 +34,9 @@ class LearningFlowTest < ActionDispatch::IntegrationTest
     assert_redirected_to practice_session_path(session)
     assert_equal 1, test_learner.practice_sessions.count
 
-    # Keep the older rotating games covered even when the first mission picks
-    # their new alternatives. The saved exercise remains the rendering input.
-    session.update!(exercises: session.exercises +
-      %w[read_word sentence build_word].map { |kind| planned_exercise(kind) })
+    # The first mission has whole-word handwriting; the next mission has gaps.
+    # Cover both renderers without making coverage depend on the rotation.
+    session.update!(exercises: session.exercises + [planned_exercise("fill_letters")])
     session.exercises.map { |exercise| exercise.fetch("kind") }.uniq.each do |kind|
       cursor = session.exercises.index { |exercise| exercise.fetch("kind") == kind }
       session.update!(cursor: cursor)

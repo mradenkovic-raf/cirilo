@@ -1,0 +1,61 @@
+✔ winning the last round reveals and focuses the outcome, then celebrates once (5.941812ms)
+✔ losing the last round reveals a distinct defeat and plays a descending final cue (0.638414ms)
+✔ mute or unavailable audio preserves the visible final outcome (1.527242ms)
+✔ refresh and duplicate responses show saved outcomes without replaying celebration or sound (1.523066ms)
+✔ a hit removes only an armor icon and leaves all three hearts full (1.071936ms)
+✔ the last armor piece disappears before a later hit can remove a heart (2.068711ms)
+✔ ties, shields, dodges, and unchanged health never flash a lost icon (2.239722ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18.099069
+✔ saved progress moves the dinosaur and lights one dot per completed task, including the arena endpoint (0.600711ms)
+✔ recovery adds a dot without awarding progress and duplicate replies do not move again (0.142518ms)
+✔ invalid progress cannot replace the last saved path and pages without a path are supported (0.10455ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3.93654
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (7.996795ms)
+✔ empty drawings, taps and tiny marks do not pass (0.107895ms)
+✔ school guides separate strokes and direct straight stems downwards (0.438823ms)
+✔ small hand wobble passes, large displacement does not (0.33313ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.168098ms)
+✔ filling the whole board with scribbles does not pass (1.053575ms)
+✔ an unrelated shape does not pass (0.266384ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.101028ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.085713ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.193241ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.11538ms)
+✔ direction arrows follow straight and curved paths; a dot has no arrow (0.223104ms)
+✔ stroke numbers at the same start remain separate and inside the pad (0.762066ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.239232
+✔ repair requires an explicit changed letter and only edits the chosen position (0.778654ms)
+✔ restoring the original letter is incomplete and undo restores the whole original word (0.157659ms)
+✔ repair displays lowercase but submits uppercase and retains the edited answer across locking (0.251475ms)
+✔ pairing requires a word first and all three distinct pictures before submitting (0.386285ms)
+✔ reassigning a picture releases its old word and undo restores both connections (0.163828ms)
+✔ pairing can deselect a word and keeps answers while pending or completed (0.135772ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8.197483

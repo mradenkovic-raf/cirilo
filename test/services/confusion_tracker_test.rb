@@ -97,7 +97,10 @@ class ConfusionTrackerTest < ActiveSupport::TestCase
       assert_includes task.fetch("tiles"), "Р"
       assert_equal task.fetch("word").length + 2, task.fetch("tiles").length
     end
-    filling = mission.exercises.find { |item| item["kind"] == "fill_letters" && item["letter_id"] == "p" }
+    # The current mission gives the second focus letter the handwriting slot.
+    # Previously saved missing-letter tasks still need the same confusion choices.
+    filling = planned_exercise("fill_letters", letter_id: "p")
+    PracticePlanner.send(:adapt_confusions!, filling, @learner)
     target = filling.fetch("writing_letters").find { |item| item["letter_id"] == "p" }
     assert_includes target.fetch("options").map { |item| item.fetch("target").upcase }, "Р"
     before = mission.exercises

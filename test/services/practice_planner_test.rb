@@ -4,7 +4,15 @@ require_relative "exercise_helpers"
 class PracticePlannerTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
-  test "mission persists with twelve interleaved reading writing and memory tasks" do
+  LEGACY_MISSION_PLAN = [
+    ["trace", 0], ["write_word", 1], ["read_word", 2], ["memory_word", 0],
+    ["fill_letters", 2], ["sentence", 0], ["trace", 1], ["write_word", 2],
+    ["story_action", 1], ["build_word", 2], ["fill_letters", 0], ["memory_word", 1]
+  ].freeze
+  READING_KINDS = %w[read_word picture_word build_word repair_word word_pairs sentence memory_word story_action].freeze
+  WRITING_KINDS = %w[trace write_word fill_letters].freeze
+
+  test "mission persists with ten reading and letter tasks plus two handwriting tasks" do
     learner = test_learner
     session = PracticePlanner.start!(learner)
     resumed = PracticePlanner.start!(Learner.find(learner.id))
@@ -16,10 +24,11 @@ class PracticePlannerTest < ActiveSupport::TestCase
     session.focus_letters.each do |letter_id|
       tasks = session.exercises.select { |exercise| exercise["letter_id"] == letter_id }
       assert_equal 4, tasks.length
-      assert tasks.any? { |exercise| %w[trace write_word fill_letters].include?(exercise["kind"]) }
+      assert_operator tasks.count { |exercise| READING_KINDS.include?(exercise["kind"]) }, :>=, 3
     end
-    assert_equal({ "trace" => 2, "write_word" => 2, "fill_letters" => 2, "repair_word" => 1,
-      "picture_word" => 1, "story_action" => 1, "word_pairs" => 1, "memory_word" => 2 },
+    assert_equal({ "trace" => 1, "write_word" => 1, "repair_word" => 1,
+      "picture_word" => 2, "read_word" => 2, "build_word" => 1, "sentence" => 1,
+      "story_action" => 1, "word_pairs" => 1, "memory_word" => 1 },
       session.exercises.map { |exercise| exercise["kind"] }.tally)
     assert_equal %w[lower upper], session.exercises.map { |exercise| exercise["case"] }.uniq.sort
     session.exercises.each do |exercise|
@@ -134,7 +143,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   test "an unfinished v3 mission keeps IDs order drawings protocol memory state and recovery" do
     learner = test_learner
     session = PracticePlanner.start!(learner)
-    exercises = PracticePlanner::MISSION_PLAN.filter_map do |kind, letter_index|
+    exercises = LEGACY_MISSION_PLAN.filter_map do |kind, letter_index|
       next if kind == "story_action"
       planned_exercise(kind, letter_id: session.focus_letters.fetch(letter_index), version: 3)
     end
@@ -153,7 +162,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   test "unfinished v4 mission retains its exact order answer choices memory state and XP" do
     learner = test_learner
     session = PracticePlanner.start!(learner)
-    exercises = PracticePlanner::MISSION_PLAN.map do |kind, letter_index|
+    exercises = LEGACY_MISSION_PLAN.map do |kind, letter_index|
       planned_exercise(kind, letter_id: session.focus_letters.fetch(letter_index), version: 4)
     end
     exercises.find { |item| item["kind"] == "memory_word" }["memory_hidden"] = true
@@ -166,24 +175,66 @@ class PracticePlannerTest < ActiveSupport::TestCase
     assert_equal 30, learner.reload.xp
   end
 
-  test "three mission cycle varies reading without reducing writing memory or mission length" do
+  test "unfinished v5 mission keeps all six handwriting tasks recovery memory and already earned XP" do
+    learner = test_learner
+    session = PracticePlanner.start!(learner)
+    exercises = LEGACY_MISSION_PLAN.map do |kind, letter_index|
+      planned_exercise(kind, letter_id: session.focus_letters.fetch(letter_index), version: 5)
+    end
+    memory = exercises.find { |item| item["kind"] == "memory_word" }
+    memory["memory_hidden"] = true
+    recovery = exercises.first.deep_dup.merge("id" => "v5-saved-recovery", "recovery_of" => memory.fetch("id"),
+      "review_only" => true, "extra_review" => true)
+    exercises.insert(3, recovery)
+    session.update!(exercises: exercises, cursor: 3, earned_xp: 30)
+    learner.update!(xp: 30)
+
+    assert_equal exercises, PracticePlanner.upgrade!(session).reload.exercises
+    assert_equal exercises, PracticePlanner.start!(learner).reload.exercises
+    assert_equal 3, session.reload.cursor
+    assert_equal 30, session.earned_xp
+    assert_equal 30, learner.reload.xp
+  end
+
+  test "successive missions keep reading dominant and alternate full word with missing letter handwriting" do
     learner = test_learner
     kinds = []
     6.times do |variation|
       learner.update!(completed_missions: variation)
       session = PracticePlanner.start!(learner)
-      tally = session.exercises.map { |item| item.fetch("kind") }.tally
-      kinds.concat(tally.keys)
+      task_kinds = session.exercises.map { |item| item.fetch("kind") }
+      kinds.concat(task_kinds)
       assert_equal 12, session.total_exercises
-      assert_equal 2, tally["trace"]
-      assert_equal 2, tally["write_word"]
-      assert_equal 2, tally["fill_letters"]
-      assert_equal 2, tally["memory_word"]
-      assert_equal 1, tally["story_action"]
-      assert (tally.keys & %w[picture_word repair_word word_pairs]).any?
-      assert_equal %w[build_word read_word sentence].sort, (kinds & %w[build_word read_word sentence]).sort if variation % 3 == 2
+      assert_equal 10, task_kinds.count { |kind| READING_KINDS.include?(kind) }
+      assert_equal 2, task_kinds.count { |kind| WRITING_KINDS.include?(kind) }
+      assert_equal "read_word", task_kinds.first
+      assert_equal [3, 9], task_kinds.each_index.select { |index| WRITING_KINDS.include?(task_kinds[index]) }
+      assert_equal variation.even? ? "write_word" : "fill_letters", task_kinds.fetch(9)
+      assert_equal 1, task_kinds.count("trace")
+      assert_equal 1, task_kinds.count("memory_word")
+      assert_equal 1, task_kinds.count("story_action")
+      assert_equal %w[lower upper], session.exercises.map { |item| item.fetch("case") }.uniq.sort
+      session.focus_letters.each do |letter_id|
+        tasks = session.exercises.select { |item| item.fetch("letter_id") == letter_id }
+        assert_equal 4, tasks.length
+        assert_operator tasks.count { |item| READING_KINDS.include?(item.fetch("kind")) }, :>=, 3
+      end
       session.update!(status: "completed")
     end
-    assert_equal %w[build_word fill_letters memory_word picture_word read_word repair_word sentence story_action trace word_pairs write_word], kinds.uniq.sort
+    assert_equal (READING_KINDS + WRITING_KINDS).sort, kinds.uniq.sort
+  end
+
+  test "reading led missions still award exactly 145 XP and one equipment part for either writing variation" do
+    learner = test_learner
+    2.times do |variation|
+      session = PracticePlanner.start!(learner)
+      assert_equal variation.even? ? "write_word" : "fill_letters", session.exercises.fetch(9).fetch("kind")
+      before_xp = learner.reload.xp
+      complete_practice_session(session)
+      assert_equal 145, session.reload.earned_xp
+      assert_equal before_xp + 145, learner.reload.xp
+      assert_equal variation + 1, learner.completed_missions
+      assert_equal variation + 1, learner.part_unlocks.count
+    end
   end
 end

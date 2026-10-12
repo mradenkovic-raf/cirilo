@@ -24,7 +24,7 @@ class ConcurrentFullResetTest < ActiveSupport::TestCase
     (session.total_exercises - 1).times { solve_current_exercise(session) }
     recorder = AttemptRecorder.new(session)
     exercise = session.reload.current_exercise
-    recorder.memorize!(exercise_id: exercise.fetch("id"))
+    recorder.memorize!(exercise_id: exercise.fetch("id")) if exercise.fetch("kind") == "memory_word"
     results = together(
       -> { recorder.submit!(**correct_attributes(exercise)) },
       -> { reset_all(learner.id) }
