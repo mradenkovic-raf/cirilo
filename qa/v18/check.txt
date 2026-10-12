@@ -1,0 +1,76 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-8-dwtl578' as your home directory temporarily.
+Hold on, I am eager loading the application.
+All is good!
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-11-plbupt11' as your home directory temporarily.
+
+Run options: --seed 37891
+
+# Running:
+
+.................................................................................................................................................................................................................................
+
+Finished in 9.030022s, 24.9169 runs/s, 1593.6838 assertions/s.
+225 runs, 14391 assertions, 0 failures, 0 errors, 0 skips
+✔ winning the last round reveals and focuses the outcome, then celebrates once (3.006476ms)
+✔ losing the last round reveals a distinct defeat and plays a descending final cue (0.765035ms)
+✔ mute or unavailable audio preserves the visible final outcome (1.58668ms)
+✔ refresh and duplicate responses show saved outcomes without replaying celebration or sound (1.590328ms)
+✔ a hit removes only an armor icon and leaves all three hearts full (1.166327ms)
+✔ the last armor piece disappears before a later hit can remove a heart (1.996825ms)
+✔ ties, shields, dodges, and unchanged health never flash a lost icon (2.444105ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.60147
+✔ saved progress moves the dinosaur and lights one dot per completed task, including the arena endpoint (1.064296ms)
+✔ recovery adds a dot without awarding progress and duplicate replies do not move again (0.262664ms)
+✔ invalid progress cannot replace the last saved path and pages without a path are supported (0.20501ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6.610211
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (7.849171ms)
+✔ empty drawings, taps and tiny marks do not pass (0.108026ms)
+✔ school guides separate strokes and direct straight stems downwards (0.43076ms)
+✔ small hand wobble passes, large displacement does not (0.234987ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.16681ms)
+✔ filling the whole board with scribbles does not pass (0.69932ms)
+✔ an unrelated shape does not pass (0.186927ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.086645ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.080818ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.176339ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.109152ms)
+✔ direction arrows follow straight and curved paths; a dot has no arrow (0.217619ms)
+✔ stroke numbers at the same start remain separate and inside the pad (0.765971ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14.566431
+✔ repair requires an explicit changed letter and only edits the chosen position (0.78391ms)
+✔ restoring the original letter is incomplete and undo restores the whole original word (0.146192ms)
+✔ repair displays lowercase but submits uppercase and retains the edited answer across locking (0.217807ms)
+✔ pairing requires a word first and all three distinct pictures before submitting (0.403286ms)
+✔ reassigning a picture releases its old word and undo restores both connections (0.163465ms)
+✔ pairing can deselect a word and keeps answers while pending or completed (0.142276ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5.220136

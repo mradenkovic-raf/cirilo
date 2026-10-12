@@ -142,7 +142,9 @@ bundle exec rails db:prepare
 bundle exec rails server -b 0.0.0.0 -p 3000
 ```
 
-Kada hosting reverse proxy završava HTTPS, postavi `ASSUME_SSL=1` i `FORCE_SSL=1`. Priložen je i `Dockerfile` kao priprema za standardni container hosting; Docker build ovde nije pokretan jer Docker nije instaliran. SQLite mora biti na trajnom disku/volume-u, ne na privremenom filesystemu hostinga. Za ovu malu aplikaciju koristi jednu aplikacionu instancu nad jednim SQLite fajlom.
+Kada hosting reverse proxy završava HTTPS, postavi `ASSUME_SSL=1` i `FORCE_SSL=1`. Dockerfile priprema aplikaciju za container hosting, a entrypoint rešava vlasništvo trajnog diska i spušta privilegije pre pokretanja Rails-a. SQLite mora biti na trajnom volume-u; na Railway-u startup odbija pokretanje bez njega. Koristi jednu aplikacionu instancu nad jednim SQLite fajlom.
+
+**Railway:** kompletno uputstvo, promenljive, healthcheck i čuvanje napretka nalaze se u [RAILWAY.md](RAILWAY.md). Privatni GitHub repo je [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), produkciona grana je `main`. Workflow `Check` pokreće Rails/JS provere i Docker probu sa novim praznim volume-om i dva uzastopna containera. [Nalazi pripreme](qa/v18/PROVERA.md).
 
 Nema prijave: **svaki browser ima svoj napredak**. Za javni hosting obavezan je HTTPS: identifikacioni kolačić je u production režimu `Secure`. `SECRET_KEY_BASE` i SQLite baza moraju da opstanu pri svakom novom deploy-u; promena ključa poništila bi postojeće šifrovane kolačiće. Aplikacija nije javno objavljena.
 

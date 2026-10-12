@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "checks": [
+    "missing secret",
+    "missing volume",
+    "database outside volume",
+    "relative traversal outside volume"
+  ]
+}

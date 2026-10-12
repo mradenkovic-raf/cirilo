@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Railway mounts a new volume as root. Fix only SQLite's directory and files,
+# then drop privileges before running migrations or the application.
+if [ "$(id -u)" = "0" ]; then
+  database_file="${DATABASE_PATH:-/app/storage/production.sqlite3}"
+  database_directory="$(dirname "$database_file")"
+  mkdir -p "$database_directory"
+  chown rails:rails "$database_directory"
+  for database_item in "$database_file" "$database_file-wal" "$database_file-shm" "$database_file-journal"; do
+    if [ -f "$database_item" ] && [ ! -L "$database_item" ]; then
+      chown rails:rails "$database_item"
+    fi
+  done
+  exec gosu rails "$@"
+fi
+
+exec "$@"

@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 : "${SECRET_KEY_BASE:?Set SECRET_KEY_BASE for production}"
+
+# Refuse an ephemeral SQLite database on Railway. Volumes are available at
+# runtime, not during image builds or Railway's separate pre-deploy command.
+if [ -n "${RAILWAY_ENVIRONMENT_ID:-}" ]; then
+  : "${RAILWAY_VOLUME_MOUNT_PATH:?Attach a persistent volume before deploying}"
+  : "${DATABASE_PATH:?Set DATABASE_PATH inside the persistent volume}"
+  database_path="$(realpath -m "$DATABASE_PATH")"
+  volume_path="$(realpath -m "$RAILWAY_VOLUME_MOUNT_PATH")"
+  case "$database_path" in
+    "$volume_path"/*) ;;
+    *) echo 'DATABASE_PATH must be inside the Railway volume.' >&2; exit 1 ;;
+  esac
+fi
+
 bin/rails db:prepare
 exec bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"

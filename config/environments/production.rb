@@ -8,6 +8,11 @@ Rails.application.configure do
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
   config.log_tags = [:request_id]
   config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
-  config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
+  public_hosts = [ENV["APP_HOST"], ENV["RAILWAY_PUBLIC_DOMAIN"]].compact_blank.uniq
+  if public_hosts.any?
+    config.hosts = public_hosts + ["healthcheck.railway.app"]
+  end
+  # Railway's internal readiness probe does not need an HTTPS redirect.
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
   config.active_record.dump_schema_after_migration = false
 end

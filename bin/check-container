@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Run from the checkout, with sudo only if Docker requires it. No family data is mounted.
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+command -v docker >/dev/null
+command -v python3 >/dev/null
+docker info >/dev/null
+umask 077
+check_tmp="$(mktemp -d -t cirilo-container-check.XXXXXXXX)"
+check_prefix="cirilo-check-${check_tmp##*.}"
+check_volume="${check_prefix}-storage"
+cleanup() {
+  check_result=$?
+  trap - EXIT
+  if [ "$check_result" != 0 ]; then
+    docker logs "${check_prefix}-first" 2>/dev/null || true
+    docker logs "${check_prefix}-second" 2>/dev/null || true
+  fi
+  docker rm -f "${check_prefix}-owner" "${check_prefix}-first" "${check_prefix}-second" >/dev/null 2>&1 || true
+  docker volume rm "$check_volume" >/dev/null 2>&1 || true
+  rm -rf -- "$check_tmp"
+  exit "$check_result"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+python3 - "$check_tmp/environment" <<'PY'
+import pathlib, secrets, sys
+pathlib.Path(sys.argv[1]).write_text("\n".join([
+    "SECRET_KEY_BASE=" + secrets.token_hex(64), "RAILWAY_ENVIRONMENT_ID=container-check",
+    "RAILWAY_VOLUME_MOUNT_PATH=/app/storage", "DATABASE_PATH=/app/storage/production.sqlite3",
+    "APP_HOST=qa-cirilo.up.railway.app", "ASSUME_SSL=1", "FORCE_SSL=1", "RAILS_LOG_LEVEL=fatal",
+]) + "\n")
+PY
+docker build -t cirilo:railway-check .
+docker volume create "$check_volume" >/dev/null
+docker run --rm --name "${check_prefix}-owner" --user 0 --entrypoint ruby \
+  --mount "type=volume,source=$check_volume,target=/app/storage,volume-nocopy" \
+  cirilo:railway-check -e 'abort "ERROR: volume must start empty and root-owned" unless File.stat("/app/storage").uid == 0 && Dir.children("/app/storage").empty?'
+
+start_and_check() {
+  local check_phase="$1" check_name="${check_prefix}-$2" check_address check_port
+  docker run -d --name "$check_name" --env-file "$check_tmp/environment" \
+    --mount "type=volume,source=$check_volume,target=/app/storage,volume-nocopy" \
+    -p 127.0.0.1::3000 cirilo:railway-check >/dev/null
+  check_address="$(docker port "$check_name" 3000/tcp)"
+  check_port="${check_address##*:}"
+  python3 qa/v18/container_http_check.py "$check_phase" "$check_port" "$check_tmp/browser.json"
+  docker exec "$check_name" ruby -e 'uids = File.readlines("/proc/1/status").find { |line| line.start_with?("Uid:") }.split.drop(1); abort "ERROR: Rails PID 1 must run as UID 1000" unless uids == %w[1000 1000 1000 1000]'
+}
+start_and_check write first
+docker stop "${check_prefix}-first" >/dev/null
+docker rm "${check_prefix}-first" >/dev/null
+start_and_check restore second
+echo 'PASS: Docker build, fresh root-owned volume, Rails UID 1000, HTTPS proxy, healthcheck, CSRF, host checks, and mission persistence across containers.'

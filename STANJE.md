@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, aplikacija v17 dodaje čitanje prostornih odnosa: u, na, pored, ispred i iza. Nova misija ima dve kratke priče umesto jedne, uz isti odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, bez naloga i prijave, ostaje. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-12, u toku je v18 priprema za Railway i privatni GitHub repo. Dečja igra ostaje v17: čitanje prostornih odnosa u, na, pored, ispred i iza, dve kratke priče po misiji i odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, 112 reči, potezi slova, arena, dvorište i ostale igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Priprema za Railway — v18
+
+Korisnik je odobrio pripremu objave. Privatni repo je [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo). Za objavu se priprema najnoviji kod na `main`; stare verzije ostaju u istoriji i tagovima. Prvi deploy i javni Railway servis još nisu napravljeni.
+
+Docker sada priprema vlasništvo novog volume-a i pokreće migracije/Pumu kao UID 1000. SQLite mora biti unutar Railway volume-a; startup odbija nedostajući disk ili pogrešnu putanju. Migracije ostaju pri runtime startu. Production prihvata konfigurisani javni domen i Railway healthcheck host; `/up` ne preusmerava, ne pravi cookie i ne otvara nov napredak. Privatni ključevi, sve lokalne baze i rezerve isključeni su iz image-a. Pripremljena je lokalna `.env.railway` sa novim trajnim ključem, dozvolama 0600, van Gita i image-a.
+
+Lokalno prolazi 225 Rails testova / 14.391 tvrdnja i 29 JavaScript testova. Posebna production provera dva Rails procesa potvrđuje HTTPS/CSRF, odvojene browsere i isti cookie/XP posle restarta. GitHub workflow `Check` dodatno proverava Docker build i dva containera sa istim novim volume-om. Rezultat CI provere biće dopunjen po završetku. [Postupak objave](RAILWAY.md), [nalazi](qa/v18/PROVERA.md).
+
+Prethodni kod je na tagu `v17-stable-before-railway` (`9d21b09`), a konzistentna lokalna baza u `revisions/2026-10-12-v17-before-railway/`. Priprema je rađena na grani `railway-preparation`; `main` se pomera unapred bez prepisivanja istorije.
 
 ## Gde je predmet — v17
 

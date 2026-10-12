@@ -1,0 +1,23 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-5-2ptqzw5' as your home directory temporarily.
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-8-fdsazf8' as your home directory temporarily.
+{
+  "result": "PASS",
+  "environment": "production",
+  "browsers": 2,
+  "rails_processes": 2,
+  "database": "storage/v18-production.sqlite3",
+  "checks": [
+    "Railway /up without learner or cookie",
+    "allowed host behind HTTPS proxy",
+    "unknown host blocked",
+    "Secure + HttpOnly + SameSite cookie",
+    "private pages no-store",
+    "real CSRF form and answer submission",
+    "missing CSRF rejected",
+    "foreign mission 404",
+    "independent browser progress",
+    "persistent cookie and earned XP survive a new Rails process"
+  ]
+}
