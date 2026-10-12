@@ -1,0 +1,9 @@
+<% journey = AdventureMap.through(practice_session); rescued = journey.just_rescued_world %>
+<% if rescued %>
+  <section class="mission-adventure mission-adventure--rescue" aria-label="Спасен другар">
+    <div class="mission-adventure-art"><%= adventure_friend(rescued, rescued: true) %></div>
+    <div><h2><%= rescued[:rescued] %></h2><%= link_to 'Чека те код Клика! →', workshop_path, class: 'text-link' %></div>
+  </section>
+<% else %>
+  <p class="mission-map-link"><%= link_to adventure_path, class: 'text-link' do %><%= ui_icon(:map) %> <%= journey.completed? ? 'Сви другари су на сигурном' : "Мапа: #{journey.completed_steps} / #{AdventureMap::TOTAL_MISSIONS}" %><% end %></p>
+<% end %>

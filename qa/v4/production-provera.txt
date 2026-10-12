@@ -1,0 +1,34 @@
+PRODUCTION PROVERA V4
+Datum: 2026-10-11 (Europe/Belgrade)
+Baza: storage/v4-production.sqlite3 (nova, izolovana probna baza)
+Rails: production; eager_load i public_file_server ukljuceni.
+SECRET_KEY_BASE: nasumicno generisan samo u memoriji procesa; nije ispisan ni sacuvan.
+Bez HTTP servera: zahtevi izvrseni kroz Rails/Rack integration session.
+
+PASS migracije 000100, 000200, 000300, 000400 i 000500 na praznoj bazi; shop kolone i battle.dino_species postoje.
+FIXTURE: direktno postavljeno 600 lifetime XP u izolovanoj bazi (sinteticki QA fixture, bez stvarnog ucenja); nivo 7, novcanik 600.
+PASS GET /shop -> 200; 17 kartica; CSRF zastita ukljucena i token prisutan.
+PASS POST /shop/purchases sa validnim CSRF -> 303; Tricera 240 XP; novcanik 600 -> 360, lifetime XP 600 i nivo 7 sacuvani.
+PASS redirect GET /shop -> jedan reveal sa kupljenim Triceratopsom.
+PASS drugi GET /shop -> nema ponovnog reveal-a.
+PASS PATCH /shop/equip sa validnim CSRF: Rex pa kupljeni Tricera; bez dodatnog troska/kupovine/reveal-a.
+PASS kupovina teme Svemir 220 XP -> novcanik 140; lifetime XP 600/nivo 7 ostaju isti.
+PASS GET / -> 200; body tema space, efekat stars, SVG Tricera; header i aria-label prikazuju novcanik 140.
+PASS GET /workshop -> 200; odabrana tema i vrsta sacuvane.
+PASS GET /alphabet -> 200; svih 30 slova.
+PASS GET /fx.css -> 200; 6187 bytes; text/css.
+PASS GET /fx.js -> 200; 8490 bytes; text/javascript.
+PASS GET /shop.js -> 200; 2364 bytes; text/javascript.
+PASS GET /shop.css -> 200; 12316 bytes; text/css.
+PASS GET /themes.css -> 200; 3897 bytes; text/css.
+PASS finalni fixture: lifetime XP 600, potroseno 460, novcanik 140, nivo 7, 2 kupovine; bez dodatih misija, pokusaja ili delova.
+PASS development.sqlite3 i test.sqlite3: SHA-256 nepromenjen; nijedna nije otvarana kao SQLite veza.
+PRODUCTION SMOKE: PASS
+
+OGRANICENJA:
+- Proveren je production Rails/Rack tok bez HTTP servera; ovo nije provera javnog hostinga, HTTPS-a, reverse proxy-ja, kontejnera ili vise procesa.
+- Browser i JavaScript nisu pokretani: pregledane su HTML oznake/CSRF/odgovori i isporuka CSS/JS; animacije, zvuk, modal top-layer i mobilni prikaz proveravaju se zasebno.
+- Pocetnih 600 XP je dokumentovani sinteticki fixture. Smoke ne meri napredak deteta niti kvalitet prepoznavanja rukopisa.
+- FORCE_SSL/ASSUME_SSL su iskljuceni za Rack proveru; APP_HOST=production-smoke.test.
+- storage/v4-production.sqlite3 je samo QA baza i nije baza stvarnog deteta.
+- Bundler je automatski koristio privremeni /tmp/bundler direktorijum zbog read-only home direktorijuma; aplikacioni kod nije menjan.

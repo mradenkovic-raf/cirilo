@@ -1,0 +1,17 @@
+<details class="parent-reset reset-all" id="reset-all">
+  <summary>Потпуни рестарт · обриши све и почни испочетка</summary>
+  <div class="parent-reset-body">
+    <h3>Потпуно нова авантура</h3>
+    <p>Бришу се сви <strong>XP поени, куповине, опрема, борбе и мисије</strong>, укључујући мисију у току. Бришу се и вежбана слова, одговори и забележене замене слова.</p>
+    <p><strong>Мапа се враћа на први корак, а сви спасени другари одлазе из дворишта.</strong> Дете ће их поново спасавати од почетка. Дино поново постаје зелени рекс, уз ливаду и звездице.</p>
+    <p>Бришу се и јаје, напредак излегања и име излеженог другара.</p>
+    <%= form_with url: reset_all_progress_path, method: :post, class: 'parent-reset-form' do %>
+      <%= hidden_field_tag :shop_generation, @learner.shop_generation, id: 'full_shop_generation' %>
+      <%= hidden_field_tag :dinosaur_generation, @learner.dinosaur_generation, id: 'full_dinosaur_generation' %>
+      <label class="reset-confirmation" for="full_confirm_reset"><%= check_box_tag :confirm_reset, '1', false, required: true, id: 'full_confirm_reset' %><span>Ја сам родитељ. Желим да обришем сав напредак и започнем потпуно нову авантуру.</span></label>
+      <label class="reset-code" for="full_reset_word">Упиши RESET да потврдиш.<%= text_field_tag :reset_word, nil, id: 'full_reset_word', required: true, pattern: 'RESET', autocomplete: 'off', autocapitalize: 'characters', spellcheck: false, maxlength: 5, placeholder: 'RESET' %></label>
+      <p class="reset-warning">Ово брише све за све уређаје који користе ову апликацију. Рестарт не може да се поништи; претходна опрема такође не може да се врати.</p>
+      <%= submit_tag 'Обриши све и почни испочетка', class: 'button reset-submit' %>
+    <% end %>
+  </div>
+</details>

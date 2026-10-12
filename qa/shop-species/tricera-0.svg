@@ -1,0 +1,30 @@
+<svg class="dino-scene dino-scene--compact dino-species--tricera" data-dino-species="tricera" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Твој диносаурус, Трицератопс, 0 од 16 делова опреме">
+  <title>Твој трицератопс</title>
+  <circle cx="272" cy="215" r="179" fill="#E7F2E2"/><circle cx="403" cy="116" r="22" fill="#F6F4DC"/><circle cx="118" cy="96" r="8" fill="#CBE6C5"/><circle cx="431" cy="277" r="7" fill="#CBE6C5"/><ellipse cx="266" cy="389" rx="168" ry="17" fill="#173E35" fill-opacity=".09"/>
+  
+  
+  
+  <g class="dino-character" data-species-shape="tricera"><path d="M212 292C165 318 120 318 88 284C79 276 71 279 74 292C82 340 128 361 201 345L244 320Z" fill="#84C846"/><path d="M85 293C111 324 151 336 184 327" stroke="#62AD3B" stroke-width="7" stroke-linecap="round"/>
+<path d="M211 220L194 215L187 242L211 254M198 258L177 261L183 286L209 286" fill="#62AD3B"/>
+<path d="M218 65L237 76L255 61L273 79L296 69L303 95L326 99L320 124L337 144L321 164L330 188L303 198L301 225L276 224L257 245L236 230L208 239L197 217L171 215L170 188L148 171L159 147L149 124L173 110L174 84L200 88Z" fill="#62AD3B"/>
+<path d="M213 89C242 75 282 89 297 121C318 167 302 209 267 221C220 237 180 215 170 174C161 137 180 103 213 89Z" fill="#A9DF50"/>
+<path d="M214 108C235 96 267 102 282 128C300 160 291 192 266 203C232 217 200 201 190 174C181 145 190 123 214 108Z" fill="#EAF0A4"/>
+<path d="M196 111L210 101M177 143L183 128M179 181L176 165M202 211L188 201" stroke="#C9EE86" stroke-width="7" stroke-linecap="round"/>
+<path d="M274 315L284 367L285 383H336C344 376 339 366 326 362L319 322Z" fill="#77BD3F"/>
+<path d="M219 217C190 235 180 276 187 309C194 343 227 362 277 354C318 350 339 323 334 286C330 252 310 225 284 213Z" fill="#A9DF50"/><path d="M200 247C187 283 197 327 235 348C202 343 186 325 184 303C180 283 187 261 200 247Z" fill="#84C846"/>
+<path d="M276 249C247 243 227 266 230 295C231 324 250 342 278 336C305 332 318 311 313 288C308 266 294 250 276 249Z" fill="#EAF0A4"/><path d="M245 280C263 286 288 286 305 280M244 300C264 307 287 306 307 297M255 319C269 324 287 321 297 315" stroke="#CBD883" stroke-width="4" stroke-linecap="round"/>
+<path d="M313 270C327 278 338 273 347 261C353 252 364 258 360 270C352 293 326 301 309 289" fill="#91D249"/><path d="M345 274L350 281M336 280L341 287" stroke="#5F9D38" stroke-width="3" stroke-linecap="round"/>
+<path d="M220 321C210 337 218 356 223 365L212 373C204 379 207 389 218 390H269C279 385 274 374 262 371L266 337Z" fill="#A9DF50"/><path d="M229 382V389M244 382V389M309 377V383M322 376V383" stroke="#6CAD3D" stroke-width="4" stroke-linecap="round"/>
+<path d="M234 126C243 98 268 85 300 91C330 95 343 118 345 141C373 143 405 155 417 177C431 202 409 227 381 237C346 249 305 240 282 229C245 226 224 204 224 176C224 156 228 139 234 126Z" fill="#A9DF50"/>
+<path d="M231 155C227 189 247 212 281 218L348 237C305 237 282 231 260 223C232 214 221 186 231 155Z" fill="#84C846"/>
+<path d="M254 111C266 102 283 98 298 104" stroke="#C9EE86" stroke-width="8" stroke-linecap="round"/>
+<path d="M328 106C332 86 338 62 350 52C344 76 348 96 342 117Z" fill="#F6E8BC" stroke="#C5BC89" stroke-width="2"/>
+<path d="M266 113C259 91 248 72 239 63C241 89 244 111 253 122Z" fill="#FFF4CF" stroke="#D4C695" stroke-width="2"/>
+<ellipse cx="326" cy="134" rx="18" ry="25" fill="#F9FCED"/><ellipse cx="328" cy="138" rx="9" ry="14" fill="#173E35"/><circle cx="331" cy="133" r="3.5" fill="#FFF"/>
+<ellipse cx="281" cy="141" rx="25" ry="33" fill="#F9FCED"/><ellipse cx="287" cy="146" rx="12" ry="18" fill="#173E35"/><circle cx="291" cy="139" r="5" fill="#FFF"/>
+<path d="M267 106C274 102 285 103 292 108M320 103L335 108" stroke="#427B35" stroke-width="4" stroke-linecap="round"/>
+<path d="M386 164C388 142 394 131 403 127C402 143 404 153 400 173Z" fill="#FFF4CF" stroke="#D4C695" stroke-width="2"/>
+<path d="M408 187C427 189 436 197 429 208L411 222L400 213L408 204L400 197Z" fill="#E6D39B"/><path d="M307 208C335 226 373 229 401 211" stroke="#173E35" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="367" cy="181" rx="4" ry="5" fill="#5E9836"/><ellipse cx="393" cy="187" rx="3" ry="4" fill="#5E9836"/><ellipse cx="262" cy="184" rx="13" ry="8" fill="#FF9973" fill-opacity=".6"/>
+</g>
+</svg>

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [ -x .runtime/ruby/bin/ruby ]; then
+  export PATH="$PWD/.runtime/ruby/bin:$PATH"
+fi
+bundle check >/dev/null || bundle install
+bin/rails db:prepare
+exec bin/rails server -b "${BIND:-127.0.0.1}" -p "${PORT:-3000}"

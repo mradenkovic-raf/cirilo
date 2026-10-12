@@ -1,0 +1,50 @@
+{
+  "all_identical": true,
+  "tables": {
+    "learners": {
+      "identical": true,
+      "before_count": 1,
+      "after_count": 1
+    },
+    "practice_sessions": {
+      "identical": true,
+      "before_count": 11,
+      "after_count": 11
+    },
+    "attempts": {
+      "identical": true,
+      "before_count": 136,
+      "after_count": 136
+    },
+    "letter_progresses": {
+      "identical": true,
+      "before_count": 13,
+      "after_count": 13
+    },
+    "part_unlocks": {
+      "identical": true,
+      "before_count": 0,
+      "after_count": 0
+    },
+    "battles": {
+      "identical": true,
+      "before_count": 4,
+      "after_count": 4
+    },
+    "shop_purchases": {
+      "identical": true,
+      "before_count": 1,
+      "after_count": 1
+    },
+    "letter_confusions": {
+      "identical": true,
+      "before_count": 0,
+      "after_count": 0
+    }
+  },
+  "learner": {
+    "xp": 290,
+    "xp_spent": 220,
+    "completed_missions": 10
+  }
+}

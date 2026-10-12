@@ -1,0 +1,61 @@
+<% current_learner = @learner || Learner.current %>
+<!DOCTYPE html>
+<html lang="sr-Cyrl">
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) + " · " : "" %>Ћирило — дино-радионица</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f6f0">
+    <meta name="description" content="Мала слова, велике авантуре. Пронађи, напиши и запамти ћирилицу уз свог диносауруса.">
+    <%= csrf_meta_tags %>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="<%= static_asset_path('application.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('challenges.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('workshop.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('battle.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('shop.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('themes.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('fx.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('discovery.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('adventure.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('child_ux.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('child_focus.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('play_focus.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('browse_focus.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('variety.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('egg.css') %>">
+    <link rel="stylesheet" href="<%= static_asset_path('mission_path.css') %>">
+    <script type="importmap"><%= raw json_escape({ imports: static_module_imports }.to_json) %></script>
+    <script type="module" src="<%= static_asset_path('application.js') %>"></script>
+    <script type="module" src="<%= static_asset_path('workshop.js') %>"></script>
+    <script type="module" src="<%= static_asset_path('battle.js') %>"></script>
+    <script type="module" src="<%= static_asset_path('shop.js') %>"></script>
+  </head>
+  <body data-theme="<%= current_learner.selected_theme %>" data-effect="<%= current_learner.selected_effect %>" class="<%= controller_name %>-<%= action_name %> <%= 'practice-page' if controller_name == 'practice_sessions' %> <%= 'focused-mission' if @practice_session && !@practice_session.completed? %> <%= 'focused-battle' if @battle&.active? %>">
+    <a href="#main" class="skip-link">Пређи на садржај</a>
+    <header class="site-header">
+      <a href="/" class="brand" aria-label="Ћирило — почетна">
+        <span class="brand-mark"><%= ui_icon(:bolt) %></span>
+        <span>ћирило<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Главни мени">
+        <%= nav_item "Игра", root_path, :play %>
+        <%= nav_item "Мој дино", workshop_path, :tool %>
+        <details class="more-menu">
+          <summary class="nav-item <%= 'active' if [adventure_path, shop_path, alphabet_path, progress_path].any? { |path| current_page?(path) } %>"><span class="more-dots" aria-hidden="true">•••</span><span>Још</span></summary>
+          <div class="more-menu-items">
+            <%= nav_item "Мапа", adventure_path, :map %>
+            <%= nav_item "Продавница", shop_path, :star %>
+            <%= nav_item "Слова", alphabet_path, :book %>
+            <%= nav_item "За родитеља", progress_path, :lock %>
+          </div>
+        </details>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-button sound-toggle" aria-label="Искључи звучне ефекте" aria-pressed="false"><%= ui_icon(:sound) %></button>
+      </div>
+    </header>
+    <main id="main"><% if notice %><div class="flash-notice" role="status"><%= notice %></div><% end %><% if alert %><div class="flash-alert" role="alert"><%= alert %></div><% end %><%= yield %></main>
+    <footer class="site-footer"><%= link_to "За родитеља", progress_path %></footer>
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

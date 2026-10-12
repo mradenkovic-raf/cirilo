@@ -1,0 +1,6 @@
+<% adventure = AdventureMap.new(@learner); world = adventure.current_world %>
+<section class="home-adventure" aria-label="Твоја мапа авантуре">
+  <div class="home-adventure-friend"><%= adventure_friend(world || adventure.worlds.last, rescued: adventure.completed?) %></div>
+  <div class="home-adventure-copy"><div class="eyebrow"><%= adventure.completed? ? 'ЧЕТИРИ СПАСЕНА ДРУГАРА' : "АВАНТУРА · #{world[:name].upcase}" %></div><h2><%= adventure.completed? ? 'Сви другари су код куће!' : adventure.next_step[:name] %></h2><p><%= adventure.completed? ? 'Настави да читаш, пишеш и освајаш опрему.' : "#{world[:friend]} те чека. Следећа мисија отвара нови корак." %></p><div class="home-adventure-dots" aria-label="<%= adventure.rescued_count %> од 4 другара спасено"><% adventure.worlds.each do |item| %><span class="is-<%= item[:state] %>"><%= ui_icon(item[:state] == :completed ? :check : item[:state] == :current ? :play : :lock) %><span><%= item[:name] %></span></span><% end %></div></div>
+  <%= link_to adventure_path, class: 'button secondary home-adventure-link' do %>Моја мапа<%= ui_icon(:arrow) %><% end %>
+</section>

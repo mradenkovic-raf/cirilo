@@ -1,0 +1,27 @@
+<svg class="dino-scene dino-scene--compact dino-species--stego" data-dino-species="stego" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Твој диносаурус, Стегосаурус, 0 од 16 делова опреме">
+  <title>Твој стегосаурус</title>
+  <circle cx="272" cy="215" r="179" fill="#E7F2E2"/><circle cx="403" cy="116" r="22" fill="#F6F4DC"/><circle cx="118" cy="96" r="8" fill="#CBE6C5"/><circle cx="431" cy="277" r="7" fill="#CBE6C5"/><ellipse cx="266" cy="389" rx="168" ry="17" fill="#173E35" fill-opacity=".09"/>
+  
+  
+  
+  <g class="dino-character" data-species-shape="stego"><path d="M197 295C150 306 119 300 88 274C73 262 67 270 75 286C100 331 141 356 202 337Z" fill="#84C846"/><path d="M88 287C112 316 147 328 177 319" stroke="#62AD3B" stroke-width="7" stroke-linecap="round"/>
+<path d="M89 288L65 271L72 297M105 309L78 299L92 322" fill="#F5E6C5" stroke="#B9BE8D" stroke-width="2"/>
+<path d="M126 261L115 226L137 201L158 230L153 260Z" fill="#62AD3B"/><path d="M154 231L143 185L176 150L204 191L195 228Z" fill="#62AD3B"/><path d="M199 219L191 159L228 111L260 163L248 221Z" fill="#62AD3B"/><path d="M247 222L258 168L292 140L315 186L293 242Z" fill="#62AD3B"/><path d="M296 243L322 208L349 205L350 244L328 263Z" fill="#62AD3B"/>
+<path d="M134 250L126 228L138 215L148 234L144 253M170 217L155 185L176 164L192 193L185 219M214 213L204 161L228 129L247 165L237 215M260 220L269 174L291 155L302 188L285 230M311 246L327 219L339 218L339 240L326 253" fill="#FFB889"/>
+<path d="M225 148L226 204M175 180L177 210M289 178L275 216" stroke="#FFD6A3" stroke-width="4" stroke-linecap="round"/>
+<path d="M199 315L197 358L207 374C213 381 209 389 199 389H164C157 384 158 376 167 372L164 322M326 305L338 353L354 370C360 379 353 386 344 386H310L307 327Z" fill="#77BD3F"/>
+<path d="M177 221C205 204 259 204 295 218C327 232 349 244 365 232L393 240C388 269 365 301 340 317C313 342 286 350 234 347C193 348 159 333 150 305C140 279 145 242 177 221Z" fill="#A9DF50"/>
+<path d="M153 262C148 303 166 328 205 340C169 338 151 324 146 304C140 287 143 273 153 262Z" fill="#84C846"/>
+<path d="M204 263C232 249 280 251 307 275C325 292 312 321 283 332C251 344 213 334 197 312C184 296 188 274 204 263Z" fill="#EAF0A4"/><path d="M211 280C237 275 275 281 295 292M210 299C235 297 266 304 284 315" stroke="#CBD883" stroke-width="4" stroke-linecap="round"/>
+<path d="M178 316L194 332L191 366L199 375C207 381 202 393 191 394H150C140 389 144 379 157 375L155 335Z" fill="#A9DF50"/>
+<path d="M346 302L366 323L358 369L369 380C377 388 370 396 359 396H321C313 390 318 380 330 378L323 326Z" fill="#A9DF50"/><path d="M160 387V393M175 387V393M338 389V395M353 389V395" stroke="#6CAD3D" stroke-width="4" stroke-linecap="round"/>
+<path d="M311 278C324 288 339 286 350 276C357 270 364 276 360 286C350 304 327 309 310 298Z" fill="#91D249"/>
+<path d="M334 153C342 131 365 126 385 137C398 144 406 158 408 174C428 177 449 191 449 209C449 228 427 241 399 242C372 243 351 232 340 218C329 204 326 171 334 153Z" fill="#A9DF50"/>
+<path d="M337 172C334 202 351 224 381 234C354 230 340 223 333 206C328 194 329 181 337 172Z" fill="#84C846"/>
+<path d="M348 145C359 137 371 138 378 142" stroke="#C9EE86" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="397" cy="174" rx="12" ry="17" fill="#F9FCED"/><ellipse cx="399" cy="177" rx="6" ry="10" fill="#173E35"/><circle cx="401" cy="174" r="2.5" fill="#FFF"/>
+<ellipse cx="368" cy="180" rx="17" ry="22" fill="#F9FCED"/><ellipse cx="373" cy="183" rx="8" ry="12" fill="#173E35"/><circle cx="376" cy="178" r="3.5" fill="#FFF"/>
+<path d="M357 154C363 149 373 150 379 154M390 154L400 158" stroke="#427B35" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="424" cy="199" rx="3" ry="4" fill="#5E9836"/><path d="M380 216C396 227 423 224 434 214" stroke="#173E35" stroke-width="4" stroke-linecap="round"/><path d="M401 224L405 230L409 224" fill="#FFFDF0"/><ellipse cx="353" cy="207" rx="8" ry="5" fill="#FF9973" fill-opacity=".7"/>
+</g>
+</svg>

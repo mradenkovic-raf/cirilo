@@ -1,0 +1,31 @@
+<% content_for :title, "Дино-продавница" %>
+<% groups = { 'dino' => 'Дино', 'theme' => 'Светови', 'color' => 'Боје', 'effect' => 'Прославе' } %>
+<section class="shop-hero shop-focus-heading">
+  <h1>Награде</h1>
+  <div class="shop-wallet" aria-label="XP за куповину"><%= ui_icon(:bolt) %><strong><%= @learner.xp_balance %><small> XP</small></strong></div>
+</section>
+<nav class="shop-tabs" aria-label="Изабери врсту награде"><% { 'dino' => ['🦖', 'Дино'], 'theme' => ['🪐', 'Светови'], 'color' => ['🎨', 'Боје'], 'effect' => ['✦', 'Прославе'] }.each do |category, (icon, label)| %><a href="#shop-<%= category %>" data-shop-category="<%= category %>"><span aria-hidden="true"><%= icon %></span><%= label %></a><% end %></nav>
+<% groups.each do |category, heading| %>
+  <% category_items = @items.select { |item| item['category'] == category }; owned_items = category_items.select { |item| @learner.owns_shop_item?(item) }; next_item = category_items.find { |item| !@learner.owns_shop_item?(item) }; later_items = category_items.reject { |item| owned_items.include?(item) || item == next_item }; selected_item = owned_items.find { |item| @learner.selected_shop_item?(item) } %>
+  <section class="shop-section shop-focus-section" id="shop-<%= category %>" aria-labelledby="shop-heading-<%= category %>" data-shop-section="<%= category %>">
+    <h2 id="shop-heading-<%= category %>" class="adventure-visually-hidden"><%= heading %></h2>
+    <% if next_item %>
+      <div class="shop-next-choice"><%= render 'shop/card', item: next_item, category: category %></div>
+    <% end %>
+    <details class="shop-choice-drawer" <%= 'open' unless next_item %>>
+      <summary><span>Твоји избори <b><%= owned_items.length %></b></span><span class="shop-current-choice"><%= selected_item&.fetch('name') %><%= ui_icon(:arrow) %></span></summary>
+      <div class="shop-grid shop-grid--<%= category %> shop-owned-grid"><% owned_items.each do |item| %><%= render 'shop/card', item: item, category: category %><% end %></div>
+    </details>
+    <% if later_items.any? %>
+      <details class="shop-choice-drawer shop-later-drawer">
+        <summary><span><%= ui_icon(:lock) %> После тога</span><%= ui_icon(:arrow) %></summary>
+        <div class="shop-grid shop-later-grid"><% later_items.each do |item| %><%= render 'shop/card', item: item, category: category %><% end %></div>
+      </details>
+    <% end %>
+  </section>
+<% end %>
+<dialog class="shop-confirm" data-shop-confirm aria-labelledby="shop-confirm-title"><button type="button" class="shop-dialog-close" data-close-confirm aria-label="Затвори"><%= ui_icon(:close) %></button><span class="eyebrow">ТВОЈ НОВИ ИЗБОР</span><h2 id="shop-confirm-title">Откључавамо?</h2><div class="shop-confirm-art" data-confirm-art aria-hidden="true"></div><p data-confirm-name></p><div class="shop-confirm-price" data-confirm-price></div><p class="shop-confirm-balance" data-confirm-balance></p><div class="shop-confirm-actions"><button type="button" class="button secondary" data-close-confirm>Још гледам</button><button type="button" class="button primary" data-confirm-purchase>Да, откључај! <%= ui_icon(:bolt) %></button></div></dialog>
+<% unlocked_item = @items.find { |item| item['id'] == flash[:shop_unlock] } %>
+<% if unlocked_item && @learner.owns_shop_item?(unlocked_item) %>
+  <dialog class="shop-reveal" data-shop-reveal="<%= unlocked_item['id'] %>" data-shop-generation="<%= @learner.shop_generation %>" data-reveal-category="<%= unlocked_item['category'] %>" aria-labelledby="shop-reveal-title"><div class="reveal-rays" aria-hidden="true"></div><span class="reveal-kicker">✦ ТВОЈА НОВА НАГРАДА ✦</span><div class="reveal-art"><%= shop_item_art(unlocked_item, @learner) %></div><h2 id="shop-reveal-title"><%= unlocked_item['name'] %></h2><p>Откључано! Већ га користиш.</p><button type="button" class="button primary" data-close-reveal>То! Моје је! <%= ui_icon(:star) %></button><%= link_to 'Погледај мог диносауруса →', workshop_path, class: 'reveal-workshop' %></dialog>
+<% end %>

@@ -1,0 +1,11 @@
+<section class="parent-confusions">
+  <h2>Која слова меша?</h2>
+  <p>Бележимо први самосталан избор погрешног слова. Лоши потези оловком и погрешне слике не тумаче се као замена слова.</p>
+  <% observations = LetterConfusion.for_learner(@learner).prioritized.limit(8) %>
+  <% if observations.empty? %><p>Још нема забележених замена слова.</p><% else %>
+    <table class="progress-table"><thead><tr><th>Тражено → избор</th><th>Замене</th><th>Успеси</th></tr></thead><tbody>
+      <% observations.each do |item| %><tr><td><strong><%= item.expected_letter.fetch('upper') %> → <%= item.chosen_letter.fetch('upper') %></strong></td><td><%= item.observations %></td><td><%= item.independent_successes %> / 2<small>мисије</small></td></tr><% end %>
+    </tbody></table>
+    <p>Пар се враћа кроз различите речи. Два прва тачна одговора у различитим мисијама смањују његов приоритет. Преписивање и исправка после грешке не рачунају се у те успехе.</p>
+  <% end %>
+</section>

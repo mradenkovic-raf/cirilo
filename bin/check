@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [ -x .runtime/ruby/bin/ruby ]; then
+  export PATH="$PWD/.runtime/ruby/bin:$PATH"
+fi
+bin/rails zeitwerk:check
+bin/rails test
+if command -v node >/dev/null; then
+  task_node_runtime="$(command -v node)"
+elif [ -x /home/milos/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node ]; then
+  task_node_runtime=/home/milos/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node
+else
+  echo 'Node nije pronađen; testovi geometrije nisu pokrenuti. Aplikaciji Node nije potreban.' >&2
+  exit 1
+fi
+for task_js_test in test/javascript/*_test.mjs; do
+  "$task_node_runtime" "$task_js_test"
+done

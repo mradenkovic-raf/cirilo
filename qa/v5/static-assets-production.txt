@@ -1,0 +1,21 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-7cc13w3' as your home directory temporarily.
+PASS GET /application.css?v=da927690daf6 -> 200; otisak odgovara fajlu
+PASS GET /challenges.css?v=f8310e73efec -> 200; otisak odgovara fajlu
+PASS GET /workshop.css?v=300130b8aa1d -> 200; otisak odgovara fajlu
+PASS GET /battle.css?v=b5b74c8f8460 -> 200; otisak odgovara fajlu
+PASS GET /shop.css?v=f984d862e97e -> 200; otisak odgovara fajlu
+PASS GET /themes.css?v=c2ba1f6d50b7 -> 200; otisak odgovara fajlu
+PASS GET /fx.css?v=83c2498fd6f7 -> 200; otisak odgovara fajlu
+PASS GET /discovery.css?v=a8363f2d48ba -> 200; otisak odgovara fajlu
+PASS GET /child_ux.css?v=2e381f13954f -> 200; otisak odgovara fajlu
+PASS GET /application.js?v=40a60458660a -> 200; otisak odgovara fajlu
+PASS GET /workshop.js?v=719fafe49e53 -> 200; otisak odgovara fajlu
+PASS GET /battle.js?v=2d7c56d11876 -> 200; otisak odgovara fajlu
+PASS GET /shop.js?v=fbd9a7de8a55 -> 200; otisak odgovara fajlu
+PASS GET /fx.js?v=a61070ac9249 -> 200; otisak odgovara fajlu
+PASS GET /writing.js?v=b612a9ac4573 -> 200; otisak odgovara fajlu
+PASS GET /trace_pad.js?v=ac7be16bfea7 -> 200; otisak odgovara fajlu
+PASS GET /trace.js?v=1995bf1b69f2 -> 200; otisak odgovara fajlu
+PASS 17 jedinstvenih CSS/JS adresa; import mapa ima 8 modula.
+Opseg: samo GET na postojece izdvojene production QA podatke; bez servera, browsera ili upisa probnih podataka.

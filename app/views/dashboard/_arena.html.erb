@@ -1,0 +1,14 @@
+<% if @arena_session %>
+  <% last_battle = @arena_session.battle %>
+  <% arena_title, arena_note, arena_button = if last_battle&.status == 'active'
+    ['Меч те чека!', 'Клик и Мргуд су тамо где сте стали.', 'Настави меч']
+  elsif last_battle
+    [last_battle.status == 'won' ? 'Клик је освојио медаљу!' : 'Клик је одиграо добар меч.', 'После следеће мисије отвара се нови меч.', 'Погледај меч']
+  else
+    ['Мисија је готова. Хоћемо у арену?', 'Твоја опрема чува Клика у пријатељском мечу.', 'Уђи у арену']
+  end %>
+  <section class="arena-return" aria-label="Дино арена">
+    <div><strong><span aria-hidden="true">⚔️</span> <%= arena_title %></strong><p><%= arena_note %></p></div>
+    <%= button_to practice_session_battle_path(@arena_session), class: 'button secondary' do %><%= arena_button %> <%= ui_icon(:arrow) %><% end %>
+  </section>
+<% end %>

@@ -1,0 +1,6 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-r4xtyy3' as your home directory temporarily.
+PASS all 7 original tables and all original columns preserved after migrations
+PASS active v3 mission is unchanged including cursor, hidden word and exercise IDs
+PASS saved XP=185, spent=0, missions=9
+UPGRADE V6: PASS; only storage/v6-upgrade.sqlite3 was modified

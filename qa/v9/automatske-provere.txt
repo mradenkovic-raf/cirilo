@@ -1,0 +1,27 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-5-8f42g95' as your home directory temporarily.
+Hold on, I am eager loading the application.
+All is good!
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-8-95dnsh8' as your home directory temporarily.
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-11-n3cq6011' as your home directory temporarily.
+
+Run options: --seed 32158
+
+# Running:
+
+..............................................................................................................................................................................
+
+Finished in 6.107066s, 28.4916 runs/s, 966.0940 assertions/s.
+174 runs, 5900 assertions, 0 failures, 0 errors, 0 skips
+✔ test/javascript/trace_test.mjs (38.788977ms)
+✔ test/javascript/variety_test.mjs (29.563791ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.395702

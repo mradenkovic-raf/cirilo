@@ -1,0 +1,34 @@
+/* Comic-book accents are brief overlays; they never intercept a tap. */
+.fx-stage{position:fixed;inset:0;z-index:1200;overflow:hidden;pointer-events:none!important;contain:layout style paint;isolation:isolate}
+.fx-stage *{pointer-events:none!important;box-sizing:border-box}
+.fx-badge,.fx-ring,.fx-glow,.fx-particle{position:absolute;left:var(--fx-x);top:var(--fx-y)}
+.fx-badge{z-index:4;display:grid;place-items:center;max-width:min(84vw,660px);padding:20px 29px;transform:translate(-50%,-50%) rotate(-7deg);animation:fx-comic-pop var(--fx-duration) cubic-bezier(.18,.82,.25,1) both;will-change:transform,opacity}
+.fx-plate{position:absolute;inset:-14px -21px;background:var(--fx-accent);clip-path:polygon(0 28%,20% 24%,13% 0,39% 17%,52% 0,65% 17%,89% 3%,83% 29%,100% 35%,87% 53%,100% 78%,77% 77%,82% 100%,59% 86%,43% 100%,30% 82%,9% 97%,16% 69%,0 62%,11% 47%);filter:drop-shadow(0 5px 0 var(--fx-ink));opacity:.95}
+.fx-title{position:relative;max-width:100%;font-family:Nunito,system-ui,sans-serif;font-size:clamp(24px,5.8vw,65px);font-weight:1000;line-height:1.02;text-align:center;letter-spacing:-1.4px;color:#fff;paint-order:stroke fill;-webkit-text-stroke:3px var(--fx-ink);text-shadow:2px 5px 0 var(--fx-ink);overflow-wrap:break-word}
+.fx-glow{z-index:0;width:min(420px,90vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--fx-accent) 0%,transparent 67%);transform:translate(-50%,-50%);opacity:0;animation:fx-glow-once 900ms ease-out both}
+.fx-ring{z-index:1;width:60px;height:60px;border:5px solid var(--fx-accent);border-radius:50%;transform:translate(-50%,-50%);opacity:0;animation:fx-ring-out 800ms ease-out var(--fx-delay,0ms) both}
+.fx-particle{z-index:3;width:var(--fx-size);height:var(--fx-size);background:var(--fx-color);opacity:0;transform:translate(-50%,-50%);animation:fx-particle-flight var(--fx-flight) cubic-bezier(.12,.6,.3,1) var(--fx-delay,0ms) both;will-change:transform,opacity;filter:drop-shadow(0 2px 1px #23344824);clip-path:polygon(50% 0,61% 34%,98% 35%,69% 57%,79% 93%,50% 72%,21% 93%,31% 57%,2% 35%,39% 34%)}
+.fx-particle.fx-spark{width:calc(var(--fx-size)*.6);height:calc(var(--fx-size)*1.65);clip-path:polygon(50% 0,64% 35%,100% 50%,64% 63%,50% 100%,37% 64%,0 50%,36% 36%)}
+.fx-lightning .fx-particle{width:calc(var(--fx-size)*.8);height:calc(var(--fx-size)*1.9);clip-path:polygon(54% 0,100% 0,65% 36%,94% 36%,15% 100%,36% 54%,0 54%);filter:drop-shadow(0 0 3px #9ef7ff)}
+.fx-lightning .fx-ring{border-style:dashed;border-width:4px}
+.fx-comets .fx-particle{width:var(--fx-size);height:var(--fx-size);clip-path:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0, var(--fx-color) 42%,var(--fx-color) 65%,transparent 72%);filter:drop-shadow(0 0 4px var(--fx-color));animation-name:fx-comet-flight}
+.fx-comets .fx-particle:before{content:'';position:absolute;right:50%;top:20%;width:calc(var(--fx-size)*3.5);height:60%;border-radius:100% 0 0 100%;background:linear-gradient(90deg,transparent,var(--fx-color));z-index:-1}
+.fx-comets .fx-ring{border-color:#ffbfba;border-width:3px}
+.fx-unlock .fx-plate,.fx-victory .fx-plate{background:linear-gradient(135deg,#fff2ad 0%,var(--fx-accent) 45%,#ffc472 100%)}
+.fx-unlock .fx-badge,.fx-mission .fx-badge,.fx-victory .fx-badge{padding:30px 36px;transform:translate(-50%,-50%) rotate(-5deg)}
+.fx-unlock .fx-title,.fx-mission .fx-title{font-size:clamp(25px,5vw,58px)}
+.fx-hit .fx-title{font-size:clamp(29px,5.5vw,63px)}
+.fx-hit .fx-badge{padding:14px 23px}
+.fx-hit .fx-ring{border-width:4px;animation-duration:540ms}
+.fx-dance .fx-badge{animation-name:fx-dance-pop}
+.fx-reduced .fx-badge{animation:none!important;transform:translate(-50%,-50%);padding:12px 19px}
+.fx-reduced .fx-plate{clip-path:none;border:2px solid var(--fx-ink);border-radius:18px;inset:0;opacity:1}
+.fx-reduced .fx-title{font-size:clamp(22px,4.5vw,42px);-webkit-text-stroke:0;text-shadow:none;color:var(--fx-ink);letter-spacing:0}
+@keyframes fx-comic-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(-16deg)}16%{opacity:1;transform:translate(-50%,-50%) scale(1.13) rotate(-5deg)}28%,62%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-7deg)}100%{opacity:0;transform:translate(-50%,-70%) scale(.94) rotate(-4deg)}}
+@keyframes fx-dance-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.35) rotate(-13deg)}17%{opacity:1;transform:translate(-50%,-50%) scale(1.05) rotate(-8deg)}37%{transform:translate(-50%,-58%) scale(1) rotate(6deg)}60%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-6deg)}100%{opacity:0;transform:translate(-50%,-65%) scale(.95) rotate(0)}}
+@keyframes fx-ring-out{0%{opacity:.65;transform:translate(-50%,-50%) scale(.3)}100%{opacity:0;transform:translate(-50%,-50%) scale(6)}}
+@keyframes fx-glow-once{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}25%{opacity:.26}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
+@keyframes fx-particle-flight{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(0)}12%{opacity:1}55%{opacity:1;transform:translate(calc(-50% + var(--fx-dx)),calc(-50% + var(--fx-dy))) scale(1) rotate(var(--fx-spin))}100%{opacity:0;transform:translate(calc(-50% + var(--fx-dx)),calc(-50% + var(--fx-fall))) scale(.45) rotate(calc(var(--fx-spin) + 90deg))}}
+@keyframes fx-comet-flight{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(var(--fx-angle))}10%{opacity:1}65%{opacity:1;transform:translate(calc(-50% + var(--fx-dx)*.9),calc(-50% + var(--fx-dy)*.9)) scale(.9) rotate(var(--fx-angle))}100%{opacity:0;transform:translate(calc(-50% + var(--fx-dx)),calc(-50% + var(--fx-dy))) scale(.25) rotate(var(--fx-angle))}}
+@media(max-width:480px){.fx-badge{padding:14px 18px;max-width:83vw}.fx-plate{inset:-11px -15px}.fx-title{letter-spacing:-.5px;-webkit-text-stroke:2px;text-shadow:1px 3px 0 var(--fx-ink)}.fx-unlock .fx-badge,.fx-mission .fx-badge,.fx-victory .fx-badge{padding:20px 22px}.fx-ring{border-width:3px}.fx-comets .fx-particle:before{width:calc(var(--fx-size)*2.5)}}
+@media(prefers-reduced-motion:reduce){.fx-stage .fx-glow,.fx-stage .fx-ring,.fx-stage .fx-particle{display:none!important}.fx-stage .fx-badge{animation:none!important;transform:translate(-50%,-50%)!important}}

@@ -1,0 +1,30 @@
+/* Small, shared usability improvements. Task and arena styles remain local. */
+:root{--child-focus:#285f83}
+a,button,input,summary{-webkit-tap-highlight-color:#90b35b44}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--child-focus);outline-offset:4px}
+.button{min-height:48px}button:disabled{cursor:default}
+.site-header .icon-button{min-height:44px;min-width:44px}
+.parent-confusions .progress-table td strong{font-size:20px;white-space:nowrap}.parent-confusions .progress-table td small{display:block;font-size:12px}.parent-confusions .progress-table th{overflow-wrap:normal}
+.parent-confusions{margin:24px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--white,#fffdf6);overflow-x:auto}.parent-confusions h2{font-size:22px;margin-bottom:12px}.parent-confusions>p{font-size:14px;color:var(--muted);margin:12px 0}.parent-confusions .progress-table{width:100%;table-layout:fixed;font-size:14px}.parent-confusions th,.parent-confusions td{white-space:normal;overflow-wrap:anywhere;padding:10px 7px}.parent-confusions th:first-child{width:35%}
+.hangar-power-note{display:flex;align-items:center;gap:4px;margin-top:9px;padding:7px 6px;border-radius:10px;background:#ecf4df;color:#476737;font-size:11px;line-height:1.4;font-weight:800;text-align:left}.hangar-power-note .icon{width:15px;height:15px}.is-locked .hangar-power-note{background:#eeeee7;color:#6b7468}
+.main-nav .nav-item{min-height:48px}.main-nav .nav-item.active{box-shadow:inset 0 -3px 0 #799f61}
+.site-footer a{padding:12px 0;min-height:44px;display:flex;align-items:center;font-size:13px}
+.flash-notice,.flash-alert{font-size:15px;line-height:1.6}
+.focused-mission .main-nav{display:none}.focused-mission .site-header{padding-bottom:8px}.focused-mission main{padding-top:16px}
+.parent-controls{margin:24px 0 32px;padding:24px;background:#fff9ef;border:1px solid #e4d9bf;border-radius:22px}
+.parent-controls>h2{font-size:25px;margin-bottom:8px}.parent-controls>p{font-size:15px;line-height:1.65;margin:10px 0 20px;max-width:850px}
+.parent-controls .parent-reset{margin:15px 0;background:#fffdf8}.parent-reset summary{min-height:52px;font-size:15px;padding:14px 18px;cursor:pointer}
+.parent-controls .parent-reset-body{padding:20px}.parent-controls .parent-reset-body p{font-size:14px;line-height:1.65;margin-bottom:14px}
+.parent-reset-form{display:grid;gap:16px;max-width:650px}.parent-reset-form .reset-confirmation{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6}
+.parent-reset-form input[type=checkbox]{width:24px;height:24px;flex-shrink:0;margin-top:2px;accent-color:#9a513c}
+.parent-reset-form .reset-code{display:grid;gap:8px;font-size:15px;font-weight:800}.parent-reset-form input[type=text]{padding:12px 15px;border:2px solid #bbaa91;border-radius:12px;max-width:230px;min-height:48px;font:800 18px Nunito,sans-serif;letter-spacing:3px;background:white}
+.parent-reset-form .reset-submit{background:#8a4635;color:white;border:0;max-width:360px;white-space:normal;line-height:1.4}
+.parent-reset-form .reset-warning{color:#6d3c2e;font-weight:800}
+@media(max-width:600px){
+  .site-footer{align-items:center;font-size:11px}.site-footer a{font-size:12px}
+  .main-nav .nav-item .icon{display:block;width:21px;height:21px}.main-nav .nav-item span{font-size:12px}
+  .focused-mission .brand small{display:none}.focused-mission .site-header{flex-wrap:nowrap;padding-top:12px;align-items:center}.focused-mission .brand{font-size:23px}.focused-mission .brand-mark{width:33px;height:33px}.focused-mission .brand-mark .icon{width:24px;height:24px}
+  .focused-mission .header-actions{gap:5px}.focused-mission .xp-pill{padding:6px 8px}.focused-mission .xp-pill .icon{display:none}
+  .parent-controls{padding:18px 14px}.parent-controls .parent-reset-body{padding:15px}.parent-controls>h2{font-size:22px}.parent-reset summary{padding:14px 12px;font-size:14px}.parent-reset-form .reset-submit{width:100%;font-size:14px}
+}
+@media(max-width:360px){.main-nav .nav-item span{font-size:10px}.focused-mission .brand{font-size:21px}}

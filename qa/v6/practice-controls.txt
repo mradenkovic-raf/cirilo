@@ -1,0 +1,13 @@
+✔ empty or tapped pad cannot become ready; a finished stroke can; erase resets it (0.94488ms)
+✔ whole word requires drawing and finishing every letter before word check (5.612104ms)
+✔ erasing one finished letter keeps the other drawing but disables whole-word check (0.433078ms)
+✔ missing-letter choice is explicit and server correction never reveals or inserts the answer (1.191421ms)
+✔ pending or completed submission locks editing and restores valid controls when unlocked (0.305063ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.358544

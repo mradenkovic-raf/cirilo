@@ -1,0 +1,25 @@
+<% filling = exercise['kind'] == 'fill_letters' %>
+
+<div class="word-writing" data-word-writing data-filling="<%= filling %>">
+  <div class="writing-prompt <%= 'writing-prompt--long' if exercise['word'].length >= 7 %>">
+  <div class="writing-picture" role="img" aria-label="<%= filling ? 'Слика за реч коју дописујеш' : exercise['word'] %>"><%= WordBank.find(exercise['word'])&.fetch('emoji') %></div>
+  <div class="writing-word" role="group" aria-label="Реч коју пишеш">
+    <% exercise['word_pattern'].chars.each_with_index do |char, index| %>
+      <% if exercise['writing_letters'].any? { |letter| letter['index'] == index } %>
+        <button type="button" class="writing-slot" data-writing-slot="<%= index %>" aria-label="<%= index + 1 %>. место у речи"><span><%= filling ? '?' : char %></span><small data-writing-mark><%= index + 1 %></small></button>
+      <% else %><span class="writing-fixed"><%= char %></span><% end %>
+    <% end %>
+  </div>
+  </div>
+  <p class="writing-step" data-writing-step aria-live="polite"></p>
+  <div class="writing-picker" data-writing-picker hidden><p>Које слово недостаје?</p><div class="letter-bank" data-writing-options role="group" aria-label="Изабери слово које недостаје"></div></div>
+  <button type="button" class="writing-change text-link" data-writing-change hidden>Промени слово</button>
+  <div class="writing-pad" data-writing-pad>
+    <p class="writing-pad-label">✍ Пиши: <strong data-writing-current-letter></strong></p>
+    <div class="trace-board"><svg class="trace-guide" viewBox="0 0 100 100" aria-hidden="true"></svg><canvas class="trace-canvas word-writing-canvas" tabindex="-1" aria-label="Поље за писање слова. Пиши прстом, оловком или мишем."></canvas></div>
+    <div class="writing-tools"><button type="button" class="button secondary" data-writing-clear disabled><%= ui_icon(:reset) %> Обриши траг</button><button type="button" class="button primary" data-writing-save disabled><%= ui_icon(:check) %> <span>Готово слово</span></button></div>
+  </div>
+  <p class="writing-notice" id="writing-notice" data-writing-notice role="status">Пиши по трагу.</p>
+  <button type="button" class="button primary writing-submit" data-submit-writing aria-describedby="writing-notice" disabled><%= ui_icon(:check) %> Провери реч</button>
+</div>
+<script type="application/json" id="writing-data"><%= raw(json_escape(exercise['writing_letters'].to_json)) %></script>

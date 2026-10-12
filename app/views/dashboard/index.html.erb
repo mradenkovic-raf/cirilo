@@ -1,0 +1,23 @@
+<% content_for :title, "Твоја авантура" %>
+<% adventure = AdventureMap.new(@learner); world = adventure.current_world || adventure.worlds.last %>
+<% invitation = { "forest" => "Пронађимо Лиска!", "cave" => "Помозимо Искри!", "volcano" => "Помозимо Жарку!", "space" => "Вратимо Звездана кући!" } %>
+<section class="play-home" aria-labelledby="play-title">
+  <div class="play-home-heading"><span class="play-world"><%= adventure.completed? ? 'СВИ ДРУГАРИ СУ КОД КУЋЕ' : world[:name].upcase %></span><h1 id="play-title"><%= adventure.completed? ? 'Клик те чека!' : invitation.fetch(world[:id]) %></h1></div>
+  <div class="play-home-scene" aria-label="Клик и <%= world[:friend] %>">
+    <div class="play-home-landscape"><%= adventure_landscape(world) %></div>
+    <span class="play-scene-spark spark-one" aria-hidden="true">✦</span><span class="play-scene-spark spark-two" aria-hidden="true">✧</span>
+    <div class="play-home-dino"><%= colored_dino(@learner) %></div>
+    <div class="play-home-friend"><span class="friend-call"><%= adventure.completed? ? 'Хајде да се играмо!' : 'Чекам те!' %></span><%= adventure_friend(world, rescued: adventure.completed?) %><strong><%= world[:friend] %></strong></div>
+  </div>
+  <div class="play-home-actions">
+    <%= button_to practice_sessions_path, class: "button primary play-start" do %><%= ui_icon(:play) %><%= @active_session ? "Настави" : "Играј" %><% end %>
+    <div class="play-prize">
+      <span class="play-prize-icon"><% if @next_part['position'] <= Curriculum::PARTS.length %><%= part_icon(@next_part['position']) %><% else %><span aria-hidden="true">💠</span><% end %></span>
+      <span><small>ТВОЈА СЛЕДЕЋА НАГРАДА</small><strong><%= @learner.part_unlocks.count < Curriculum::PARTS.length ? DinoHelper::DINO_PART_NAMES[@learner.part_unlocks.count] : @next_part['name'] %></strong></span>
+      <% if @active_session %><span class="play-saved-progress"><%= @active_session.cursor %>/<%= @active_session.total_exercises %></span><% end %>
+    </div>
+  </div>
+  <div class="play-home-map home-adventure"><a href="<%= adventure_path %>"><%= ui_icon(:map) %><span>Моја мапа</span><span class="play-map-dots" aria-label="<%= adventure.rescued_count %> од 4 друга спасено"><% adventure.worlds.each do |item| %><i class="is-<%= item[:state] %>" aria-hidden="true"><%= ui_icon(item[:state] == :completed ? :check : :heart) %></i><% end %></span><%= ui_icon(:arrow) %></a></div>
+</section>
+<% egg = EggCompanion.new(@learner) %>
+<%= link_to "#{egg.hatched? ? '🦕' : '🥚'} #{egg_caption(egg)}", workshop_path(anchor: 'egg'), class: 'egg-home-link' %>

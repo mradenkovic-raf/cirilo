@@ -1,0 +1,35 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-5-jff4pl5' as your home directory temporarily.
+Hold on, I am eager loading the application.
+All is good!
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-8-6kn0vz8' as your home directory temporarily.
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-11-vpfpqz11' as your home directory temporarily.
+
+Run options: --seed 13115
+
+# Running:
+
+...........................................................................................................................................................
+
+Finished in 5.742338s, 26.9925 runs/s, 553.2589 assertions/s.
+155 runs, 3177 assertions, 0 failures, 0 errors, 0 skips
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (11.559442ms)
+✔ empty drawings, taps and tiny marks do not pass (0.116944ms)
+✔ small hand wobble passes, large displacement does not (0.357439ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.203631ms)
+✔ filling the whole board with scribbles does not pass (0.639506ms)
+✔ an unrelated shape does not pass (0.184315ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.084073ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.06573ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.152607ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.157927ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.046491

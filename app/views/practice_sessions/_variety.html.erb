@@ -1,0 +1,46 @@
+<% lower = exercise['display_case'] == 'lower' %>
+<% if exercise['kind'] == 'picture_word' %>
+  <div class="variety-picture" role="img" aria-label="Слика чији назив тражиш"><%= exercise['emoji'] %></div>
+  <div class="word-choices variety-word-choices" role="group" aria-label="Изабери назив слике">
+    <% exercise['options'].each do |word| %>
+      <button type="button" class="choice word-choice <%= 'long-word' if word.length >= 7 %>" data-answer="<%= word %>"><%= lower ? word.downcase : word %></button>
+    <% end %>
+  </div>
+<% elsif exercise['kind'] == 'repair_word' %>
+  <div data-variety="repair_word" data-display-case="<%= exercise['display_case'] %>">
+    <p class="task-instruction">Додирни погрешно слово, па га замени.</p>
+    <div class="variety-picture" role="img" aria-label="Слика чији назив поправљаш"><%= exercise['emoji'] %></div>
+    <div class="repair-word <%= 'long-word' if exercise['broken_word'].length >= 7 %>" role="group" aria-label="Реч коју поправљаш">
+      <% exercise['broken_word'].chars.each_with_index do |letter, index| %>
+        <button type="button" class="repair-slot" data-repair-slot="<%= index %>" data-original-letter="<%= letter %>" aria-label="<%= index + 1 %>. слово: <%= lower ? letter.downcase : letter %>" aria-pressed="false"><span><%= lower ? letter.downcase : letter %></span></button>
+      <% end %>
+    </div>
+    <div class="repair-options" role="group" aria-label="Замени изабрано слово" data-repair-options hidden>
+      <% exercise['repair_options'].each do |letter| %>
+        <button type="button" class="letter-tile" data-repair-letter="<%= letter %>" aria-label="Замени словом <%= lower ? letter.downcase : letter %>" aria-pressed="false"><%= lower ? letter.downcase : letter %></button>
+      <% end %>
+    </div>
+    <div class="variety-tools"><button type="button" class="button secondary" data-variety-undo disabled><%= ui_icon(:reset) %> Врати слово</button></div>
+    <p class="variety-status" id="variety-status" data-variety-status role="status" aria-live="polite">Пронађи слово које не припада речи.</p>
+    <button type="button" class="button primary variety-submit" data-submit-variety aria-describedby="variety-status" disabled><%= ui_icon(:check) %> Провери реч</button>
+  </div>
+<% elsif exercise['kind'] == 'word_pairs' %>
+  <div data-variety="word_pairs">
+    <p class="task-instruction">Додирни реч, па њену слику.</p>
+    <div class="pair-board">
+      <div class="pair-words" role="group" aria-label="Речи за спајање">
+        <% exercise['pair_words'].each_with_index do |word, index| %>
+          <button type="button" class="pair-word <%= 'long-word' if word['label'].length >= 7 %>" data-pair-word="<%= word['id'] %>" aria-pressed="false"><span class="pair-badge" data-pair-badge aria-hidden="true"><%= index + 1 %></span><span data-pair-label><%= lower ? word['label'].downcase : word['label'] %></span></button>
+        <% end %>
+      </div>
+      <div class="pair-pictures" role="group" aria-label="Слике за спајање">
+        <% exercise['pair_pictures'].each_with_index do |picture, index| %>
+          <button type="button" class="pair-picture" data-pair-picture="<%= picture['id'] %>" aria-label="Слика <%= index + 1 %>" aria-pressed="false" disabled><span class="pair-picture-emoji" aria-hidden="true"><%= picture['emoji'] %></span><span class="pair-badge" data-pair-badge aria-hidden="true">·</span></button>
+        <% end %>
+      </div>
+    </div>
+    <div class="variety-tools"><button type="button" class="button secondary" data-variety-undo disabled><%= ui_icon(:reset) %> Врати пар</button></div>
+    <p class="variety-status" id="variety-status" data-variety-status role="status" aria-live="polite">Споји све три речи са сликама.</p>
+    <button type="button" class="button primary variety-submit" data-submit-variety aria-describedby="variety-status" disabled><%= ui_icon(:check) %> Провери парове</button>
+  </div>
+<% end %>

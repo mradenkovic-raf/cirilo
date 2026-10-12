@@ -1,0 +1,64 @@
+<% content_for :title, @practice_session.completed? ? 'Мисија завршена!' : 'Време је за мисију' %>
+<% if @practice_session.completed? %>
+  <section class="reward-screen reward-screen--focused" data-celebrate>
+    <h1>Мисија успела! <span aria-hidden="true">✦</span></h1>
+    <div class="reward-art"><% if @unlocked_part && @unlocked_part['position'] <= Curriculum::PARTS.length %><%= part_icon(@unlocked_part['position']) %><% else %><span style="font-size:95px" aria-hidden="true">💠</span><% end %></div>
+    <h2><%= @unlocked_part&.fetch('name', nil) || 'Мисија сачувана!' %></h2>
+    <div class="reward-xp"><%= ui_icon(:bolt) %> +<%= @practice_session.earned_xp %> XP</div>
+    <%= render 'adventures/mission_progress', practice_session: @practice_session %>
+    <% egg = EggCompanion.new(@learner) %>
+    <% if egg.chosen? && !egg.hatched? %><%= link_to "🥚 #{egg_caption(egg)}", workshop_path(anchor: 'egg'), class: 'egg-reward-link' %><% end %>
+    <div class="battle-invitation"><%= button_to practice_session_battle_path(@practice_session), class: 'button primary' do %>⚔️ <%= @practice_session.battle ? (@practice_session.battle.status == 'active' ? 'Настави борбу' : 'Погледај борбу') : 'У арену!' %><% end %></div>
+    <div class="reward-actions"><%= link_to 'Мој дино', workshop_path(new_part: @unlocked_part&.fetch('position', nil)), class: 'text-link' %><%= link_to 'Продавница', shop_path, class: 'text-link' %><%= button_to 'Још једна мисија', practice_sessions_path, class: 'text-link' %></div>
+  </section>
+<% else %>
+  <div class="mission-header" data-mission-header>
+    <%= link_to root_path, class: 'mission-back', 'aria-label': 'Пауза. Проверени задаци су сачувани.' do %><%= ui_icon(:home) %><span>Пауза</span><% end %>
+    <div class="mission-progress">
+      <div class="progress-label"><strong data-mission-label>Задатак <%= @practice_session.exercise_number %> / <%= @practice_session.total_exercises %></strong></div>
+      <div class="mission-path" data-mission-path role="progressbar" aria-valuenow="<%= @practice_session.cursor %>" aria-valuemin="0" aria-valuemax="<%= @practice_session.total_exercises %>" aria-label="Пут до арене" aria-valuetext="Завршено <%= @practice_session.cursor %> од <%= @practice_session.total_exercises %> задатака. Мргуд чека у арени." style="--mission-position:<%= @practice_session.cursor.fdiv(@practice_session.total_exercises) * 100 %>%">
+        <div class="mission-route" aria-hidden="true">
+          <span class="mission-trail"></span>
+          <div data-mission-dots><% (1..@practice_session.total_exercises).each do |step| %><span class="mission-dot <%= 'is-done' if step <= @practice_session.cursor %>" data-mission-step="<%= step %>" style="left:<%= step.fdiv(@practice_session.total_exercises) * 100 %>%"></span><% end %></div>
+          <div class="mission-dino"><%= colored_dino(@learner, variant: :compact) %></div>
+        </div>
+        <div class="mission-villain" aria-hidden="true"><%= battle_enemy_svg(enemy_hp: Battle::BASE_HP) %><span>Мргуд</span></div>
+      </div>
+    </div>
+  </div>
+  <% kind = @exercise['kind'] %>
+  <% task_title = { 'write_word' => 'Напиши реч.', 'fill_letters' => 'Допиши слова.', 'build_word' => 'Сложи реч са слике.', 'read_word' => 'Прочитај реч. Изабери слику.', 'picture_word' => 'Која реч иде уз слику?', 'repair_word' => 'Поправи реч.', 'word_pairs' => 'Споји речи и слике.', 'sentence' => 'Која реч недостаје?', 'story_action' => 'Прочитај и изабери слику.', 'memory_word' => @exercise['memory_hidden'] ? 'Сложи реч по сећању.' : 'Прочитај и запамти реч.' }.fetch(kind, @exercise['prompt']) %>
+  <section class="exercise-card" data-exercise data-kind="<%= kind %>" data-memorize-endpoint="<%= memorize_practice_session_path(@practice_session) %>" data-id="<%= @exercise['id'] %>" data-endpoint="<%= practice_session_attempts_path(@practice_session) %>">
+    <div class="exercise-content">
+      <h1 data-task-title><%= task_title %></h1><%= render 'steps', exercise: @exercise %><div data-task-body><% if @exercise['review_only'] %><p class="retry-label">↻ Понови, па настави.</p><% end %>
+      <% if kind == 'story_action' %>
+        <%= render 'story', exercise: @exercise %>
+      <% elsif %w[picture_word repair_word word_pairs].include?(kind) %>
+        <%= render 'variety', exercise: @exercise %>
+      <% elsif %w[write_word fill_letters].include?(kind) %>
+        <%= render 'writing', exercise: @exercise %>
+      <% elsif @exercise['version'].to_i >= 2 && kind != 'trace' %>
+        <%= render 'challenge', exercise: @exercise %>
+      <% elsif kind == 'recognize' %>
+        <p class="exercise-subtitle">Погледај облик. Додирни исто слово испод.</p><div class="target-display"><%= @exercise['target'] %></div>
+      <% elsif kind == 'case_match' %>
+        <p class="exercise-subtitle">Исто слово, друга величина.</p><div class="target-display pair"><span><%= @exercise['display'] %></span><span class="pair-arrow">↔</span><span class="pair-blank">?</span></div>
+      <% elsif kind == 'word' %>
+        <div class="word-task"><div class="word-picture" role="img" aria-label="Слика за реч"><%= @letter['emoji'] %></div><div class="word-slots" style="--word-length:<%= @exercise['word'].length %>"><% @exercise['word_pattern'].each_char do |char| %><span class="<%= 'missing' if char == '▢' %>"><%= char == '▢' ? '?' : char %></span><% end %></div></div>
+      <% elsif kind == 'trace' %>
+        <% faded = @learner.letter_progresses.find_by(letter_id: @letter['id'])&.review_level.to_i >= 2 %>
+        <% if @exercise['contrast_letters'] %><div class="letter-comparison"><div><% @exercise['contrast_letters'].each do |glyph| %><span><%= glyph %></span><% end %></div><small>Различита слова — погледај облик.</small></div><% end %>
+        <div class="trace-wrapper">
+          <div class="trace-board"><svg class="trace-guide <%= 'faint' if faded %>" viewBox="0 0 100 100" aria-hidden="true"></svg><canvas class="trace-canvas" aria-label="Поље за писање слова <%= @exercise['target'] %>. Цртај прстом, оловком или мишем."></canvas></div>
+          <div class="trace-tools"><button type="button" class="button secondary" data-clear disabled><%= ui_icon(:reset) %> Обриши траг</button><button type="button" class="button secondary" data-guide aria-pressed="<%= !faded %>"><%= ui_icon(:pencil) %> <span><%= faded ? 'Покажи траг' : 'Сакриј траг' %></span></button><div class="trace-score" hidden><span>0%</span><small>праћења облика</small></div></div>
+        </div>
+        <p class="trace-empty-hint" id="trace-status" data-trace-status role="status">Прво напиши слово на пољу.</p><div class="trace-actions"><button type="button" class="button primary" data-submit-trace aria-describedby="trace-status" disabled><%= ui_icon(:check) %> Провери слово</button></div>
+        <script type="application/json" id="trace-data"><%= raw(json_escape(@letter['strokes'][@exercise['case']].to_json)) %></script>
+      <% end %>
+      <% unless kind == 'trace' || @exercise['version'].to_i >= 2 %><div class="choice-grid" role="group" aria-label="Изабери слово"><% @exercise['options'].each do |option| %><button class="choice" type="button" data-answer="<%= option %>" aria-label="Слово <%= option %>"><%= option %></button><% end %></div><% end %>
+      </div><div class="meaning-card" data-meaning hidden><div class="meaning-picture" data-meaning-picture role="img"></div><h2 data-meaning-word></h2><p data-meaning-sentence></p></div>
+      <noscript><p class="audio-help">Укључи JavaScript у прегледачу да би игре и писање радили.</p></noscript>
+    </div>
+    <div class="exercise-bottom" aria-live="polite"><div class="feedback-dino" aria-hidden="true"><%= colored_dino(@learner, variant: :compact) %></div><div class="mentor-message"></div><p class="request-status" data-request-status hidden>Чувам одговор…</p><div class="feedback-panel" hidden><div><strong data-feedback-title></strong><p data-feedback-detail></p></div><a class="button primary" data-next hidden><span data-next-label>Даље</span> <%= ui_icon(:arrow) %></a></div></div>
+  </section>
+<% end %>

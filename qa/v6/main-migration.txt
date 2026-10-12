@@ -1,0 +1,16 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-4-rsa8z84' as your home directory temporarily.
+== 20261011000700 CreateLetterConfusions: migrating ===========================
+-- create_table(:letter_confusions)
+   -> 0.0011s
+== 20261011000700 CreateLetterConfusions: migrated (0.0011s) ==================
+
+== 20261011000800 AddBattleEquipmentPowers: migrating =========================
+-- add_column(:battles, :power_state, :json, {default: {}, null: false})
+   -> 0.0003s
+-- add_column(:battles, :next_enemy_move, :string)
+   -> 0.0002s
+-- add_column(:battles, :action_revision, :integer, {default: 0, null: false})
+   -> 0.0002s
+== 20261011000800 AddBattleEquipmentPowers: migrated (0.0006s) ================
+

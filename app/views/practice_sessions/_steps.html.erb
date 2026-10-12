@@ -1,0 +1,6 @@
+<% kind = exercise['kind'] %>
+<% action = { 'trace' => ['✍', 'Напиши'], 'write_word' => ['✍', 'Напиши'], 'fill_letters' => ['✍', 'Допиши'], 'build_word' => ['☝', 'Сложи'], 'memory_word' => ['☝', 'Сложи'], 'repair_word' => ['☝', 'Поправи'], 'word_pairs' => ['☝', 'Споји'] }.fetch(kind, ['☝', 'Изабери']) %>
+<% steps = []; steps << ['study', '◉', 'Запамти'] if kind == 'memory_word'; steps << ['work', *action]; steps << ['check', '✓', 'Провери'] if %w[trace write_word fill_letters build_word memory_word repair_word word_pairs].include?(kind); steps << ['next', '→', 'Даље'] %>
+<ol hidden class="task-steps" aria-label="Кораци задатка" style="--task-steps:<%= steps.length %>">
+  <% steps.each do |key, icon, label| %><li data-task-step="<%= key %>"><span aria-hidden="true"><%= icon %></span><b><%= label %></b></li><% end %>
+</ol>

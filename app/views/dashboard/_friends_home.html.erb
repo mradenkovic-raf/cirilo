@@ -1,0 +1,11 @@
+<div class="friends-home" data-friends-home>
+  <% if journey.current_world %>
+    <% world = journey.current_world; remaining = AdventureMap::MISSIONS_PER_WORLD - world[:completed] %>
+    <%= link_to adventure_path, class: 'friends-home-next' do %>
+      <span class="friends-next-portrait"><%= adventure_friend(world) %></span>
+      <span><strong><%= world[:friend] %> те чека</strong><small>Још <%= remaining %> <%= remaining == 1 ? 'мисија' : 'мисије' %></small></span><%= ui_icon(:arrow) %>
+    <% end %>
+  <% else %>
+    <%= link_to adventure_path, class: 'friends-home-complete' do %><%= ui_icon(:heart) %> Сви смо на окупу! <%= ui_icon(:arrow) %><% end %>
+  <% end %>
+</div>

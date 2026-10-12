@@ -1,0 +1,4 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-6og8jr3' as your home directory temporarily.
+{"fixture_only":true,"before":{"xp":2320,"xp_spent":220,"completed_missions":16}}
+{"fixture_only":true,"after":{"xp":0,"xp_spent":0,"completed_missions":0},"friends":0,"remaining":{"practice_sessions":0,"attempts":0,"battles":0,"part_unlocks":0,"shop_purchases":0,"letter_confusions":0,"letter_progresses":0}}

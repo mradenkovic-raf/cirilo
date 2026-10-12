@@ -1,0 +1,42 @@
+{
+  "schema_migrations": {
+    "identical": true,
+    "rows": 9
+  },
+  "ar_internal_metadata": {
+    "identical": true,
+    "rows": 1
+  },
+  "letter_progresses": {
+    "identical": true,
+    "rows": 4
+  },
+  "practice_sessions": {
+    "identical": true,
+    "rows": 2
+  },
+  "attempts": {
+    "identical": true,
+    "rows": 29
+  },
+  "part_unlocks": {
+    "identical": true,
+    "rows": 2
+  },
+  "battles": {
+    "identical": true,
+    "rows": 2
+  },
+  "learners": {
+    "identical": true,
+    "rows": 1
+  },
+  "shop_purchases": {
+    "identical": true,
+    "rows": 0
+  },
+  "letter_confusions": {
+    "identical": true,
+    "rows": 0
+  }
+}

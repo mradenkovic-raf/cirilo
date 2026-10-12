@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+: "${SECRET_KEY_BASE:?Set SECRET_KEY_BASE for production}"
+bin/rails db:prepare
+exec bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"

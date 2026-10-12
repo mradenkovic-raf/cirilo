@@ -1,0 +1,37 @@
+[
+  {
+    "gear": 0,
+    "fights": 20000,
+    "wins": 15011,
+    "victory_percent": 75.06,
+    "calculated_percent": 75.0
+  },
+  {
+    "gear": 1,
+    "fights": 20000,
+    "wins": 14898,
+    "victory_percent": 74.49,
+    "calculated_percent": 75.0
+  },
+  {
+    "gear": 4,
+    "fights": 20000,
+    "wins": 15131,
+    "victory_percent": 75.66,
+    "calculated_percent": 75.0
+  },
+  {
+    "gear": 8,
+    "fights": 20000,
+    "wins": 14997,
+    "victory_percent": 74.99,
+    "calculated_percent": 75.0
+  },
+  {
+    "gear": 16,
+    "fights": 20000,
+    "wins": 15119,
+    "victory_percent": 75.6,
+    "calculated_percent": 75.657
+  }
+]

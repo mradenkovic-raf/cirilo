@@ -1,0 +1,95 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-8ocj8b3' as your home directory temporarily.
+PASS GET / -> 200
+PASS CSRF enabled
+PASS GET /adventure -> 200
+PASS GET /workshop -> 200
+PASS GET /shop -> 200
+PASS GET /alphabet -> 200
+PASS GET /progress -> 200
+PASS new mission through HTTP
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS trace accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS write_word accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS read_word accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/memorize -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS memory_word accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS fill_letters accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS sentence accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS trace accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS write_word accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS story renders four choices
+PASS POST /practice_sessions/1/attempts -> 200
+PASS story_action accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS build_word accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS fill_letters accepts synthetic correct answer
+PASS GET /practice_sessions/1 -> 200
+PASS POST /practice_sessions/1/memorize -> 200
+PASS POST /practice_sessions/1/attempts -> 200
+PASS memory_word accepts synthetic correct answer
+PASS 12 regular tasks include comprehension story
+PASS mission awards exactly 145 XP
+PASS POST /practice_sessions/1/attempts -> 200
+PASS replayed answer does not duplicate rewards
+PASS GET /practice_sessions/1 -> 200
+PASS GET /adventure -> 200
+FIXTURE: remaining missions completed with synthetic valid answers for full equipment.
+PASS GET /practice_sessions/12 -> 200
+PASS GET /adventure -> 200
+PASS battle starts through HTTP
+PASS existing equipment health rules preserved
+PASS GET /battles/1 -> 200
+PASS POST /battles/1/powers -> 200
+PASS goggles reveal a committed enemy move
+PASS GET /battles/1 -> 200
+PASS revealed move survives page reload
+PASS POST /battles/1/powers -> 200
+PASS repeated goggles do not spend another action
+PASS POST /battles/1/powers -> 409
+PASS POST /battles/1/powers -> 200
+PASS shield is armed
+PASS POST /battles/1/moves -> 200
+PASS shield absorbs one guaranteed incoming hit
+PASS next enemy move stays hidden
+PASS POST /battles/1/powers -> 200
+PASS rockets skip a round without damage
+PASS POST /battles/1/powers -> 200
+PASS repeated rockets do not advance another round
+PASS GET /battles/1 -> 200
+PASS all three charges consumed once
+PASS versioned asset /application.css
+PASS versioned asset /challenges.css
+PASS versioned asset /workshop.css
+PASS versioned asset /battle.css
+PASS versioned asset /shop.css
+PASS versioned asset /themes.css
+PASS versioned asset /fx.css
+PASS versioned asset /discovery.css
+PASS versioned asset /adventure.css
+PASS versioned asset /child_ux.css
+PASS versioned asset /application.js
+PASS versioned asset /workshop.js
+PASS versioned asset /battle.js
+PASS versioned asset /shop.js
+PASS battle and map do not change wallet or completed missions
+PRODUCTION V6: PASS; Rails/Rack with CSRF, synthetic answers; no physical phone or public hosting.

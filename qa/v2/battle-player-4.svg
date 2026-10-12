@@ -1,0 +1,76 @@
+<svg class="dino-scene dino-scene--compact" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Твој диносаурус, 4 од 16 делова опреме">
+  <title>Твој мали диносаурус</title>
+  <circle cx="272" cy="215" r="179" fill="#E7F2E2"/>
+  <circle cx="403" cy="116" r="22" fill="#F6F4DC"/>
+  <circle cx="118" cy="96" r="8" fill="#CBE6C5"/>
+  <circle cx="431" cy="277" r="7" fill="#CBE6C5"/>
+  <ellipse cx="266" cy="389" rx="168" ry="17" fill="#173E35" fill-opacity=".09"/>
+  
+  
+  
+
+  <g class="dino-character">
+  
+  
+  <!-- Tail and far leg sit behind the body. -->
+  <path d="M213 291C164 319 124 317 88 284C79 276 71 279 72 290C77 341 128 366 201 347L242 325Z" fill="#84C846"/>
+  <path d="M81 287C95 314 136 338 185 327" stroke="#62AD3B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M111 310L105 291L127 299L139 319" fill="#173E35" fill-opacity=".13"/>
+  <path d="M88 300L101 292C114 310 131 319 150 323L143 349C115 345 95 331 88 300Z" fill="#22574C"/><path d="M101 306C109 318 123 325 136 328L133 338C116 333 105 325 101 306Z" fill="#62CAB2"/><path d="M111 307L119 297L127 310L120 319Z" fill="#FF765E"/><path d="M138 329L134 339" stroke="#FFD36C" stroke-width="4" stroke-linecap="round"/>
+  <path d="M273 311C265 333 270 352 286 366L287 383H336C344 375 338 365 326 361L319 327Z" fill="#77BD3F"/>
+  <path d="M312 378V383M324 376V383" stroke="#416C36" stroke-width="4" stroke-linecap="round"/>
+  <path d="M281 358L323 355L332 364C349 365 353 378 345 386H283C278 377 277 368 281 358Z" fill="#22574C"/><path d="M285 362H322L328 372H286Z" fill="#62CAB2"/><path d="M286 386H345" stroke="#173E35" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Rounded back plates and optional power pack. -->
+  <path d="M215 217L190 210L186 242L207 253Z" fill="#62AD3B"/>
+  <path d="M200 254L175 258L181 286L209 286Z" fill="#62AD3B"/>
+  <path d="M197 291L180 311L204 326L224 306Z" fill="#62AD3B"/>
+  
+  
+
+  <!-- Soft, bean-shaped body. -->
+  <path d="M237 204C207 217 194 258 197 300C200 344 228 364 276 354C314 347 335 320 326 283L307 215Z" fill="#A9DF50"/>
+  <path d="M209 252C200 296 214 338 253 350C226 352 204 337 199 311C193 288 197 265 209 252Z" fill="#84C846"/>
+  <path d="M280 242C254 238 235 260 234 288C232 322 250 341 275 338C305 335 320 312 314 285C310 263 298 246 280 242Z" fill="#EAF0A4"/>
+  <path d="M265 270C279 274 291 273 302 269M257 289C275 294 296 293 308 286M258 309C272 313 291 312 302 306" stroke="#CBD883" stroke-width="4" stroke-linecap="round"/>
+  <path d="M245 257L276 247L309 257L311 296L281 323L247 302Z" fill="#22574C"/><path d="M251 263L277 254L302 263L304 293L280 315L254 297Z" fill="#62CAB2"/><circle cx="279" cy="283" r="18" fill="#173E35"/><circle cx="279" cy="283" r="14" fill="#286557"/><path d="M282 269L269 286H279L275 298L290 279H280Z" fill="#FFD36C"/><circle cx="258" cy="267" r="3" fill="#D9EFB8"/><circle cx="298" cy="266" r="3" fill="#D9EFB8"/>
+  
+
+  <!-- A little hand, held out to invite the learner. -->
+  <path d="M306 268C322 277 337 273 347 261C353 252 364 258 360 270C352 293 326 301 309 289" fill="#91D249"/>
+  <path d="M345 274L350 281M336 280L341 287" stroke="#5F9D38" stroke-width="3" stroke-linecap="round"/>
+  
+  
+
+  <!-- The front leg and its three tiny toes. -->
+  <path d="M225 321C216 333 217 354 223 365L212 373C204 379 207 389 218 390H269C279 385 274 374 262 371L266 337Z" fill="#A9DF50"/>
+  <path d="M229 382V389M244 382V389" stroke="#6CAD3D" stroke-width="4" stroke-linecap="round"/>
+  <path d="M220 362H264L269 372C284 375 287 386 277 393H214C204 389 204 379 212 373Z" fill="#22574C"/><path d="M223 366H260L264 378H216Z" fill="#62CAB2"/><path d="M214 393H277" stroke="#173E35" stroke-width="7" stroke-linecap="round"/><path d="M230 369H247" stroke="#D8F4C4" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Head: big, friendly eyes and an unmistakable dinosaur snout. -->
+  <path d="M221 131C226 87 259 65 300 74C333 80 352 106 352 134C389 132 414 149 414 177C414 210 386 231 347 230L289 230C246 231 215 208 215 172C215 156 218 143 221 131Z" fill="#A9DF50"/>
+  <path d="M225 150C220 185 233 207 267 219L340 227C293 239 252 233 229 210C215 196 211 173 225 150Z" fill="#84C846"/>
+  <path d="M238 116C248 93 270 84 290 86" stroke="#C9EE86" stroke-width="10" stroke-linecap="round"/>
+  <path d="M338 149C361 142 387 147 399 159" stroke="#C9EE86" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="325" cy="131" rx="18" ry="25" fill="#F9FCED"/>
+  <ellipse cx="326" cy="135" rx="9" ry="14" fill="#173E35"/>
+  <circle cx="329" cy="130" r="3.7" fill="#FFF"/>
+  <ellipse cx="280" cy="138" rx="26" ry="34" fill="#F9FCED"/>
+  <ellipse cx="286" cy="143" rx="12" ry="19" fill="#173E35"/>
+  <circle cx="291" cy="136" r="5" fill="#FFF"/>
+  <circle cx="282" cy="151" r="2.5" fill="#FFF" fill-opacity=".5"/>
+  <path d="M261 102C270 97 281 97 289 101M317 102C324 99 331 101 334 105" stroke="#427B35" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="371" cy="169" rx="4" ry="5" fill="#5E9836"/>
+  <ellipse cx="394" cy="169" rx="3" ry="4" fill="#5E9836"/>
+  <ellipse cx="258" cy="183" rx="14" ry="8" fill="#FF9973" fill-opacity=".7"/>
+  <path d="M292 191C309 208 351 212 377 195" stroke="#173E35" stroke-width="5" stroke-linecap="round"/>
+  <path d="M319 204L324 214C326 217 330 217 332 213L336 207" fill="#FFFDF0"/>
+  <circle cx="238" cy="156" r="4" fill="#77BD3F"/>
+  <circle cx="241" cy="169" r="3" fill="#77BD3F"/>
+  
+  
+  <path d="M277 77L269 43" stroke="#173E35" stroke-width="7" stroke-linecap="round"/><path d="M264 79L261 70C270 65 281 66 289 72L288 81Z" fill="#22574C"/><path d="M267 72L282 73" stroke="#62CAB2" stroke-width="4" stroke-linecap="round"/><circle cx="267" cy="36" r="12" fill="#FF765E"/><circle cx="264" cy="32" r="4" fill="#FFD0B5"/><path d="M246 26C242 32 243 41 249 47M285 21C292 26 296 37 291 44" stroke="#62CAB2" stroke-width="3" stroke-linecap="round"/>
+  
+  </g>
+  
+</svg>

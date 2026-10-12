@@ -1,0 +1,34 @@
+<% egg = EggCompanion.new(@learner) %>
+<section id="egg" class="egg-nest" data-egg-stage="<%= egg.chosen? ? egg.stage : 'choose' %>" <%= 'data-egg-hatched' if egg.hatched? && flash[:egg_hatched] == egg.state['id'] %> aria-labelledby="egg-title">
+  <% unless egg.chosen? %>
+    <h2 id="egg-title">Кога ћемо да излегнемо?</h2>
+    <p>Изабери другара. Излеже се после 3 мисије.</p>
+    <div class="egg-choices">
+      <% EggCompanion::CHOICES.each do |species, label| %>
+        <%= button_to egg_workshop_path, params: { species: species, shop_generation: @learner.shop_generation }, class: 'egg-choice', 'aria-label': "Изабери: #{label}" do %>
+          <span aria-hidden="true"><%= dino_svg(unlocked: 0, species: species, variant: :compact) %></span><strong><%= label %></strong>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="egg-current">
+      <div class="egg-art" aria-hidden="true"><%= egg.hatched? ? dino_svg(unlocked: 0, species: egg.species, variant: :compact) : egg_picture(egg.stage) %></div>
+      <div class="egg-copy">
+        <h2 id="egg-title"><%= egg_caption(egg) %></h2>
+        <% unless egg.hatched? %>
+          <p><%= EggCompanion::CHOICES.fetch(egg.species) %></p>
+          <div class="egg-steps" role="progressbar" aria-label="Мисије за излегање" aria-valuenow="<%= egg.stage %>" aria-valuemin="0" aria-valuemax="3"><% 3.times do |i| %><span class="<%= 'done' if i < egg.stage %>" aria-hidden="true"><%= i < egg.stage ? '★' : '☆' %></span><% end %><small><%= egg.stage %>/3</small></div>
+          <% if egg.ready? %><%= button_to 'Излегни!', hatch_egg_workshop_path, params: { egg_id: egg.state['id'] }, class: 'button primary' %><% end %>
+        <% else %>
+          <% if egg.name.blank? %>
+            <%= form_with url: name_egg_workshop_path, method: :patch, class: 'egg-name-form' do |form| %>
+              <%= hidden_field_tag :egg_id, egg.state['id'] %>
+              <%= form.label :name, 'Како се зове?' %><%= form.text_field :name, maxlength: 20, required: true, autocomplete: 'off', placeholder: 'Име другара' %>
+              <%= form.submit 'То је мој другар!', class: 'button primary' %>
+            <% end %>
+          <% else %><p>Код куће је, са Кликом. ♥</p><% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</section>

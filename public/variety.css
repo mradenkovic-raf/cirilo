@@ -1,0 +1,59 @@
+/* New tasks keep the same one-question, one-work-area practice layout. */
+.exercise-card .variety-picture{font-size:82px;line-height:1.25;margin:0 auto 19px}
+.exercise-card .variety-word-choices{max-width:480px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.exercise-card .variety-word-choices .word-choice{min-width:0;height:auto;min-height:70px;padding:13px 8px;font-size:27px;letter-spacing:.02em;overflow-wrap:anywhere}
+.exercise-card .repair-word{display:flex;justify-content:center;gap:7px;max-width:410px;margin:0 auto 20px}
+.exercise-card .repair-slot{display:grid;place-items:center;flex:0 1 56px;min-width:44px;height:67px;padding:4px;border:2px solid #e0e5d5;border-bottom-width:5px;border-radius:12px;background:#f3f6eb;font-size:35px;font-weight:900;line-height:1;transition:background .15s,border-color .15s,transform .15s}
+.exercise-card .repair-slot.is-active{border-color:#8575b1;background:#eee8f8;transform:translateY(-3px)}
+.exercise-card .repair-slot.is-changed{background:#e7e0f3}
+.exercise-card .repair-options{display:flex;justify-content:center;gap:12px;margin:0 auto 13px}
+.exercise-card .repair-options .letter-tile{min-width:52px;min-height:52px;font-size:29px;padding:5px 10px}
+.exercise-card .repair-options .letter-tile[aria-pressed=true]{background:#eee8f8;border-color:#8575b1}
+.exercise-card .variety-tools{display:flex;justify-content:center;margin:8px auto 0}
+.exercise-card .variety-tools .button{font-size:13px;min-height:44px;padding:8px 12px;gap:7px}
+.exercise-card .variety-status{font-size:14px;line-height:1.5;color:#718065;margin:10px auto 14px;min-height:21px;max-width:420px}
+.exercise-card .variety-submit{min-height:54px;min-width:205px}
+.exercise-card .pair-board{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px;max-width:440px;margin:0 auto 15px}
+.exercise-card .pair-words,.exercise-card .pair-pictures{display:grid;grid-template-rows:repeat(3,83px);gap:12px}
+.exercise-card .pair-word,.exercise-card .pair-picture{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;padding:8px;border:2px solid #e0e5d5;border-bottom-width:4px;border-radius:15px;background:#f3f6eb;font-weight:900;transition:background .15s,border-color .15s,transform .15s}
+.exercise-card .pair-word{justify-content:flex-start;font-size:25px;line-height:1.15;text-align:left}
+.exercise-card .pair-word>[data-pair-label]{min-width:0;overflow-wrap:anywhere}
+.exercise-card .pair-picture{position:relative}
+.exercise-card .pair-badge{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:#e1e6d8;color:#6a755d;font-size:12px;line-height:1}
+.exercise-card .pair-picture>.pair-badge{position:absolute;right:7px;top:7px}
+.exercise-card .pair-picture-emoji{font-size:48px;line-height:1.2}
+.exercise-card .pair-word.is-linked,.exercise-card .pair-picture.is-linked{background:#ede9f5;border-color:#d2c8e4}
+.exercise-card .pair-word.is-linked>.pair-badge,.exercise-card .pair-picture.is-linked>.pair-badge{background:#d4c9e9;color:#5c4b7d}
+.exercise-card .pair-word.is-active,.exercise-card .pair-picture.is-active{border-color:#8575b1;background:#e5dcf2;transform:translateY(-2px)}
+.exercise-card .pair-picture:disabled{opacity:1;cursor:default}
+.exercise-card .pair-word:disabled,.exercise-card .repair-slot:disabled{cursor:default}
+.exercise-card.has-next [data-variety] .variety-status,
+.exercise-card.has-next [data-variety] [data-submit-variety],
+.exercise-card.has-next [data-variety] .variety-tools,
+.exercise-card.has-next [data-variety] .repair-options,
+.exercise-card.has-next [data-variety] .task-instruction{display:none}
+@media(max-width:600px){
+  .exercise-card .variety-picture{font-size:68px;margin-bottom:16px}
+  .exercise-card .variety-word-choices{gap:11px}
+  .exercise-card .variety-word-choices .word-choice{font-size:24px;min-height:64px}
+  .exercise-card .repair-word{gap:5px;margin-bottom:17px}
+  .exercise-card .repair-slot{height:59px;font-size:30px}
+  .exercise-card .repair-options{gap:9px}
+  .exercise-card .repair-options .letter-tile{min-width:48px;min-height:48px;font-size:27px}
+  .exercise-card .variety-status{font-size:13px;margin:10px auto 12px}
+  .exercise-card .pair-board{gap:20px}
+  .exercise-card .pair-words,.exercise-card .pair-pictures{grid-template-rows:repeat(3,77px);gap:10px}
+  .exercise-card .pair-word{font-size:21px;gap:6px;padding:7px}
+  .exercise-card .pair-picture-emoji{font-size:43px}
+}
+@media(max-width:360px){
+  .exercise-card[data-kind=repair_word] .exercise-content{padding-left:2px;padding-right:2px}
+  .exercise-card .variety-word-choices .word-choice{font-size:22px}
+  .exercise-card .repair-word{gap:2px}
+  .exercise-card .repair-slot{font-size:28px;padding:3px;height:56px}
+  .exercise-card .pair-board{gap:14px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  .exercise-card .pair-word{font-size:18px;padding:6px;gap:4px}
+  .exercise-card .pair-badge{width:21px;height:21px;flex-basis:21px;font-size:11px}
+  .exercise-card .pair-picture-emoji{font-size:39px}
+}
+@media(prefers-reduced-motion:reduce){.exercise-card .repair-slot,.exercise-card .pair-word,.exercise-card .pair-picture{transition:none}}

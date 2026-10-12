@@ -1,0 +1,68 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-ilppfm3' as your home directory temporarily.
+PRODUCTION PROVERA V5 — sekvencijalna prodavnica i roditeljski reset
+Baza: storage/v5-production.sqlite3; sve migracije 000100–000600 na praznoj bazi.
+Bez HTTP servera/browsera; Rails/Rack integration sa ukljucenom CSRF zastitom.
+FIXTURE: sintetickih 2000 XP, jedna istorijska misija i jedan deo; bez stvarnog decjeg napretka.
+PASS GET /shop -> 200
+PASS svih 17 shop izbora postoji
+PASS CSRF token postoji; zastita nije iskljucena
+PASS POST odgovor -> 200 sa CSRF tokenom
+PASS prvi sinteticki validan odgovor daje 10 XP
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS Robo ne moze da preskoci prethodnike
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS Tricera kosta 240 XP
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS i dalje je potreban Stego
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS kupovina redom radi; ukupni XP ostaje 2010
+PASS GET /progress -> 200
+PASS roditeljski reset zahteva typed RESET
+PASS roditeljski reset zahteva potvrdu
+PASS GET /workshop -> 200
+PASS roditeljski reset nije na decjoj radionici
+PASS POST /progress/reset-shop -> 303
+PASS pogresna potvrda ne menja novcanik
+PASS POST /progress/reset-shop -> 303
+PASS XP i potrosnja su 0, generacija je 2
+PASS nivo 1 i obrisane kupovine
+PASS vraceni svi pocetni izbori
+PASS ucenje, odgovori, misije, oprema i borbe sacuvani
+PASS POST odgovor -> 200 sa CSRF tokenom
+PASS stari odgovor ne vraca XP posle reseta
+PASS POST odgovor -> 200 sa CSRF tokenom
+PASS tekuci zadatak posle reseta ponovo zaradjuje 10 XP
+PASS POST /progress/reset-shop -> 303
+PASS ponovljen stari reset ne brise novi XP
+PASS stara oprema moze da se vrati, obrisana kupovna lava ne moze
+PASS istorijska borba zadrzava svoj snimak
+FIXTURE: za proveru starih formulara sada postavljeno 500 XP u istoj izolovanoj bazi.
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS stara kupovna forma odbijena i uz dovoljan budzet
+PASS stara forma za izbor odbijena
+PASS POST /shop/purchases -> 303
+PASS kupovina bez generacije odbijena
+PASS POST /shop/purchases -> 303
+PASS redirect zadrzava kategoriju
+PASS nova generacija kupuje normalno
+PASS GET /shop -> 200
+PASS GET /progress -> 200
+PASS GET /alphabet -> 200
+PASS GET /battles/1 -> 200
+FINAL_FIXTURE lifetime=500 spent=240 wallet=260 generation=2 purchases=1
+PASS development.sqlite3: SHA-256 nepromenjen; nije otvarana SQLite veza u ovoj proveri.
+PASS test.sqlite3: SHA-256 nepromenjen; nije otvarana SQLite veza u ovoj proveri.
+PRODUCTION SMOKE: PASS
+OGRANICENJA: sinteticki XP i rezultati crtanja; bez stvarnog browsera/dodira, HTTPS-a, reverse proxy-ja, Dockera ili javnog hostinga.

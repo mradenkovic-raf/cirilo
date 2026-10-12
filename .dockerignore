@@ -1,0 +1,14 @@
+.git
+.agents
+.aws
+.codex
+.runtime
+.bundle
+vendor
+log
+tmp
+storage/*.sqlite3*
+qa
+test
+revisions
+.env

@@ -1,0 +1,1 @@
+{"before_learning":{"missions":8,"attempts":96,"letters":11,"parts":8,"sessions":9,"battles":1},"after_learning":{"missions":8,"attempts":96,"letters":11,"parts":8,"sessions":9,"battles":1},"xp":0,"wallet":0,"generation":2,"dino":"rex","color":"green","theme":"meadow","effect":"stars"}

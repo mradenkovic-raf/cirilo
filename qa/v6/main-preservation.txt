@@ -1,0 +1,1 @@
+PASS: all original columns/rows in 7 tables unchanged. Main XP/spent/missions: [(185, 0, 9)]. New migrations000700/000800 applied.

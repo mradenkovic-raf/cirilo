@@ -1,0 +1,27 @@
+<details class="parent-reset reset-dino">
+  <summary>За родитеља · започни новог диносаура</summary>
+  <div class="parent-reset-body">
+    <h2>Нови почетак у радионици</h2>
+    <p>Уклањамо сакупљене делове и кристале и враћамо зелену боју. Следећа завршена мисија поново доноси први део.</p>
+    <p><strong>Научена слова, сви покушаји, енергија, завршене мисије и мисија у току остају сачувани. Мапа и спасени другари остају.</strong></p>
+    <p>Јаје и излежени другар такође остају.</p>
+    <% if @learner.part_unlocks.exists? || @learner.dino_color != "green" %>
+      <%= form_with url: reset_dino_workshop_path, method: :post, class: "reset-dino-form" do |form| %>
+        <%= hidden_field_tag :dinosaur_generation, @learner.dinosaur_generation %>
+        <label class="reset-confirmation">
+          <%= check_box_tag :confirm_reset, "1", false, required: true, id: 'dino_confirm_reset' %>
+          <span>Ја сам родитељ и желим да дете поново сакупља делове за новог диносаура.</span>
+        </label>
+        <%= form.submit "Започни новог диносаура", class: "button secondary" %>
+      <% end %>
+      <p class="reset-note">Претходне делове и боју можеш да вратиш док не освојите нову награду.</p>
+    <% else %>
+      <p>Дино већ чека свој први део. Наставите мисију да га освојите.</p>
+    <% end %>
+    <% if @learner.can_restore_dino? %>
+      <%= button_to "Врати претходне делове и боју", restore_dino_workshop_path,
+        method: :post, params: { dinosaur_generation: @learner.dinosaur_generation }, class: "button secondary" %>
+      <p class="reset-note">Враћање је доступно до прве нове освојене награде.</p>
+    <% end %>
+  </div>
+</details>

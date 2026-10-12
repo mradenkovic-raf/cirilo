@@ -1,0 +1,52 @@
+{
+  "ar_internal_metadata": {
+    "current_rows": 1,
+    "archive_rows": 1,
+    "identical": true
+  },
+  "attempts": {
+    "current_rows": 60,
+    "archive_rows": 60,
+    "identical": true
+  },
+  "battles": {
+    "current_rows": 4,
+    "archive_rows": 4,
+    "identical": true
+  },
+  "learners": {
+    "current_rows": 1,
+    "archive_rows": 1,
+    "identical": true
+  },
+  "letter_confusions": {
+    "current_rows": 0,
+    "archive_rows": 0,
+    "identical": true
+  },
+  "letter_progresses": {
+    "current_rows": 7,
+    "archive_rows": 7,
+    "identical": true
+  },
+  "part_unlocks": {
+    "current_rows": 4,
+    "archive_rows": 4,
+    "identical": true
+  },
+  "practice_sessions": {
+    "current_rows": 5,
+    "archive_rows": 5,
+    "identical": true
+  },
+  "schema_migrations": {
+    "current_rows": 9,
+    "archive_rows": 9,
+    "identical": true
+  },
+  "shop_purchases": {
+    "current_rows": 0,
+    "archive_rows": 0,
+    "identical": true
+  }
+}

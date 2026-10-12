@@ -1,0 +1,50 @@
+PRODUCTION PROVERA V3
+Datum: 2026-10-11 (Europe/Belgrade)
+Baza: storage/v3-production.sqlite3 (izolovana probna baza)
+Rails okruzenje: production; eager_load ukljucen; javni fajlovi ukljuceni.
+SECRET_KEY_BASE: generisan samo u memoriji procesa; nije ispisan ni sacuvan.
+Nije pokrenut javni ili lokalni HTTP server. Zahtevi idu direktno kroz Rails/Rack integration session.
+
+MIGRACIJE: PASS (prazna izolovana baza dobila sve tri migracije u prvom koraku).
+Napomena o postupku: prvi probni helper prekinut je zbog Nokogiri Element#fetch. Helper je ispravljen, izolovani fixture obnovljen; aplikacioni kod nije menjan.
+
+PASS GET / -> 200; h1
+PASS GET /workshop -> 200; details.parent-reset
+PASS GET /alphabet -> 200; .alphabet-card
+PASS svih 30 slova u produkcionoj slovarici
+PASS GET /practice_sessions/2 -> 200; [data-kind="write_word"] [data-word-writing]
+PASS write_word: odvojene putanje za svako slovo cele reci
+PASS GET /practice_sessions/2 -> 200; [data-memory-study]
+PASS POST memorize -> 200; ponovni GET i dalje skriva zapamcenu rec
+PASS GET /practice_sessions/2 -> 200; [data-kind="fill_letters"] [data-word-writing][data-filling="true"]
+PASS GET /practice_sessions/2 -> 200; .reward-screen .battle-invitation
+PASS zavrsena izolovana misija: 145 XP i jedna nagrada
+PASS POST battle -> 303; sacuvana jedna borba
+PASS GET /battles/1 -> 200; [data-battle] [data-fighter="player"] svg
+PASS POST battle move -> 200; runda 1 i oba SVG prikaza
+PASS GET /battles/1 -> 200; [data-battle]
+PASS ponovljeni battle potez ostaje runda 1; bez dodatne stete ili XP
+PASS GET /application.css -> 200 (33291 bytes)
+PASS GET /challenges.css -> 200 (11195 bytes)
+PASS GET /workshop.css -> 200 (14065 bytes)
+PASS GET /battle.css -> 200 (21861 bytes)
+PASS GET /application.js -> 200 (16071 bytes)
+PASS GET /trace.js -> 200 (5115 bytes)
+PASS GET /battle.js -> 200 (13851 bytes)
+PASS GET /fonts/nunito.ttf -> 200 (276932 bytes)
+PASS GET /writing.js -> 200 (5776 bytes)
+PASS GET /trace_pad.js -> 200 (3738 bytes)
+PASS GET /workshop.js -> 200 (4585 bytes)
+FINAL_FIXTURE {"xp":145,"missions":1,"parts":1,"battles":1,"round":1}
+PRODUCTION SMOKE: PASS
+
+GLAVNA BAZA: PASS - procitani learner podaci i broj slogova nepromenjeni.
+Shared test.sqlite3 nije koriscen niti otvaran u ovoj proveri.
+
+OGRANICENJA:
+- Ovo je produkcioni Rails/Rack smoke, nije provera javnog hostinga, reverse proxy-ja, HTTPS sertifikata, kontejnera ili vise procesa.
+- Nije pokrenut browser. JavaScript animacije, crtanje dodirom, zvuk i mobilni prikaz ovde nisu izvrsavani; provereni su HTML/JSON i isporuka statickih fajlova.
+- Misija je zavrsena pomocu izolovanog fixture-a sa sinteticnim validnim rezultatima crtanja; ovo ne dokazuje tacnost prepoznavanja decjeg rukopisa.
+- FORCE_SSL/ASSUME_SSL su iskljuceni za ovaj Rack smoke. APP_HOST je ogranicen na production-smoke.test.
+- Baza storage/v3-production.sqlite3 sadrzi samo ovu probnu misiju i borbu i nije baza stvarnog deteta.
+- Bundler je koristio privremeni /tmp/bundler... direktorijum zbog read-only home direktorijuma.

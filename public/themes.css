@@ -1,0 +1,31 @@
+/* Worlds change the page around the exercise; writing paper stays readable. */
+body[data-theme=space]{--bg:#efedf8;--mint:#e8e1f5;--white:#fffdfd;--border:#dcd7ec;--lime:#d2c1f4;--coral:#ffc47e;--muted:#78728b;background-image:radial-gradient(circle at 6% 15%,#c2b4e94d 0 2px,transparent 3px),radial-gradient(circle at 89% 20%,#baaade50 0 4px,transparent 5px),radial-gradient(ellipse at 90% 0,#d9d3ed 0,transparent 50%);background-size:110px 150px,180px 240px,100% 100%;background-attachment:fixed}
+body[data-theme=ocean]{--bg:#ebf7f6;--mint:#daefeb;--white:#fcfffd;--border:#cfe3e2;--lime:#92d6c8;--coral:#ffb587;--muted:#6b8587;background-image:radial-gradient(circle at 9% 28%,transparent 0 9px,#a9d8e440 10px 12px,transparent 13px),radial-gradient(ellipse at 95% 0,#cfeaf3 0,transparent 55%);background-size:190px 210px,100% 100%;background-attachment:fixed}
+body[data-theme=volcano]{--bg:#fff1e7;--mint:#f9e5d5;--white:#fffefa;--border:#ecd8cc;--lime:#ffd496;--coral:#ff9676;--muted:#8c786c;background-image:radial-gradient(ellipse at 95% 0,#ffd2af 0,transparent 55%),radial-gradient(circle at 8% 45%,#e5b19428 0 3px,transparent 4px);background-size:100% 100%,160px 190px;background-attachment:fixed}
+body:not([data-theme=meadow]) .site-header{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+body[data-theme=space] .hero-card,body[data-theme=space] .hangar-bay{background:linear-gradient(130deg,#eae0f5,#e0e5f5);border-color:#d3c8e4}
+body[data-theme=ocean] .hero-card,body[data-theme=ocean] .hangar-bay{background:linear-gradient(130deg,#d3eee7,#d4e9f5);border-color:#b9d9db}
+body[data-theme=volcano] .hero-card,body[data-theme=volcano] .hangar-bay{background:linear-gradient(130deg,#ffe1c3,#f6d5cc);border-color:#e7c4af}
+body:not([data-theme=meadow]) .nav-item.active{background:var(--mint)}
+body:not([data-theme=meadow]) .nav-item:hover{background:var(--mint)}
+body:not([data-theme=meadow]) .button.primary{box-shadow:0 4px 0 color-mix(in srgb,var(--coral),#845033 25%)}
+body[data-theme=space] em,body[data-theme=space] .hero-copy h2>span{color:#8065a9}
+body[data-theme=ocean] em,body[data-theme=ocean] .hero-copy h2>span{color:#387f92}
+body[data-theme=volcano] em,body[data-theme=volcano] .hero-copy h2>span{color:#b16d46}
+body:not([data-theme=meadow]) .shop-hero em{color:#d5ee88}
+body[data-theme=space] .battle-arena{background:radial-gradient(ellipse at 65% 35%,#453575,#172e4b)}
+body[data-theme=ocean] .battle-arena{background:radial-gradient(ellipse at 65% 35%,#236b81,#183c50)}
+body[data-theme=volcano] .battle-arena{background:radial-gradient(ellipse at 65% 35%,#723f50,#353348)}
+body:not([data-theme=meadow]) .how-to-play{background:var(--mint)}
+body:not([data-theme=meadow]) .activity-card,body:not([data-theme=meadow]) .letter-preview{border-color:var(--border)}
+.color-swatch.ice{background:#92e4ef}.color-swatch.lava{background:#fb7655}.color-swatch.cosmic{background:#bb8bef}
+.hangar-shop-link{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px;padding:13px 16px;background:#ffffff8c;border:1px solid var(--border);border-radius:14px;font-size:12px;font-weight:900}.hangar-shop-link span{font-weight:700;color:var(--muted)}
+@media(max-width:720px){.main-nav{width:100%;justify-content:space-between;gap:2px}.main-nav .nav-item{padding:9px 7px;font-size:12px;gap:5px}.main-nav .nav-item .icon{width:16px;height:16px}.hangar-colors{flex-wrap:wrap}.hangar-customize{gap:10px}}
+@media(max-width:360px){.main-nav .nav-item{font-size:10px;padding:9px 5px;gap:4px}.main-nav .nav-item .icon{width:14px;height:14px}}
+
+@media(max-width:720px){.main-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.main-nav .nav-item{min-width:0;flex-direction:column;justify-content:center;padding:8px 2px;gap:4px}.main-nav .nav-item span{font-size:11px;white-space:nowrap}}
+@media(max-width:360px){.main-nav .nav-item span{font-size:10px}}
+/* The hangar keeps light labels on a dark scene in every purchased world. */
+body[data-theme=space] .hangar-bay{background:linear-gradient(130deg,#302d50,#454068);border-color:#706589}
+body[data-theme=ocean] .hangar-bay{background:linear-gradient(130deg,#193c47,#275c5b);border-color:#518482}
+body[data-theme=volcano] .hangar-bay{background:linear-gradient(130deg,#583833,#713f3e);border-color:#aa7463}

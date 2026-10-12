@@ -1,0 +1,11 @@
+        <% owned = @learner.owns_shop_item?(item); selected = @learner.selected_shop_item?(item); affordable = @learner.xp_balance >= item['price']; requirement = @learner.shop_requirement(item); ready = !owned && !requirement %>
+        <article class="shop-card <%= 'is-owned' if owned %> <%= 'is-selected' if selected %> <%= 'is-locked' if requirement %> <%= 'is-next' if ready %>" id="item-<%= item['id'] %>" data-shop-card="<%= item['id'] %>">
+          <div class="shop-card-art shop-card-art--<%= category %> shop-art--<%= item['value'] %>"><span class="shop-card-state"><%= selected ? '✓' : owned ? '✓' : requirement ? '🔒' : '✦ Следеће' %></span><%= shop_item_art(item, @learner) %></div>
+          <div class="shop-card-copy"><h3><%= item['name'] %></h3>
+            <% if selected %><button class="button shop-selected" disabled>✓ Користиш</button>
+            <% elsif owned %><%= button_to equip_shop_path, method: :patch, params: { item_id: item['id'], shop_generation: @learner.shop_generation }, class: 'button shop-equip', 'aria-label': "Изабери: #{item['name']}" do %>Изабери <%= ui_icon(:arrow) %><% end %>
+            <% elsif requirement %><button class="button shop-price" disabled aria-describedby="requirement-<%= item['id'] %>"><%= ui_icon(:lock) %> <%= item['price'] %> XP</button><a class="shop-requirement" id="requirement-<%= item['id'] %>" href="#item-<%= requirement['id'] %>">Прво: <strong><%= requirement['name'] %></strong> →</a>
+            <% elsif affordable %><%= button_to shop_purchases_path, params: { item_id: item['id'], shop_generation: @learner.shop_generation }, class: 'button shop-buy', 'aria-label': "Откључај: #{item['name']} за #{item['price']} XP", data: { shop_buy: true } do %><%= ui_icon(:lock) %><span>Откључај</span><b><%= item['price'] %> XP</b><% end %>
+            <% else %><button class="button shop-price" disabled><%= ui_icon(:lock) %> <%= item['price'] %> XP</button><div class="shop-saving" role="progressbar" aria-label="XP за <%= item['name'] %>" aria-valuenow="<%= @learner.xp_balance %>" aria-valuemin="0" aria-valuemax="<%= item['price'] %>"><span style="width:<%= [100 * @learner.xp_balance / item['price'], 100].min %>%"></span></div><span class="shop-shortfall">Сакупи још <b><%= item['price'] - @learner.xp_balance %> XP</b>.</span><% end %>
+          </div>
+        </article>

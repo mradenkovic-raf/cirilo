@@ -1,0 +1,20 @@
+<% content_for :title, "Словарица" %>
+<section class="browse-heading alphabet-focus-heading"><h1>Словарица</h1><span aria-hidden="true">Аа</span></section>
+<section class="alphabet-discovery" data-alphabet-discovery aria-label="Истражи слова">
+  <div class="alphabet-tools">
+    <div class="alphabet-find"><label for="alphabet-find-input">Пронађи слово</label><div class="alphabet-search-field"><%= ui_icon(:target) %><input id="alphabet-find-input" type="search" data-alphabet-search placeholder="А или авион" autocomplete="off" maxlength="40" spellcheck="false" aria-controls="alphabet-letters"><button type="button" data-alphabet-clear aria-label="Обриши претрагу" hidden><%= ui_icon(:close) %></button></div></div>
+    <div class="alphabet-case"><span id="alphabet-case-label" class="adventure-visually-hidden">Прикажи слова</span><div class="alphabet-case-buttons" role="group" aria-labelledby="alphabet-case-label"><button type="button" data-alphabet-case="pair" aria-pressed="true"><strong>Аа</strong><span>Оба</span></button><button type="button" data-alphabet-case="upper" aria-pressed="false"><strong>А</strong><span>Велика</span></button><button type="button" data-alphabet-case="lower" aria-pressed="false"><strong>а</strong><span>Мала</span></button></div></div>
+  </div>
+  <span class="adventure-visually-hidden" data-alphabet-count role="status" aria-live="polite">Сва слова су ту.</span>
+  <div id="alphabet-letters" class="alphabet-grid">
+    <% Curriculum.letters.each do |letter| %>
+      <article id="letter-<%= letter['id'] %>" class="alphabet-card" data-alphabet-card data-alphabet-find="<%= [letter['upper'], letter['lower'], letter['word']].join(' ') %>">
+        <div class="alphabet-glyph" aria-label="Велико <%= letter['upper'] %>, мало <%= letter['lower'] %>"><span class="letter-upper"><%= letter['upper'] %></span><span class="letter-lower"><%= letter['lower'] %></span></div>
+        <span class="word-emoji" aria-hidden="true"><%= letter['emoji'] %></span>
+        <div class="alphabet-word" data-alphabet-word data-word-upper="<%= letter['word'].upcase %>" data-word-lower="<%= letter['word'].downcase %>"><%= letter['word'].downcase %></div>
+        <button class="alphabet-listen speak-button" type="button" data-speak="<%= letter['upper'] %>. <%= letter['word'] %>." aria-label="Чуј слово <%= letter['upper'] %> и реч <%= letter['word'] %>"><%= ui_icon(:sound) %><span>Чуј</span></button>
+      </article>
+    <% end %>
+  </div>
+  <div class="alphabet-empty" data-alphabet-empty hidden><span aria-hidden="true">Аа</span><h2>Пробај друго слово.</h2><p>Упиши, на пример, А или авион.</p><button type="button" class="button secondary" data-alphabet-show-all>Покажи сва слова <%= ui_icon(:arrow) %></button></div>
+</section>

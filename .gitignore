@@ -1,0 +1,17 @@
+/.runtime/
+/.bundle/
+/vendor/bundle/
+/log/*
+/tmp/*
+/storage/*.sqlite3*
+/.env
+/.env.*
+!/.env.example
+/config/master.key
+/config/credentials/*.key
+/coverage/
+/revisions/
+/qa/screenshots/
+/qa/**/*.png
+/qa/**/*.pdf
+/qa/**/stroke-sources/

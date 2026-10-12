@@ -1,0 +1,40 @@
+<% content_for :title, 'Мапа авантуре' %>
+<% current = @adventure.current_world %>
+<section class="adventure-heading browse-heading">
+  <h1>Авантура</h1>
+  <span class="adventure-rescued-count" aria-label="<%= @adventure.rescued_count %> од 4 другара на сигурном"><%= ui_icon(:heart) %> <%= @adventure.rescued_count %> / 4</span>
+</section>
+<section class="adventure-next adventure-focus <%= 'adventure-next--complete' if @adventure.completed? %>">
+  <div class="adventure-focus-scene">
+    <%= adventure_landscape(current || @adventure.worlds.last) %>
+    <%= adventure_friend(current || @adventure.worlds.last, rescued: @adventure.completed?) %>
+    <span class="adventure-focus-world"><%= @adventure.completed? ? 'СВИ СМО ТУ!' : current[:name] %></span>
+  </div>
+  <div class="adventure-next-copy">
+    <h2><%= @adventure.completed? ? 'Сви другари су спасени!' : @adventure.next_step[:name] %></h2>
+    <p><%= @adventure.completed? ? 'Нова мисија, нова опрема!' : current[:goal] %></p>
+    <%= button_to practice_sessions_path, class: 'button primary adventure-play' do %><%= ui_icon(:play) %><%= @active_session ? 'Настави мисију' : @adventure.completed? ? 'Вежбај даље' : 'Крени!' %><% end %>
+    <% if @active_session %><p class="adventure-save-note"><%= @active_session.cursor %> / <%= @active_session.total_exercises %> задатака</p><% end %>
+  </div>
+</section>
+<div class="adventure-total"><div class="progress-label"><span>Твој пут</span><strong><%= @adventure.completed_steps %> / <%= AdventureMap::TOTAL_MISSIONS %></strong></div><div class="progress-track" role="progressbar" aria-label="Завршени кораци авантуре" aria-valuemin="0" aria-valuemax="<%= AdventureMap::TOTAL_MISSIONS %>" aria-valuenow="<%= @adventure.completed_steps %>"><span style="width:<%= @adventure.progress_percent %>%"></span></div></div>
+<div class="adventure-worlds adventure-worlds--compact">
+  <% @adventure.worlds.each do |world| %>
+    <details class="adventure-world adventure-world--<%= world[:id] %> is-<%= world[:state] %>" id="world-<%= world[:id] %>">
+      <summary>
+        <span class="adventure-world-scene"><%= adventure_landscape(world) %><%= adventure_friend(world, rescued: world[:state] == :completed) %><span class="adventure-world-status"><%= ui_icon(world[:state] == :completed ? :check : world[:state] == :current ? :play : :lock) %><%= { completed: 'Спасен другар', current: 'Овде си', locked: 'Ускоро' }[world[:state]] %></span></span>
+        <span class="adventure-world-title"><strong><%= world[:name] %></strong><%= ui_icon(:arrow) %></span>
+        <span class="adventure-world-dots" aria-label="<%= world[:completed] %> од 4 мисије"><% world[:steps].each do |step| %><span class="is-<%= step[:state] %>" aria-hidden="true"><%= ui_icon(step[:state] == :completed ? :check : step[:state] == :current ? :play : :lock) %></span><% end %></span>
+      </summary>
+      <div class="adventure-world-copy">
+        <p><%= world[:state] == :completed ? world[:rescued] : world[:goal] %></p>
+        <ol class="adventure-steps" aria-label="Кораци кроз свет: <%= world[:name] %>">
+          <% world[:steps].each_with_index do |step, index| %>
+            <li class="adventure-step is-<%= step[:state] %>" <%= 'aria-current=step' if step[:state] == :current %>><span class="adventure-step-circle"><%= ui_icon(step[:state] == :completed ? :check : step[:state] == :current ? :play : :lock) %></span><span class="adventure-step-name"><%= step[:name] %></span><span class="adventure-visually-hidden"><%= { completed: 'Завршено', current: 'Следећа мисија', locked: 'Закључано' }[step[:state]] %></span></li>
+          <% end %>
+        </ol>
+        <% if world[:state] == :locked %><p class="adventure-world-note">Прво: <%= @adventure.worlds[world[:number] - 2][:name] %></p><% end %>
+      </div>
+    </details>
+  <% end %>
+</div>

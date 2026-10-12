@@ -1,0 +1,63 @@
+<% content_for :title, "Мој дино" %>
+<% collection_size = Curriculum::PARTS.length %>
+<% total_unlocks = @learner.part_unlocks.count %>
+<% equipped_count = [total_unlocks, collection_size].min %>
+<% crystals = [total_unlocks - collection_size, 0].max %>
+<% next_reward = Curriculum.part_at(total_unlocks + 1) %>
+<% spotlight = params[:new_part].to_i %>
+<% spotlight = nil unless spotlight.between?(1, equipped_count) %>
+<% journey = AdventureMap.new(@learner) %>
+<div class="workshop-focus" data-dino-hangar data-new-part="<%= spotlight %>">
+  <section class="hangar-bay" aria-labelledby="dino-name-heading">
+    <div class="hangar-bay-top"><h1 id="dino-name-heading">Клик и екипа</h1><span class="friends-home-count" aria-label="Спасени другари: <%= journey.rescued_count %> од 4"><%= ui_icon(:heart) %><%= journey.rescued_count %><small>/ 4</small></span></div>
+    <div class="hangar-stage hangar-stage--home" data-dino-stage>
+      <%= render 'friends_scene', journey: journey %>
+      <div class="hangar-halo" aria-hidden="true"></div>
+      <p class="hangar-reaction-message" data-dino-message data-friend-message aria-live="polite"><%= spotlight ? 'Нова опрема! ✨' : journey.rescued_count.positive? ? 'Додирни Клика или друга.' : 'Додирни Клика.' %></p>
+      <button type="button" class="dino-interact" data-dino-reaction="roar" aria-label="Поздрави Клика: покажи дино-рик"><%= colored_dino(@learner, variant: :compact) %></button>
+      <div class="hangar-burst" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
+    </div>
+    <div class="hangar-reactions" aria-label="Кликови потези">
+      <button type="button" data-dino-reaction="roar"><%= ui_icon(:sound) %><span>Рик!</span></button>
+      <button type="button" data-dino-reaction="dance"><span class="reaction-music" aria-hidden="true">♪</span><span>Плес</span></button>
+      <button type="button" data-dino-reaction="power"><%= ui_icon(:bolt) %><span>Моћ</span></button>
+    </div>
+    <div class="hangar-play"><%= button_to practice_sessions_path, class: 'button primary wide' do %><%= ui_icon(:play) %><%= @active_session ? 'Настави мисију' : 'Идемо у мисију!' %><%= ui_icon(:arrow) %><% end %></div>
+    <%= render 'friends_home', journey: journey %>
+    <%= render 'egg' %>
+  </section>
+
+  <div class="hangar-drawers">
+    <details class="hangar-drawer">
+      <summary><span class="hangar-drawer-icon"><%= ui_icon(:tool) %></span><span class="hangar-drawer-title">Моја опрема <small><%= equipped_count %> / <%= collection_size %></small></span><span class="hangar-next-preview" aria-label="Следећа награда: <%= next_reward['name'] %>"><small>Следеће</small><% if next_reward['position'] <= collection_size %><%= part_icon(next_reward['position']) %><% else %><span aria-hidden="true">💠</span><% end %></span><%= ui_icon(:arrow) %></summary>
+      <div class="hangar-drawer-content">
+        <div class="hangar-next"><strong><%= next_reward['name'] %></strong><p>Заврши мисију и освоји награду.</p></div>
+        <div class="collection-meter" role="progressbar" aria-label="Сакупљена опрема" aria-valuenow="<%= equipped_count %>" aria-valuemin="0" aria-valuemax="<%= collection_size %>"><% collection_size.times do |index| %><span class="<%= 'earned' if index < equipped_count %>"></span><% end %></div>
+        <div class="hangar-parts">
+          <% DinoHelper::DINO_PART_NAMES.each_with_index do |name, index| %>
+            <% position = index + 1; unlocked = position <= equipped_count; is_next = position == total_unlocks + 1 %>
+            <% power = Battle::POWER_PARTS.key(Curriculum.part_at(position).fetch('id')) %>
+            <article class="hangar-part <%= unlocked ? 'is-earned' : 'is-locked' %> <%= 'is-next' if is_next %> <%= 'is-new' if spotlight == position %>" aria-label="<%= name %>: <%= unlocked ? 'освојено и постављено на Клика' : (is_next ? 'следећа награда' : "награда број #{position}") %>">
+              <span class="hangar-part-state"><%= ui_icon(unlocked ? :check : :lock) %></span>
+              <div class="hangar-part-art"><%= part_icon(position) %></div><h2><%= name %></h2>
+              <% if spotlight == position || is_next %><p><%= spotlight == position ? 'Ново!' : 'Следеће!' %></p><% end %>
+              <% if power %><span class="hangar-power-note"><%= ui_icon(:bolt) %><span><%= { 'goggles' => 'Открива потез', 'shield' => 'Чува од ударца', 'rockets' => 'Избегава рунду' }.fetch(power) %> · 1×</span></span><% end %>
+            </article>
+          <% end %>
+        </div>
+        <% if crystals.positive? %><p class="hangar-crystals"><span aria-hidden="true">💠</span> <%= crystals %> <%= crystals == 1 ? 'кристал енергије' : 'кристала енергије' %></p><% end %>
+      </div>
+    </details>
+    <details class="hangar-drawer">
+      <summary><span class="hangar-drawer-icon appearance-icon" aria-hidden="true">✦</span><span class="hangar-drawer-title">Промени изглед</span><%= ui_icon(:arrow) %></summary>
+      <div class="hangar-drawer-content hangar-customize">
+        <span>Боја Клика</span>
+        <div class="hangar-colors"><% ShopCatalog.items.select { |item| item['category'] == 'color' && @learner.owns_shop_item?(item) }.each do |item| %><% color = item['value'] %><%= button_to customize_workshop_path, method: :patch, params: { dino_color: color, shop_generation: @learner.shop_generation }, class: "color-swatch #{color} #{'selected' if @learner.dino_color == color}", 'aria-label': "#{item['name']} боја", 'aria-pressed': @learner.dino_color == color do %><%= ui_icon(:check) if @learner.dino_color == color %><% end %><% end %></div>
+        <%= link_to shop_path, class: 'hangar-shop-link' do %>Још изгледа <%= ui_icon(:arrow) %><% end %>
+      </div>
+    </details>
+  </div>
+  <% if @arena_session && (!@arena_session.battle || @arena_session.battle.status == 'active') %>
+    <div class="hangar-arena"><%= button_to practice_session_battle_path(@arena_session), class: 'button secondary' do %><span aria-hidden="true">⚔️</span> <%= @arena_session.battle ? 'Настави меч' : 'У арену' %> <%= ui_icon(:arrow) %><% end %></div>
+  <% end %>
+</div>

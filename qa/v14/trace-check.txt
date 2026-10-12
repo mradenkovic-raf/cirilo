@@ -1,0 +1,20 @@
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (20.842145ms)
+✔ empty drawings, taps and tiny marks do not pass (0.200914ms)
+✔ small hand wobble passes, large displacement does not (0.561429ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.338185ms)
+✔ filling the whole board with scribbles does not pass (1.248418ms)
+✔ an unrelated shape does not pass (0.355861ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.171935ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.134686ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.492118ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.296551ms)
+✔ direction arrows follow straight and curved paths; a dot has no arrow (0.423953ms)
+✔ stroke numbers at the same start remain separate and inside the pad (1.58818ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.594949

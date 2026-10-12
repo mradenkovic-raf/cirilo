@@ -1,0 +1,113 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261011-3-3m1fwv3' as your home directory temporarily.
+FIXTURE: synthetic valid answers create 16 completed missions, four rescued friends, equipment and a battle.
+PASS fixture contains recoverable old equipment
+PASS GET /workshop -> 200
+PASS workshop shows exactly four rescued friends
+PASS GET /progress -> 200
+PASS parent has separate full restart form
+PASS CSRF protection enabled
+[13a33176-0e84-4ad2-9563-3027002bdbae] Can't verify CSRF token authenticity.
+[13a33176-0e84-4ad2-9563-3027002bdbae]   
+[13a33176-0e84-4ad2-9563-3027002bdbae] ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+[13a33176-0e84-4ad2-9563-3027002bdbae]   
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/request_forgery_protection.rb:321:in 'ActionController::RequestForgeryProtection::ProtectionMethods::Exception#handle_unverified_request'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/request_forgery_protection.rb:415:in 'ActionController::RequestForgeryProtection#handle_unverified_request'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/request_forgery_protection.rb:404:in 'ActionController::RequestForgeryProtection#verify_authenticity_token'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:362:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:179:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/abstract_controller/callbacks.rb:36:in 'block (2 levels) in <module:Callbacks>'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:180:in 'ActiveSupport::Callbacks::Filters::Before#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:560:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:560:in 'Array#each'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:560:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:109:in 'ActiveSupport::Callbacks#run_callbacks'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/notifications.rb:212:in 'ActiveSupport::Notifications.instrument'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activerecord (8.1.4) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionview (8.1.4) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/head.rb:15:in 'Rack::Head#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] activesupport (8.1.4) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] railties (8.1.4) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+[13a33176-0e84-4ad2-9563-3027002bdbae] railties (8.1.4) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack (3.2.7) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/middleware/host_authorization.rb:144:in 'ActionDispatch::HostAuthorization#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] railties (8.1.4) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack-test (2.2.0) lib/rack/test.rb:360:in 'Rack::Test::Session#process_request'
+[13a33176-0e84-4ad2-9563-3027002bdbae] rack-test (2.2.0) lib/rack/test.rb:153:in 'Rack::Test::Session#request'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:298:in 'ActionDispatch::Integration::Session#process'
+[13a33176-0e84-4ad2-9563-3027002bdbae] actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:25:in 'ActionDispatch::Integration::RequestHelpers#post'
+[13a33176-0e84-4ad2-9563-3027002bdbae] qa/v7/production_check.rb:44:in 'ProductionRestartV7Check#reset'
+[13a33176-0e84-4ad2-9563-3027002bdbae] qa/v7/production_check.rb:69:in 'ProductionRestartV7Check#run'
+[13a33176-0e84-4ad2-9563-3027002bdbae] qa/v7/production_check.rb:109:in '<main>'
+PASS invalid CSRF cannot erase progress
+PASS wrong confirmation cannot erase progress
+PASS GET /progress -> 200
+PASS valid full restart redirects
+PASS points and map reset to zero
+PASS appearance resets to defaults
+PASS old equipment snapshot cannot restore erased state
+PASS attempts cleared
+PASS battles cleared
+PASS part_unlocks cleared
+PASS practice_sessions cleared
+PASS letter_progresses cleared
+PASS letter_confusions cleared
+PASS shop_purchases cleared
+PASS both stale-form generations advanced
+PASS GET /adventure -> 200
+PASS no rescued friends after full restart
+PASS GET /workshop -> 200
+PASS workshop no longer shows rescued friends
+PASS GET /shop -> 200
+PASS GET /progress -> 200
+[10ab1480-4b2c-4677-852b-f2bfedf979b6]   
+[10ab1480-4b2c-4677-852b-f2bfedf979b6] ActiveRecord::RecordNotFound (Couldn't find PracticeSession with 'id'="17" [WHERE "practice_sessions"."learner_id" = ?]):
+[10ab1480-4b2c-4677-852b-f2bfedf979b6]   
+[10ab1480-4b2c-4677-852b-f2bfedf979b6] app/controllers/attempts_controller.rb:3:in 'AttemptsController#create'
+PASS old answer endpoint rejects erased mission
+[e83ec438-0aed-4889-ab5f-c3b543db8eff]   
+[e83ec438-0aed-4889-ab5f-c3b543db8eff] ActiveRecord::RecordNotFound (Couldn't find Battle with 'id'="1" [WHERE "battles"."learner_id" = ?]):
+[e83ec438-0aed-4889-ab5f-c3b543db8eff]   
+[e83ec438-0aed-4889-ab5f-c3b543db8eff] app/controllers/battles_controller.rb:19:in 'BattlesController#move'
+PASS old battle endpoint rejects erased match
+PASS old restore form cannot bring back equipment
+PASS GET / -> 200
+PASS new first mission starts after reset
+PASS fresh learning starts with initial letters and new IDs
+PASS new answer awards fresh XP
+PASS GET /progress -> 200
+PASS replayed reset cannot erase new progress
+PRODUCTION V7: PASS; isolated Rails/Rack with real CSRF, synthetic learning. Family database untouched.

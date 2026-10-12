@@ -1,0 +1,15 @@
+{
+  "letter_progresses": true,
+  "practice_sessions": true,
+  "attempts": true,
+  "part_unlocks": true,
+  "battles": true,
+  "learners": true,
+  "shop_purchases": true,
+  "letter_confusions": true,
+  "state": {
+    "xp": 290,
+    "xp_spent": 220,
+    "completed_missions": 10
+  }
+}

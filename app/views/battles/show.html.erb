@@ -1,0 +1,92 @@
+<% content_for :title, "Дино-арена" %>
+<% battle_state = @state.with_indifferent_access %>
+<% finished = battle_state[:status] != 'active' %>
+<% victory = battle_state[:status] == 'won' %>
+<% moves = BattlesHelper::BATTLE_MOVE_NAMES %>
+<% beats = { 'attack' => 'feint', 'guard' => 'attack', 'feint' => 'guard' } %>
+<% move_rules = { 'attack' => 'Удар прекида варку.', 'guard' => 'Штит зауставља удар.', 'feint' => 'Варка пролази поред штита.' } %>
+<section class="battle-intro">
+  <div><h1>Дино-арена</h1></div>
+  <a href="<%= workshop_path %>" class="battle-exit" aria-label="Мој дино"><%= ui_icon(:tool) %><span>Мој дино</span></a>
+</section>
+<section class="battle-root <%= 'is-completed' if finished %>" data-battle data-battle-endpoint="<%= battle_moves_path(@battle) %>" data-power-endpoint="<%= power_battle_path(@battle) %>" aria-label="Дино-арена">
+  <script type="application/json" data-battle-state><%= raw json_escape(@state.to_json) %></script>
+  <div class="battle-arena" data-battle-arena>
+    <div class="arena-topbar"><span><i></i> ДИНО-АРЕНА</span><span class="battle-round">ПОТЕЗ <strong data-battle-round><%= finished ? battle_state[:round] : battle_state[:round].to_i + 1 %></strong></span></div>
+    <div class="battle-scoreboard">
+      <% [:player, :enemy].each do |side| %>
+        <% player = side == :player %>
+        <% hearts = player ? battle_state[:base_hp].to_i : [battle_state[:enemy_hp].to_i, 3].min %>
+        <% armor = player ? battle_state[:armor_remaining].to_i : [battle_state[:enemy_hp].to_i - 3, 0].max %>
+        <% max_armor = player ? battle_state[:gear_count].to_i : [battle_state[:enemy_max_hp].to_i - 3, 0].max %>
+        <div class="fighter-status fighter-status--<%= side %>" data-status="<%= side %>">
+          <div class="fighter-name"><span class="fighter-avatar"><%= ui_icon(player ? :bolt : :star) %></span><div><h2><%= player ? 'Клик' : 'Мргуд' %></h2></div></div>
+          <div class="fighter-health">
+            <div class="battle-resource battle-resource--hearts">
+              <span class="battle-resource-label">Срца</span>
+              <div class="battle-hearts" data-hearts="<%= side %>" role="img" aria-label="<%= hearts %> од 3 срца"><% 3.times do |index| %><span class="heart-pip <%= 'is-full' if index < hearts %>" aria-hidden="true"><%= battle_move_icon('heart') %></span><% end %></div>
+            </div>
+            <div class="battle-resource battle-resource--armor">
+              <span class="battle-resource-label">Оклоп <strong data-armor-count="<%= side %>" aria-hidden="true"><%= armor %></strong></span>
+              <div class="armor-pips" data-armor="<%= side %>" role="img" aria-label="<%= armor %> од <%= max_armor %> делова оклопа"><% max_armor.times do |index| %><span class="armor-pip <%= 'is-full' if index < armor %>" aria-hidden="true"><%= battle_move_icon('armor') %></span><% end %></div>
+              <span class="armor-empty" data-no-armor="<%= side %>" <%= 'hidden' if armor.positive? %>>Без оклопа</span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="arena-floor" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="arena-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="battle-fighters">
+      <div class="battle-fighter battle-fighter--player" data-fighter="player"><div class="fighter-aura" aria-hidden="true"></div><div class="fighter-sprite" data-sprite="player"><%= battle_player_svg(battle_state) %></div><div class="fighter-impact" aria-hidden="true"><span class="hit-spark">✦</span><span class="guard-flash"><%= battle_move_icon('guard') %></span><span class="slash-flash"></span></div><div class="falling-gear" data-falling-gear="player" aria-hidden="true"></div><div class="fighter-move-bubble" data-move-bubble="player" hidden></div></div>
+      <span class="arena-vs" aria-hidden="true">VS</span>
+      <div class="battle-fighter battle-fighter--enemy" data-fighter="enemy"><div class="fighter-aura" aria-hidden="true"></div><div class="fighter-sprite" data-sprite="enemy"><%= battle_enemy_svg(battle_state) %></div><div class="fighter-impact" aria-hidden="true"><span class="hit-spark">✦</span><span class="guard-flash"><%= battle_move_icon('guard') %></span><span class="slash-flash"></span></div><div class="falling-gear" data-falling-gear="enemy" aria-hidden="true"></div><div class="fighter-move-bubble" data-move-bubble="enemy" hidden></div></div>
+    </div>
+  </div>
+
+  <div class="battle-controls">
+    <div class="battle-result-strip" data-result-strip <%= 'hidden' if finished %>>
+      <div class="round-matchup" data-round-matchup <%= 'hidden' unless !battle_state[:pending_power] && battle_state[:player_move] && battle_state[:enemy_move] %> aria-hidden="true"><span class="round-choice"><small>ТИ</small><span class="round-pick round-pick--player" data-round-player><%= battle_move_icon(battle_state[:player_move]) if battle_state[:player_move] %></span></span><span class="round-vs" data-round-symbol><%= battle_state[:outcome] == 'win' ? '›' : (battle_state[:outcome] == 'lose' ? '‹' : '=') %></span><span class="round-choice"><small>МРГУД</small><span class="round-pick round-pick--enemy" data-round-enemy><%= battle_move_icon(battle_state[:enemy_move]) if battle_state[:enemy_move] %></span></span></div>
+      <div class="battle-result-copy"><strong data-result-title><%= battle_result_title(battle_state) %></strong><p data-result-detail><%= battle_result_detail(battle_state) %></p></div>
+      
+    </div>
+    <div class="battle-error" data-battle-error role="alert" hidden><span data-battle-error-text></span><button type="button" data-battle-refresh>Освежи арену <%= ui_icon(:reset) %></button></div>
+    <div data-active-battle <%= 'hidden' if finished %>>
+      <div class="battle-reveal" data-revealed-move <%= 'hidden' unless battle_state[:revealed_enemy_move] %> role="status"><span data-revealed-icon><%= battle_move_icon(battle_state[:revealed_enemy_move]) if battle_state[:revealed_enemy_move] %></span><div><strong>Мргуд бира: <span data-revealed-name><%= moves[battle_state[:revealed_enemy_move]] %></span></strong></div></div>
+      <p class="battle-shield-ready" data-shield-ready <%= 'hidden' unless battle_state[:shield_armed] %>><%= battle_move_icon('guard') %> Штит чува следећи погодак.</p>
+      <div class="battle-choice-heading" hidden><span data-choice-prompt>Изабери потез</span></div>
+      <div class="battle-moves">
+        <% moves.each do |move, name| %>
+          <button type="button" class="battle-move battle-move--<%= move %>" data-battle-move="<%= move %>" aria-label="<%= name %>. <%= move_rules[move] %>"><span class="move-main-icon"><%= battle_move_icon(move) %></span><span class="move-name"><%= name %></span><span class="move-beats"><span>јачи од</span><%= battle_move_icon(beats[move]) %></span></button>
+        <% end %>
+      </div>
+      <% owned_powers = BattlesHelper::BATTLE_POWERS.select { |power, _| battle_state.fetch(:powers).fetch(power).with_indifferent_access[:owned] } %>
+      <% if owned_powers.any? %>
+        <section class="battle-powers" aria-labelledby="battle-powers-title">
+          <div class="battle-powers-heading"><h2 id="battle-powers-title">Моћи</h2><span>Свака 1× у борби</span></div>
+          <div class="battle-power-grid">
+            <% owned_powers.each do |power, info| %>
+              <% power_status = battle_state.fetch(:powers).fetch(power).with_indifferent_access %>
+              <article class="battle-power <%= 'is-used' if power_status[:used] %> <%= 'is-armed' if power_status[:armed] %>" data-power-card="<%= power %>">
+                <button type="button" data-battle-power="<%= power %>" <%= 'disabled' unless power_status[:available] %> aria-describedby="power-<%= power %>-description power-<%= power %>-status"><%= battle_move_icon(info[:icon]) %><span><%= info[:action] %></span></button>
+                <span class="battle-power-status" id="power-<%= power %>-status" data-power-status="<%= power %>" data-power-gear="<%= info[:gear] %>"><%= battle_power_status(power, power_status) %></span>
+                <span hidden id="power-<%= power %>-description"><%= info[:description] %></span>
+              </article>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+      <details class="battle-help"><summary><%= ui_icon(:target) %> Који потез је јачи? <span aria-hidden="true">+</span></summary><div class="battle-rule-grid"><% moves.each do |move, name| %><div class="battle-rule-example"><div aria-hidden="true"><%= battle_move_icon(move) %><b>›</b><%= battle_move_icon(beats[move]) %></div><p><%= move_rules[move] %></p></div><% end %></div><p class="battle-tie-note">Исти потези? Нико није погођен.</p><p class="battle-rule-note"><%= ui_icon(:heart) %><span>Оклоп чува срца. После борбе сва опрема се враћа.</span></p><% if owned_powers.any? %><div class="power-rules"><% owned_powers.each do |_, info| %><p><strong><%= info[:name] %>:</strong> <%= info[:description] %></p><% end %><p>Моћ остаје спремна и ако опрема отпадне.</p></div><% end %></details>
+    </div>
+    <section class="battle-finale <%= victory ? 'is-victory' : 'is-defeat' %>" data-battle-finale aria-labelledby="battle-finale-title" <%= 'hidden' unless finished %>>
+      <div class="battle-finale-stars" aria-hidden="true"><span>✦</span><span>★</span><span>✦</span></div>
+      <div class="battle-medal" data-final-medal aria-hidden="true"><%= battle_move_icon(victory ? 'medal' : 'guard') %></div>
+      <div class="battle-finale-copy"><span data-final-kicker><%= victory ? 'БРАВО, КЛИК!' : 'КРАЈ БОРБЕ' %></span><h2 id="battle-finale-title" data-final-title><%= victory ? 'Победа!' : 'Мргуд је победио.' %></h2><p data-final-detail><%= victory ? 'Медаља је твоја!' : 'Нова мисија, нова шанса!' %></p><p class="battle-repair-note"><%= ui_icon(:check) %> Сви твоји делови су сачувани.</p></div>
+      <div class="battle-finale-actions"><%= button_to practice_sessions_path, class: 'button primary' do %><%= ui_icon(:play) %> <%= @learner.active_session ? 'Настави мисију' : 'Почни мисију' %><% end %><a href="<%= workshop_path %>" class="button secondary"><%= ui_icon(:tool) %> Мој дино</a></div>
+    </section>
+  </div>
+  <p class="battle-live" data-battle-live role="status" aria-live="polite" aria-atomic="true"></p>
+  <% (moves.keys + ['guard', 'medal', 'heart', 'crystal', 'goggles', 'dodge']).uniq.each do |move| %><template data-move-template="<%= move %>"><%= battle_move_icon(move) %></template><% end %>
+  <% DinoHelper::DINO_PART_NAMES.each_index do |index| %><template data-part-template="<%= index + 1 %>"><%= part_icon(index + 1) %></template><% end %>
+</section>
+<noscript><p class="flash-notice">За потезе у арени укључи JavaScript у прегледачу. Твоја мисија и награда су већ сачуване.</p></noscript>

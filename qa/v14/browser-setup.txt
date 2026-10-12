@@ -1,0 +1,3 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-3-k2pkvj3' as your home directory temporarily.
+{"path":"/practice_sessions/1","tasks":[{"kind":"trace","target":"А","case":"upper"},{"kind":"trace","target":"Г","case":"upper"},{"kind":"trace","target":"Ж","case":"upper"},{"kind":"trace","target":"ј","case":"lower"},{"kind":"write_word","word":"ФЛАМИНГО","case":"upper"},{"kind":"fill_letters","word":"ЂЕВРЕК","case":"lower"}]}

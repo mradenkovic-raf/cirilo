@@ -1,0 +1,14 @@
+✔ repair requires an explicit changed letter and only edits the chosen position (0.932105ms)
+✔ restoring the original letter is incomplete and undo restores the whole original word (0.157132ms)
+✔ repair displays lowercase but submits uppercase and retains the edited answer across locking (0.225946ms)
+✔ pairing requires a word first and all three distinct pictures before submitting (0.388581ms)
+✔ reassigning a picture releases its old word and undo restores both connections (0.157396ms)
+✔ pairing can deselect a word and keeps answers while pending or completed (0.136436ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6.04411

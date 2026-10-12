@@ -1,0 +1,79 @@
+<svg class="dino-scene dino-scene--hero" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Твој диносаурус, 8 од 8 делова опреме">
+  <title>Твој мали диносаурус</title>
+  <circle cx="272" cy="215" r="179" fill="#E7F2E2"/>
+  <circle cx="403" cy="116" r="22" fill="#F6F4DC"/>
+  <circle cx="118" cy="96" r="8" fill="#CBE6C5"/>
+  <circle cx="431" cy="277" r="7" fill="#CBE6C5"/>
+  <ellipse cx="266" cy="389" rx="168" ry="17" fill="#173E35" fill-opacity=".09"/>
+  <g transform="translate(107 196) rotate(-14)">
+  <rect x="-26" y="-27" width="53" height="53" rx="17" fill="#F9FCED"/>
+  <rect x="-26" y="-27" width="53" height="53" rx="17" stroke="#CDE5C4" stroke-width="2"/>
+  <path d="M2-17L-10 3H0L-3 16L12-5H2Z" fill="#FF765E"/>
+</g>
+<g transform="translate(425 84) rotate(13)">
+  <rect x="-23" y="-23" width="46" height="46" rx="15" fill="#FFD36C"/>
+  <path d="M0-12L4-4L13-3L6 4L8 13L0 9L-8 13L-6 4L-13-3L-4-4Z" fill="#B58135"/>
+</g>
+<path d="M165 115V127M159 121H171" stroke="#62CAB2" stroke-width="4" stroke-linecap="round"/>
+<path d="M438 325V335M433 330H443" stroke="#FF9973" stroke-width="4" stroke-linecap="round"/>
+<circle cx="398" cy="344" r="4" fill="#FFD36C"/>
+<circle cx="169" cy="370" r="4" fill="#62CAB2"/>
+
+
+  <!-- Tail and far leg sit behind the body. -->
+  <path d="M213 291C164 319 124 317 88 284C79 276 71 279 72 290C77 341 128 366 201 347L242 325Z" fill="#56ACDB"/>
+  <path d="M81 287C95 314 136 338 185 327" stroke="#3D89B4" stroke-width="8" stroke-linecap="round"/>
+  <path d="M111 310L105 291L127 299L139 319" fill="#173E35" fill-opacity=".13"/>
+  <path d="M88 300L101 292C114 310 131 319 150 323L143 349C115 345 95 331 88 300Z" fill="#22574C"/><path d="M101 306C109 318 123 325 136 328L133 338C116 333 105 325 101 306Z" fill="#62CAB2"/><path d="M111 307L119 297L127 310L120 319Z" fill="#FF765E"/><path d="M138 329L134 339" stroke="#FFD36C" stroke-width="4" stroke-linecap="round"/>
+  <path d="M273 311C265 333 270 352 286 366L287 383H336C344 375 338 365 326 361L319 327Z" fill="#499BCD"/>
+  <path d="M312 378V383M324 376V383" stroke="#315D70" stroke-width="4" stroke-linecap="round"/>
+  <path d="M281 358L323 355L332 364C349 365 353 378 345 386H283C278 377 277 368 281 358Z" fill="#22574C"/><path d="M285 362H322L328 372H286Z" fill="#62CAB2"/><path d="M286 386H345" stroke="#173E35" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Rounded back plates and optional power pack. -->
+  <path d="M215 217L190 210L186 242L207 253Z" fill="#3D89B4"/>
+  <path d="M200 254L175 258L181 286L209 286Z" fill="#3D89B4"/>
+  <path d="M197 291L180 311L204 326L224 306Z" fill="#3D89B4"/>
+  <path d="M218 220L191 187L185 224L163 230L186 256L171 282L200 292L225 266Z" fill="#22574C"/><path d="M210 222L195 204L193 230L178 234L196 250L184 277L200 279L216 259Z" fill="#62CAB2"/><path d="M197 231L207 241L197 254L205 265" stroke="#FFD36C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M160 309L155 349L168 337L174 355L183 312" fill="#FFD36C"/><path d="M164 311L164 336L174 324L178 337L179 308" fill="#FF765E"/><path d="M164 241L171 230L180 241" fill="#173E35"/><rect x="150" y="242" width="42" height="77" rx="18" fill="#22574C"/><path d="M160 258V291" stroke="#62CAB2" stroke-width="10" stroke-linecap="round"/><path d="M155 309H186" stroke="#173E35" stroke-width="10" stroke-linecap="round"/><path d="M177 248H201L208 266L202 297H182Z" fill="#FF765E"/><path d="M188 261V283" stroke="#FFC29F" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Soft, bean-shaped body. -->
+  <path d="M237 204C207 217 194 258 197 300C200 344 228 364 276 354C314 347 335 320 326 283L307 215Z" fill="#79C7F3"/>
+  <path d="M209 252C200 296 214 338 253 350C226 352 204 337 199 311C193 288 197 265 209 252Z" fill="#56ACDB"/>
+  <path d="M280 242C254 238 235 260 234 288C232 322 250 341 275 338C305 335 320 312 314 285C310 263 298 246 280 242Z" fill="#DDEFF2"/>
+  <path d="M265 270C279 274 291 273 302 269M257 289C275 294 296 293 308 286M258 309C272 313 291 312 302 306" stroke="#B7D6E0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M245 257L276 247L309 257L311 296L281 323L247 302Z" fill="#22574C"/><path d="M251 263L277 254L302 263L304 293L280 315L254 297Z" fill="#62CAB2"/><circle cx="279" cy="283" r="18" fill="#173E35"/><circle cx="279" cy="283" r="14" fill="#286557"/><path d="M282 269L269 286H279L275 298L290 279H280Z" fill="#FFD36C"/><circle cx="258" cy="267" r="3" fill="#D9EFB8"/><circle cx="298" cy="266" r="3" fill="#D9EFB8"/>
+
+  <!-- A little hand, held out to invite the learner. -->
+  <path d="M306 268C322 277 337 273 347 261C353 252 364 258 360 270C352 293 326 301 309 289" fill="#68BAEA"/>
+  <path d="M345 274L350 281M336 280L341 287" stroke="#407F9F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M304 258C310 251 323 253 331 263L326 280L309 284L301 270Z" fill="#22574C"/><path d="M309 260C315 257 322 260 326 265L322 273L311 276L306 268Z" fill="#FF765E"/><circle cx="316" cy="265" r="3" fill="#FFD36C"/><path d="M224 247C220 240 206 241 200 250L199 270L218 274L228 263Z" fill="#22574C"/><path d="M217 247C212 245 206 249 205 254V263L215 267L221 261Z" fill="#62CAB2"/>
+
+  <!-- The front leg and its three tiny toes. -->
+  <path d="M225 321C216 333 217 354 223 365L212 373C204 379 207 389 218 390H269C279 385 274 374 262 371L266 337Z" fill="#79C7F3"/>
+  <path d="M229 382V389M244 382V389" stroke="#438DB4" stroke-width="4" stroke-linecap="round"/>
+  <path d="M220 362H264L269 372C284 375 287 386 277 393H214C204 389 204 379 212 373Z" fill="#22574C"/><path d="M223 366H260L264 378H216Z" fill="#62CAB2"/><path d="M214 393H277" stroke="#173E35" stroke-width="7" stroke-linecap="round"/><path d="M230 369H247" stroke="#D8F4C4" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Head: big, friendly eyes and an unmistakable dinosaur snout. -->
+  <path d="M221 131C226 87 259 65 300 74C333 80 352 106 352 134C389 132 414 149 414 177C414 210 386 231 347 230L289 230C246 231 215 208 215 172C215 156 218 143 221 131Z" fill="#79C7F3"/>
+  <path d="M225 150C220 185 233 207 267 219L340 227C293 239 252 233 229 210C215 196 211 173 225 150Z" fill="#56ACDB"/>
+  <path d="M238 116C248 93 270 84 290 86" stroke="#B5E3FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M338 149C361 142 387 147 399 159" stroke="#B5E3FF" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="325" cy="131" rx="18" ry="25" fill="#F9FCED"/>
+  <ellipse cx="326" cy="135" rx="9" ry="14" fill="#173E35"/>
+  <circle cx="329" cy="130" r="3.7" fill="#FFF"/>
+  <ellipse cx="280" cy="138" rx="26" ry="34" fill="#F9FCED"/>
+  <ellipse cx="286" cy="143" rx="12" ry="19" fill="#173E35"/>
+  <circle cx="291" cy="136" r="5" fill="#FFF"/>
+  <circle cx="282" cy="151" r="2.5" fill="#FFF" fill-opacity=".5"/>
+  <path d="M261 102C270 97 281 97 289 101M317 102C324 99 331 101 334 105" stroke="#396D86" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="371" cy="169" rx="4" ry="5" fill="#41819F"/>
+  <ellipse cx="394" cy="169" rx="3" ry="4" fill="#41819F"/>
+  <ellipse cx="258" cy="183" rx="14" ry="8" fill="#FF9973" fill-opacity=".7"/>
+  <path d="M292 191C309 208 351 212 377 195" stroke="#173E35" stroke-width="5" stroke-linecap="round"/>
+  <path d="M319 204L324 214C326 217 330 217 332 213L336 207" fill="#FFFDF0"/>
+  <circle cx="238" cy="156" r="4" fill="#499BCD"/>
+  <circle cx="241" cy="169" r="3" fill="#499BCD"/>
+  <path d="M220 133L246 128M344 127L355 132" stroke="#22574C" stroke-width="11" stroke-linecap="round"/><path d="M247 116C259 106 286 106 303 116L305 149C290 165 263 163 251 150Z" fill="#62CAB2" fill-opacity=".15" stroke="#173E35" stroke-width="7" stroke-linejoin="round"/><path d="M311 114C321 109 335 111 343 119V145C335 156 320 154 309 147Z" fill="#62CAB2" fill-opacity=".15" stroke="#173E35" stroke-width="6" stroke-linejoin="round"/><path d="M303 129H310" stroke="#173E35" stroke-width="7"/><path d="M261 119L254 131M271 117L256 142M320 119L316 127" stroke="#FFFFFF" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><rect x="234" y="125" width="12" height="12" rx="4" fill="#FF765E"/>
+  <path d="M277 77L269 43" stroke="#173E35" stroke-width="7" stroke-linecap="round"/><path d="M264 79L261 70C270 65 281 66 289 72L288 81Z" fill="#22574C"/><path d="M267 72L282 73" stroke="#62CAB2" stroke-width="4" stroke-linecap="round"/><circle cx="267" cy="36" r="12" fill="#FF765E"/><circle cx="264" cy="32" r="4" fill="#FFD0B5"/><path d="M246 26C242 32 243 41 249 47M285 21C292 26 296 37 291 44" stroke="#62CAB2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M429 193L434 206L447 211L434 216L429 229L424 216L411 211L424 206Z" fill="#FFD36C"/><path d="M134 172L138 181L147 185L138 189L134 198L130 189L121 185L130 181Z" fill="#FF765E"/>
+</svg>

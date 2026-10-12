@@ -1,0 +1,43 @@
+<svg class="enemy-scene" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Мргуд, противнички диносаурус, 0 делова оклопа">
+  <title>Мргуд, чувар арене</title>
+  <ellipse cx="281" cy="391" rx="157" ry="15" fill="#291E45" fill-opacity=".16"/>
+  <g class="enemy-character">
+    <path d="M330 298C383 325 424 307 451 275C458 266 468 271 464 282C448 333 405 363 337 343Z" fill="#8254AA"/>
+    <path d="M363 326C403 335 441 305 449 289" stroke="#63398D" stroke-width="7" stroke-linecap="round"/>
+    <path d="M360 309L370 293L384 315M394 309L400 289L413 303M427 291L433 273L443 277" fill="#E87981"/>
+    
+    <path d="M253 324L247 363L231 371C220 376 224 388 235 389H281L292 328Z" fill="#8254AA"/>
+    
+    <path d="M345 211L373 220L357 238L383 252L363 270L380 291L350 297L335 263Z" fill="#D96979"/>
+    
+    
+    <path d="M239 215C219 235 211 272 219 307C230 349 263 367 310 357C345 350 360 324 356 283C353 249 334 216 308 205Z" fill="#A677C7"/>
+    <path d="M330 232C355 273 348 325 319 346C351 339 362 314 354 280C350 259 343 246 330 232Z" fill="#8254AA"/>
+    <path d="M268 250C246 249 229 268 232 292C234 322 253 344 278 340C302 336 312 309 305 282C300 263 286 250 268 250Z" fill="#D4B4E4"/>
+    <path d="M243 280C258 285 279 284 294 279M243 297C260 303 278 301 298 295M252 317C265 321 279 319 293 314" stroke="#B592CC" stroke-width="4" stroke-linecap="round"/>
+    
+    
+    <path d="M319 323C331 335 334 356 329 371L341 377C352 383 345 394 334 394H289C280 389 284 378 297 375L289 337Z" fill="#A677C7"/>
+    <path d="M308 385V393M324 385V393" stroke="#63398D" stroke-width="4" stroke-linecap="round"/>
+    
+    
+    <path d="M233 270C218 282 205 277 197 266C190 257 180 262 184 275C192 298 219 303 239 290" fill="#B98ED6"/>
+    <path d="M199 280L194 287M208 284L205 292" stroke="#8254AA" stroke-width="3" stroke-linecap="round"/>
+    
+    
+    
+    <path d="M334 130C327 88 295 65 253 74C223 80 204 102 204 136C169 130 137 141 129 166C119 198 150 225 188 230L265 234C310 234 340 211 342 177C343 159 339 143 334 130Z" fill="#A677C7"/>
+    <path d="M333 139C339 174 328 205 296 221L231 232C278 241 316 230 333 207C344 190 346 164 333 139Z" fill="#8254AA"/>
+    <path d="M313 110C301 91 281 86 266 88" stroke="#CBA6E4" stroke-width="9" stroke-linecap="round"/>
+    <path d="M189 151C170 143 149 152 141 163" stroke="#CBA6E4" stroke-width="6" stroke-linecap="round"/>
+    <path d="M240 79L243 54L261 73M280 75L294 54L304 88M313 89L335 76L335 110" fill="#D96979"/>
+    <ellipse cx="232" cy="140" rx="18" ry="26" fill="#FFF3CD"/><ellipse cx="229" cy="144" rx="9" ry="14" fill="#392D4C"/><circle cx="226" cy="138" r="3.5" fill="#FFF"/>
+    <ellipse cx="282" cy="143" rx="26" ry="33" fill="#FFF3CD"/><ellipse cx="275" cy="148" rx="12" ry="18" fill="#392D4C"/><circle cx="271" cy="141" r="5" fill="#FFF"/>
+    <path d="M211 115L240 123M264 125L302 115" stroke="#583B76" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="152" cy="174" rx="4" ry="5" fill="#70438F"/><ellipse cx="176" cy="171" rx="4" ry="5" fill="#70438F"/>
+    <path d="M169 196C191 209 221 208 250 194" stroke="#503665" stroke-width="5" stroke-linecap="round"/><path d="M189 204L194 214L201 207M224 206L231 215L234 202" fill="#FFF4D9"/>
+    <circle cx="315" cy="164" r="5" fill="#8254AA"/><circle cx="319" cy="178" r="3" fill="#8254AA"/>
+    
+    
+  </g>
+</svg>

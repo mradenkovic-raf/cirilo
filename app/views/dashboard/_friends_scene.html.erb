@@ -1,0 +1,12 @@
+<div class="friends-yard" aria-hidden="true">
+  <svg viewBox="0 0 520 510" preserveAspectRatio="none" fill="none"><path d="M0 150Q87 74 176 151T365 139T520 156V510H0Z" fill="#244C40"/><path d="M0 249Q140 170 294 242T520 213V510H0Z" fill="#315544"/><path d="M0 410Q144 331 290 397T520 355V510H0Z" fill="#426345"/><ellipse cx="276" cy="415" rx="137" ry="42" fill="#9CB972" opacity=".13"/><path d="M237 510Q347 435 295 373" stroke="#CFD293" stroke-width="55" opacity=".1"/><path d="M23 252v-66m-16 30 16 13 20-27M487 210v-76m-18 32 18 16 21-32" stroke="#72885B" stroke-width="7" stroke-linecap="round"/><circle cx="25" cy="178" r="32" fill="#43674B"/><circle cx="488" cy="123" r="37" fill="#456C50"/><path d="m67 371 4-9m-1 8 8-3m354 61 5-12m-3 9 10-3m-371 40 3-9" stroke="#82A864" stroke-width="3" stroke-linecap="round"/><g fill="#D5D890" opacity=".6"><circle cx="139" cy="49" r="2"/><circle cx="402" cy="186" r="2"/><circle cx="199" cy="122" r="2"/><circle cx="452" cy="318" r="2"/></g></svg>
+</div>
+<div class="friends-scene" aria-label="Спасени другари у твом дворишту">
+  <% journey.worlds.select { |world| world[:state] == :completed }.each do |world| %>
+    <% activity = workshop_friend_activity(world) %>
+    <button type="button" class="yard-friend yard-friend--<%= world[:id] %>" data-rescued-friend="<%= world[:id] %>" data-friend-greeting="<%= activity[:greeting] %>" data-friend-cheer="<%= activity[:cheer] %>" aria-label="Поздрави друга: <%= world[:friend] %>. <%= activity[:description] %>">
+      <span class="yard-friend-art"><%= workshop_friend_scene(world) %></span>
+      <span class="yard-friend-name"><%= world[:friend] %><span aria-hidden="true">♥</span></span>
+    </button>
+  <% end %>
+</div>

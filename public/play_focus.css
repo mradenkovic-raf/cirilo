@@ -1,0 +1,238 @@
+/* The task, its work area, and the next action share one visual focus. */
+.trace-guide path.stroke-direction{stroke:#567b36;stroke-width:1.6;stroke-dasharray:none}
+.trace-guide path.stroke-leader{stroke:#8fa774;stroke-width:1;stroke-dasharray:none}
+.trace-guide.faint path.stroke-direction{stroke:#839b6d}
+.practice-page main{max-width:840px}
+.practice-page .mission-header{gap:20px;margin:0 auto 18px;max-width:700px}
+.practice-page .mission-progress .progress-label{justify-content:flex-end;margin-bottom:7px;font-size:14px}
+.practice-page .mission-progress .progress-track{height:8px}
+.exercise-card .exercise-content{padding:28px 28px 24px}
+.exercise-card .exercise-content h1{font-size:28px;line-height:1.3;margin:0 auto 20px}
+.exercise-card .task-steps[hidden]{display:none}
+.exercise-card .mentor-message{display:none}
+.exercise-card .exercise-bottom:has(.feedback-panel[hidden]):has([data-request-status][hidden]){display:none}
+.exercise-card .exercise-bottom{min-height:88px;padding:18px 24px 18px 105px}
+.exercise-card .feedback-dino{width:94px;height:92px}
+.exercise-card .task-instruction{font-size:15px;line-height:1.4;margin:-8px auto 18px}
+.exercise-card .trace-wrapper{flex-direction:column;gap:10px;margin:0 auto}
+.exercise-card .trace-tools{flex-direction:row;max-width:none;gap:8px;align-items:center;justify-content:center}
+.exercise-card .trace-tools .button{min-height:44px;padding:8px 12px;font-size:13px}
+.exercise-card .trace-score{font-size:20px}.exercise-card .trace-score small{font-size:10px}
+.exercise-card .trace-actions{margin-top:10px}
+.exercise-card .trace-empty-hint,.exercise-card .compose-status,.exercise-card .writing-notice{margin:10px auto;padding:0;background:transparent;font-size:14px;line-height:1.5;min-height:0}
+.exercise-card .trace-board{width:min(100%,310px);height:auto;aspect-ratio:1}
+.exercise-card .letter-comparison{margin:0 auto 16px;padding:10px;max-width:310px}
+.exercise-card .letter-comparison>div{margin:0 0 6px;gap:14px}
+.exercise-card .letter-comparison>div>span{height:57px;width:57px;font-size:36px}
+.exercise-card .letter-comparison small{font-size:12px}
+.exercise-card .build-picture{margin:4px auto 14px;font-size:78px}
+.exercise-card .answer-slots{margin:8px auto 20px}
+.exercise-card .compose-tools{margin:6px auto}
+.exercise-card .compose-tools .button{min-height:44px;padding:8px 12px;font-size:13px}
+.exercise-card .letter-bank{margin-bottom:12px}
+.exercise-card .reading-word{margin:14px 0 22px}
+.exercise-card .study-eye{display:none}.exercise-card .memory-study{padding:0}
+.exercise-card .memory-study .reading-word{padding:28px 10px;margin:10px auto 28px;border-radius:20px;background:#f3f6e9}
+.exercise-card .writing-step{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.exercise-card .writing-word{margin:10px auto 14px;padding-top:8px}
+.exercise-card .writing-slot,.exercise-card .writing-fixed{height:68px;font-size:32px}
+.exercise-card .writing-picture{font-size:54px;margin:0 auto 5px}
+.exercise-card .writing-pad-label{margin:8px auto 0;font-size:14px}
+.exercise-card .writing-pad-label strong{font-size:24px}
+.exercise-card .writing-pad .trace-board{margin:8px auto 12px;width:min(100%,290px)}
+.exercise-card .writing-picker{margin:10px auto;padding:12px;max-width:380px}
+.exercise-card .writing-picker>p{margin-bottom:9px;font-size:14px}
+.exercise-card .writing-tools{max-width:360px}
+.exercise-card .writing-submit{margin:8px auto 0}
+.exercise-card .writing-submit[hidden],.exercise-card .writing-change[hidden]{display:none}
+.exercise-card .writing-change{display:block;margin:0 auto;min-height:44px;font-size:13px;padding:8px 12px}
+.exercise-card .story-prompt{margin:0 auto 18px;padding:16px 18px}
+.exercise-card .story-choices{max-width:540px;margin-bottom:0;gap:14px}
+.exercise-card .choice.story-choice{min-height:0;aspect-ratio:1.4;padding:6px 10px}
+.exercise-card .story-choice-number{display:none}
+.exercise-card .story-scene{max-height:176px}
+.exercise-card .meaning-card{margin:0 auto;padding:18px}
+.exercise-card .meaning-picture{font-size:110px}
+.reward-screen--focused{max-width:660px;padding:30px 36px}
+.reward-screen--focused h1{font-size:35px;line-height:1.2}
+.reward-screen--focused h1>span{color:#cf9f38}
+.reward-screen--focused .reward-art{width:165px;height:165px;margin:24px auto}
+.reward-screen--focused .reward-art>svg{width:142px;height:142px}
+.reward-screen--focused h2{font-size:24px}
+.reward-screen--focused .reward-xp{font-size:22px;margin:13px auto 18px}
+.reward-screen--focused .mission-map-link{margin:0 auto 14px;font-size:14px}
+.reward-screen--focused .mission-map-link .text-link{justify-content:center;font-size:14px;white-space:normal;min-height:44px}
+.reward-screen--focused .mission-adventure{margin:2px auto 18px;padding:12px 15px;grid-template-columns:75px minmax(0,1fr);text-align:left;gap:12px}
+.reward-screen--focused .mission-adventure-art{width:75px;height:75px}
+.reward-screen--focused .mission-adventure h2{font-size:21px;margin-bottom:6px}
+.reward-screen--focused .mission-adventure .text-link{font-size:14px;white-space:normal;line-height:1.4;min-height:44px}
+.reward-screen--focused .battle-invitation{background:transparent;margin:0;padding:0}
+.reward-screen--focused .battle-invitation .button{min-width:220px;min-height:58px;font-size:20px}
+.reward-screen--focused .reward-actions{gap:6px 20px;align-items:center;margin-top:14px}
+.reward-screen--focused .reward-actions .text-link{font-size:14px;min-height:44px;display:inline-flex;align-items:center;white-space:normal}
+.reward-screen--focused .reward-actions>.button_to{margin:0}
+
+/* Arena: the three moves are the main controls; equipment is a smaller row. */
+.battle-intro{max-width:1080px;margin:0 auto 14px}.battle-intro h1{font-size:27px}
+.battle-root{max-width:1080px;margin:auto}
+.battle-root .battle-controls{padding:20px}
+.battle-root .battle-result-strip{min-height:70px;padding:12px 14px;gap:12px}
+.battle-root .battle-result-copy>strong{font-size:17px}
+.battle-root .battle-result-copy>p{font-size:13px;line-height:1.4;margin-top:4px}
+.battle-root .battle-choice-heading{margin:16px 0 10px}
+.battle-root .battle-choice-heading[hidden]{display:none}
+.battle-root .battle-moves{margin-top:12px}
+.battle-root .battle-choice-heading>span:first-child{display:block;font-size:14px;letter-spacing:0}
+.battle-root .battle-moves{gap:10px}
+.battle-root .battle-move{display:flex;flex-direction:column;text-align:center;gap:5px;padding:12px 6px;min-height:120px}
+.battle-root .move-main-icon>.battle-move-icon{width:44px;height:44px}
+.battle-root .move-name{font-size:21px}
+.battle-root .move-beats{font-size:10px;gap:4px}
+.battle-root .move-beats>.battle-move-icon{width:24px;height:24px}
+.battle-root .battle-powers{margin-top:18px;padding-top:13px}
+.battle-root .battle-powers-heading{flex-direction:row;align-items:center;margin-bottom:8px;gap:8px}
+.battle-root .battle-powers-heading h2{font-size:15px}
+.battle-root .battle-powers-heading>span{font-size:12px}
+.battle-root .battle-power-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.battle-root .battle-power{display:flex;flex-direction:column;padding:0;background:none;border:none;gap:4px}
+.battle-root .battle-power>button{display:flex;align-items:center;justify-content:center;gap:4px;flex-direction:column;width:100%;min-height:73px;font-size:12px;line-height:1.3;margin:0;padding:7px 5px;border-radius:12px}
+.battle-root .battle-power>button>.battle-move-icon{width:30px;height:30px}
+.battle-root .battle-power-status{font-size:11px;text-align:center;line-height:1.25;margin:0;min-height:14px}
+.battle-root .battle-power.is-armed>button{background:#dff3e8;border-color:#64b7a6;color:#2e665a}
+.battle-root .battle-help{margin-top:16px}
+.battle-root .battle-help summary{font-size:13px;min-height:44px;padding:10px 12px}
+.battle-root .battle-rule-note{margin:0 12px 12px;font-size:12px}
+.battle-root .power-rules{padding:0 14px 14px;font-size:12px;line-height:1.5;color:#536a44}
+.battle-root .power-rules p+p{margin-top:8px}
+.battle-root .battle-reveal{padding:10px 12px;margin-top:12px;gap:8px}
+.battle-root .battle-reveal .battle-move-icon{width:36px;height:36px}
+.battle-root .battle-reveal strong{font-size:17px;margin:0}
+.battle-root .battle-shield-ready{padding:7px 10px;margin-top:10px;font-size:12px}
+@media(min-width:900px){
+  .battle-root{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+  .battle-root .battle-arena{display:flex;flex-direction:column;justify-content:space-between;padding:20px}
+  .battle-root .battle-scoreboard{margin-top:20px}
+  .battle-root .fighter-status{width:46%}
+  .battle-root .battle-fighters{margin:auto -10px 6px;min-height:240px;width:calc(100% + 20px)}
+  .battle-root .battle-fighter{width:50%}
+  .battle-root .fighter-name h2{font-size:22px}
+  .battle-root .fighter-avatar{display:none}
+  .battle-root .fighter-health{gap:5px}
+  .battle-root .battle-hearts{gap:2px}
+  .battle-root .armor-count>span{display:none}
+  .battle-root .arena-floor{bottom:16px}
+}
+@media(max-width:600px){
+  .practice-page .mission-header{gap:14px;margin-bottom:12px}
+  .practice-page .mission-progress .progress-label{font-size:13px}
+  .exercise-card .exercise-content{padding:20px 15px 18px}
+  .exercise-card .exercise-content h1{font-size:23px;margin-bottom:18px}
+  .exercise-card .task-instruction{font-size:14px;margin:-5px auto 15px}
+  .exercise-card .trace-board{width:min(100%,270px)}
+  .exercise-card .trace-empty-hint,.exercise-card .compose-status,.exercise-card .writing-notice{font-size:13px;margin:9px auto}
+  .exercise-card .trace-tools .button{font-size:12px;padding:8px 10px}
+  .exercise-card .exercise-bottom{padding:15px 14px 15px 69px;min-height:94px}
+  .exercise-card .feedback-dino{width:65px;height:82px}
+  .exercise-card .feedback-panel{gap:10px}
+  .exercise-card .feedback-panel strong{font-size:17px}.exercise-card .feedback-panel p{font-size:13px}
+  .exercise-card .writing-slot,.exercise-card .writing-fixed{height:57px;font-size:28px}
+  .exercise-card .writing-word{gap:5px;margin-bottom:10px}
+  .exercise-card .writing-picture{font-size:45px}
+  .exercise-card .writing-pad .trace-board{width:min(100%,252px);margin:7px auto 10px}
+  .exercise-card .writing-pad-label{margin-top:8px;font-size:13px}
+  .exercise-card .writing-pad-label strong{font-size:22px}
+  .exercise-card .writing-picker{padding:10px;margin:9px auto}
+  .exercise-card .writing-picker>p{font-size:13px}
+  .exercise-card .writing-picker .letter-bank{gap:8px}
+  .exercise-card .writing-tools .button{font-size:13px}
+  .exercise-card .story-prompt{padding:12px;margin-bottom:14px}
+  .exercise-card .story-sentence{font-size:22px}
+  .exercise-card .story-prompt-icon{display:none}
+  .exercise-card .story-choices{gap:10px}
+  .exercise-card .choice.story-choice{aspect-ratio:1.12;padding:6px 3px}
+  .exercise-card .meaning-card{padding:12px}.exercise-card .meaning-picture{font-size:90px}
+  .reward-screen--focused{padding:24px 18px}
+  .reward-screen--focused h1{font-size:29px}
+  .reward-screen--focused .reward-art{width:135px;height:135px;margin:22px auto}
+  .reward-screen--focused .reward-art>svg{width:120px;height:120px}
+  .reward-screen--focused h2{font-size:21px}
+  .reward-screen--focused .reward-xp{font-size:20px;margin:10px auto 14px}
+  .reward-screen--focused .mission-adventure{padding:9px;grid-template-columns:60px minmax(0,1fr);gap:9px}
+  .reward-screen--focused .mission-adventure-art{width:60px;height:60px}
+  .reward-screen--focused .mission-adventure h2{font-size:18px}
+  .reward-screen--focused .mission-adventure .text-link{font-size:13px}
+  .reward-screen--focused .reward-actions{gap:0 18px}
+  .reward-screen--focused .reward-actions>.button_to{width:auto}
+  .reward-screen--focused .reward-actions .text-link{font-size:13px}
+  .battle-intro{margin-bottom:10px}.battle-intro h1{font-size:24px}
+  .battle-exit{min-height:44px;min-width:44px;padding:10px}
+  .battle-root .battle-arena{padding:12px 14px 2px}
+  .battle-root .arena-topbar{font-size:8px;letter-spacing:.7px}
+  .battle-root .battle-round{padding:4px 8px}
+  .battle-root .battle-scoreboard{margin-top:10px;gap:16px}
+  .battle-root .fighter-name{gap:5px}.battle-root .fighter-name h2{font-size:19px}
+  .battle-root .fighter-avatar{display:none}
+  .battle-root .fighter-health{margin:6px 0}
+  .battle-root .battle-fighters{min-height:122px;margin:0 -8px;align-items:center}
+  .battle-root .battle-fighter{width:48%}
+  .battle-root .fighter-sprite>.dino-scene,.battle-root .fighter-sprite>.enemy-scene{width:108%;max-height:174px;transform:translateX(-4%)}
+  .battle-root .arena-floor{bottom:6px}
+  .battle-root .battle-controls{padding:12px}
+  .battle-root .battle-result-strip{padding:9px 10px;min-height:63px;gap:8px;flex-wrap:nowrap}
+  .battle-root .battle-result-copy{flex-basis:auto}
+  .battle-root .battle-result-copy>strong{font-size:15px}.battle-root .battle-result-copy>p{font-size:12px}
+  .battle-root .battle-choice-heading{margin:12px 0 8px}
+  .battle-root .battle-choice-heading>span:first-child{font-size:13px}
+  .battle-root .battle-moves{gap:8px}
+  .battle-root .battle-move{padding:8px 4px;min-height:105px;gap:4px;border-radius:13px}
+  .battle-root .move-main-icon>.battle-move-icon{width:37px;height:37px}
+  .battle-root .move-name{font-size:19px}
+  .battle-root .move-beats{font-size:9px;gap:3px}
+  .battle-root .move-beats>.battle-move-icon{width:20px;height:20px}
+  .battle-root .battle-powers{margin-top:15px;padding-top:10px}
+  .battle-root .battle-help{margin-top:12px}
+}
+@media(max-width:360px){
+  .exercise-card .exercise-content{padding:18px 10px 15px}
+  .exercise-card .exercise-content h1{font-size:21px}
+  .exercise-card .story-sentence{font-size:20px}
+  .exercise-card .letter-tile{min-width:44px;min-height:48px;font-size:25px}
+  .battle-root .battle-arena{padding-left:11px;padding-right:11px}
+  .battle-root .battle-controls{padding:10px}
+  .battle-root .battle-power>button{font-size:11px}
+}
+
+.exercise-card.has-next .writing-change{display:none}
+.reward-actions button.text-link{background:transparent;border:0;padding:0}
+
+/* Keep the meaning next to the letters throughout word writing. */
+.exercise-card .writing-prompt{display:flex;align-items:center;justify-content:center;gap:16px;max-width:580px;margin:0 auto 14px}
+.exercise-card .writing-prompt .writing-picture{flex:0 0 68px;font-size:54px;line-height:1.25;margin:0}
+.exercise-card .writing-prompt .writing-word{flex:0 1 auto;min-width:0;margin:0;padding:8px 0 0}
+.exercise-card .writing-prompt .writing-slot,.exercise-card .writing-prompt .writing-fixed{width:68px}
+@media(max-width:600px){
+  .exercise-card .writing-prompt{gap:10px;margin-bottom:10px}
+  .exercise-card .writing-prompt .writing-picture{flex-basis:44px;font-size:38px}
+  .exercise-card .writing-prompt .writing-slot,.exercise-card .writing-prompt .writing-fixed{width:50px}
+}
+@media(max-width:360px){
+  .exercise-card .writing-prompt{gap:8px}
+  .exercise-card .writing-prompt .writing-picture{flex-basis:36px;font-size:33px}
+  .exercise-card .writing-prompt .writing-slot,.exercise-card .writing-prompt .writing-fixed{font-size:24px}
+}
+@media(max-width:600px){
+  .exercise-card .writing-prompt--long{flex-direction:column;gap:3px}
+  .exercise-card .writing-prompt--long .writing-picture{flex-basis:auto}
+  .exercise-card .writing-prompt--long .writing-word{width:100%;max-width:430px;gap:4px}
+  .exercise-card .writing-prompt--long .writing-slot,.exercise-card .writing-prompt--long .writing-fixed{font-size:23px}
+  .exercise-card .word-choices:has(.long-word){grid-template-columns:1fr;max-width:360px;gap:8px}
+  .exercise-card .word-choices:has(.long-word) .word-choice{min-height:52px;height:auto;padding:10px 8px}
+  .exercise-card .reading-word.long-word{font-size:29px;letter-spacing:1px}
+  .exercise-card [data-composer][data-length="8"] .answer-slots{gap:3px}
+  .exercise-card [data-composer][data-length="8"] .answer-slot{font-size:22px;padding:0}
+  .exercise-card .repair-word.long-word{gap:3px;padding:0 6px}
+  .exercise-card .repair-word.long-word .repair-slot{min-width:0;font-size:22px;padding:1px}
+  .exercise-card .pair-board:has(.long-word){grid-template-columns:minmax(0,1fr) 68px;gap:8px}
+  .exercise-card .pair-word.long-word{font-size:17px;gap:4px}
+  .exercise-card .pair-word.long-word>[data-pair-label]{overflow-wrap:normal;white-space:nowrap}
+}

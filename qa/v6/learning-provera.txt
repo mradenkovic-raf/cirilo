@@ -1,0 +1,40 @@
+V6 — ciljane provere učenja, 2026-10-11
+
+Izolovana baza: storage/v6-learning-test.sqlite3
+RAILS_ENV=test, TEST_DATABASE_PATH izričito postavljen; pre migracije je
+proverena stvarna putanja konekcije. Glavna i zajednička test baza nisu
+korišćene. Migracije izvršene preko MigrationContext, bez dump-a schema.rb.
+
+Rails: 49 testova, 1717 provera, 0 padova, 0 grešaka, 0 preskočenih.
+Seed: 14737.
+Paketi: practice_planner, attempt_recorder, word_bank, story_bank,
+confusion_tracker, story_flow, learning_flow, practice_memorize,
+attempts_controller.
+
+Provereno:
+- 12 redovnih zadataka i ukupno 145 XP za završenu novu misiju.
+- Svih 12 komandi priče sa četiri originalne SVG scene; tačan izbor traži
+  i predmet/životinju i veličinu, radnju ili mesto. Imenica sama nije dovoljna.
+- Priča čuva odgovor i XP, pogrešan izbor pokreće postojeće ponavljanje;
+  ponovljeni zahtev ne daje novi XP. Priča ne daje proizvoljnom slovu mastery.
+- Testirana rečenica ne ulazi u govorno uputstvo i odgovor nije označen u UI.
+- Konkretna zamena slova prati se samo iz prvog samostalnog izbora ili jedne
+  nedvosmislene zamene u sastavljenoj reči. Greška oblika, višestruka zamena,
+  pomoć, ponavljanje i pokušaj posle greške nisu novi dokaz.
+- Dve samostalne uspešne provere istog para u različitim misijama uklanjaju
+  njegov prioritet; dve u istoj misiji i dupliran zahtev to ne ubrzavaju.
+- Sledeća misija uključuje opaženi par i njegovu alternativu u relevantnim
+  zadacima; već započeta misija ostaje zamrznuta.
+- DinoReset i ShopReset čuvaju sva opažanja i samostalne uspehe.
+- Nezavršena v3 misija čuva identitete, redosled, cursor, XP, skriveno stanje
+  memorijske reči i umetnuto ponavljanje; završene stare misije se ne prepisuju.
+
+JavaScript: public/application.js prolazi node --check.
+
+Obuhvat i granice:
+- Ovo su ciljane automatske provere, bez tvrdnje o dečjoj upotrebljivosti.
+  Root zasebno radi browser i production provere.
+- Nema automatskog zaključivanja zabuna iz istorije pre ove verzije.
+- Zabuna je signal za izbor narednih vežbi, a ne dijagnoza; dva uspeha nisu
+  tvrdnja o trajno naučenom slovu. Vođeno pisanje ostaje odvojeno od prisećanja.
+- Glasovna nadogradnja je odložena po dogovoru.

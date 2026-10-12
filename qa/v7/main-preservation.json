@@ -1,0 +1,19 @@
+{
+  "unchanged_tables": {
+    "attempts": true,
+    "battles": true,
+    "learners": true,
+    "letter_confusions": true,
+    "letter_progresses": true,
+    "part_unlocks": true,
+    "practice_sessions": true,
+    "shop_purchases": true
+  },
+  "learner": [
+    [
+      290,
+      220,
+      10
+    ]
+  ]
+}

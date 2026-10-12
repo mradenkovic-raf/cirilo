@@ -1,0 +1,32 @@
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (7.760538ms)
+✔ empty drawings, taps and tiny marks do not pass (0.117586ms)
+✔ small hand wobble passes, large displacement does not (0.233139ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.195471ms)
+✔ filling the whole board with scribbles does not pass (0.642639ms)
+✔ an unrelated shape does not pass (0.276037ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.096574ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.066739ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.15809ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.155766ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.89569
+✔ repair requires an explicit changed letter and only edits the chosen position (1.189045ms)
+✔ restoring the original letter is incomplete and undo restores the whole original word (0.222793ms)
+✔ repair displays lowercase but submits uppercase and retains the edited answer across locking (0.342895ms)
+✔ pairing requires a word first and all three distinct pictures before submitting (0.589953ms)
+✔ reassigning a picture releases its old word and undo restores both connections (0.233437ms)
+✔ pairing can deselect a word and keeps answers while pending or completed (0.20489ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7.003572

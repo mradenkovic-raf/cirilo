@@ -1,0 +1,23 @@
+<% kind = exercise['kind']; composing = %w[build_word memory_word].include?(kind) %>
+<% if composing %><p class="task-instruction"><%= kind == 'memory_word' && !exercise['memory_hidden'] ? 'Кад запамтиш, сакриј реч.' : 'Додируј слова редом. Нека су вишак.' %></p><% end %>
+<% if composing %>
+  <% if kind == 'memory_word' && !exercise['memory_hidden'] %>
+    <div class="memory-study" data-memory-study><span class="study-eye" aria-hidden="true">👀</span><div class="reading-word <%= 'long-word' if exercise['word'].length >= 7 %>"><%= exercise['display_case'] == 'lower' ? exercise['word'].downcase : exercise['word'] %></div><button type="button" class="button primary" data-memory-ready>🙈 Сакриј реч</button></div>
+  <% elsif kind == 'build_word' %>
+    <div class="build-picture" role="img" aria-label="Слика предмета чији назив слажеш"><%= exercise['emoji'] %></div>
+  <% end %>
+  <div data-composer data-length="<%= exercise['word'].length %>" <%= 'hidden' if kind == 'memory_word' && !exercise['memory_hidden'] %>>
+    <div class="answer-slots" role="group" aria-label="Твоја реч"><% exercise['word'].length.times do |index| %><button type="button" class="answer-slot" data-slot="<%= index %>" aria-label="Место <%= index + 1 %>, празно" disabled><span>·</span></button><% end %></div>
+    <div class="letter-bank" role="group" aria-label="Понуђена слова"><% exercise['tiles'].each_with_index do |letter, index| %><button type="button" class="letter-tile" data-tile="<%= index %>" data-letter="<%= letter %>" aria-label="Додај слово <%= letter %>"><%= exercise['display_case'] == 'lower' ? letter.downcase : letter %></button><% end %></div>
+    <div class="compose-tools"><button type="button" class="button secondary" data-undo disabled><%= ui_icon(:reset) %> Врати слово</button></div>
+    <p class="compose-status" id="compose-status" data-compose-status role="status">Попуни празна места, па провери реч.</p>
+    <button type="button" class="button primary compose-submit" data-submit-word aria-describedby="compose-status" disabled><%= ui_icon(:check) %> Провери реч</button>
+  </div>
+<% elsif kind == 'read_word' %>
+  <div class="reading-word <%= 'long-word' if exercise['word'].length >= 7 %>"><%= exercise['case'] == 'lower' ? exercise['word'].downcase : exercise['word'] %></div>
+  <div class="picture-choices" role="group" aria-label="Изабери слику за реч"><% exercise['choices'].each_with_index do |choice, index| %><button type="button" class="choice picture-choice" data-answer="<%= choice['value'] %>" aria-label="Слика <%= index + 1 %>"><%= choice['label'] %></button><% end %></div>
+<% elsif kind == 'sentence' %>
+  <div class="sentence-card"><% exercise['sentence_pattern'].split('▢', -1).each_with_index do |fragment, index| %><% if index > 0 %><span class="sentence-gap" aria-label="реч која недостаје">···</span><% end %><%= fragment %><% end %></div>
+  <div class="word-choices" role="group" aria-label="Изабери реч за реченицу"><% exercise['options'].each do |option| %><button type="button" class="choice word-choice <%= 'long-word' if option.length >= 7 %>" data-answer="<%= option %>"><%= exercise['case'] == 'lower' ? option.downcase : option %></button><% end %></div>
+<% end %>
+

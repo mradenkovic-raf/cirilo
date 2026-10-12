@@ -1,0 +1,15 @@
+{
+  "learners": true,
+  "practice_sessions": true,
+  "attempts": true,
+  "letter_progresses": true,
+  "letter_confusions": true,
+  "shop_purchases": true,
+  "battles": true,
+  "part_unlocks": true,
+  "new_egg_state": [
+    [
+      "{}"
+    ]
+  ]
+}
