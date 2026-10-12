@@ -5,7 +5,7 @@ class AttemptRecorderTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @session = PracticePlanner.start!(@learner)
   end
 

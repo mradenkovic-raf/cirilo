@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
   private
 
   def load_dashboard
-    @learner = Learner.current
+    @learner = current_learner
     @active_session = @learner.active_session
     @active_mission = @active_session
     @stats = @learner.statistics

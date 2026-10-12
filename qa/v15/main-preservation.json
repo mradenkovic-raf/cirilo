@@ -1,0 +1,38 @@
+{
+  "preserved": true,
+  "legacy_browser_keys": null,
+  "tables": {
+    "attempts": {
+      "preserved_rows": 60,
+      "new_rows": 0
+    },
+    "battles": {
+      "preserved_rows": 4,
+      "new_rows": 0
+    },
+    "learners": {
+      "preserved_rows": 1,
+      "new_rows": 1
+    },
+    "letter_confusions": {
+      "preserved_rows": 0,
+      "new_rows": 0
+    },
+    "letter_progresses": {
+      "preserved_rows": 7,
+      "new_rows": 0
+    },
+    "part_unlocks": {
+      "preserved_rows": 4,
+      "new_rows": 0
+    },
+    "practice_sessions": {
+      "preserved_rows": 5,
+      "new_rows": 0
+    },
+    "shop_purchases": {
+      "preserved_rows": 0,
+      "new_rows": 0
+    }
+  }
+}

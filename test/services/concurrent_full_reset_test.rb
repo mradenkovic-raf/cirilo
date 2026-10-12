@@ -9,7 +9,7 @@ class ConcurrentFullResetTest < ActiveSupport::TestCase
   teardown { Learner.destroy_all }
 
   test "two simultaneous full resets with the same tokens apply once" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 500, completed_missions: 8)
     reset = -> { reset_all(learner.id) }
     results = together(reset, reset)
@@ -19,7 +19,7 @@ class ConcurrentFullResetTest < ActiveSupport::TestCase
   end
 
   test "an already loaded final answer racing restart cannot revive rewards or rescue friends" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     (session.total_exercises - 1).times { solve_current_exercise(session) }
     recorder = AttemptRecorder.new(session)
@@ -39,7 +39,7 @@ class ConcurrentFullResetTest < ActiveSupport::TestCase
   end
 
   test "an already loaded battle turn racing restart cannot leave an orphan battle" do
-    learner = Learner.current
+    learner = test_learner
     session = learner.practice_sessions.create!(status: "completed", completed_at: Time.current)
     battle = BattleArena.start!(learner, session)
     arena = BattleArena.new(battle, enemy_picker: -> { "feint" })

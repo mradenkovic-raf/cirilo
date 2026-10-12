@@ -7,7 +7,7 @@ class ConcurrentShopResetTest < ActiveSupport::TestCase
   teardown { Learner.destroy_all }
 
   test "two reset requests with one generation apply once" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 500)
     reset = -> {
       ShopReset.reset!(Learner.find(learner.id), confirmation: "1", reset_word: "RESET", generation: 1)
@@ -20,7 +20,7 @@ class ConcurrentShopResetTest < ActiveSupport::TestCase
   end
 
   test "an old purchase racing the reset cannot spend the new generation" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 500)
     results = together(
       -> { ShopService.new(Learner.find(learner.id)).purchase!(item_id: "dino_tricera", generation: 1) },

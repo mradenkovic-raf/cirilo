@@ -7,7 +7,7 @@ class FullResetTest < ActiveSupport::TestCase
   CHILD_MODELS = [Attempt, Battle, PartUnlock, PracticeSession, LetterProgress, LetterConfusion, ShopPurchase].freeze
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @completed = complete_practice_session(PracticePlanner.start!(@learner))
     @learner.reload.update!(xp: 3000, completed_missions: 8)
     %w[dino_tricera color_ice theme_space effect_lightning].each do |item|
@@ -116,7 +116,7 @@ class FullResetTest < ActiveSupport::TestCase
   end
 
   test "a failed save rolls back all child deletions and both generations" do
-    @learner.update_columns(singleton_key: "invalid")
+    @learner.update_columns(device_token_digest: "invalid")
     before = snapshot
     assert_raises(ActiveRecord::RecordInvalid) { reset_all }
     assert_equal before, snapshot

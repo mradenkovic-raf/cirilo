@@ -2,7 +2,7 @@ require "test_helper"
 
 class BattleSpeciesSnapshotTest < ActiveSupport::TestCase
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 5_000)
     @shop = ShopService.new(@learner)
     @renderer = Object.new.extend(ApplicationHelper).extend(DinoHelper).extend(BattlesHelper)

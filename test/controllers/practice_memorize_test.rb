@@ -2,7 +2,7 @@ require "test_helper"
 
 class PracticeMemorizeTest < ActionDispatch::IntegrationTest
   setup do
-    @session = PracticePlanner.start!(Learner.current)
+    @session = PracticePlanner.start!(test_learner)
     @session.update!(cursor: @session.exercises.index { |item| item["kind"] == "memory_word" })
     @exercise = @session.current_exercise
   end
@@ -14,7 +14,7 @@ class PracticeMemorizeTest < ActionDispatch::IntegrationTest
       assert response.parsed_body.fetch("memory_hidden")
     end
     assert @session.reload.current_exercise["memory_hidden"]
-    assert_equal 0, Learner.current.xp
+    assert_equal 0, test_learner.reload.xp
     assert_equal 0, @session.attempts.count
     assert_equal 12, @session.total_exercises
     get practice_session_path(@session)

@@ -2,7 +2,7 @@ require "test_helper"
 
 class DinoResetControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 125, completed_missions: 1, dino_color: "peach")
     @completed = @learner.practice_sessions.create!(status: "completed", completed_at: Time.current)
     @learner.part_unlocks.create!(practice_session: @completed, part_key: "boots", position: 1)

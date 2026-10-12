@@ -2,7 +2,7 @@ require "test_helper"
 
 class DinoResetTest < ActiveSupport::TestCase
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 500, completed_missions: 9, dino_color: "blue")
     9.times do |index|
       session = @learner.practice_sessions.create!(status: "completed", completed_at: Time.current)

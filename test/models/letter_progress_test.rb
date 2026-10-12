@@ -2,7 +2,7 @@ require "test_helper"
 
 class LetterProgressTest < ActiveSupport::TestCase
   setup do
-    @progress = Learner.current.letter_progresses.create!(letter_id: Curriculum.letters.first.fetch("id"))
+    @progress = test_learner.letter_progresses.create!(letter_id: Curriculum.letters.first.fetch("id"))
   end
 
   test "repeating in the same sitting does not pretend to be long term recall" do

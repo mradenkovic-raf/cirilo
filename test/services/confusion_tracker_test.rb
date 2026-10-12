@@ -5,7 +5,7 @@ class ConfusionTrackerTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.letter_progresses.create!(letter_id: "p")
     @session = @learner.practice_sessions.create!(focus_letters: %w[p], exercises: [word_task])
   end

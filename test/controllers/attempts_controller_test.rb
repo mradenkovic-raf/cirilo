@@ -4,7 +4,7 @@ require_relative "../services/exercise_helpers"
 class AttemptsControllerTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
   test "JSON endpoint persists validated answers and prevents skipping ahead" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(cursor: 2)
     exercise = session.current_exercise
     post practice_session_attempts_path(session), params: {
@@ -22,7 +22,7 @@ class AttemptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "malformed answers return a useful validation response" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(cursor: 2)
     post practice_session_attempts_path(session), params: {
       exercise_id: session.current_exercise.fetch("id"), answer: ["А"]
@@ -33,7 +33,7 @@ class AttemptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "malformed trace metrics return validation rather than a server error" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(cursor: session.exercises.index { |exercise| exercise["kind"] == "trace" })
     original_cursor = session.cursor
     post practice_session_attempts_path(session), params: {
@@ -44,7 +44,7 @@ class AttemptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "nested writing payload grades every chosen letter and supplies word meaning" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(cursor: session.exercises.index { |exercise| exercise["kind"] == "fill_letters" })
     exercise = session.current_exercise
     post practice_session_attempts_path(session), params: correct_attributes(exercise), as: :json
@@ -57,7 +57,7 @@ class AttemptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "malformed writing arrays cannot skip a required letter" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(cursor: session.exercises.index { |exercise| exercise["kind"] == "write_word" })
     exercise = session.current_exercise
     ["invalid", [1, 2], []].each do |payload|

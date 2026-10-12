@@ -5,7 +5,7 @@ class EggCompanionTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @egg = EggCompanion.new(@learner)
   end
 

@@ -5,7 +5,7 @@ class WorkshopFriendsTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
 
   test "only friends rescued by four completed missions appear in the living scene" do
-    learner = Learner.current
+    learner = test_learner
     [0, 3, 4, 7, 8, 10, 11, 12, 15, 16, 24].each do |missions|
       learner.update!(completed_missions: missions)
       get workshop_path
@@ -20,7 +20,7 @@ class WorkshopFriendsTest < ActionDispatch::IntegrationTest
   end
 
   test "each rescued friend has a different activity and an accessible greeting without reward requests" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(completed_missions: 16, xp: 320)
     before = [learner.attributes, learner.practice_sessions.count, learner.part_unlocks.count]
     2.times do
@@ -37,7 +37,7 @@ class WorkshopFriendsTest < ActionDispatch::IntegrationTest
   end
 
   test "empty and partial homes explain the next rescue without showing an unearned friend in the scene" do
-    learner = Learner.current
+    learner = test_learner
     get workshop_path
     assert_select "[data-friend-message]", text: 'Додирни Клика.'
     assert_select ".friends-home-next[href=?]", adventure_path, text: /Лиско.*Још 4 мисије/m
@@ -48,7 +48,7 @@ class WorkshopFriendsTest < ActionDispatch::IntegrationTest
   end
 
   test "the actual rescue result invites the child to visit their friend at home" do
-    learner = Learner.current
+    learner = test_learner
     session = nil
     4.times { session = complete_practice_session(PracticePlanner.start!(learner)) }
     get practice_session_path(session)

@@ -2,7 +2,7 @@ require "test_helper"
 
 class BattlePowersTest < ActiveSupport::TestCase
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     12.times do |index|
       mission = @learner.practice_sessions.create!(status: "completed")
       @learner.part_unlocks.create!(practice_session: mission,

@@ -1,0 +1,17 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-4-aqp5lr4' as your home directory temporarily.
+{
+  "result": "PASS",
+  "environment": "production",
+  "browsers": 2,
+  "checks": [
+    "Secure + HttpOnly HTTPS cookie",
+    "private pages no-store",
+    "real CSRF form submission",
+    "foreign mission 404",
+    "own appearance change",
+    "other browser unchanged",
+    "same mission with only persistent cookie",
+    "missing CSRF rejected"
+  ]
+}

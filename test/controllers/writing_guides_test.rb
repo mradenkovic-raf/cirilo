@@ -5,7 +5,7 @@ class WritingGuidesTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
 
   test "saved word writing uses current guides without changing mission state or answers" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     letter = Curriculum.find("a")
     old_paths = [[[7, 7], [9, 9]]]
@@ -42,7 +42,7 @@ class WritingGuidesTest < ActionDispatch::IntegrationTest
   end
 
   test "display guides do not share mutable paths with saved exercises or the curriculum" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     writing = planned_exercise("fill_letters")
     session.update!(exercises: [writing])
     saved = session.exercises.deep_dup

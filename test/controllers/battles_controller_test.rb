@@ -2,7 +2,7 @@ require "test_helper"
 
 class BattlesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @session = @learner.practice_sessions.create!(status: "completed", completed_at: Time.current)
   end
 
@@ -128,8 +128,7 @@ class BattlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "unknown and foreign IDs cannot open or play another battle" do
-    other = Learner.new(singleton_key: "test-other")
-    other.save!(validate: false)
+    other = Learner.create!
     foreign_session = other.practice_sessions.create!(status: "completed")
     foreign_battle = BattleArena.start!(other, foreign_session)
     post practice_session_battle_path(foreign_session)

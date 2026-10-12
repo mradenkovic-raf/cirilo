@@ -2,7 +2,7 @@ require "test_helper"
 
 class ShopResetControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 500)
     ShopService.new(@learner).purchase!(item_id: "color_ice")
   end

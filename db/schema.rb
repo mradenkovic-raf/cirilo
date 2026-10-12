@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_11_000900) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_12_000100) do
   create_table "attempts", force: :cascade do |t|
     t.integer "learner_id", null: false
     t.integer "practice_session_id", null: false
@@ -54,7 +54,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_11_000900) do
   end
 
   create_table "learners", force: :cascade do |t|
-    t.string "singleton_key", default: "child", null: false
     t.integer "xp", default: 0, null: false
     t.integer "completed_missions", default: 0, null: false
     t.string "dino_color", default: "green", null: false
@@ -68,7 +67,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_11_000900) do
     t.string "selected_effect", default: "stars", null: false
     t.integer "shop_generation", default: 1, null: false
     t.json "egg_state", default: {}, null: false
-    t.index ["singleton_key"], name: "index_learners_on_singleton_key", unique: true
+    t.string "device_token_digest"
+    t.index ["device_token_digest"], name: "index_learners_on_device_token_digest", unique: true
     t.check_constraint "xp_spent >= 0 AND xp_spent <= xp", name: "learner_wallet_nonnegative"
   end
 

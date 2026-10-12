@@ -2,7 +2,7 @@ require "test_helper"
 
 class BattleArenaTest < ActiveSupport::TestCase
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 500, completed_missions: 4, dino_color: "blue")
     4.times { |index| add_reward(index + 1) }
     @session = completed_session
@@ -135,8 +135,7 @@ class BattleArenaTest < ActiveSupport::TestCase
   test "starting requires a completed mission owned by the learner" do
     active = @learner.practice_sessions.create!
     assert_raises(BattleArena::InvalidBattle) { BattleArena.start!(@learner, active) }
-    other = Learner.new(singleton_key: "test-other")
-    other.save!(validate: false)
+    other = Learner.create!
     foreign = other.practice_sessions.create!(status: "completed")
     assert_raises(ActiveRecord::RecordNotFound) { BattleArena.start!(@learner, foreign) }
     assert_equal 0, @learner.battles.count

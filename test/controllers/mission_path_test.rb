@@ -5,7 +5,7 @@ class MissionPathTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
 
   test "the mission path restores saved steps and shows the child's selected equipped dinosaur facing the arena" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(selected_dino: "stego", dino_color: "blue")
     complete_practice_session(PracticePlanner.start!(learner))
     session = PracticePlanner.start!(learner)
@@ -22,7 +22,7 @@ class MissionPathTest < ActionDispatch::IntegrationTest
   end
 
   test "an incorrect answer inserts recovery without advancing the path and reload keeps the new total" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     session.update!(exercises: [planned_exercise("read_word")] + session.exercises.drop(1))
     exercise = session.current_exercise
     wrong = exercise.fetch("options").find { |option| option != exercise.fetch("answer") }

@@ -41,6 +41,6 @@ class ShopController < ApplicationController
   end
 
   def load_learner
-    @learner = Learner.current
+    @learner = current_learner
   end
 end

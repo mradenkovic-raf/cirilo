@@ -1,6 +1,6 @@
 class AttemptsController < ApplicationController
   def create
-    session = Learner.current.practice_sessions.find(params[:practice_session_id])
+    session = current_learner.practice_sessions.find(params[:practice_session_id])
     raw_metrics = params[:trace_metrics]
     metrics = if raw_metrics.respond_to?(:permit)
       raw_metrics.permit(:coverage, :precision, :points, :drawnLength, :guideLength).to_h

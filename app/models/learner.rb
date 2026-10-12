@@ -1,4 +1,8 @@
+require "digest"
+
 class Learner < ApplicationRecord
+  DEVICE_TOKEN_FORMAT = /\A[A-Za-z0-9_-]{43}\z/
+
   has_many :letter_progresses, dependent: :destroy
   has_many :practice_sessions, dependent: :destroy
   has_many :attempts, dependent: :destroy
@@ -7,7 +11,8 @@ class Learner < ApplicationRecord
   has_many :shop_purchases, dependent: :destroy
   has_many :letter_confusions, dependent: :destroy
 
-  validates :singleton_key, inclusion: { in: ["child"] }, uniqueness: true
+  before_validation :assign_device_digest, on: :create
+  validates :device_token_digest, presence: true, format: { with: /\A[0-9a-f]{64}\z/ }, uniqueness: true
   validates :xp, :completed_missions, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :dinosaur_generation, numericality: { only_integer: true, greater_than: 0 }
   validates :shop_generation, numericality: { only_integer: true, greater_than: 0 }
@@ -17,8 +22,19 @@ class Learner < ApplicationRecord
   validates :selected_theme, inclusion: { in: ShopCatalog.values_for("theme") }
   validates :selected_effect, inclusion: { in: ShopCatalog.values_for("effect") }
 
-  def self.current
-    find_by(singleton_key: "child") || create_or_find_by!(singleton_key: "child")
+  def self.device_digest(token)
+    Digest::SHA256.hexdigest(token)
+  end
+
+  def self.for_device_token(token)
+    return unless token.is_a?(String) && DEVICE_TOKEN_FORMAT.match?(token)
+
+    find_by(device_token_digest: device_digest(token))
+  end
+
+  def self.issue_device
+    token = SecureRandom.urlsafe_base64(32)
+    [create!(device_token_digest: device_digest(token)), token]
   end
 
   def active_session
@@ -66,5 +82,11 @@ class Learner < ApplicationRecord
       due_letters: practiced.where("next_review_at <= ?", Time.current).count,
       correct_attempts: attempts.where(correct: true).count
     }
+  end
+
+  private
+
+  def assign_device_digest
+    self.device_token_digest ||= self.class.device_digest(SecureRandom.urlsafe_base64(32))
   end
 end

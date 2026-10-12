@@ -2,7 +2,7 @@ require "test_helper"
 
 class ShopPurchaseTest < ActiveSupport::TestCase
   test "a purchase records a real paid catalog item at its catalog price" do
-    learner = Learner.current
+    learner = test_learner
     %w[missing color_green].each do |key|
       assert_not learner.shop_purchases.build(item_key: key, price_paid: 120).valid?
     end
@@ -15,7 +15,7 @@ class ShopPurchaseTest < ActiveSupport::TestCase
   end
 
   test "wallet and selections reject invalid values while keeping lifetime level" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 300, xp_spent: 120)
     assert_equal 180, learner.xp_balance
     assert_equal 4, learner.level
@@ -32,7 +32,7 @@ class ShopPurchaseTest < ActiveSupport::TestCase
   end
 
   test "ownership resolves catalog definitions instead of trusting a forged hash" do
-    learner = Learner.current
+    learner = test_learner
     assert learner.owns_shop_item?("color_blue")
     assert learner.selected_shop_item?("dino_rex")
     assert_not learner.owns_shop_item?({ "id" => "dino_robo", "price" => 0 })
@@ -41,7 +41,7 @@ class ShopPurchaseTest < ActiveSupport::TestCase
   end
 
   test "database cannot store an overdrawn wallet or duplicate purchase" do
-    learner = Learner.current
+    learner = test_learner
     assert_raises(ActiveRecord::StatementInvalid) { learner.update_columns(xp_spent: 1) }
     assert_equal 0, learner.reload.xp_balance
     purchase = learner.shop_purchases.create!(item_key: "color_ice", price_paid: 120)

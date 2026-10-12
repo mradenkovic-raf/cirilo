@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, aplikacija v14 sa proverenim potezima štampanih slova i bankom od 112 reči. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-12, aplikacija v15 sa odvojenim napretkom po browseru, bez naloga i prijave. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Odvojene igre bez prijave — v15
+
+Korisnik je tražio zaseban napredak svakog uređaja pomoću trajnog kolačića i izabrao da svi krenu od nule. Browser dobija nasumičan šifrovan ključ; SQLite čuva njegov digest. Svi kontroleri koriste `current_learner`, a misije, odgovori, mapa, oprema, jaje, kupovine, borbe i sva tri reseta vezani su za tog učenika. Tuđi ID-jevi vraćaju 404. Nema fallback-a na stari zajednički zapis.
+
+Trajni cookie preživljava običnu sesiju; drugi browser, privatni prozor, obrisani kolačići ili drugi hostname znače zasebnu igru. Novi identitet resetuje CSRF/session podatke, a upis bez poznatog ključa vraća 422. Roditeljski tekstovi objašnjavaju opseg reseta; dečji tok nije proširen izborom profila ili dodatnim pitanjima. Za hosting su potrebni HTTPS, trajna baza i stabilan `SECRET_KEY_BASE`.
+
+Pre izmene inicijalizovan je Git: commit `ce45f7f`, tag `v14-stable-before-device-progress`; `main` ostaje na v14, a nove izmene su na `device-progress`. Izvor i konzistentna stara baza su u `revisions/2026-10-12-v14-before-device-progress/`, van Gita. Migracija `20261012000100` uklanja singleton i dodaje jedinstveni digest. Stari učenik ostaje bez ključa i zato nedostupan browserima; stari napredak nije brisan.
+
+Prošlo je **215 Rails testova / 12.809 tvrdnji i 29 JS testova**, uključujući 17 novih testova identiteta, izolacije i CSRF zaštite. Poseban production Rails/Rack pregled sa HTTPS zahtevima i CSRF-om prošao je. Na kopiji i glavnoj bazi potvrđeno je očuvanje svih starih podataka i SQLite integriteta. Glavni server na 3001 je ponovo učitan: browser sada ima novi prazan napredak, bez probnih odgovora ili reseta. Zaseban browser pregled na `localhost:3002` potvrđuje nastavak iste misije posle zatvaranja taba; probni server je zaustavljen. [Dokazi, ograničenja i postupak povratka](qa/v15/PROVERA.md). Git i rezervne kopije ostaju lokalni.
 
 ## Potezi i više reči — v14
 

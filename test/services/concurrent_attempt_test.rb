@@ -13,8 +13,8 @@ class ConcurrentAttemptTest < ActiveSupport::TestCase
     Learner.destroy_all
   end
 
-  test "two devices submitting the same answer award progress once" do
-    learner = Learner.current
+  test "two tabs submitting the same answer award progress once" do
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     exercise = session.current_exercise
     replies = concurrent_replies(session, exercise)
@@ -26,7 +26,7 @@ class ConcurrentAttemptTest < ActiveSupport::TestCase
   end
 
   test "simultaneous final answers issue only one part and completion bonus" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     session.update!(cursor: 11, earned_xp: 110)
     learner.update!(xp: 110)

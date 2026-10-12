@@ -1,11 +1,11 @@
 class PracticeSessionsController < ApplicationController
   def create
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(current_learner)
     redirect_to practice_session_path(session), status: :see_other
   end
 
   def show
-    @learner = Learner.current
+    @learner = current_learner
     @practice_session = @learner.practice_sessions.find(params[:id])
     PracticePlanner.upgrade!(@practice_session)
     @mission = @practice_session
@@ -18,7 +18,7 @@ class PracticeSessionsController < ApplicationController
   end
 
   def memorize
-    session = Learner.current.practice_sessions.find(params[:id])
+    session = current_learner.practice_sessions.find(params[:id])
     render json: AttemptRecorder.new(session).memorize!(exercise_id: params[:exercise_id])
   rescue AttemptRecorder::InvalidSubmission => error
     render json: { success: false, error: error.message }, status: :unprocessable_entity

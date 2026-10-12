@@ -7,7 +7,7 @@ class ConcurrentShopPurchaseTest < ActiveSupport::TestCase
   teardown { Learner.destroy_all }
 
   test "simultaneous requests for one item charge exactly once" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 240)
     results = buy_together(learner, ["dino_tricera", "dino_tricera"])
     assert results.all? { |result| result.is_a?(Hash) }, results.inspect
@@ -19,7 +19,7 @@ class ConcurrentShopPurchaseTest < ActiveSupport::TestCase
   end
 
   test "different simultaneous purchases cannot overdraw the shared wallet" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(xp: 200)
     results = buy_together(learner, ["color_ice", "effect_lightning"])
     assert_equal 1, results.count { |result| result.is_a?(Hash) }, results.inspect

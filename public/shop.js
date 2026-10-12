@@ -71,7 +71,7 @@ const reveal = document.querySelector('[data-shop-reveal]');
 if (reveal) {
   let alreadyShown = false;
   try {
-    const key = `cirilo-unlocked-${reveal.dataset.shopGeneration}-${reveal.dataset.shopReveal}`;
+    const key = `cirilo-unlocked-${reveal.dataset.shopLearner}-${reveal.dataset.shopGeneration}-${reveal.dataset.shopReveal}`;
     alreadyShown = sessionStorage.getItem(key) === 'shown';
     sessionStorage.setItem(key, 'shown');
   } catch { /* The server flash still limits the reveal without storage. */ }

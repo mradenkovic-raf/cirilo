@@ -5,7 +5,7 @@ class ShopResetTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 3000, completed_missions: 1)
     @shop = ShopService.new(@learner)
     %w[dino_tricera color_ice theme_space effect_lightning].each do |id|

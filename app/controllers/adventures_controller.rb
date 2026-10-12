@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   def show
-    @learner = Learner.current
+    @learner = current_learner
     @active_session = @learner.active_session
     @adventure = AdventureMap.new(@learner)
   end

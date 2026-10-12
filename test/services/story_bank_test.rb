@@ -26,7 +26,7 @@ class StoryBankTest < ActiveSupport::TestCase
   end
 
   test "story error requires recovery and pays no XP or letter mastery until correct answer" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     session.update!(cursor: session.exercises.index { |item| item["kind"] == "story_action" })
     exercise = session.current_exercise
@@ -46,7 +46,7 @@ class StoryBankTest < ActiveSupport::TestCase
   end
 
   test "new mission with a story remains twelve paid tasks and 145 XP" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     assert_equal 1, session.exercises.count { |item| item["kind"] == "story_action" }
     complete_practice_session(session)
     assert_equal 12, session.reload.attempts.count

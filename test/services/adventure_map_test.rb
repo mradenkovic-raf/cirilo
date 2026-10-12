@@ -41,7 +41,7 @@ class AdventureMapTest < ActiveSupport::TestCase
   end
 
   test "historical mission progress is based on completion order not today's total" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(completed_missions: 9)
     now = Time.current
     old = learner.practice_sessions.create!(status: "completed", completed_at: now - 1.day)
@@ -54,7 +54,7 @@ class AdventureMapTest < ActiveSupport::TestCase
   end
 
   test "spending or resetting shop and gear does not rewind the journey" do
-    learner = Learner.current
+    learner = test_learner
     learner.update!(completed_missions: 9, xp: 500, xp_spent: 0, selected_theme: "meadow")
     ShopService.new(learner).purchase!(item_id: "theme_space", generation: learner.shop_generation)
     assert_equal 9, AdventureMap.new(learner.reload).completed_steps

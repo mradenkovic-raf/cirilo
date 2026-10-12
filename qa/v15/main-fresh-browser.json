@@ -1,0 +1,16 @@
+{
+  "new_browsers": 1,
+  "xp": 0,
+  "spent": 0,
+  "missions": 0,
+  "children": {
+    "attempts": 0,
+    "practice_sessions": 0,
+    "battles": 0,
+    "part_unlocks": 0,
+    "shop_purchases": 0,
+    "letter_progresses": 0,
+    "letter_confusions": 0
+  },
+  "legacy_preserved": true
+}

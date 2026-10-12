@@ -2,7 +2,7 @@ require "test_helper"
 
 class EggsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @learner = Learner.current
+    @learner = test_learner
   end
 
   test "choosing hatching and naming redirect to the companion and celebrate once" do

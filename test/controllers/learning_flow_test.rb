@@ -24,14 +24,15 @@ class LearningFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "mission creation resumes the same session and renders every exercise type" do
+    test_learner
     post practice_sessions_path
     assert_response :see_other
-    session = Learner.current.active_session
+    session = test_learner.active_session
     assert_redirected_to practice_session_path(session)
 
     post practice_sessions_path
     assert_redirected_to practice_session_path(session)
-    assert_equal 1, Learner.current.practice_sessions.count
+    assert_equal 1, test_learner.practice_sessions.count
 
     # Keep the older rotating games covered even when the first mission picks
     # their new alternatives. The saved exercise remains the rendering input.
@@ -102,19 +103,20 @@ class LearningFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "color preference persists and unsupported color cannot change it" do
-    patch customize_workshop_path, params: { dino_color: "blue", shop_generation: Learner.current.shop_generation }
+    patch customize_workshop_path, params: { dino_color: "blue", shop_generation: test_learner.shop_generation }
     assert_redirected_to workshop_path
-    assert_equal "blue", Learner.current.reload.dino_color
+    assert_equal "blue", test_learner.reload.dino_color
     follow_redirect!
     assert_response :success
     assert_select ".color-swatch.blue.selected[aria-pressed=true]", 1
 
-    patch customize_workshop_path, params: { dino_color: "invalid", shop_generation: Learner.current.shop_generation }
+    patch customize_workshop_path, params: { dino_color: "invalid", shop_generation: test_learner.shop_generation }
     assert_redirected_to workshop_path
-    assert_equal "blue", Learner.current.reload.dino_color
+    assert_equal "blue", test_learner.reload.dino_color
   end
 
   test "unknown mission identifiers return not found" do
+    test_learner
     get practice_session_path(id: 9_999_999)
     assert_response :not_found
     post practice_session_attempts_path(practice_session_id: 9_999_999), params: {
@@ -126,7 +128,7 @@ class LearningFlowTest < ActionDispatch::IntegrationTest
   private
 
   def complete_mission
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     complete_practice_session(session)
   end
 end

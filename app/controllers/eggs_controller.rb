@@ -26,6 +26,6 @@ class EggsController < ApplicationController
   private
 
   def load_egg
-    @egg = EggCompanion.new(Learner.current)
+    @egg = EggCompanion.new(current_learner)
   end
 end

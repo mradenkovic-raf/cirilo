@@ -5,7 +5,7 @@ class FullResetsControllerTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @completed = complete_practice_session(PracticePlanner.start!(@learner))
     @battle = BattleArena.start!(@learner, @completed)
     @active = PracticePlanner.start!(@learner)

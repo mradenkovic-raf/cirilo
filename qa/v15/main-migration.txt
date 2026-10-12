@@ -1,0 +1,11 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261012-3-uk9ydd3' as your home directory temporarily.
+== 20261012000100 AddDeviceIdentityToLearners: migrating ======================
+-- add_column(:learners, :device_token_digest, :string)
+   -> 0.0004s
+-- add_index(:learners, :device_token_digest, {unique: true})
+   -> 0.0001s
+-- remove_column(:learners, :singleton_key, :string)
+   -> 0.0116s
+== 20261012000100 AddDeviceIdentityToLearners: migrated (0.0121s) =============
+

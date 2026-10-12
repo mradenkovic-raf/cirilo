@@ -5,7 +5,7 @@ class ShopServiceTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 1000)
     @shop = ShopService.new(@learner)
   end

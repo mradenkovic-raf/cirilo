@@ -2,7 +2,7 @@ require "test_helper"
 
 class StoryFlowTest < ActionDispatch::IntegrationTest
   test "all story dimensions render four native scenes without reading the tested sentence aloud" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     index = session.exercises.index { |item| item["kind"] == "story_action" }
     12.times do |variation|
@@ -22,7 +22,7 @@ class StoryFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "story accepts only its options saves correct result and duplicate cannot reward twice" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     session.update!(cursor: session.exercises.index { |item| item["kind"] == "story_action" })
     task = session.current_exercise

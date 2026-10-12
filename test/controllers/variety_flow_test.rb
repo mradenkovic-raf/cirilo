@@ -61,7 +61,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
       body = response.parsed_body
       assert body.fetch("correct"), kind
       assert_equal 10, body.fetch("xp_earned"), kind
-      assert_equal 10 * (index + 1), Learner.current.reload.xp
+      assert_equal 10 * (index + 1), test_learner.reload.xp
       assert_equal 1, session.reload.cursor
       if task["word"]
         assert_equal task.fetch("word"), body.fetch("meaning").fetch("word")
@@ -74,7 +74,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
       assert_response :success
       assert response.parsed_body.fetch("duplicate")
       assert_equal 0, response.parsed_body.fetch("xp_earned")
-      assert_equal 10 * (index + 1), Learner.current.reload.xp
+      assert_equal 10 * (index + 1), test_learner.reload.xp
       assert_equal 1, session.attempts.where(exercise_id: task.fetch("id")).count
     end
   end
@@ -90,7 +90,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
       assert_equal 0, session.attempts.count
       assert_equal 0, session.reload.cursor
       assert_equal 2, session.total_exercises
-      assert_equal 0, Learner.current.reload.xp
+      assert_equal 0, test_learner.reload.xp
     end
   end
 
@@ -102,7 +102,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
       assert_response :unprocessable_entity
       assert_equal 0, session.attempts.count
       assert_equal 0, session.reload.cursor
-      assert_equal 0, Learner.current.reload.xp
+      assert_equal 0, test_learner.reload.xp
     end
   end
 
@@ -121,7 +121,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
     post_answer(session, task, task.fetch("answer"))
     assert_response :conflict
     assert_equal 1, session.attempts.count
-    assert_equal 0, Learner.current.reload.xp
+    assert_equal 0, test_learner.reload.xp
 
     post practice_session_attempts_path(session), params: correct_attributes(recovery), as: :json
     assert_response :success
@@ -132,7 +132,7 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
     post_answer(session, task, task.fetch("answer"))
     assert_response :success
     assert response.parsed_body.fetch("correct")
-    assert_equal 10, Learner.current.reload.xp
+    assert_equal 10, test_learner.reload.xp
     assert_equal 3, session.attempts.count
   end
 
@@ -150,16 +150,16 @@ class VarietyFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert response.parsed_body.fetch("duplicate")
     assert_equal 0, response.parsed_body.fetch("xp_earned")
-    assert_equal 35, Learner.current.reload.xp
-    assert_equal 1, Learner.current.completed_missions
-    assert_equal 1, Learner.current.part_unlocks.count
+    assert_equal 35, test_learner.reload.xp
+    assert_equal 1, test_learner.completed_missions
+    assert_equal 1, test_learner.part_unlocks.count
     assert_equal 1, session.attempts.count
   end
 
   private
 
   def prepare_task(kind)
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     trace = session.exercises.find { |exercise| exercise.fetch("kind") == "trace" }.deep_dup
     trace["id"] = SecureRandom.uuid
     task = {

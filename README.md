@@ -1,6 +1,6 @@
 # Ћирило — dino-radionica
 
-Rails aplikacija za jedno dete koje uči srpsku ćirilicu. Obični server-rendered HTML, CSS i mali JavaScript moduli; bez Reacta, Vuea, frontend build procesa, prijave i profila. SQLite čuva jedan zajednički napredak na serveru.
+Rails aplikacija za decu koja uče srpsku ćirilicu. Obični server-rendered HTML, CSS i mali JavaScript moduli; bez Reacta, Vuea, frontend build procesa, prijave i profila. SQLite čuva zaseban napredak svakog browsera, a trajni šifrovani kolačić omogućava nastavak igre.
 
 ## Pokretanje na ovom računaru
 
@@ -18,6 +18,21 @@ BIND=0.0.0.0 bin/dev
 ```
 
 Na telefonu otvori `http://IP-ADRESA-RAČUNARA:3000`. Računar i telefon moraju biti na istoj mreži; lokalni firewall mora da dozvoli ovaj port. Ovo nije zasebna Android/iPhone aplikacija. Potezi koriste Pointer Events, pa prihvataju prst, miš i olovku koju pregledač prepoznaje kao pointer.
+
+## Napredak po browseru — v15
+
+Pri prvom otvaranju browser dobija slučajan, šifrovan ključ u trajnom `HttpOnly` / `SameSite=Lax` kolačiću. U SQLite bazi čuva se samo njegov SHA-256 otisak. Nema korisničkog imena, prijave, biranja profila niti prepoznavanja uređaja preko IP adrese. Telefon i računar na istoj mreži zato imaju odvojene igre.
+
+- Isti browser na istoj adresi nastavlja svoje slovo, misiju, mapu, dinosaurusa, kupovine i borbu. Obična Rails sesija može da istekne bez gubitka pristupa napretku.
+- Drugi browser, drugi browser profil i privatni prozor dobijaju novi početak. Dva deteta koja koriste isti browser dele taj jedan napredak.
+- Brisanje kolačića ili podataka sajta znači novi početak bez automatskog vraćanja. Podaci ostaju u bazi, ali browser više nema njihov ključ. Politika browsera može da skrati trajanje kolačića; „trajni” nije garancija da nikad neće biti obrisan.
+- Koristi istu adresu: `localhost`, `127.0.0.1`, LAN IP računara i budući domen imaju različite kolačiće. Različiti portovi istog hostname-a dele kolačiće, pa za probnu aplikaciju koristi odvojeni hostname ili browser profil.
+- Sva tri roditeljska reseta važe samo za trenutni browser. Potpuni restart zadržava njegov ključ, a briše njegov napredak. Drugi browseri i stari rezervni napredak ostaju netaknuti.
+- Misije i borbe se traže isključivo među podacima vlasnika kolačića. Tuđi identifikator vraća 404; nevažeći ili nedostajući ključ odbija upis i traži ponovno otvaranje igre. Lične stranice se ne keširaju kao javni sadržaj.
+
+Po korisnikovom izboru **svi kreću od nule**. Raniji zajednički napredak ostao je u bazi bez ključa za pristup i u konzistentnoj rezervnoj kopiji `revisions/2026-10-12-v14-before-device-progress/development.sqlite3`. Nema automatskog preuzimanja tih podataka.
+
+Pre promene napravljen je Git commit `ce45f7f`, tag `v14-stable-before-device-progress` i grana `device-progress` za nove izmene. Tag čuva kod, a prethodno navedena kopija čuva podatke. Povratak zahteva **i stari kod i staru bazu**, uz zaustavljen server; migracija ne pokušava da više browsera stopi u jedno dete. Postupak je u [qa/v15/PROVERA.md](qa/v15/PROVERA.md). Rezervna baza i ključevi nisu u Gitu. Git i arhiva su za sada lokalni na ovom računaru.
 
 ## Šta radi
 
@@ -41,15 +56,15 @@ Na telefonu otvori `http://IP-ADRESA-RAČUNARA:3000`. Računar i telefon moraju 
 - Geometrijska procena pisanja meri pokrivenost, preciznost i potpunost oblika. Ne ocenjuje smer i redosled poteza. Prag je 65/100 uz minimalnu pokrivenost i dužinu crteža.
 - Vođeno pisanje jednog slova, cele reči i dopuna rukom računaju se kao vežba pisanja. Nivo pamćenja raste samo za samostalan tačan odgovor iz prvog pokušaja pri sastavljanju, čitanju, izboru naziva slike, popravci reči, rečenici ili pamćenju. Napredovanje jednog slova najviše jednom u 12 sati, sa razmacima 6 sati, 1/3/7/14/30 dana. Ovo je praktično pravilo aplikacije, a ne standardizovan test znanja.
 - Prva greška na redovnom zadatku vraća dete na jedno kratko obavezno ponavljanje, pa odmah na isti zadatak. Najviše tri takva ponavljanja po misiji: ukupno najviše 15 koraka. Ponavljanje ne donosi XP; greška na samom ponavljanju ili ponovna greška na istom zadatku ne ubacuje novo ponavljanje. Ispravka posle greške i dodatna ponavljanja ne podižu nivo pamćenja. Nema oduzimanja već osvojenih nagrada niti dugmeta koje otkriva odgovor.
-- Kod pamćenja dete samo bira kada da pritisne „Zapamtio sam”. Server tada trajno sakriva reč za taj zadatak: ostaje sakrivena i posle osvežavanja ili otvaranja na drugom uređaju. Nema prinudnog tajmera niti ponovnog pokazivanja reči.
+- Kod pamćenja dete samo bira kada da pritisne „Zapamtio sam”. Server tada trajno sakriva reč za taj zadatak: ostaje sakrivena i posle osvežavanja ili otvaranja u drugom tabu istog browsera. Nema prinudnog tajmera niti ponovnog pokazivanja reči.
 - Tačan redovan zadatak donosi 10 XP, završena misija dodatnih 25 XP. Nova misija ukupno donosi 145 XP, i kada ima dodatna ponavljanja. Prvih 16 nagrada trenutnog dinosaurusa otključava 16 delova; posle njih stižu kristali energije.
 - Prodavnica troši osvojeni XP na nove dinosauruse, boje, svetove i efekte proslave. Kupovina čuva ukupan zarađeni XP i nivo; za kupovinu je dostupan ukupan XP umanjen za već potrošeni XP. Prodavnica prikazuje raspoloživi iznos, a roditeljski pregled sva tri iznosa. Nema plaćanja novcem.
 - Radionica prikazuje stečene delove, pamti boju i ima tri reakcije: rika, ples i aktiviranje opreme. Uspešan zadatak pokreće skok dinosaurusa, energetski dobitak, konfete i zvuk. Isključenje zvuka i sistemski zahtev za smanjenim animacijama poštuju se.
 - Roditeljski pregled sadrži tri odvojena reseta. Reset dinosaurusa vraća opremu, kristale i boju na početak; naučena slova, ukupan i potrošen XP, kupovine, završene i tekuća misija ostaju. Mapa i spaseni drugari ostaju. Izabrani dinosaur, svet i efekat ostaju uključeni. Kupljene boje mogu ponovo da se izaberu bez plaćanja. Prva naredna nagrada ponovo su čizmice. Prethodna oprema i dostupna boja mogu da se vrate dok nije osvojena nova nagrada.
 - Reset XP-a i prodavnice zahteva označenu potvrdu i tačno upisano `RESET`. Briše zarađeni i potrošeni XP i sve kupovine, vraća nivo 1, reksa, zelenu boju, livadu i zvezdice. Čuva naučena slova, odgovore, misije, osvojenu opremu i borbe. Započeta misija nastavlja da zarađuje XP za nove odgovore; već nagrađeni odgovor ne daje XP ponovo. Ovaj reset nema dugme za poništavanje.
-- Potpuni restart u roditeljskim opcijama briše sav napredak: XP, kupovine, opremu i rezervu za vraćanje, borbe, završene i aktivnu misiju, odgovore, vežbana slova i njihove zamene. Mapa se vraća na 0/16, a dvorište na 0/4 drugara. Vraća početni izgled, traži potvrdu i tačno `RESET`, važi za sve uređaje i nema poništavanje. Stare misije, borbe, kupovni formulari i ponovljena potvrda restarta ne mogu vratiti obrisane podatke niti obrisati novo učenje.
+- Potpuni restart u roditeljskim opcijama briše sav napredak: XP, kupovine, opremu i rezervu za vraćanje, borbe, završene i aktivnu misiju, odgovore, vežbana slova i njihove zamene. Mapa se vraća na 0/16, a dvorište na 0/4 drugara. Vraća početni izgled, traži potvrdu i tačno `RESET`, važi samo za trenutni browser i nema poništavanje. Stare misije, borbe, kupovni formulari i ponovljena potvrda restarta ne mogu vratiti obrisane podatke niti obrisati novo učenje.
 - Svaka završena misija otključava jednu borbu u areni. Pri ulasku se snime izabrani dinosaur, boja i osvojena oprema; kasnija kupovina ili promena izgleda ne menjaju već započetu borbu. Dinosaur ima tri osnovna srca i još jedan život za svaki deo ili kristal osvojen u misijama. Protivnik ima `3 + ceil(0,75 × broj delova i kristala)` života. Kupovine izgleda ne daju dodatne živote. Napad pobeđuje varku, varka štit, a štit napad; jednaki potezi su nerešeni. Oprema koja otpadne gubi se samo u toj borbi, a kolekcija u radionici ostaje sačuvana. Arena pamti runde i ishod posle osvežavanja; završena borba se ne pokreće ponovo i ne donosi XP.
-- Započeta misija se nastavlja posle osvežavanja stranice, zatvaranja pregledača ili sa drugog uređaja. Crtež koji još nije poslat se ne čuva; već poslati odgovori se čuvaju.
+- Započeta misija se nastavlja posle osvežavanja stranice ili ponovnog otvaranja istog pregledača na istoj adresi, dok je kolačić sačuvan. Crtež koji još nije poslat se ne čuva; već poslati odgovori se čuvaju.
 - Roditeljski pregled prikazuje vežbana slova, ponavljanja i završene misije.
 - Mapa avanture ima četiri sveta sa po četiri koraka: šuma, pećina, vulkan i svemir. Završena misija otvara jedan korak, a četvrti korak svakog sveta spasava malog dinosaurusa. Mapa ne donosi dodatni XP i ne dozvoljava preskakanje misija. Detalji su ispod.
 - Spaseni drugari pojavljuju se u dvorištu oko Klika u radionici: Lisko se igra loptom, Iskra slaže svetleće kristale, Žarko gradi kulu, Zvezdan sprema raketu. Imaju animirane aktivnosti i lični pozdrav na dodir; klik ne daje XP. Vidljivi su samo već spaseni drugari. Završetak spasavanja vodi do radionice, a ona pokazuje i koliko misija ostaje do sledećeg drugara. Utišavanje i smanjeno kretanje važe i ovde.
@@ -129,7 +144,7 @@ bundle exec rails server -b 0.0.0.0 -p 3000
 
 Kada hosting reverse proxy završava HTTPS, postavi `ASSUME_SSL=1` i `FORCE_SSL=1`. Priložen je i `Dockerfile` kao priprema za standardni container hosting; Docker build ovde nije pokretan jer Docker nije instaliran. SQLite mora biti na trajnom disku/volume-u, ne na privremenom filesystemu hostinga. Za ovu malu aplikaciju koristi jednu aplikacionu instancu nad jednim SQLite fajlom.
 
-Nema prijave: **svako ko otvori istu instancu vidi i menja isti napredak**. To je namerno ponašanje ove porodične aplikacije. Trenutni lokalni pregled sluša samo na ovom računaru i nije javno objavljen.
+Nema prijave: **svaki browser ima svoj napredak**. Za javni hosting obavezan je HTTPS: identifikacioni kolačić je u production režimu `Secure`. `SECRET_KEY_BASE` i SQLite baza moraju da opstanu pri svakom novom deploy-u; promena ključa poništila bi postojeće šifrovane kolačiće. Aplikacija nije javno objavljena.
 
 Baze su `storage/development.sqlite3`, `storage/test.sqlite3` i, ako nije naveden drugi put, `storage/production.sqlite3`. Za konzistentan backup koristi SQLite backup komandu, npr.:
 
@@ -149,6 +164,7 @@ PATH="$PWD/.runtime/ruby/bin:$PATH" TEST_DATABASE_PATH=storage/provera.sqlite3 R
 ## Gde se menja sadržaj
 
 - `config/alphabet.json`: slova, reči, ilustracije i putanje oblika u koordinatama 0–100.
+- `app/controllers/application_controller.rb`, `app/models/learner.rb`: trajni ključ browsera, početak od nule i odabir njegovog napretka.
 - `app/services/practice_planner.rb`: izbor i raspored zadataka.
 - `config/words.json`, `app/services/word_bank.rb`: reči, slike, rečenice i ponuđeni odgovori.
 - `app/services/story_bank.rb`, `app/helpers/story_helper.rb`: male priče i originalne slike za proveru razumevanja rečenice.
@@ -175,7 +191,9 @@ Lokalni Ruby i gems ostaju u projektu. Bundler je tokom sandbox provera automats
 
 ## Provere i sačuvane verzije
 
-Aktuelna verzija v7 dodaje živo dvorište za spasene drugare i zaseban potpuni restart. Prolazi **155 Rails testova sa 3.179 tvrdnji**, eager loading i 10 JavaScript provera geometrije. Prošli su i zasebna production HTTP/CSRF provera potpunog restarta, starih zahteva i početka novog učenja, kao i browser pregled na 1280 i 320 px. Detalji su u `qa/v7/PROVERA.md`. Pre izmene sačuvani su izvor i konzistentna porodična baza u `revisions/2026-10-11-v6-before-friends/`; svih osam tabela stvarnog napretka ostalo je nepromenjeno. Reset je izvršavan samo nad izdvojenim probnim bazama.
+Aktuelna v15 uvodi odvojeni napredak po browseru. Provere izolacije, kolačića, nadogradnje stare baze i postupak povratka vode se u [qa/v15/PROVERA.md](qa/v15/PROVERA.md). Starije QA skripte koje pozivaju `Learner.current` pripadaju svojim sačuvanim verzijama; nisu ulaz za v15.
+
+Istorijska verzija v7 dodala je živo dvorište za spasene drugare i zaseban potpuni restart. Prolazi **155 Rails testova sa 3.179 tvrdnji**, eager loading i 10 JavaScript provera geometrije. Prošli su i zasebna production HTTP/CSRF provera potpunog restarta, starih zahteva i početka novog učenja, kao i browser pregled na 1280 i 320 px. Detalji su u `qa/v7/PROVERA.md`. Pre izmene sačuvani su izvor i konzistentna porodična baza u `revisions/2026-10-11-v6-before-friends/`; svih osam tabela stvarnog napretka ostalo je nepromenjeno. Reset je izvršavan samo nad izdvojenim probnim bazama.
 
 Prethodna v6 dodala je male priče za čitanje sa razumevanjem, vežbe prema zabeleženim zamenama slova, mapu avanture i posebne moći opreme. Detaljni nalazi su u `qa/v6/PROVERA.md`. Prethodna v5 zadržana je u arhivi, sa proverama u `qa/v5/PROVERA.md`. Ranije provere prodavnice su u `qa/v4/PROVERA.md`, a misije i arene u `qa/v3/PROVERA.md`. Pravi Android, iPhone i olovka još nisu provereni; provere u production režimu ne predstavljaju javno objavljivanje aplikacije.
 

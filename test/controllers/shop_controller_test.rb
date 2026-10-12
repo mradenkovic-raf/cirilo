@@ -2,7 +2,7 @@ require "test_helper"
 
 class ShopControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @learner = Learner.current
+    @learner = test_learner
     @learner.update!(xp: 500)
   end
 

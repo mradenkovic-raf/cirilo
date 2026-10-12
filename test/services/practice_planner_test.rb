@@ -5,7 +5,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   include ExerciseHelpers
 
   test "mission persists with twelve interleaved reading writing and memory tasks" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     resumed = PracticePlanner.start!(Learner.find(learner.id))
     assert_equal session.id, resumed.id
@@ -62,7 +62,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "two reviews accompany one new letter and every letter is eventually introduced" do
-    learner = Learner.current
+    learner = test_learner
     Curriculum.ordered_letters.first(3).each do |letter|
       learner.letter_progresses.create!(letter_id: letter["id"], review_level: 1, next_review_at: 1.day.ago)
     end
@@ -78,7 +78,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "overdue weak letters are revisited before recent familiar letters" do
-    learner = Learner.current
+    learner = test_learner
     letters = Curriculum.ordered_letters.first(4)
     letters.each_with_index do |letter, index|
       learner.letter_progresses.create!(letter_id: letter["id"], review_level: index,
@@ -89,7 +89,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "upgrade preserves completed work and replaces only unanswered legacy tasks" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     original = 10.times.map do |index|
       { "id" => "old-#{index}", "kind" => "recognize", "letter_id" => "a", "answer" => "А", "options" => %w[А М И О] }
@@ -107,7 +107,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "completed legacy missions are never changed by upgrade" do
-    session = PracticePlanner.start!(Learner.current)
+    session = PracticePlanner.start!(test_learner)
     original = [{ "id" => "old-finished", "kind" => "word" }]
     session.update!(exercises: original, cursor: 1, status: "completed", earned_xp: 125)
     PracticePlanner.upgrade!(session)
@@ -116,7 +116,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "upgrading a long v2 mission keeps completed IDs and at least one remaining task" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     original = 15.times.map { |index| { "id" => "v2-#{index}", "version" => 2, "kind" => "read_word" } }
     session.update!(exercises: original, cursor: 14, earned_xp: 130)
@@ -132,7 +132,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "an unfinished v3 mission keeps IDs order drawings protocol memory state and recovery" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     exercises = PracticePlanner::MISSION_PLAN.filter_map do |kind, letter_index|
       next if kind == "story_action"
@@ -151,7 +151,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "unfinished v4 mission retains its exact order answer choices memory state and XP" do
-    learner = Learner.current
+    learner = test_learner
     session = PracticePlanner.start!(learner)
     exercises = PracticePlanner::MISSION_PLAN.map do |kind, letter_index|
       planned_exercise(kind, letter_id: session.focus_letters.fetch(letter_index), version: 4)
@@ -167,7 +167,7 @@ class PracticePlannerTest < ActiveSupport::TestCase
   end
 
   test "three mission cycle varies reading without reducing writing memory or mission length" do
-    learner = Learner.current
+    learner = test_learner
     kinds = []
     6.times do |variation|
       learner.update!(completed_missions: variation)

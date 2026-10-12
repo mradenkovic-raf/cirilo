@@ -7,7 +7,7 @@ class ConcurrentBattleTest < ActiveSupport::TestCase
   teardown { Learner.destroy_all }
 
   test "two start requests create one persistent battle" do
-    learner = Learner.current
+    learner = test_learner
     session = learner.practice_sessions.create!(status: "completed")
     replies = concurrent do
       BattleArena.start!(Learner.find(learner.id), PracticeSession.find(session.id)).id
@@ -18,7 +18,7 @@ class ConcurrentBattleTest < ActiveSupport::TestCase
   end
 
   test "two tabs sending the same round only deal damage once" do
-    learner = Learner.current
+    learner = test_learner
     session = learner.practice_sessions.create!(status: "completed")
     battle = BattleArena.start!(learner, session)
     replies = concurrent do
@@ -82,7 +82,7 @@ class ConcurrentBattleTest < ActiveSupport::TestCase
   private
 
   def equipped_battle
-    learner = Learner.current
+    learner = test_learner
     [7, 11, 12].each do |position|
       mission = learner.practice_sessions.create!(status: "completed")
       learner.part_unlocks.create!(practice_session: mission, position: position,
