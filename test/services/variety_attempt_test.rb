@@ -87,15 +87,32 @@ class VarietyAttemptTest < ActiveSupport::TestCase
   end
 
   test "new single word kinds measure only the focus letter and honor recall spacing" do
+    reading = %w[picture_word repair_word].map do |kind|
+      @session.exercises.find { |task| task.fetch("kind") == kind }
+    end
+    remaining = @session.exercises.reject { |task| %w[picture_word repair_word].include?(task.fetch("kind")) }
+    @session.update!(exercises: reading + remaining)
+    focuses = []
     %w[picture_word repair_word].each do |kind|
       task = use_kind(kind)
+      focuses << task.fetch("letter_id")
       result = submit(task, task.fetch("answer"))
       assert result.fetch(:correct)
       assert_equal 10, result.fetch(:xp_earned)
     end
-    focus = @session.exercises.find { |task| task.fetch("kind") == "picture_word" }.fetch("letter_id")
-    assert_equal 1, @learner.letter_progresses.find_by!(letter_id: focus).review_level
-    assert @learner.letter_progresses.where.not(letter_id: focus).all? { |progress| progress.review_level.zero? }
+    focuses.uniq.each do |focus|
+      assert_equal 1, @learner.letter_progresses.find_by!(letter_id: focus).review_level
+    end
+    assert @learner.letter_progresses.where.not(letter_id: focuses).all? { |progress| progress.review_level.zero? }
+
+    picture = @session.exercises.find { |task| task.fetch("kind") == "picture_word" }.deep_dup
+    picture["id"] = SecureRandom.uuid
+    following = @session.exercises.find { |task| task.fetch("kind") == "trace" }.deep_dup
+    @session.update!(exercises: [picture, following], cursor: 0)
+    assert submit(picture, picture.fetch("answer")).fetch(:correct)
+    progress = @learner.letter_progresses.find_by!(letter_id: picture.fetch("letter_id"))
+    assert_equal 1, progress.review_level
+    assert_equal 2, progress.correct_count
   end
 
   private

@@ -7,6 +7,8 @@ module StoryHelper
       story_object_svg(scene[:object], x: 100, y: 110 - radius, radius: radius)
     when "action"
       story_animal_svg(scene[:object], sleeping: scene[:action] == "sleep")
+    when "position"
+      story_position_svg(scene)
     when "place"
       object = story_object_svg(scene[:object], x: 100, y: 81, radius: 23)
       if scene[:place] == "backpack"
@@ -39,6 +41,64 @@ module StoryHelper
   end
 
   private
+
+  def story_position_svg(scene)
+    back, front = story_position_anchor_svg(scene[:anchor])
+    x, y = case scene[:position]
+    when "inside" then [107, 80]
+    when "on" then [107, scene[:anchor] == "backpack" ? 42 : 43]
+    when "beside" then [176, 111]
+    when "in_front" then [107, 113]
+    when "behind" then [146, 109]
+    else return ""
+    end
+    # The apple's silhouette extends below its nominal radius; line up both
+    # objects with the same surface without changing their size across choices.
+    y -= 2 if scene[:object] == "apple"
+    object = story_object_svg(scene[:object], x: x, y: y, radius: 20)
+
+    case scene[:position]
+    when "inside"
+      back + object + front
+    when "behind"
+      %(<ellipse cx="145" cy="128" rx="22" ry="4" fill="#233E35" opacity=".08"/>) + object + back + front
+    when "beside", "in_front"
+      back + front + %(<ellipse cx="#{x}" cy="134" rx="24" ry="4" fill="#233E35" opacity=".1"/>) + object
+    else
+      back + front + object
+    end
+  end
+
+  def story_position_anchor_svg(anchor)
+    if anchor == "backpack"
+      back = <<~SVG
+        <path d="M73 85Q58 86 66 122M141 85Q156 86 148 122" stroke="#72A9B0" stroke-width="8" stroke-linecap="round"/>
+        <path d="M91 66V54Q107 40 123 54V66" stroke="#437E89" stroke-width="7" stroke-linecap="round"/>
+        <path d="M72 82Q72 61 90 60H125Q143 61 143 82V114Q143 129 126 129H89Q72 129 72 114Z" fill="#84C6CD" stroke="#467D88" stroke-width="3"/>
+        <ellipse cx="107" cy="76" rx="34" ry="12" fill="#3F7280" stroke="#467D88" stroke-width="3"/>
+        <path d="M80 72Q107 60 134 72" stroke="#B3E9E6" stroke-width="3" stroke-linecap="round"/>
+      SVG
+      front = <<~SVG
+        <path d="M73 79Q107 92 142 79V114Q142 129 125 129H90Q73 129 73 114Z" fill="#84C6CD" stroke="#467D88" stroke-width="3"/>
+        <path d="M78 83Q107 94 137 83" stroke="#E9FAF2" stroke-width="3" stroke-linecap="round"/>
+        <rect x="85" y="99" width="44" height="23" rx="7" fill="#5BABB7" stroke="#467D88" stroke-width="2"/>
+        <path d="M92 107H122" stroke="#B3E9E6" stroke-width="3" stroke-linecap="round"/>
+        <path d="M120 106V112" stroke="#E8C677" stroke-width="3" stroke-linecap="round"/>
+      SVG
+    else
+      back = <<~SVG
+        <path d="M70 77 107 63 144 77V115L107 129 70 115Z" fill="#CB9972" stroke="#B28B64" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M70 77 107 63 144 77 107 92Z" fill="#785B47" stroke="#B28B64" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m70 77-15-12 37-14 15 12m37 14 15-12-37-14-15 12" fill="#EDD2A9" stroke="#B28B64" stroke-width="2" stroke-linejoin="round"/>
+      SVG
+      front = <<~SVG
+        <path d="M70 80 107 94 144 80V117L107 132 70 117Z" fill="#D8B184" stroke="#B28B64" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M107 94V132M76 86l26 10m10 0 26-10" stroke="#B28B64" stroke-width="2" stroke-linecap="round"/>
+        <path d="m92 89 14 5 14-5v12l-14 5-14-5Z" fill="#EDD2A9"/>
+      SVG
+    end
+    [back, front]
+  end
 
   def story_object_svg(object, x:, y:, radius:)
     if object == "apple"

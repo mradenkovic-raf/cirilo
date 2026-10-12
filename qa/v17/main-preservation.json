@@ -1,0 +1,59 @@
+{
+  "attempts": {
+    "same": true,
+    "rows_before": 86,
+    "rows_after": 86,
+    "changed": []
+  },
+  "battles": {
+    "same": true,
+    "rows_before": 6,
+    "rows_after": 6,
+    "changed": []
+  },
+  "learners": {
+    "same": false,
+    "rows_before": 4,
+    "rows_after": 4,
+    "changed": [
+      {
+        "id": 3,
+        "columns": [
+          "updated_at",
+          "egg_state"
+        ]
+      }
+    ]
+  },
+  "letter_confusions": {
+    "same": true,
+    "rows_before": 0,
+    "rows_after": 0,
+    "changed": []
+  },
+  "letter_progresses": {
+    "same": true,
+    "rows_before": 11,
+    "rows_after": 11,
+    "changed": []
+  },
+  "part_unlocks": {
+    "same": true,
+    "rows_before": 6,
+    "rows_after": 6,
+    "changed": []
+  },
+  "practice_sessions": {
+    "same": true,
+    "rows_before": 7,
+    "rows_after": 7,
+    "changed": []
+  },
+  "shop_purchases": {
+    "same": true,
+    "rows_before": 0,
+    "rows_after": 0,
+    "changed": []
+  },
+  "integrity": "ok"
+}

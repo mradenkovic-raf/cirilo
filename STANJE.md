@@ -1,6 +1,14 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, aplikacija v16 daje prednost čitanju: 10 zadataka za čitanje/slova i 2 za pisanje u novoj misiji. Odvojeni napredak po browseru, bez naloga i prijave, ostaje. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-12, aplikacija v17 dodaje čitanje prostornih odnosa: u, na, pored, ispred i iza. Nova misija ima dve kratke priče umesto jedne, uz isti odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, bez naloga i prijave, ostaje. Provereni potezi štampanih slova i banka od 112 reči ostaju. Lakši protivnik, srca/oklop, dinosaurus na stazi, jaje, dvorište i ranije igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Gde je predmet — v17
+
+Dodato je 20 rečenica: jabuka ili lopta u, na, pored, ispred ili iza ranca/kutije. U sva četiri odgovora su isti predmet i ista posuda; razlikuje se samo položaj. Uvek su zajedno ponuđeni bliski odnosi u/na, odnosno ispred/iza kada je jedan od njih tačan. Predmet u posudi zaklanja prednja ivica, iza njega bočna ivica, a ispred prekriva prednju stranu; na vrhu se vidi ceo predmet. Nema tekstualnog ili glasovnog otkrivanja odgovora.
+
+Prostorni zadatak dolazi na drugom redovnom koraku, a na jedanaestom ostaje jedna od 12 ranijih priča. Ukupno 32 rečenice i dve priče po misiji; 12 koraka, 145 XP i dva pisanja ostaju. Format novih misija je 7, započete V3–V6 ostaju nepromenjene. Nema migracije ili resetovanja.
+
+Prošlo je **225 Rails testova / 14.391 tvrdnja i 29 JS testova**, uz dodatnu završnu proveru prikaza (3 testa / 566 tvrdnji), eager loading i provere diff-a. Browser na izdvojenoj bazi potvrđuje mobilni prikaz na 320 px, pravilno odbijanje „na” za „u”, čitalačko ponavljanje sa 0 XP i tačan odgovor sa 10 XP. U glavnoj bazi su odgovori, misije, XP i kupovine isti kao pre rada; poređenje je zabeležilo nov izbor jajeta kod jednog učenika dok je glavni server bio dostupan. Taj izbor je ostavljen netaknut. [Provere](qa/v17/PROVERA.md). Prethodni kod je na tagu `v16-stable-before-spatial-reading` (`afc9f87`), a baza u `revisions/2026-10-12-v16-before-spatial-reading/`. Radna grana: `spatial-reading`.
 
 ## Čitanje pre pisanja — v16
 

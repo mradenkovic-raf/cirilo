@@ -12,6 +12,8 @@ V9 dodaje izbor naziva slike, popravku jednog pogrešnog slova i spajanje tri pa
 
 Korisnik je postavio čitanje i snalaženje sa slovima kao glavni cilj; praćenje oblika i pisanje su dopuna. Isporučeno u v16: svaka nova misija ima 10 čitalačkih zadataka i 2 pisanja. Posle greške dodatno se vežba čitanje, bez dodavanja novih crteža. Ostaju 12 redovnih koraka, 145 XP i postojeće nagrade. Započete stare misije zadržavaju sadržaj. Detalji i provere su u [qa/v16/PROVERA.md](qa/v16/PROVERA.md).
 
+U v17 je po novom zahtevu prošireno čitanje prostornih odnosa: **u, na, pored, ispred, iza**, uz 20 kombinacija jabuke/lopte i ranca/kutije. Nova misija ima dve kratke priče umesto jedne: prostorni zadatak i jedan iz postojeće grupe o veličini, mestu ili radnji. Ostaje 12 redovnih zadataka, odnos 10/2 i 145 XP. [Provere v17](qa/v17/PROVERA.md).
+
 Sledeće ideje su **predlozi, još nisu ugrađene niti odobren redosled implementacije**:
 
 1. **Slogovi koji postaju reč.** Dete spaja `СО` + `ВА` ili `РИ` + `БА`, pa bira sliku cele reči. Početni nivo ima dva sloga i malo ponuđenih delova; kasnije dodajemo višak i tri sloga. Delovi nemaju boje, oblik spojnica ili stalne položaje koji odaju redosled. Samo slaganje ne završava zadatak: izbor slike proverava značenje. Ovo je prvi preporučeni dodatak.

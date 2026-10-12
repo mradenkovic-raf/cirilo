@@ -27,8 +27,8 @@ class PracticePlannerTest < ActiveSupport::TestCase
       assert_operator tasks.count { |exercise| READING_KINDS.include?(exercise["kind"]) }, :>=, 3
     end
     assert_equal({ "trace" => 1, "write_word" => 1, "repair_word" => 1,
-      "picture_word" => 2, "read_word" => 2, "build_word" => 1, "sentence" => 1,
-      "story_action" => 1, "word_pairs" => 1, "memory_word" => 1 },
+      "picture_word" => 1, "read_word" => 2, "build_word" => 1, "sentence" => 1,
+      "story_action" => 2, "word_pairs" => 1, "memory_word" => 1 },
       session.exercises.map { |exercise| exercise["kind"] }.tally)
     assert_equal %w[lower upper], session.exercises.map { |exercise| exercise["case"] }.uniq.sort
     session.exercises.each do |exercise|
@@ -212,7 +212,10 @@ class PracticePlannerTest < ActiveSupport::TestCase
       assert_equal variation.even? ? "write_word" : "fill_letters", task_kinds.fetch(9)
       assert_equal 1, task_kinds.count("trace")
       assert_equal 1, task_kinds.count("memory_word")
-      assert_equal 1, task_kinds.count("story_action")
+      assert_equal 2, task_kinds.count("story_action")
+      assert_equal [1, 10], task_kinds.each_index.select { |index| task_kinds[index] == "story_action" }
+      assert_equal "position", session.exercises.fetch(1).fetch("story_dimension")
+      assert_includes %w[size place action], session.exercises.fetch(10).fetch("story_dimension")
       assert_equal %w[lower upper], session.exercises.map { |item| item.fetch("case") }.uniq.sort
       session.focus_letters.each do |letter_id|
         tasks = session.exercises.select { |item| item.fetch("letter_id") == letter_id }
@@ -222,6 +225,49 @@ class PracticePlannerTest < ActiveSupport::TestCase
       session.update!(status: "completed")
     end
     assert_equal (READING_KINDS + WRITING_KINDS).sort, kinds.uniq.sort
+  end
+
+  test "unfinished v6 mission retains its reading mix choices memory recovery and XP" do
+    learner = test_learner
+    session = PracticePlanner.start!(learner)
+    exercises = session.exercises.deep_dup
+    exercises.each { |exercise| exercise["version"] = 6 }
+    # Restore the V6 picture task that occupied the new position-story slot.
+    letter = Curriculum.find(session.focus_letters.fetch(1))
+    entry = WordBank.for_letter(letter)
+    exercises[1] = PracticePlanner.send(:exercise, letter, entry, "picture_word", "upper")
+      .merge(VarietyBank.picture_word(entry, variation: 0)).merge("version" => 6)
+    exercises.find { |item| item["kind"] == "memory_word" }["memory_hidden"] = true
+    recovery = exercises.first.deep_dup.merge("id" => "v6-saved-recovery", "review_only" => true,
+      "extra_review" => true, "recovery_of" => exercises.fetch(4).fetch("id"))
+    exercises.insert(4, recovery)
+    session.update!(exercises: exercises, cursor: 4, earned_xp: 30)
+    learner.update!(xp: 30)
+
+    assert_equal exercises, PracticePlanner.upgrade!(session).reload.exercises
+    assert_equal exercises, PracticePlanner.start!(learner).reload.exercises
+    assert_equal 4, session.reload.cursor
+    assert_equal 30, session.earned_xp
+    assert_equal 30, learner.reload.xp
+    assert_equal 2, session.exercises.count { |item| item["kind"] == "picture_word" }
+    assert_equal 1, session.exercises.count { |item| item["kind"] == "story_action" }
+  end
+
+  test "mission rotation includes all position sentences and keeps the twelve original story sentences" do
+    learner = test_learner
+    positions = []
+    original_stories = []
+    20.times do |variation|
+      learner.update!(completed_missions: variation)
+      session = PracticePlanner.start!(learner)
+      positions << session.exercises.fetch(1).fetch("story_sentence")
+      original_stories << session.exercises.fetch(10).fetch("story_sentence")
+      assert_equal StoryBank.position_exercise(variation: variation).fetch("story_sentence"), positions.last
+      assert_equal StoryBank.exercise(variation: variation).fetch("story_sentence"), original_stories.last
+      session.update!(status: "completed")
+    end
+    assert_equal 20, positions.uniq.length
+    assert_equal 12, original_stories.uniq.length
   end
 
   test "reading led missions still award exactly 145 XP and one equipment part for either writing variation" do

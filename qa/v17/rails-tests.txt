@@ -1,0 +1,32 @@
+V17 Rails suite — veran rezime zabeleženog izvršavanja
+Datum: 2026-10-12
+
+Ovo je rezime rezultata, nije celokupan originalni terminalski log.
+Suite nije ponavljana radi zapisivanja ovog fajla.
+
+Radni direktorijum: /home/milos/ChatGPT/Mica
+Komanda:
+PATH="$PWD/.runtime/ruby/bin:$PATH" TEST_DATABASE_PATH=storage/v17-tests.sqlite3 DATABASE_PATH=storage/v17-tests.sqlite3 bin/rails test
+
+Baza je prethodno pripremljena zasebno, sa RAILS_ENV=test i istom
+izolovanom putanjom za oba database parametra. Glavna baza nije korišćena.
+
+Run options: --seed 32953
+
+Finished in 9.010008s, 24.9722 runs/s, 1597.2240 assertions/s.
+225 runs, 14391 assertions, 0 failures, 0 errors, 0 skips
+Exit code: 0
+
+Bundler je prijavio da /home/milos nije upisiv i za svoju privremenu
+radnu putanju koristio /tmp/bundler20261012-2-5qhigm2.
+
+Pokriveno novim i prilagođenim testovima:
+- 20 pozicionih rečenica, pravilni padeži i svi objekat/anker/položaj spojevi;
+- četiri različita položaja istog objekta, sa tačno jednim tačnim odgovorom;
+- obavezno razlikovanje u/na i ispred/iza;
+- 20 novih i 12 ranijih priča u rotaciji;
+- dve priče po misiji, 10 zadataka čitanja i 2 pisanja, ukupno 145 XP;
+- potpuno očuvanje započetih V6 misija;
+- SVG render svih novih i starih scena, neutralni labeli i bez glasovnog odgovora;
+- bez lažnog napretka pojedinačnih slova i bez duplog nagrađivanja;
+- stari picture_word/repair_word testovi prilagođeni novom rasporedu i fokusu.
