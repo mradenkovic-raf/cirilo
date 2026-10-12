@@ -144,9 +144,9 @@ bundle exec rails server -b 0.0.0.0 -p 3000
 
 Kada hosting reverse proxy završava HTTPS, postavi `ASSUME_SSL=1` i `FORCE_SSL=1`. Dockerfile priprema aplikaciju za container hosting, a entrypoint rešava vlasništvo trajnog diska i spušta privilegije pre pokretanja Rails-a. SQLite mora biti na trajnom volume-u; na Railway-u startup odbija pokretanje bez njega. Koristi jednu aplikacionu instancu nad jednim SQLite fajlom.
 
-**Railway:** kompletno uputstvo, promenljive, healthcheck i čuvanje napretka nalaze se u [RAILWAY.md](RAILWAY.md). Privatni GitHub repo je [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), produkciona grana je `main`. Workflow `Check` pokreće Rails/JS provere i Docker probu sa novim praznim volume-om i dva uzastopna containera. [Nalazi pripreme](qa/v18/PROVERA.md).
+**Railway:** igra je dostupna na [cirilo-production.up.railway.app](https://cirilo-production.up.railway.app). Podešavanja trial servisa i postupak sledeće objave su u [RAILWAY.md](RAILWAY.md). Javni GitHub repo je [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), produkciona grana je `main`; push trenutno ne pokreće automatski deploy. Workflow `Check` proverava Rails/JS i Docker. [Priprema](qa/v18/PROVERA.md), [provere javnog servisa](qa/v19/PROVERA.md).
 
-Nema prijave: **svaki browser ima svoj napredak**. Za javni hosting obavezan je HTTPS: identifikacioni kolačić je u production režimu `Secure`. `SECRET_KEY_BASE` i SQLite baza moraju da opstanu pri svakom novom deploy-u; promena ključa poništila bi postojeće šifrovane kolačiće. Aplikacija nije javno objavljena.
+Nema prijave: **svaki browser ima svoj napredak**. Javni servis koristi HTTPS i trajni SQLite volume; identifikacioni kolačić je u production režimu `Secure`. `SECRET_KEY_BASE` i SQLite baza moraju da opstanu pri svakom novom deploy-u; promena ključa poništila bi postojeće šifrovane kolačiće. Lokalni napredak ne prenosi se automatski na javni domen.
 
 Baze su `storage/development.sqlite3`, `storage/test.sqlite3` i, ako nije naveden drugi put, `storage/production.sqlite3`. Za konzistentan backup koristi SQLite backup komandu, npr.:
 

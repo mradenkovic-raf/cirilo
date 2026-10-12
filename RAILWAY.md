@@ -1,94 +1,100 @@
-# Prvi Railway deploy
+# Railway — podešavanje i objavljivanje
 
-Priprema: 2026-10-12. Kod je u privatnom repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo). Za objavu koristi se `main`. GitHub workflow `Check` proverava Rails, JavaScript, production kolačiće i stvarno pokretanje Docker image-a sa trajnom SQLite bazom. Rezultati pripreme su u [qa/v18/PROVERA.md](qa/v18/PROVERA.md).
+Objavljeno 2026-10-12 na korisnikovom trial nalogu. Kod je, na izričit zahtev korisnika, u **javnom** repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), grana `main`. GitHub deploy verzije `614aff2` ima status `SUCCESS`. Prošli su javni HTTPS, izolacija browsera i vraćanje iste misije posle stvarnog restarta. Rezultat i granice provera vode se u [qa/v19/PROVERA.md](qa/v19/PROVERA.md).
 
-Aplikacija koristi jedan Rails servis i jedan volume. PostgreSQL, Redis, Node i poseban worker nisu potrebni za njen rad. Node se koristi samo za testove.
+- Javna adresa: **https://cirilo-production.up.railway.app**
+- [Railway servis](https://railway.com/project/8a26bf67-82f2-47ff-8e58-86d672c1d319/service/22dc64c0-c31f-487f-978e-06d55b1bf499?environmentId=3276f7ec-16c0-45c9-92cc-63b935024066)
 
-## 1. Povezivanje repozitorijuma
+| Resurs | ID |
+| --- | --- |
+| Projekat | `8a26bf67-82f2-47ff-8e58-86d672c1d319` |
+| Servis | `22dc64c0-c31f-487f-978e-06d55b1bf499` |
+| Production okruženje | `3276f7ec-16c0-45c9-92cc-63b935024066` |
+| Volume | `e96eab14-7c3d-4f1a-81ec-e189d9133578` |
 
-U Railway dashboardu napravi projekat preko **Deploy from GitHub repo**, izaberi `mradenkovic-raf/cirilo`, granu `main` i koren repozitorijuma `/`. Railway treba da prepozna `Dockerfile`.
+## Postavka za trial
 
-Ako se prvi deploy sam pokrene pre nego što postaviš promenljive i disk, može da se prekine sa jasnom porukom. To je očekivano: aplikacija odbija da na Railway-u čuva napredak u privremenom filesystemu.
+Aplikacija koristi jedan Rails servis i jedan trajni disk. PostgreSQL, Redis, zaseban worker i staging nisu dodati. Node služi samo za lokalne i GitHub testove.
 
-## 2. Trajni disk
+| Podešavanje | Vrednost |
+| --- | --- |
+| Region | Holandija, `europe-west4-drams3a` |
+| Replike | `1` |
+| CPU limit | `0.5` vCPU |
+| Memorijski limit | `500000000` bajtova, 500 MB |
+| Volume | 500 MB, montiran na `/app/storage` |
+| Uspavljivanje | Uključeno, `sleepApplication=true` |
+| Restart policy | `ON_FAILURE`, najviše 3 pokušaja |
+| Builder / Dockerfile | Dockerfile / `Dockerfile` |
+| Build / start / pre-deploy override | Prazno |
+| Healthcheck | `/up`, timeout 300 sekundi |
 
-Dodaj **Volume**, poveži ga sa Rails servisom i postavi mount path:
+Uspavljivanje smanjuje rad servisa dok se aplikacija ne koristi; prvo otvaranje posle pauze može biti sporije. CPU i memorijski limiti ograničavaju resurse, a nisu novčani limit niti obećanje koliko će trial trajati. Nije uključen plaćeni plan niti su uključeni dodatni backup resursi.
 
-```text
-/app/storage
-```
-
-Servis ostaje u **jednom regionu, sa jednom instancom**. Baza je `/app/storage/production.sqlite3`. Tu se nalaze i SQLite WAL/SHM fajlovi, pa ceo direktorijum mora biti trajan. Ne montirati disk preko `/app`, jer bi sakrio kod aplikacije.
-
-Docker entrypoint prvo podesi vlasnika direktorijuma baze i postojećih SQLite fajlova, a zatim prelazi na korisnika `rails` (UID 1000). Migracije i Puma rade kao taj korisnik. `RAILWAY_RUN_UID` ne mora da se postavlja.
-
-## 3. Promenljive
-
-U Variables dodaj:
+## Promenljive i baza
 
 | Promenljiva | Vrednost |
 | --- | --- |
 | `RAILS_ENV` | `production` |
 | `DATABASE_PATH` | `/app/storage/production.sqlite3` |
-| `SECRET_KEY_BASE` | Jedan stalni nasumični ključ |
-| `ASSUME_SSL` | `1` |
-| `FORCE_SSL` | `1` |
+| `SECRET_KEY_BASE` | Stalan tajni ključ iz lokalnog `.env.railway` |
+| `ASSUME_SSL` / `FORCE_SSL` | `1` / `1` |
+| `PORT` | `3000` |
+| `WEB_CONCURRENCY` | `0` — jedan Puma proces |
+| `RAILS_MAX_THREADS` | `3` |
 
-Vrednosti, uključujući nov ključ za prvi deploy, pripremljene su lokalno u **`.env.railway`**. Taj fajl ima dozvole 0600 i isključen je i iz Gita i iz Docker image-a. Njegov sadržaj možeš da uneseš u Railway Variables / Raw Editor. Nije prikazan u QA zapisima. Ne menjati ključ pri sledećem deployu: njime se otključavaju postojeći browser kolačići.
+`.env.railway` ima sve navedene vrednosti, dozvole 0600 i isključen je iz Gita i Docker image-a. Ključ ne menjati pri novom deployu: postojeći browser kolačići zavise od njega. `RAILWAY_ENVIRONMENT_ID`, `RAILWAY_VOLUME_MOUNT_PATH` i `RAILWAY_PUBLIC_DOMAIN` daje Railway.
 
-Ako se prvi deploy priprema sa drugog računara, koji nema taj lokalni fajl, nov ključ napravi samo jednom pomoću `bin/rails secret`; već korišćen ključ preuzmi iz postojećih Railway promenljivih, nemoj ga zameniti novim.
+Na volume-u ostaju baza i SQLite WAL/SHM fajlovi. Docker entrypoint podesi vlasništvo, pa migracije i Rails pokreće kao korisnik `rails`, UID 1000. `bin/container-start` izvršava `db:prepare` tek kada je disk montiran. Ne premeštati migracije u build ili pre-deploy komandu i ne montirati disk preko `/app`.
 
-`PORT`, `RAILWAY_ENVIRONMENT_ID`, `RAILWAY_VOLUME_MOUNT_PATH` i `RAILWAY_PUBLIC_DOMAIN` daje Railway. Port se koristi automatski. Generisani javni domen i `healthcheck.railway.app` ulaze u listu dozvoljenih hostova. Za sopstveni domen postavi i `APP_HOST`, samo hostname bez `https://` i putanje.
+Produkcija počinje zasebnom bazom; lokalni napredak i rezerva ostaju na računaru. Svaki browser na javnom domenu dobija svoj napredak. Domen i `healthcheck.railway.app` aplikacija automatski dopušta; za sopstveni domen dodati `APP_HOST`, bez protokola i putanje.
 
-## 4. Build, start i healthcheck
+## Sledeća objava
 
-| Railway podešavanje | Vrednost |
-| --- | --- |
-| Builder | Dockerfile |
-| Dockerfile path | `Dockerfile` |
-| Build command | Prazno, koristi Dockerfile |
-| Start command | Prazno, koristi `CMD ["bin/container-start"]` |
-| Pre-deploy command | **Prazno** |
-| Healthcheck path | `/up` |
-| Healthcheck timeout | `300` sekundi |
-| Restart policy | On failure, najviše 10 pokušaja |
-| Replicas | `1` |
+**Automatska objava pri GitHub push-u trenutno nije podešena.** Javni GitHub izvor radi, ali GitHub App pristup i deployment trigger nisu uključeni. Ne računati da push na `main` sam objavljuje aplikaciju.
 
-`bin/container-start` pokreće `db:prepare` pa Pumu, tek kada je volume dostupan. Ne premeštati migracije u build ili Railway pre-deploy: tamo volume nije montiran. `/up` radi i za internu HTTP proveru, bez preusmeravanja, cookie-ja ili otvaranja novog detetovog napretka.
-
-Aktuelna Railway dokumentacija navodi da novi servisi više ne koriste stari `railway.json` / `railway.toml`. Zato ovaj projekat koristi automatski prepoznat Dockerfile i gore navedena dashboard podešavanja. Nije uveden dodatni Infrastructure as Code SDK.
-
-## 5. Prvi javni link i provera
-
-U Settings / Networking izaberi **Generate Domain**. Koristi stalno tu HTTPS adresu, pa primeni podešavanja i sačekaj uspešan deploy.
-
-Proveri sledeće:
-
-1. `/up` vraća 200, početna i slike se učitavaju.
-2. Reši zadatak, zatvori i ponovo otvori isti browser na istom domenu: misija i XP ostaju.
-3. Drugi browser ili telefon dobija sopstven početak; ne vidi tuđu misiju.
-4. Pokreni jedan redeploy i proveri da prvi browser i dalje nastavlja isti napredak.
-
-Javni domen ima drugi cookie od `localhost` ili kućne IP adrese, pa lokalni napredak ne prelazi automatski. Ovaj prvi deploy počinje praznom bazom. Lokalna baza i njena rezerva ostaju na računaru.
-
-## 6. Sledeće verzije i povratak
-
-Uključi čekanje GitHub provera (**Wait for CI**) pre Railway autodeploya. Push na `main` pokreće `Check`; Railway treba da objavi tek uspešno proverenu verziju. Za promene van produkcije koristi granu i pull request.
-
-U Volume podešavanjima uključi automatske backup-e; pre migracije koja menja ili briše podatke napravi i ručni snimak. Volume čuva napredak pri običnom restartu/redeployu. Brisanje volume-a briše podatke, a rollback koda ne vraća automatski staru bazu. Ključ `SECRET_KEY_BASE` čuvaj uz rezervu konfiguracije. Servis sa volume-om ima kratak prekid pri deployu; healthcheck ne omogućava paralelno korišćenje istog diska.
-
-Za lokalnu proveru Docker paketa:
+Posle push-a proverene verzije na `main`, ručno povuci poslednji commit i objavi ga:
 
 ```bash
-bin/check-container
+railway redeploy --from-source \
+  --project 8a26bf67-82f2-47ff-8e58-86d672c1d319 \
+  --environment 3276f7ec-16c0-45c9-92cc-63b935024066 \
+  --service 22dc64c0-c31f-487f-978e-06d55b1bf499 \
+  --yes --json
 ```
 
-Potrebni su Docker sa pristupom pokrenutom daemon-u, Bash i Python 3. Ako Docker na računaru zahteva administratorska prava, istu skriptu možeš pokrenuti sa `sudo`. Skripta pravi potpuno nov privremeni volume, proverava dva odvojena containera sa istim cookie-jem i bazom i uklanja probne resurse. **Ne montira lokalni `storage/` niti dira stvarni napredak.** Ostaje samo image `cirilo:railway-check`.
+Ako `railway` nije u `PATH`, koristi `~/.railway/bin/railway`. Status konkretne objave proveri pre nego što je proglasiš dostupnom:
 
-## Izvori provereni tokom pripreme
+```bash
+railway deployment list \
+  --project 8a26bf67-82f2-47ff-8e58-86d672c1d319 \
+  --environment 3276f7ec-16c0-45c9-92cc-63b935024066 \
+  --service 22dc64c0-c31f-487f-978e-06d55b1bf499 \
+  --limit 5 --json
+```
 
-- [Rails deploy i Dockerfile](https://docs.railway.com/guides/rails)
-- [Volume, dozvole i trenutak montiranja](https://docs.railway.com/volumes)
+Sačekaj `SUCCESS` za poslati deployment, zatim proveri `/up` i aplikaciju. Uspešan prijem komande ne potvrđuje da su build i pokretanje prošli. Kasnije, ako se posebno podesi GitHub autodeploy, uključiti i čekanje uspešnih CI provera (`Wait for CI`).
+
+## Provere i čuvanje napretka
+
+GitHub workflow `Check` proverava Rails, JavaScript, produkcijske kolačiće i Docker sa trajnom SQLite bazom. Rezultati pripreme su u [qa/v18/PROVERA.md](qa/v18/PROVERA.md). Lokalna Docker provera je `bin/check-container`; koristi privremeni disk i ne dira stvarni napredak.
+
+Za malu HTTP proveru javne aplikacije, tek posle uspešnog deploya:
+
+```bash
+python3 qa/v19/public_http_check.py write tmp/v19-public-state.json
+# Posle restarta ili sledećeg deploya:
+python3 qa/v19/public_http_check.py restore tmp/v19-public-state.json
+```
+
+`write` pravi dva zasebna probna browser identiteta i jednu misiju; proverava HTTPS, CSS/JS, cookie, CSRF i odvajanje napretka. Privatni probni cookie ostaje u ignorisanom `tmp` fajlu sa dozvolama 0600. `restore` proverava istu misiju i zadatak koristeći samo stalni cookie. Ne koristiti tuđi cookie niti pokretati `write` više puta bez razloga.
+
+**Automatski backup-i nisu uključeni.** Volume čuva napredak pri običnom restartu i deployu, ali nije zasebna rezerva. Pre buduće migracije koja briše ili menja podatke obezbediti snimak baze i sačuvati konfiguraciju sa tajnim ključem. Brisanje volume-a briše podatke; vraćanje prethodnog koda ne vraća staru bazu. Jedna instanca sa volume-om ima kratak prekid pri objavi.
+
+## Reference
+
+- [Rails i Dockerfile](https://docs.railway.com/guides/rails)
+- [Volume i montiranje](https://docs.railway.com/volumes)
 - [Volume ograničenja i backup-i](https://docs.railway.com/volumes/reference)
-- [Healthcheck i host provera](https://docs.railway.com/guides/roll-back-bad-deploy)
-- [Prelazak sa starog Config as Code](https://docs.railway.com/config-as-code)
+- [Ručno objavljivanje iz povezanog izvora](https://docs.railway.com/cli/redeploy)
+- [Potrošnja i limiti](https://docs.railway.com/cli/usage)

@@ -1,0 +1,69 @@
+{
+  "cpu": {
+    "average": 0.007947342857142856,
+    "current": 0.0,
+    "limit": 0.5,
+    "max": 0.07706976666666666,
+    "unit": "vCPU",
+    "utilization_pct": 0.0
+  },
+  "deployments": [
+    {
+      "created_at": "2026-10-12T17:53:56.284+00:00",
+      "id": "a28039c8-0238-4305-9498-8c95ea1f7d2b",
+      "status": "SUCCESS"
+    },
+    {
+      "created_at": "2026-10-12T17:52:44.954+00:00",
+      "id": "b6bc18e3-b0be-4fc3-a2da-72d353b02d0d",
+      "status": "REMOVED"
+    }
+  ],
+  "environment": "production",
+  "http": {
+    "2xx": 37,
+    "3xx": 1,
+    "4xx": 2,
+    "5xx": 0,
+    "error_rate": 0.0,
+    "p50_ms": 302,
+    "p90_ms": 302,
+    "p95_ms": 302,
+    "p99_ms": 302,
+    "total": 40
+  },
+  "memory": {
+    "average_mb": 39.67312262095238,
+    "current_mb": 90.74376704,
+    "limit_mb": 511.99868928,
+    "max_mb": 127.179685888,
+    "utilization_pct": 17.7
+  },
+  "public_network_traffic": {
+    "egress": {
+      "average_mb": 0.03754739809523809,
+      "current_mb": 0.0,
+      "max_mb": 0.637988864
+    },
+    "ingress": {
+      "average_mb": 0.003804501333333333,
+      "current_mb": 0.0,
+      "max_mb": 0.062675968
+    }
+  },
+  "service": "cirilo",
+  "volumes": [
+    {
+      "average_mb": 13.16771781485714,
+      "current_mb": 33.487323136,
+      "limit_mb": 500.0,
+      "max_mb": 33.487323136,
+      "mount_path": "/app/storage",
+      "name": "cirilo-volume"
+    }
+  ],
+  "window": {
+    "since": "2026-10-12T17:51:02.148497264+00:00",
+    "until": "2026-10-12T18:01:04.563038478+00:00"
+  }
+}

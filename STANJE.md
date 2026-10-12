@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, završena je v18 priprema za Railway; privatni GitHub repo i stvarna Docker/CI provera rade. Javni Railway servis još nije napravljen. Dečja igra ostaje v17: čitanje prostornih odnosa u, na, pored, ispred i iza, dve kratke priče po misiji i odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, 112 reči, potezi slova, arena, dvorište i ostale igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-12, v19 objava radi na [cirilo-production.up.railway.app](https://cirilo-production.up.railway.app), uz javni GitHub repozitorijum i mali Railway trial servis. Dečja igra ostaje v17: čitanje prostornih odnosa u, na, pored, ispred i iza, dve kratke priče po misiji i odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, 112 reči, potezi slova, arena, dvorište i ostale igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Javna objava na trial nalogu — v19
+
+Korisnik je omogućio Railway CLI, tražio štedljivo korišćenje trial naloga i izričito zatražio javni GitHub repozitorijum. [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo) sada ima potvrđenu vidljivost `PUBLIC`. Istorija ne sadrži lokalne baze, `.env.railway` ili Rails ključeve. Lokalni napredak nije kopiran na server niti menjan u proverama.
+
+Jedan projekat, jedno production okruženje, jedan servis i jedan volume od 500 MB u Holandiji. Servis ima jednu repliku, limit 0,5 vCPU / 500 MB i uključeno uspavljivanje. Puma radi kao jedan proces sa tri niti. Nema novih baza/worker-a, promene plana, doplate ili uključivanja backup servisa. Trial status je potvrđen; novčani limit nije proizvoljno postavljan. Podaci o nalogu i obračunu ne objavljuju se u javnom repozitorijumu.
+
+Railway prvo nije mogao da pristupi privatnom repozitorijumu. Posle promene vidljivosti povezan je javni GitHub izvor `main`; ta objava (`a28039c8-0238-4305-9498-8c95ea1f7d2b`, kod `614aff2`) završila je sa `SUCCESS`. Raniji dupli CLI build otkazan je pre objave. HTTPS, CSS/JS, stalni zaštićen cookie, stvarna CSRF zaštita, odvojeni browseri i ista sačuvana misija posle kontrolisanog restarta provereni su na javnom servisu. Početna je otvorena u stvarnom browseru bez zabeleženih JS upozorenja ili grešaka. Za proveru su napravljena dva zasebna HTTP identiteta i jedna probna misija; nisu korišćeni tuđi kolačići.
+
+Javni GitHub izvor je povezan, ali automatski deployment trigger nije napravljen: objave su zasad ručne preko CLI-ja. GitHub workflow `Check` ostaje. Trial uspavljivanje je podešeno, ali ceo ciklus uspavljivanja/buđenja i fizički telefoni nisu provereni. [Podešavanja i postupak](RAILWAY.md), [dokazi i granice](qa/v19/PROVERA.md). Stariji odeljci ispod opisuju istorijsko stanje.
 
 ## Priprema za Railway — v18
 

@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-10-12T17:59:41.573221825Z",
+    "message": "Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/d4459e4b-3604-44b9-9191-eb0d60ae1c2c/vol_pwcrv2u0wapms1mt"
+  },
+  {
+    "timestamp": "2026-10-12T17:59:43.634745866Z",
+    "message": "=> Booting Puma"
+  },
+  {
+    "timestamp": "2026-10-12T17:59:44.693511137Z",
+    "message": "*          PID: 1"
+  },
+  {
+    "timestamp": "2026-10-12T17:59:44.693522896Z",
+    "message": "* Listening on http://0.0.0.0:3000"
+  },
+  {
+    "timestamp": "2026-10-12T17:59:44.693594505Z",
+    "message": "Puma starting in single mode..."
+  },
+  {
+    "timestamp": "2026-10-12T17:59:44.693606445Z",
+    "message": "*  Min threads: 3"
+  },
+  {
+    "timestamp": "2026-10-12T17:59:44.693610405Z",
+    "message": "*  Max threads: 3"
+  }
+]

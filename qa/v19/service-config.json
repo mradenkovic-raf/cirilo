@@ -1,0 +1,58 @@
+{
+  "services": {
+    "22dc64c0-c31f-487f-978e-06d55b1bf499": {
+      "source": {
+        "repo": "mradenkovic-raf/cirilo"
+      },
+      "networking": {
+        "serviceDomains": {
+          "cirilo-production.up.railway.app": {
+            "port": 3000
+          }
+        }
+      },
+      "deploy": {
+        "healthcheckPath": "/up",
+        "healthcheckTimeout": 300,
+        "ipv6EgressEnabled": false,
+        "multiRegionConfig": {
+          "europe-west4-drams3a": {
+            "numReplicas": 1
+          }
+        },
+        "restartPolicyMaxRetries": 3,
+        "sleepApplication": true,
+        "limitOverride": {
+          "containers": {
+            "cpu": 0.5,
+            "memoryBytes": 500000000
+          }
+        }
+      },
+      "build": {
+        "builder": "DOCKERFILE",
+        "buildEnvironment": "V3",
+        "dockerfilePath": "Dockerfile"
+      },
+      "volumeMounts": {
+        "e96eab14-7c3d-4f1a-81ec-e189d9133578": {
+          "mountPath": "/app/storage"
+        }
+      }
+    }
+  },
+  "volumes": {
+    "e96eab14-7c3d-4f1a-81ec-e189d9133578": {
+      "region": "europe-west4-drams3a",
+      "alerts": {
+        "usage": {
+          "100": {},
+          "80": {},
+          "95": {}
+        }
+      },
+      "allowOnlineResize": true
+    }
+  },
+  "privateNetworkDisabled": false
+}
