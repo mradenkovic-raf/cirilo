@@ -1,9 +1,11 @@
 /* The server resolves and saves every turn. This file only presents the result. */
 import { burst } from './fx.js';
+import { createGameAudio } from './game_audio.js';
 
 (() => {
   const root = document.querySelector('[data-battle]');
   if (!root) return;
+  const gameAudio = createGameAudio('arena');
   const $ = selector => root.querySelector(selector);
   const $$ = selector => [...root.querySelectorAll(selector)];
   let state;
@@ -15,48 +17,8 @@ import { burst } from './fx.js';
   const powerButtons = $$('[data-battle-power]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let busy = false;
-  let audio;
   let requestController;
-  const oscillators = new Set();
   const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
-
-  function soundIsMuted() {
-    const toggle = document.querySelector('.sound-toggle');
-    if (toggle) return toggle.getAttribute('aria-pressed') === 'true';
-    try { return localStorage.getItem('cirilo-muted') === 'true'; } catch { return false; }
-  }
-
-  function stopSound() {
-    for (const oscillator of oscillators) { try { oscillator.stop(); } catch { /* It has already ended. */ } }
-    oscillators.clear();
-  }
-
-  function sound(kind) {
-    // The context is opened by the move button, never by a delayed result or reload.
-    if (soundIsMuted() || document.hidden || audio?.state !== 'running') return;
-    try {
-      stopSound();
-      const notes = kind === 'victory' ? [523.25, 659.25, 783.99, 1046.5]
-        : kind === 'defeat' ? [261.63, 220, 164.81]
-        : kind === 'win' ? [440, 659.25] : kind === 'lose' ? [220, 174.61] : [392, 392];
-      const descending = kind === 'lose' || kind === 'defeat';
-      const duration = kind === 'defeat' ? .34 : .26;
-      notes.forEach((frequency, index) => {
-        const oscillator = audio.createOscillator();
-        const gain = audio.createGain();
-        const at = audio.currentTime + index * (kind === 'defeat' ? .18 : .12);
-        oscillator.type = descending ? 'triangle' : 'sine';
-        oscillator.frequency.setValueAtTime(frequency, at);
-        gain.gain.setValueAtTime(0, at);
-        gain.gain.linearRampToValueAtTime(.055, at + .02);
-        gain.gain.exponentialRampToValueAtTime(.001, at + duration - .02);
-        oscillator.connect(gain); gain.connect(audio.destination);
-        oscillators.add(oscillator);
-        oscillator.onended = () => { oscillators.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
-        oscillator.start(at); oscillator.stop(at + duration);
-      });
-    } catch { /* All feedback is also visible. */ }
-  }
 
   function putIcon(target, name, kind = 'move') {
     if (!target) return;
@@ -153,6 +115,16 @@ import { burst } from './fx.js';
     $('[data-revealed-move]').hidden = !revealed;
     $('[data-revealed-name]').textContent = moveNames[revealed] || '';
     putIcon($('[data-revealed-icon]'), revealed);
+    // A previous round's bubble must never look like the move the goggles found.
+    const enemyBubble = $('[data-move-bubble="enemy"]');
+    enemyBubble.classList.toggle('is-revealed', !!revealed);
+    if (revealed) {
+      putIcon(enemyBubble, revealed);
+      enemyBubble.hidden = false;
+      enemyBubble.setAttribute('aria-label', `Мргудов следећи потез: ${moveNames[revealed]}`);
+    } else {
+      enemyBubble.setAttribute('aria-label', next.enemy_move ? `Мргудов одиграни потез: ${moveNames[next.enemy_move]}` : '');
+    }
     $('[data-shield-ready]').hidden = !next.shield_armed;
     const roadShield = $('[data-road-shield]');
     if (roadShield) {
@@ -164,12 +136,14 @@ import { burst } from './fx.js';
     powerButtons.forEach(button => {
       const power = button.dataset.battlePower;
       const status = next.powers?.[power] || {};
+      const revealing = power === 'goggles' && !!revealed;
       const label = $(`[data-power-status="${power}"]`);
-      if (label) label.textContent = status.armed ? 'Штит укључен' : status.used ? 'Искоришћено' : '1×';
+      if (label) label.textContent = revealing ? 'Потез откривен' : status.armed ? 'Штит укључен' : status.used ? 'Искоришћено' : '1×';
       const card = $(`[data-power-card="${power}"]`);
       card?.classList.toggle('is-locked', !status.owned);
       card?.classList.toggle('is-used', !!status.used);
       card?.classList.toggle('is-armed', !!status.armed);
+      card?.classList.toggle('is-revealing', revealing);
       button.disabled = busy || !status.available;
     });
   }
@@ -202,6 +176,7 @@ import { burst } from './fx.js';
 
   function applyState(next, announce = false) {
     state = next;
+    gameAudio.setPlaying(next.status === 'active');
     $('[data-battle-round]').textContent = state.status === 'active' ? Number(state.round) + 1 : state.round;
     $('[data-choice-prompt]').textContent = 'Изабери потез';
     updateHealth('player', next);
@@ -254,7 +229,7 @@ import { burst } from './fx.js';
       dropGear(victim, previous, next);
       burst({ kind: 'hit', origin: fighter, label: Number(next[`${victim}_hp`]) >= 3 ? '−1 ОКЛОП' : '−1 СРЦЕ', sound: false });
     }
-    sound(next.outcome);
+    gameAudio.play({ win: 'hit', lose: 'miss', blocked: 'block', tie: 'tie', dodge: 'power' }[next.outcome]);
     $('[data-battle-live]').textContent = `Твој потез: ${moveNames[next.player_move]}. Мргудов потез: ${moveNames[next.enemy_move]}. ${next.feedback || ''} Клик: ${next.base_hp} срца и ${next.armor_remaining} оклопа. Мргуд: ${Math.min(next.enemy_hp, 3)} срца и ${Math.max(next.enemy_hp - 3, 0)} оклопа.`;
     await delay(fast ? 120 : 950);
     clearAnimations();
@@ -263,9 +238,9 @@ import { burst } from './fx.js';
       showFinale(next, true);
       $('[data-battle-finale]').classList.add('is-revealing');
       if (next.status === 'won') {
-        sound('victory');
+        gameAudio.play('win');
         burst({ kind: 'victory', origin: $('[data-final-medal]'), label: 'ПОБЕДА!', sound: false });
-      } else sound('defeat');
+      } else gameAudio.play('lose');
     }
   }
 
@@ -282,13 +257,6 @@ import { burst } from './fx.js';
     $('[data-result-detail]').textContent = powerAction ? 'Моћ се чува у твојој борби.' : 'Клик и Мргуд откривају своје потезе.';
     $('[data-round-matchup]').hidden = true;
     $$('[data-move-bubble]').forEach(bubble => { bubble.hidden = true; });
-    // Prime audio during the actual tap, for mobile browsers with an audio gesture gate.
-    if (!soundIsMuted()) {
-      try {
-        const Audio = window.AudioContext || window.webkitAudioContext;
-        if (Audio) { audio ||= new Audio(); if (audio.state === 'suspended') audio.resume().catch(() => {}); }
-      } catch { /* Sound is optional. */ }
-    }
     requestController = new AbortController();
     const timeout = setTimeout(() => requestController.abort(), 18000);
     try {
@@ -311,17 +279,23 @@ import { burst } from './fx.js';
       else {
         applyState(payload, payload.status !== 'active');
         if (powerAction && payload.status === 'active') {
+          if (!payload.duplicate) gameAudio.play('power');
           const message = value === 'goggles' && payload.revealed_enemy_move
             ? `Мргуд бира: ${moveNames[payload.revealed_enemy_move]}. Сада бираш ти!`
             : value === 'shield' && payload.shield_armed ? 'Светлосни штит чува први следећи погодак.' : 'Моћ је сачувана. Изабери следећи потез.';
           $('[data-result-title]').textContent = value === 'goggles' ? 'Наочаре су откриле потез!' : 'Моћ је укључена!';
           $('[data-result-detail]').textContent = message;
           $('[data-battle-live]').textContent = message;
-          if (value === 'goggles') $('[data-revealed-move]').scrollIntoView({ block: 'nearest', behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+          if (value === 'goggles' && payload.revealed_enemy_move) {
+            const reveal = $('[data-revealed-move]');
+            reveal.focus({ preventScroll: true });
+            reveal.scrollIntoView({ block: 'center', behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+          }
         }
       }
     } catch (error) {
-      updateResult(state);
+      // A failed request must preserve the already purchased reveal and its icon.
+      applyState(state);
       if (!state.player_move) {
         $('[data-result-title]').textContent = 'Потез још није потврђен.';
         $('[data-result-detail]').textContent = 'Пробај поново. Твоја борба је сачувана.';
@@ -339,9 +313,6 @@ import { burst } from './fx.js';
   moveButtons.forEach(button => button.addEventListener('click', () => submitAction('move', button.dataset.battleMove)));
   powerButtons.forEach(button => button.addEventListener('click', () => submitAction('power', button.dataset.battlePower)));
   $('[data-battle-refresh]').addEventListener('click', () => window.location.reload());
-  document.querySelector('.sound-toggle')?.addEventListener('click', () => setTimeout(() => { if (soundIsMuted()) stopSound(); }, 0));
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stopSound(); });
-  window.addEventListener('storage', event => { if (event.key === 'cirilo-muted' && event.newValue === 'true') stopSound(); });
-  window.addEventListener('pagehide', () => { requestController?.abort(); stopSound(); });
+  window.addEventListener('pagehide', () => { requestController?.abort(); });
   applyState(state);
 })();

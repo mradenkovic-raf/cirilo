@@ -5,9 +5,10 @@ export function setupMissionPath(header) {
   if (!path) return null;
   const dots = path.querySelector('[data-mission-dots]');
   const label = header.querySelector('[data-mission-label]');
+  const drive = path.querySelector('[data-mission-drive]');
 
   return {
-    update({ cursor, total, correct }) {
+    update({ cursor, total, correct, drive_checkpoint }) {
       cursor = Number(cursor); total = Number(total);
       if (!Number.isInteger(cursor) || !Number.isInteger(total) || total < 1 || cursor < 0 || cursor > total) return;
       if (dots.children.length !== total) {
@@ -24,7 +25,16 @@ export function setupMissionPath(header) {
       path.style.setProperty('--mission-position', `${cursor / total * 100}%`);
       path.setAttribute('aria-valuenow', cursor);
       path.setAttribute('aria-valuemax', total);
-      path.setAttribute('aria-valuetext', `Завршено ${cursor} од ${total} задатака. Мргуд чека у арени.`);
+      if (drive && drive_checkpoint && Number.isInteger(drive_checkpoint.step) && drive_checkpoint.step > 0 && drive_checkpoint.step <= total &&
+          ['upcoming', 'current', 'won', 'lost', 'skipped', 'passed'].includes(drive_checkpoint.status) && typeof drive_checkpoint.label === 'string') {
+        drive.dataset.step = String(drive_checkpoint.step);
+        drive.dataset.status = drive_checkpoint.status;
+        drive.dataset.label = drive_checkpoint.label;
+        drive.setAttribute('title', drive_checkpoint.label);
+      }
+      if (drive) drive.style.left = `${Number(drive.dataset.step) / total * 100}%`;
+      const driveLabel = drive?.dataset.label ? ` ${drive.dataset.label}` : '';
+      path.setAttribute('aria-valuetext', `Завршено ${cursor} од ${total} задатака.${driveLabel} Мргуд чека у арени.`);
       if (label) label.textContent = correct ? `Готово ${cursor} / ${total}` : `Задатак ${Math.min(cursor + 1, total)} / ${total}`;
     }
   };

@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-13, lokalna v21 na `127.0.0.1:3001` dodaje vožnju na polovini misije, štit za arenu i više školskog sadržaja. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-13, lokalna v22 na `127.0.0.1:3001` dodaje muziku i efekte za obe igre, vidljiv autić na putanji misije i jasniji prikaz naočara. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Muzika, putanja i naočare — v22
+
+Vožnja i arena koriste zasebne lokalno sintetizovane melodije i efekte: skretanje/sudar, pogodak/promašaj/štit/nerešeno/moć, fanfara sa aplauzom i zvuk poraza. Jedno postojeće dugme utišava sve, uključujući druge otvorene tabove. Zvuk čeka stvaran dodir/taster; pauza, skriven tab i izlazak prekidaju muziku. Browser Back obnavlja zvuk samo za aktivnu igru; vožnja ostaje pauzirana. Nema novih fajlova sa snimcima, servisa ili troška.
+
+Autić na putanji prati stvarni položaj šestog originalnog zadatka čak i uz dodatna ponavljanja, a posle uspeha dobija mali štit. Naočare sada imaju veliki fokusiran prikaz sledećeg poteza, oblačić iznad Mrguda i status „Потез откривен”. Čuvanje protivnikovog poteza već je radilo; potvrđeno je u testovima i browseru. Popravljen je gubitak oblačića posle neuspelog zahteva.
+
+Prošlo je 293 Rails testa / 93.383 tvrdnje i 58 JavaScript testova. Browser provera na 320 px obuhvatila je autić bez horizontalnog prelivanja, otkrivanje i stvarno odigravanje istog poteza, pobedu/poraz arene, skretanje/sudare, pauzu/nastavak i mute kontrole. Nisu slušno provereni zvučnici niti fizički Android/iPhone. [Dokazi i granice](qa/v22/PROVERA.md).
+
+Tačka povratka: tag `v21-stable-before-game-audio` na `acdc013`, baza u `revisions/2026-10-13-v21-before-game-audio/`. Nema migracije; testovi su koristili zasebne baze. Rad ostaje na grani `school-learning`, bez objave na GitHub/Railway.
 
 ## Dino-vožnja i više kratkog čitanja — v21
 

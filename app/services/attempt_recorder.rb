@@ -281,6 +281,7 @@ class AttemptRecorder
       score: attempt.score, letter_feedback: attempt.trace_metrics["feedback"],
       xp_earned: awarded, total_xp: @learner.xp, xp_balance: @learner.xp_balance, meaning: meaning || nil,
       completed: completed, cursor: @session.cursor, total: @session.total_exercises,
+      drive_checkpoint: @session.drive_checkpoint_state,
       progress: @session.progress_percent, unlocked_part: reward,
       next_url: "/practice_sessions/#{@session.id}",
       feedback: feedback_for(attempt, completed, recovery_required)

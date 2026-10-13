@@ -23,12 +23,24 @@ try { muted = localStorage.getItem('cirilo-muted') === 'true'; } catch { /* Stor
 const soundToggle = $('.sound-toggle');
 function updateSound() {
   soundToggle?.setAttribute('aria-pressed', String(muted));
-  soundToggle?.setAttribute('aria-label', muted ? 'Укључи звучне ефекте' : 'Искључи звучне ефекте');
+  soundToggle?.setAttribute('aria-label', muted ? 'Укључи звук и музику' : 'Искључи звук и музику');
 }
 updateSound();
 soundToggle?.addEventListener('click', () => {
   muted = !muted;
   try { localStorage.setItem('cirilo-muted', String(muted)); } catch { /* Keep the setting for this page. */ }
+  if (muted) window.speechSynthesis?.cancel();
+  updateSound();
+});
+window.addEventListener('storage', event => {
+  if (event.key !== 'cirilo-muted' && event.key !== null) return;
+  muted = event.key === 'cirilo-muted' && event.newValue === 'true';
+  if (muted) window.speechSynthesis?.cancel();
+  updateSound();
+});
+window.addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  try { muted = localStorage.getItem('cirilo-muted') === 'true'; } catch { /* Keep the in-page preference. */ }
   if (muted) window.speechSynthesis?.cancel();
   updateSound();
 });

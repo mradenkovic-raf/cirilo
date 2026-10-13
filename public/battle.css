@@ -97,3 +97,18 @@
 }
 .battle-road-shield { background: #e0f4ff; color: #235d85; border: 1px solid #a6d7f1; }
 .battle-road-shield.is-spent { opacity: .65; background: #eff2f4; }
+
+/* Keep a revealed future move visibly separate from the last round's result. */
+.battle-root .battle-reveal[data-revealed-move]{background:#dff5fa;border:3px solid #61afb9;box-shadow:0 4px 0 #c5e3e9;scroll-margin:18px;padding:13px;gap:12px}
+.battle-root .battle-reveal[data-revealed-move]:focus{outline:3px solid #397581;outline-offset:3px}
+.battle-root .battle-reveal-goggles{flex:0 0 44px}
+.battle-root .battle-reveal-goggles>.battle-move-icon{width:44px;height:44px}
+.battle-root .battle-reveal-copy{min-width:0}
+.battle-root .battle-reveal-copy>small{font-size:10px;line-height:1.4;letter-spacing:.4px}
+.battle-root [data-revealed-move] .battle-reveal-copy>strong{display:flex;align-items:center;gap:7px;font-size:23px;margin:4px 0}
+.battle-root .battle-reveal-copy>strong [data-revealed-icon]{display:flex}
+.battle-root .battle-reveal-copy>p{font-size:12px;line-height:1.4;margin:0}
+.battle-root .battle-power.is-revealing>button{opacity:1;background:#dff5fa;border:2px solid #61afb9;color:#275d66}
+.battle-root .battle-power.is-revealing .battle-power-status{color:#275d66}
+.battle-root .fighter-move-bubble.is-revealed{background:#dff5fa;border:3px solid #61afb9;box-shadow:0 0 0 5px #61afb933}
+.battle-root .fighter-move-bubble.is-revealed:after{content:'СЛЕДЕЋИ';position:absolute;left:50%;bottom:100%;transform:translateX(-50%);padding:2px 5px;border-radius:5px;background:#dff5fa;color:#275d66;font-size:9px;font-weight:900;letter-spacing:.3px;white-space:nowrap}

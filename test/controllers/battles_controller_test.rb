@@ -168,10 +168,23 @@ class BattlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-power-card]", count: 3
     assert_select "[data-revealed-name]", text: BattlesHelper::BATTLE_MOVE_NAMES[first["revealed_enemy_move"]]
     assert_select "[data-result-title]", text: "Наочаре су откриле потез!"
+    assert_select "[data-revealed-move][tabindex='-1'][aria-label='Мргудов следећи потез']", count: 1
+    assert_select "[data-power-card=goggles].is-revealing", count: 1
+    assert_select "[data-power-status=goggles]", text: "Потез откривен"
 
     post battle_moves_path(battle), params: { move: "attack", expected_round: 0, expected_revision: 0 }, as: :json
     assert_response :conflict
     assert_equal 1, response.parsed_body.fetch("state").fetch("action_revision")
+
+    counter = BattleArena::BEATS.key(first.fetch("revealed_enemy_move"))
+    post battle_moves_path(battle), params: { move: counter, expected_round: 0, expected_revision: 1 }, as: :json
+    assert_response :success
+    assert_equal first["revealed_enemy_move"], response.parsed_body["enemy_move"]
+    assert_equal "win", response.parsed_body["outcome"]
+    assert_nil response.parsed_body["revealed_enemy_move"]
+    get battle_path(battle)
+    assert_select "[data-revealed-move][hidden]", count: 1
+    assert_select "[data-power-status=goggles]", text: "Искоришћено"
   end
 
   test "power validation and unavailable gear do not alter the battle" do

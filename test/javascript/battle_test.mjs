@@ -6,7 +6,7 @@ import { runInNewContext } from 'node:vm';
 // Execute the real arena controller against a minimal DOM/audio stand-in.
 // Layout, actual taps, and viewport scrolling are verified separately in a browser.
 const controller = readFileSync(new URL('../../public/battle.js', import.meta.url), 'utf8')
-  .replace("import { burst } from './fx.js';", '');
+  .replace(/^import .*;$/gm, '');
 class Element {
   constructor(dataset = {}) {
     this.dataset = dataset; this.attributes = {}; this.listeners = {}; this.children = [];
@@ -32,8 +32,8 @@ const active = {
   base_hp: 3, player_hp: 3, armor_remaining: 0, gear_count: 0,
   enemy_hp: 1, enemy_max_hp: 3, powers: {}
 };
-function fixture({ outcome = 'won', initial = active, muted = false, duplicate = false, audioAvailable = true, reply = {} } = {}) {
-  const nodes = new Map(), bursts = [], notes = [];
+function fixture({ outcome = 'won', initial = active, muted = false, duplicate = false, audioAvailable = true, reply = {}, replies = [] } = {}) {
+  const nodes = new Map(), bursts = [], cues = [], music = [];
   const node = selector => {
     if (!nodes.has(selector)) nodes.set(selector, new Element());
     return nodes.get(selector);
@@ -44,8 +44,11 @@ function fixture({ outcome = 'won', initial = active, muted = false, duplicate =
   const moves = ['attack', 'guard', 'feint'].map(move => {
     const button = node(`[data-battle-move="${move}"]`); button.dataset.battleMove = move; return button;
   });
+  const powers = Object.keys(initial.powers || {}).map(power => {
+    const button = node(`[data-battle-power="${power}"]`); button.dataset.battlePower = power; return button;
+  });
   const groups = {
-    '[data-battle-move]': moves, '[data-battle-power]': [],
+    '[data-battle-move]': moves, '[data-battle-power]': powers,
     '[data-fighter]': ['player', 'enemy'].map(side => node(`[data-fighter="${side}"]`)),
     '[data-status]': ['player', 'enemy'].map(side => node(`[data-status="${side}"]`)),
     '[data-falling-gear]': ['player', 'enemy'].map(side => node(`[data-falling-gear="${side}"]`)),
@@ -68,16 +71,8 @@ function fixture({ outcome = 'won', initial = active, muted = false, duplicate =
     hidden: false, body: new Element(), activeElement: null,
     querySelector: node, addEventListener() {}
   };
-  let audioContexts = 0, requests = 0;
-  class AudioContext {
-    constructor() { audioContexts++; this.state = 'running'; this.currentTime = 0; }
-    createOscillator() {
-      return { frequency: { setValueAtTime(value) { notes.push(value); } }, connect() {}, disconnect() {}, start() {}, stop() {} };
-    }
-    createGain() {
-      return { gain: { setValueAtTime() {}, linearRampToValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {}, disconnect() {} };
-    }
-  }
+  let requests = 0;
+  const requestBodies = [];
   const won = outcome === 'won';
   const response = {
     ...initial, status: outcome, round: 1, action_revision: 1, success: true, duplicate,
@@ -85,14 +80,76 @@ function fixture({ outcome = 'won', initial = active, muted = false, duplicate =
     outcome: won ? 'win' : 'lose', player_move: 'attack', enemy_move: won ? 'feint' : 'guard', ...reply
   };
   runInNewContext(controller, {
-    document, window: { AudioContext: audioAvailable ? AudioContext : undefined, matchMedia: () => ({ matches: false }), addEventListener() {} },
+    document, window: { matchMedia: () => ({ matches: false }), addEventListener() {} },
     localStorage: { getItem: () => String(muted) }, AbortController,
     setTimeout(callback, milliseconds) { if (milliseconds < 2000) queueMicrotask(callback); return 1; },
     clearTimeout() {}, burst: options => bursts.push(options),
-    async fetch() { requests++; return { ok: true, status: 200, json: async () => response }; }
+    createGameAudio(mode) {
+      assert.equal(mode, 'arena');
+      return {
+        setPlaying(value) { music.push(value); },
+        play(cue) { if (!muted && audioAvailable) cues.push(cue); },
+        dispose() { music.push(false); }
+      };
+    },
+    async fetch(url, options) {
+      requests++;
+      requestBodies.push(JSON.parse(options.body));
+      const next = replies.length ? replies.shift() : response;
+      if (next instanceof Error) throw next;
+      return { ok: true, status: 200, json: async () => next };
+    }
   });
-  return { node, moves, bursts, notes, healthPips, get audioContexts() { return audioContexts; }, get requests() { return requests; } };
+  return { node, moves, powers, bursts, cues, music, healthPips, requestBodies, get requests() { return requests; } };
 }
+
+test('goggles visibly reveal the next move, preserve it through a failed move, and expire after playing', async () => {
+  const initial = { ...active, enemy_hp: 3, powers: { goggles: { owned: true, available: true, used: false } } };
+  const revealed = { ...initial, success: true, round: 0, action_revision: 1, revealed_enemy_move: 'guard', pending_power: 'goggles',
+    powers: { goggles: { owned: true, available: false, used: true } } };
+  const played = { ...revealed, round: 1, action_revision: 2, pending_power: null, revealed_enemy_move: null,
+    enemy_hp: 2, outcome: 'win', player_move: 'feint', enemy_move: 'guard' };
+  const f = fixture({ initial, replies: [revealed, new Error('network interrupted'), played] });
+  assert.equal(f.node('[data-revealed-move]').hidden, true);
+  await f.powers[0].click();
+  assert.equal(f.node('[data-revealed-move]').hidden, false);
+  assert.equal(f.node('[data-revealed-move]').focused, true);
+  assert.equal(f.node('[data-revealed-move]').scrolls[0].block, 'center');
+  assert.equal(f.node('[data-revealed-name]').textContent, 'Штит');
+  assert.equal(f.node('[data-power-status="goggles"]').textContent, 'Потез откривен');
+  assert.equal(f.node('[data-move-bubble="enemy"]').hidden, false);
+  assert.equal(f.node('[data-move-bubble="enemy"]').classList.contains('is-revealed'), true);
+  assert.equal(f.node('[data-move-bubble="enemy"]').getAttribute('aria-label'), 'Мргудов следећи потез: Штит');
+  assert.equal(f.powers[0].disabled, true);
+  assert.ok(f.moves.every(button => !button.disabled));
+  await f.moves[2].click();
+  assert.equal(f.node('[data-revealed-move]').hidden, false);
+  assert.equal(f.node('[data-move-bubble="enemy"]').hidden, false);
+  assert.equal(f.node('[data-battle-error]').hidden, false);
+  assert.equal(f.requestBodies[1].expected_revision, 1);
+  await f.moves[2].click();
+  assert.equal(f.requestBodies[2].expected_revision, 1);
+  assert.equal(f.node('[data-revealed-move]').hidden, true);
+  assert.equal(f.node('[data-move-bubble="enemy"]').classList.contains('is-revealed'), false);
+  assert.equal(f.node('[data-power-status="goggles"]').textContent, 'Искоришћено');
+  assert.equal(f.node('[data-result-title]').textContent, 'Клик погађа!');
+  assert.deepEqual(f.cues, ['power', 'hit']);
+  assert.equal(f.music.at(-1), true);
+});
+
+test('refresh preserves revealed goggles without mistaking the previous round for the next move', () => {
+  const f = fixture({ initial: { ...active, round: 4, action_revision: 5,
+    player_move: 'attack', enemy_move: 'feint', outcome: 'win',
+    powers: { goggles: { owned: true, used: true, available: false } },
+    pending_power: 'goggles', revealed_enemy_move: 'guard' } });
+  assert.equal(f.node('[data-revealed-name]').textContent, 'Штит');
+  assert.equal(f.node('[data-round-matchup]').hidden, true);
+  assert.equal(f.node('[data-power-status="goggles"]').textContent, 'Потез откривен');
+  assert.equal(f.node('[data-move-bubble="enemy"]').getAttribute('aria-label'), 'Мргудов следећи потез: Штит');
+  assert.equal(f.node('[data-revealed-move]').scrolls.length, 0);
+  assert.equal(f.requests, 0);
+  assert.deepEqual(f.cues, []);
+});
 
 test('winning the last round reveals and focuses the outcome, then celebrates once', async () => {
   const f = fixture();
@@ -104,7 +161,8 @@ test('winning the last round reveals and focuses the outcome, then celebrates on
   assert.equal(f.node('[data-active-battle]').hidden, true);
   assert.equal(f.node('[data-result-strip]').hidden, true);
   assert.equal(f.bursts.filter(burst => burst.kind === 'victory').length, 1);
-  assert.deepEqual(f.notes.slice(-4), [523.25, 659.25, 783.99, 1046.5]);
+  assert.deepEqual(f.cues, ['hit', 'win']);
+  assert.equal(f.music.at(-1), false);
   await f.moves[0].click();
   assert.equal(f.requests, 1);
   assert.equal(f.bursts.filter(burst => burst.kind === 'victory').length, 1);
@@ -117,7 +175,8 @@ test('losing the last round reveals a distinct defeat and plays a descending fin
   assert.equal(f.node('[data-battle-finale]').classList.contains('is-defeat'), true);
   assert.equal(f.node('[data-battle-finale]').scrolls.length, 1);
   assert.equal(f.bursts.filter(burst => burst.kind === 'victory').length, 0);
-  assert.deepEqual(f.notes.slice(-3), [261.63, 220, 164.81]);
+  assert.deepEqual(f.cues, ['miss', 'lose']);
+  assert.equal(f.music.at(-1), false);
 });
 
 test('mute or unavailable audio preserves the visible final outcome', async () => {
@@ -126,8 +185,8 @@ test('mute or unavailable audio preserves the visible final outcome', async () =
     await f.moves[0].click();
     assert.equal(f.node('[data-battle-finale]').hidden, false);
     assert.equal(f.node('[data-final-title]').focused, true);
-    assert.equal(f.audioContexts, 0);
-    assert.deepEqual(f.notes, []);
+    assert.deepEqual(f.cues, []);
+
   }
 });
 
@@ -135,14 +194,15 @@ test('refresh and duplicate responses show saved outcomes without replaying cele
   for (const status of ['won', 'lost']) {
     const loaded = fixture({ initial: { ...active, status } });
     assert.equal(loaded.node('[data-battle-finale]').hidden, false);
-    assert.equal(loaded.audioContexts, 0);
+    assert.deepEqual(loaded.cues, []);
+    assert.equal(loaded.music.at(-1), false);
     assert.equal(loaded.bursts.length, 0);
     assert.equal(loaded.node('[data-battle-finale]').scrolls.length, 0);
     const retried = fixture({ outcome: status, duplicate: true });
     await retried.moves[0].click();
     assert.equal(retried.node('[data-battle-finale]').hidden, false);
     assert.equal(retried.bursts.length, 0);
-    assert.deepEqual(retried.notes, []);
+    assert.deepEqual(retried.cues, []);
     assert.ok([...loaded.healthPips, ...retried.healthPips].every(pip => !pip.addedClasses.includes('is-lost')));
   }
 });
@@ -193,5 +253,21 @@ test('ties, shields, dodges, and unchanged health never flash a lost icon', asyn
     assert.ok(f.healthPips.every(pip => !pip.addedClasses.includes('is-lost')));
     assert.equal(f.bursts.filter(burst => burst.kind === 'hit').length, 0);
     assert.ok(f.healthPips.every(pip => pip.classList.contains('is-full')));
+  }
+});
+
+
+test('every round outcome has its own cue without replaying duplicate actions', async () => {
+  const mapping = { win: 'hit', lose: 'miss', tie: 'tie', blocked: 'block', dodge: 'power' };
+  for (const [outcome, cue] of Object.entries(mapping)) {
+    const initial = { ...active, enemy_hp: 3 };
+    const reply = { ...initial, round: 1, action_revision: 1, outcome };
+    const fresh = fixture({ initial, reply });
+    assert.equal(fresh.music.at(-1), true);
+    await fresh.moves[0].click();
+    assert.deepEqual(fresh.cues, [cue]);
+    const repeat = fixture({ initial, reply, duplicate: true });
+    await repeat.moves[0].click();
+    assert.deepEqual(repeat.cues, []);
   }
 });

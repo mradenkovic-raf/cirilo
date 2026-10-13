@@ -52,7 +52,7 @@
     </div>
     <div class="battle-error" data-battle-error role="alert" hidden><span data-battle-error-text></span><button type="button" data-battle-refresh>Освежи арену <%= ui_icon(:reset) %></button></div>
     <div data-active-battle <%= 'hidden' if finished %>>
-      <div class="battle-reveal" data-revealed-move <%= 'hidden' unless battle_state[:revealed_enemy_move] %> role="status"><span data-revealed-icon><%= battle_move_icon(battle_state[:revealed_enemy_move]) if battle_state[:revealed_enemy_move] %></span><div><strong>Мргуд бира: <span data-revealed-name><%= moves[battle_state[:revealed_enemy_move]] %></span></strong></div></div>
+      <div class="battle-reveal" data-revealed-move <%= 'hidden' unless battle_state[:revealed_enemy_move] %> role="status" tabindex="-1" aria-label="Мргудов следећи потез"><span class="battle-reveal-goggles" aria-hidden="true"><%= battle_move_icon('goggles') %></span><div class="battle-reveal-copy"><small>МРГУДОВ СЛЕДЕЋИ ПОТЕЗ</small><strong><span data-revealed-icon><%= battle_move_icon(battle_state[:revealed_enemy_move]) if battle_state[:revealed_enemy_move] %></span><span data-revealed-name><%= moves[battle_state[:revealed_enemy_move]] %></span></strong><p>Изабери потез који је јачи!</p></div></div>
       <p class="battle-shield-ready" data-shield-ready <%= 'hidden' unless battle_state[:shield_armed] %>><%= battle_move_icon('guard') %> Штит чува следећи погодак.</p>
       <p class="battle-shield-ready battle-road-shield" data-road-shield <%= 'hidden' unless battle_state[:road_shield_earned] %>><%= battle_move_icon('guard') %><span data-road-shield-label><%= battle_state[:road_shield_armed] ? 'Штит из вожње · чува 1 погодак' : 'Штит из вожње је искоришћен' %></span></p>
       <div class="battle-choice-heading" hidden><span data-choice-prompt>Изабери потез</span></div>
@@ -68,9 +68,9 @@
           <div class="battle-power-grid">
             <% owned_powers.each do |power, info| %>
               <% power_status = battle_state.fetch(:powers).fetch(power).with_indifferent_access %>
-              <article class="battle-power <%= 'is-used' if power_status[:used] %> <%= 'is-armed' if power_status[:armed] %>" data-power-card="<%= power %>">
+              <article class="battle-power <%= 'is-used' if power_status[:used] %> <%= 'is-armed' if power_status[:armed] %> <%= 'is-revealing' if power == 'goggles' && battle_state[:revealed_enemy_move] %>" data-power-card="<%= power %>">
                 <button type="button" data-battle-power="<%= power %>" <%= 'disabled' unless power_status[:available] %> aria-describedby="power-<%= power %>-description power-<%= power %>-status"><%= battle_move_icon(info[:icon]) %><span><%= info[:action] %></span></button>
-                <span class="battle-power-status" id="power-<%= power %>-status" data-power-status="<%= power %>" data-power-gear="<%= info[:gear] %>"><%= battle_power_status(power, power_status) %></span>
+                <span class="battle-power-status" id="power-<%= power %>-status" data-power-status="<%= power %>" data-power-gear="<%= info[:gear] %>"><%= power == 'goggles' && battle_state[:revealed_enemy_move] ? 'Потез откривен' : battle_power_status(power, power_status) %></span>
                 <span hidden id="power-<%= power %>-description"><%= info[:description] %></span>
               </article>
             <% end %>

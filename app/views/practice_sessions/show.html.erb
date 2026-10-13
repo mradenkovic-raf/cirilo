@@ -16,10 +16,12 @@
     <%= link_to root_path, class: 'mission-back', 'aria-label': 'Пауза. Проверени задаци су сачувани.' do %><%= ui_icon(:home) %><span>Пауза</span><% end %>
     <div class="mission-progress">
       <div class="progress-label"><strong data-mission-label>Задатак <%= @practice_session.exercise_number %> / <%= @practice_session.total_exercises %></strong></div>
-      <div class="mission-path" data-mission-path role="progressbar" aria-valuenow="<%= @practice_session.cursor %>" aria-valuemin="0" aria-valuemax="<%= @practice_session.total_exercises %>" aria-label="Пут до арене" aria-valuetext="Завршено <%= @practice_session.cursor %> од <%= @practice_session.total_exercises %> задатака. Мргуд чека у арени." style="--mission-position:<%= @practice_session.cursor.fdiv(@practice_session.total_exercises) * 100 %>%">
+      <% drive_checkpoint = @practice_session.drive_checkpoint_state %>
+      <div class="mission-path" data-mission-path role="progressbar" aria-valuenow="<%= @practice_session.cursor %>" aria-valuemin="0" aria-valuemax="<%= @practice_session.total_exercises %>" aria-label="Пут до арене" aria-valuetext="Завршено <%= @practice_session.cursor %> од <%= @practice_session.total_exercises %> задатака. <%= drive_checkpoint&.fetch(:label) %> Мргуд чека у арени." style="--mission-position:<%= @practice_session.cursor.fdiv(@practice_session.total_exercises) * 100 %>%">
         <div class="mission-route" aria-hidden="true">
           <span class="mission-trail"></span>
           <div data-mission-dots><% (1..@practice_session.total_exercises).each do |step| %><span class="mission-dot <%= 'is-done' if step <= @practice_session.cursor %>" data-mission-step="<%= step %>" style="left:<%= step.fdiv(@practice_session.total_exercises) * 100 %>%"></span><% end %></div>
+          <% if drive_checkpoint %><span class="mission-drive" data-mission-drive data-status="<%= drive_checkpoint.fetch(:status) %>" data-step="<%= drive_checkpoint.fetch(:step) %>" data-label="<%= drive_checkpoint.fetch(:label) %>" title="<%= drive_checkpoint.fetch(:label) %>" style="left:<%= drive_checkpoint.fetch(:step).fdiv(@practice_session.total_exercises) * 100 %>%"><span class="mission-drive-car">🚗</span><span class="mission-drive-shield">🛡</span></span><% end %>
           <div class="mission-dino"><%= colored_dino(@learner, variant: :compact) %></div>
         </div>
         <div class="mission-villain" aria-hidden="true"><%= battle_enemy_svg(enemy_hp: Battle::BASE_HP) %><span>Мргуд</span></div>

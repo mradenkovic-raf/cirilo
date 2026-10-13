@@ -1,9 +1,11 @@
 import { burst } from './fx.js';
+import { createGameAudio } from './game_audio.js';
 import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_engine.js';
 
 (() => {
   const root = document.querySelector('[data-dino-drive]');
   if (!root) return;
+  const gameAudio = createGameAudio('drive');
   const $ = selector => root.querySelector(selector);
   const board = $('[data-drive-board]');
   const car = $('[data-drive-car]');
@@ -70,6 +72,7 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
     progress.setAttribute('aria-valuenow', String(percent));
   }
   function showOverlay(title, detail, action, icon = 'shield') {
+    gameAudio.setPlaying(false);
     overlay.hidden = false;
     $('[data-drive-title]').textContent = title;
     $('[data-drive-detail]').textContent = detail;
@@ -120,7 +123,10 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
   function move(direction) {
     if (!running || pending) return;
     const lane = evaluateDrive(course, moves, elapsed).lane;
-    if (appendDriveMove(course, moves, elapsed, lane + direction)) { render(); save(); }
+    if (appendDriveMove(course, moves, elapsed, lane + direction)) {
+      gameAudio.play('turn');
+      render(); save();
+    }
   }
   function pause() {
     if (!running) return;
@@ -135,6 +141,7 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
     const state = evaluateDrive(course, moves, elapsed);
     if (state.status !== 'active') { finish(); return; }
     overlay.hidden = true; running = true; previous = null;
+    gameAudio.setPlaying(true);
     root.classList.add('is-driving');
     $('[data-drive-pause]').hidden = false;
     board.focus({ preventScroll: true });
@@ -149,7 +156,8 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
     if (state.hits > hits) {
       hits = state.hits;
       car.classList.remove('is-hit'); void car.offsetWidth; car.classList.add('is-hit');
-      burst({ kind: 'hit', origin: car, label: 'УПС!' });
+      gameAudio.play('crash');
+      burst({ kind: 'hit', origin: car, label: 'УПС!', sound: false });
       $('[data-drive-taunt]').textContent = 'Хоп!';
       announce(`Камен! Остало је ${Math.max(0, course.max_hits - hits)} срца.`);
     }
@@ -176,7 +184,10 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
     $('[data-drive-taunt]').textContent = won ? 'Опа!' : 'Хе-хе!';
     announce(won ? 'Стигао си! Освојен је један штит за арену.' : 'Крај вожње. Настави мисију.');
     clearSave();
-    if (celebrate) burst({ kind: won ? 'victory' : 'hit', origin: $('[data-drive-result-icon]'), label: won ? '+1 ШТИТ!' : 'ИДЕМО ДАЉЕ!' });
+    if (celebrate) {
+      gameAudio.play(won ? 'win' : 'lose');
+      burst({ kind: won ? 'victory' : 'hit', origin: $('[data-drive-result-icon]'), label: won ? '+1 ШТИТ!' : 'ИДЕМО ДАЉЕ!', sound: false });
+    }
     $('[data-drive-next]').focus({ preventScroll: true });
   }
   async function finish() {
@@ -242,8 +253,8 @@ import { appendDriveMove, driveFrameDelta, evaluateDrive } from './dino_drive_en
   });
   board.addEventListener('pointercancel', () => { pointer = null; });
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
-  window.addEventListener('pagehide', () => { cancelAnimationFrame(frame); if (course.status === 'active') save(); });
-  $('[data-drive-skip]')?.addEventListener('submit', () => { running = false; cancelAnimationFrame(frame); clearSave(); });
+  window.addEventListener('pagehide', () => { pause(); cancelAnimationFrame(frame); if (course.status === 'active') save(); });
+  $('[data-drive-skip]')?.addEventListener('submit', () => { gameAudio.setPlaying(false); running = false; cancelAnimationFrame(frame); clearSave(); });
 
   if (course.status === 'active' && Array.isArray(course.obstacles)) {
     restore(); makeRocks(); hits = evaluateDrive(course, moves, elapsed).hits; render();

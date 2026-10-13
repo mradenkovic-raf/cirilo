@@ -55,6 +55,37 @@ class PracticeSession < ApplicationRecord
     drive_checkpoint? && !road_run&.resolved?
   end
 
+  def drive_checkpoint_step
+    originals = exercises.each_index.reject { |index| exercises[index]["recovery_of"] }
+    return if originals.length < 2
+
+    originals[originals.length / 2 - 1] + 1
+  end
+
+  def drive_checkpoint_state
+    step = drive_checkpoint_step
+    return unless step
+
+    state = if road_run&.resolved?
+      road_run.status
+    elsif drive_checkpoint?
+      "current"
+    elsif cursor > step
+      "passed"
+    else
+      "upcoming"
+    end
+    label = {
+      "upcoming" => "Вожња те чека на пола пута.",
+      "current" => "Време је за вожњу!",
+      "won" => "Вожња завршена. Освојен је штит!",
+      "lost" => "Вожња завршена. Настави до Мргуда.",
+      "skipped" => "Вожња прескочена.",
+      "passed" => "Настави до Мргуда."
+    }.fetch(state)
+    { step: step, status: state, label: label }
+  end
+
   def total_exercises
     exercises.length
   end

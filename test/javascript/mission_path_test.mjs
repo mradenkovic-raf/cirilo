@@ -19,11 +19,13 @@ class Element {
 }
 
 function fixture() {
-  const header = new Element(), path = new Element(), dots = new Element(), label = new Element();
+  const header = new Element(), path = new Element(), dots = new Element(), label = new Element(), drive = new Element();
   header.selectors['[data-mission-path]'] = path;
   header.selectors['[data-mission-label]'] = label;
   path.selectors['[data-mission-dots]'] = dots;
-  return { path, dots, label, controller: setupMissionPath(header) };
+  path.selectors['[data-mission-drive]'] = drive;
+  drive.dataset = { step: '6', status: 'upcoming', label: 'Вожња те чека на пола пута.' };
+  return { path, dots, label, drive, controller: setupMissionPath(header) };
 }
 
 test('saved progress moves the dinosaur and lights one dot per completed task, including the arena endpoint', () => {
@@ -64,4 +66,33 @@ test('invalid progress cannot replace the last saved path and pages without a pa
   assert.equal(path.attributes['aria-valuenow'], '5');
   assert.equal(dots.children.length, 15);
   assert.equal(setupMissionPath(null), null);
+});
+
+test('the car follows the sixth original task when recovery changes the route and becomes current after the answer', () => {
+  const { controller, path, drive } = fixture();
+  controller.update({ cursor: 3, total: 12, correct: true });
+  assert.equal(drive.style.left, '50%');
+  controller.update({ cursor: 3, total: 13, correct: false,
+    drive_checkpoint: { step: 7, status: 'upcoming', label: 'Вожња те чека на пола пута.' } });
+  assert.equal(drive.style.left, `${7 / 13 * 100}%`);
+  assert.equal(drive.dataset.status, 'upcoming');
+  controller.update({ cursor: 7, total: 13, correct: true,
+    drive_checkpoint: { step: 7, status: 'current', label: 'Време је за вожњу!' } });
+  assert.equal(path.style['--mission-position'], drive.style.left);
+  assert.equal(drive.dataset.status, 'current');
+  assert.match(path.attributes['aria-valuetext'], /Време је за вожњу!/);
+});
+
+test('a completed drive keeps its result as later recovery tasks lengthen the route', () => {
+  const { controller, path, drive } = fixture();
+  for (const status of ['won', 'lost', 'skipped', 'passed']) {
+    controller.update({ cursor: 9, total: 13, correct: false,
+      drive_checkpoint: { step: 6, status, label: `Резултат: ${status}` } });
+    assert.equal(drive.style.left, `${6 / 13 * 100}%`);
+    assert.equal(drive.dataset.status, status);
+    assert.match(path.attributes['aria-valuetext'], new RegExp(`Резултат: ${status}`));
+  }
+  controller.update({ cursor: 9, total: 13, correct: true, drive_checkpoint: { step: 99, status: 'won', label: 'bad' } });
+  assert.equal(drive.dataset.step, '6');
+  assert.equal(drive.dataset.status, 'passed');
 });

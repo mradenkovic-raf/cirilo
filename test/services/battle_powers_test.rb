@@ -59,6 +59,26 @@ class BattlePowersTest < ActiveSupport::TestCase
     assert_equal 12, @learner.part_unlocks.count
   end
 
+  test "a reveal after an earlier round survives activating a shield and still predicts the exact next move" do
+    draws = 0
+    arena = BattleArena.new(@battle, enemy_picker: -> { draws += 1; draws == 1 ? "attack" : "guard" })
+    arena.move!(move: "attack", expected_round: 0, expected_revision: 0)
+    reveal = arena.power!(power: "goggles", expected_round: 1, expected_revision: 1)
+    assert_equal "attack", reveal[:enemy_move]
+    assert_equal "guard", reveal[:revealed_enemy_move]
+    assert_equal "goggles", reveal[:pending_power]
+    shield = arena.power!(power: "shield", expected_round: 1, expected_revision: 2)
+    assert_equal "guard", shield[:revealed_enemy_move]
+    assert_equal "goggles", shield[:pending_power]
+    assert shield[:shield_armed]
+    assert_equal "guard", BattleArena.state(@battle.reload)[:revealed_enemy_move]
+    result = arena.move!(move: "feint", expected_round: 1, expected_revision: 3)
+    assert_equal "guard", result[:enemy_move]
+    assert_equal "win", result[:outcome]
+    assert_nil result[:revealed_enemy_move]
+    assert_equal 2, draws
+  end
+
   test "easier opponent never changes a revealed move to manufacture a win" do
     draws = []
     random = Object.new
