@@ -2,6 +2,8 @@
 
 Rails aplikacija za decu koja uče srpsku ćirilicu. Obični server-rendered HTML, CSS i mali JavaScript moduli; bez Reacta, Vuea, frontend build procesa, prijave i profila. SQLite čuva zaseban napredak svakog browsera, a trajni šifrovani kolačić omogućava nastavak igre.
 
+Javna aplikacija: **[cirilo-production.up.railway.app](https://cirilo-production.up.railway.app)**. Školski režim, vožnja i zvuci iz v22 objavljeni su 2026-10-13. [Provera objave i čuvanja podataka](qa/v23/PROVERA.md).
+
 ## Muzika, efekti i jasnije naočare — v22
 
 Vožnja i arena imaju različite tihe melodije. Skretanje, sudar, uspešan udarac, promašaj, štit i posebne moći imaju zasebne efekte; pobeda donosi kratku fanfaru i sintetizovan aplauz, a poraz silazni zvučni signal. Zvuk nastaje lokalno preko Web Audio API-ja, bez preuzimanja, novog servisa ili troška. Počinje tek posle dodira/tastera; postojeće dugme zvučnika uključuje/isključuje i muziku i efekte. Pauza vožnje, skriven tab i izlazak zaustavljaju muziku. Povratak na završenu igru ne ponavlja proslavu.

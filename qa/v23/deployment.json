@@ -1,0 +1,47 @@
+{
+  "version": "v22 application / v23 release",
+  "date": "2026-10-13",
+  "url": "https://cirilo-production.up.railway.app",
+  "commit": "11ebe3bbf890ddf9b9d5c2f8b5058d882032c4c9",
+  "deployment_id": "9a85c6fb-c07d-4cfb-b879-48193ee37849",
+  "status": "SUCCESS",
+  "ci_url": "https://github.com/mradenkovic-raf/cirilo/actions/runs/38462454309",
+  "rails_tests": 298,
+  "rails_assertions": 93412,
+  "javascript_tests": 58,
+  "migration_backup": [
+    "Migration backup verified and saved for target 20261013000200."
+  ],
+  "backup_path": "/app/storage/migration-backups/production.sqlite3-before-20261013000200.sqlite3",
+  "deploy_config": {
+    "healthcheckPath": "/up",
+    "healthcheckTimeout": 300,
+    "ipv6EgressEnabled": false,
+    "limitOverride": {
+      "containers": {
+        "cpu": 0.5,
+        "memoryBytes": 500000000
+      }
+    },
+    "multiRegionConfig": {
+      "europe-west4-drams3a": {
+        "numReplicas": 1
+      }
+    },
+    "restartPolicyMaxRetries": 3,
+    "runtime": "V2",
+    "sleepApplication": true,
+    "useLegacyStacker": false
+  },
+  "volumes": [
+    {
+      "id": "e96eab14-7c3d-4f1a-81ec-e189d9133578",
+      "mountPath": "/app/storage",
+      "name": "cirilo-volume",
+      "region": "europe-west4-drams3a",
+      "sizeMB": 500,
+      "state": "live"
+    }
+  ],
+  "staged_changes": null
+}

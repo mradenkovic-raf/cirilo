@@ -1,6 +1,14 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-13, lokalna v22 na `127.0.0.1:3001` dodaje muziku i efekte za obe igre, vidljiv autić na putanji misije i jasniji prikaz naočara. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-13, **v22 je javno objavljena na Railwayu**, uz zaštitu baze pred migracijom u commitu `11ebe3b`. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
+
+## Objava školskog režima i igara — v23
+
+Na izričit zahtev korisnika, `school-learning` je spojena bez konflikata u `main` i objavljena preko postojećeg GitHub izvora. Deployment `9a85c6fb-c07d-4cfb-b879-48193ee37849` za commit `11ebe3bbf890ddf9b9d5c2f8b5058d882032c4c9` ima status **SUCCESS**. Isti servis, isti volume od 500 MB, jedna replika, 0,5 vCPU / 500 MB i uključeno uspavljivanje; nema novih servisa, promene plana ili ključa.
+
+Dodate su samo dve ranije pripremljene migracije v20/v21. Pre njih novi startup hook pravi i proverava samostalnu SQLite rezervu na istom volume-u. Log potvrđuje rezervu pre verzije `20261013000200`. SSH nije konfigurisan; novi ključevi nisu dodavani. Snimak na istom disku nije zaštita od gubitka tog diska.
+
+GitHub za objavljeni commit potvrđuje **298 Rails testova / 93.412 tvrdnji, 58 JS testova**, production proxy/kolačiće i Docker sa trajnom bazom. Javni pregled vraća istu staru probnu misiju i zadatak sa samo stalnim cookie-jem, potvrđuje tačan sadržaj četiri promenjene skripte i školske opcije do Е. Browser početna radi bez JS grešaka/upozorenja. [Dokazi, rollback i granice](qa/v23/PROVERA.md).
 
 ## Muzika, putanja i naočare — v22
 

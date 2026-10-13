@@ -1,0 +1,16 @@
+Docker and persistent SQLite	Run bin/check-container	2026-10-13T20:24:50.6843375Z PASS: Docker build, fresh root-owned volume, Rails UID 1000, HTTPS proxy, healthcheck, CSRF, host checks, and mission persistence across containers.
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.7084598Z 298 runs, 93412 assertions, 0 failures, 0 errors, 0 skips
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.8073915Z ℹ tests 10
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.8074581Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.8753591Z ℹ tests 5
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.8762549Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.9233634Z ℹ tests 6
+Rails and browser logic	Run bin/check	2026-10-13T20:24:32.9234969Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.1817184Z ℹ tests 13
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.1818448Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.2325607Z ℹ tests 5
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.2326733Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.3069792Z ℹ tests 13
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.3070409Z ℹ fail 0
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.3573145Z ℹ tests 6
+Rails and browser logic	Run bin/check	2026-10-13T20:24:33.3574366Z ℹ fail 0

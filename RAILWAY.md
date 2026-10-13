@@ -1,6 +1,6 @@
 # Railway — podešavanje i objavljivanje
 
-Objavljeno 2026-10-12 na korisnikovom trial nalogu. Kod je, na izričit zahtev korisnika, u **javnom** repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), grana `main`. GitHub deploy verzije `614aff2` ima status `SUCCESS`. Prošli su javni HTTPS, izolacija browsera i vraćanje iste misije posle stvarnog restarta. Rezultat i granice provera vode se u [qa/v19/PROVERA.md](qa/v19/PROVERA.md).
+Poslednja objava: **2026-10-13**, verzija aplikacije v22 sa zaštitom baze pri migraciji, commit `11ebe3b`, deployment `9a85c6fb-c07d-4cfb-b879-48193ee37849`, status **SUCCESS**. Kod je u **javnom** repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), grana `main`. GitHub provere, javni HTTPS, tačne verzije novih skripti i nastavak stare misije preko istog stalnog cookie-ja prolaze. [Aktuelni rezultat](qa/v23/PROVERA.md); [prva objava i trial podešavanja](qa/v19/PROVERA.md).
 
 - Javna adresa: **https://cirilo-production.up.railway.app**
 - [Railway servis](https://railway.com/project/8a26bf67-82f2-47ff-8e58-86d672c1d319/service/22dc64c0-c31f-487f-978e-06d55b1bf499?environmentId=3276f7ec-16c0-45c9-92cc-63b935024066)
@@ -45,7 +45,7 @@ Uspavljivanje smanjuje rad servisa dok se aplikacija ne koristi; prvo otvaranje 
 
 `.env.railway` ima sve navedene vrednosti, dozvole 0600 i isključen je iz Gita i Docker image-a. Ključ ne menjati pri novom deployu: postojeći browser kolačići zavise od njega. `RAILWAY_ENVIRONMENT_ID`, `RAILWAY_VOLUME_MOUNT_PATH` i `RAILWAY_PUBLIC_DOMAIN` daje Railway.
 
-Na volume-u ostaju baza i SQLite WAL/SHM fajlovi. Docker entrypoint podesi vlasništvo, pa migracije i Rails pokreće kao korisnik `rails`, UID 1000. `bin/container-start` izvršava `db:prepare` tek kada je disk montiran. Ne premeštati migracije u build ili pre-deploy komandu i ne montirati disk preko `/app`.
+Na volume-u ostaju baza i SQLite WAL/SHM fajlovi. Docker entrypoint podesi vlasništvo, pa migracije i Rails pokreće kao korisnik `rails`, UID 1000. `bin/container-start` prvo pravi konzistentnu rezervu postojeće baze ako postoje nove migracije, pa izvršava `db:prepare`, tek kada je disk montiran. Rezerva uključuje WAL, proverava integritet i ostaje u `storage/migration-backups/`; greška prekida startup pre migracija. Ne premeštati migracije u build ili pre-deploy komandu i ne montirati disk preko `/app`.
 
 Produkcija počinje zasebnom bazom; lokalni napredak i rezerva ostaju na računaru. Svaki browser na javnom domenu dobija svoj napredak. Domen i `healthcheck.railway.app` aplikacija automatski dopušta; za sopstveni domen dodati `APP_HOST`, bez protokola i putanje.
 
@@ -89,7 +89,9 @@ python3 qa/v19/public_http_check.py restore tmp/v19-public-state.json
 
 `write` pravi dva zasebna probna browser identiteta i jednu misiju; proverava HTTPS, CSS/JS, cookie, CSRF i odvajanje napretka. Privatni probni cookie ostaje u ignorisanom `tmp` fajlu sa dozvolama 0600. `restore` proverava istu misiju i zadatak koristeći samo stalni cookie. Ne koristiti tuđi cookie niti pokretati `write` više puta bez razloga.
 
-**Automatski backup-i nisu uključeni.** Volume čuva napredak pri običnom restartu i deployu, ali nije zasebna rezerva. Pre buduće migracije koja briše ili menja podatke obezbediti snimak baze i sačuvati konfiguraciju sa tajnim ključem. Brisanje volume-a briše podatke; vraćanje prethodnog koda ne vraća staru bazu. Jedna instanca sa volume-om ima kratak prekid pri objavi.
+**Railway backup servis nije uključen.** Aplikacija sada pravi lokalni snimak na istom volume-u pre novih migracija: jedan za svaku ciljnu verziju, bez prepisivanja ranijeg snimka. To omogućava oporavak od neuspele migracije, ali ne štiti od brisanja ili gubitka samog volume-a. Pre destruktivne migracije i dalje treba zasebna kopija van diska i sačuvan tajni ključ. Jedna instanca sa volume-om ima kratak prekid pri objavi.
+
+Za ovu objavu napravljen je i u runtime logu potvrđen `/app/storage/migration-backups/production.sqlite3-before-20261013000200.sqlite3`. Nema novih backup servisa ili promene resursnih limita. Problem ograničen na v22 može da se rešava prethodnim kompatibilnim kodom v21 (`acdc013`) ili novom ispravkom. Posle novih školskih misija/vožnji ne vraćati samo kod na v19 i ne pokretati `db:rollback`: stari kod ne obrađuje školske scene ni zavisne vožnje. Vraćanje snimka pre objave gubi kasniji napredak i traži zasebnu odluku.
 
 ## Reference
 
