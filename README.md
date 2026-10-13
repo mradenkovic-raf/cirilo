@@ -2,13 +2,21 @@
 
 Rails aplikacija za decu koja uče srpsku ćirilicu. Obični server-rendered HTML, CSS i mali JavaScript moduli; bez Reacta, Vuea, frontend build procesa, prijave i profila. SQLite čuva zaseban napredak svakog browsera, a trajni šifrovani kolačić omogućava nastavak igre.
 
-## Školska slova — v20
+## Dodatna avantura i čitanje — v21
+
+Na polovini misije, posle šest redovnih zadataka, otvara se **Dino-vožnja**: 24 sekunde, tri trake, tri srca i Mrgudovo kamenje. Dete upravlja svojim dinosaurusom u autiću pomoću strelica, velikih dugmadi ili dodira/prevlačenja. Vožnja može da se pauzira ili preskoči. Prelazak na drugi tab je pauzira; u istom tabu osvežavanje nastavlja privremeno sačuvane poteze.
+
+Dolazak do cilja donosi **jedan automatski štit za arenu te misije**. On zaustavlja prvi pogodak pre srca, oklopa i posebnog svetlosnog štita. Ne pojačava Mrguda, ne menja XP i ne dodaje trajnu opremu. Poraz ili preskakanje vraćaju na sledeći zadatak. Jedna vožnja po misiji; ponovljeni zahtevi ne mogu da umnože nagradu. Dodatna ponavljanja posle greške ne pomeraju polovinu misije. Potpuni restart briše i vožnje tog browsera.
+
+Dodato je **120 kratkih reči, 22 SVG ilustracije i 95 kratkih prostornih rečenica**. Kada naučena slova to dozvole, jedna od dve priče po misiji vežba **u, na, pored, ispred ili iza**, npr. „Сат у ауту.” ili „Лопта иза стола.” Sva četiri odgovora prikazuju isti predmet i isti auto/sto/kutiju/ranac, uz različit položaj. Prvih pet prostornih misija obuhvata sve tada čitljive odnose. [Provera v21](qa/v21/PROVERA.md).
+
+## Školska slova
 
 Podrazumevana igra koristi **А, М, И, Т, О, Н, С, Е**. U **Još → Za roditelja → Šta vežbamo?** roditelj bira poslednje naučeno slovo po redosledu bukvara ili označava pojedinačna slova. Druga opcija, **Cela azbuka**, zadržava dosadašnju igru. Izbor se pamti u bazi za isti browser; nema prijave i nema novih servisa.
 
 Redosled: **А М И Т О Н С Е Р Ј У Ш Л Љ З В Г П К Д Б Њ Х Ж Ч Ћ Ф Ц Џ Ђ**. Igra sama ne dodaje školska slova. Reči, ponuđeni odgovori, pogrešna slova, rečenice, dopune i ponavljanje koriste samo roditeljev izbor. I slovarica prati taj izbor. Uputstva i ostali tekst interfejsa nisu ograničeni tim skupom.
 
-Školska banka ima **423 kratke reči od 2–6 slova**, od kojih je 388 do pet slova. Skup do Е ima 67 reči, uključujući kratke glagole i imena za sastavljanje po sećanju. Za slikovne zadatke koriste se samo ilustrovani pojmovi; slike koje mogu isto da se protumače ne nude se zajedno. Kratke rečenice poput „Мама има сат“ zahtevaju prepoznavanje i osobe i predmeta. Prostorne priče ulaze tek kada su sva slova njihovog teksta poznata.
+Školska banka ima **543 kratke reči od 2–6 slova**, od kojih je 490 do pet slova. Skup do Е ima 75 reči i 24 slikovna pojma, uključujući kratke glagole i imena za sastavljanje po sećanju. Za slikovne zadatke koriste se samo ilustrovani pojmovi; slike koje mogu isto da se protumače ne nude se zajedno. Kratke rečenice poput „Мама има сат“ zahtevaju prepoznavanje i osobe i predmeta. Prostorne priče ulaze tek kada su sva slova njihovog teksta poznata, uključujući padežne nastavke.
 
 Misija i dalje ima 12 zadataka i uobičajenih 145 XP: deset zadataka čitanja/rada sa slovima i dve kratke vežbe pisanja. Na najranijim i vrlo uskim proizvoljnim skupovima nema dovoljno reči/slika, pa se nedostupne igre zamenjuju vežbama slova i pamćenja. Širinu sadržaja proveravamo kroz 42 misije (šest dnevno tokom nedelju dana); to nije dnevna obaveza niti ograničenje igranja. Ponavljanje reči kroz različite igre je namerno.
 

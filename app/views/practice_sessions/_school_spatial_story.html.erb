@@ -1,0 +1,9 @@
+<div class="story-prompt"><span class="story-prompt-icon" aria-hidden="true">📖</span><div class="story-sentence"><%= exercise.fetch("story_sentence") %></div></div>
+<div class="story-choices school-story-choices" role="group" aria-label="Изабери слику која одговара реченици">
+  <% exercise.fetch("choices").each_with_index do |choice, index| %>
+    <button type="button" class="choice story-choice" data-answer="<%= choice.fetch('value') %>" aria-label="Слика <%= index + 1 %>">
+      <%= school_spatial_scene_svg(choice.fetch("scene")) %>
+      <span class="story-choice-number" aria-hidden="true"><%= index + 1 %></span>
+    </button>
+  <% end %>
+</div>

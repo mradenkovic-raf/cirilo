@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Жир</title>
+  <path d="M69 95C69 137 86 162 120 177C153 162 171 137 171 95Z" fill="#c19051" stroke="#775730" stroke-width="4"/><path d="M93 108Q90 137 113 153" stroke="#e8bf7f" stroke-width="8" stroke-linecap="round"/><path d="M118 51Q115 24 138 21" stroke="#775730" stroke-width="9" stroke-linecap="round"/>
+<path d="M57 95Q60 49 119 49Q179 49 183 95Q120 118 57 95Z" fill="#8e7043" stroke="#5c492e" stroke-width="4"/><path d="M73 78L84 85L96 74L107 83L118 72L130 83L142 74L154 85L167 78M78 97L89 89L102 98L114 89L126 100L138 90L150 98L162 90" stroke="#ba965b" stroke-width="4" stroke-linejoin="round"/>
+</svg>

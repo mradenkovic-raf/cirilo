@@ -54,6 +54,7 @@
     <div data-active-battle <%= 'hidden' if finished %>>
       <div class="battle-reveal" data-revealed-move <%= 'hidden' unless battle_state[:revealed_enemy_move] %> role="status"><span data-revealed-icon><%= battle_move_icon(battle_state[:revealed_enemy_move]) if battle_state[:revealed_enemy_move] %></span><div><strong>Мргуд бира: <span data-revealed-name><%= moves[battle_state[:revealed_enemy_move]] %></span></strong></div></div>
       <p class="battle-shield-ready" data-shield-ready <%= 'hidden' unless battle_state[:shield_armed] %>><%= battle_move_icon('guard') %> Штит чува следећи погодак.</p>
+      <p class="battle-shield-ready battle-road-shield" data-road-shield <%= 'hidden' unless battle_state[:road_shield_earned] %>><%= battle_move_icon('guard') %><span data-road-shield-label><%= battle_state[:road_shield_armed] ? 'Штит из вожње · чува 1 погодак' : 'Штит из вожње је искоришћен' %></span></p>
       <div class="battle-choice-heading" hidden><span data-choice-prompt>Изабери потез</span></div>
       <div class="battle-moves">
         <% moves.each do |move, name| %>

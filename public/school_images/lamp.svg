@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Лампа</title>
+  <ellipse cx="120" cy="173" rx="44" ry="9" fill="#718a91" stroke="#4f686e" stroke-width="4"/><path d="M120 166V98" stroke="#789199" stroke-width="10"/>
+<path d="M90 26H150L179 105H61Z" fill="#f6c25e" stroke="#b48636" stroke-width="4" stroke-linejoin="round"/><ellipse cx="120" cy="105" rx="59" ry="11" fill="#ffdf8b" stroke="#b48636" stroke-width="4"/>
+<path d="M103 35L89 95M137 35L151 95" stroke="#e7ad46" stroke-width="4"/><path d="M157 114V135" stroke="#8e7950" stroke-width="3"/><circle cx="157" cy="137" r="5" fill="#edb951"/>
+</svg>

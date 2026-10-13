@@ -45,14 +45,18 @@ class SchoolStoryBank
         []
       end
 
-      ownership + existing_stories.select { |story| known?(story.fetch("story_sentence"), letter_ids) }
+      ownership + SchoolSpatialStoryBank.eligible(letter_ids) +
+        existing_stories.select { |story| known?(story.fetch("story_sentence"), letter_ids) }
     end
 
-    def exercise(letter_ids:, variation:)
+    def exercise(letter_ids:, variation:, family: nil)
       candidates = eligible(letter_ids)
+      candidates = candidates.select { |candidate| candidate["school_spatial"] == true } if family == :spatial
+      candidates = candidates.reject { |candidate| candidate["school_spatial"] || candidate["story_dimension"] == "position" } if family == :reading
       return if candidates.empty?
 
       candidate = candidates.fetch(variation % candidates.length)
+      return SchoolSpatialStoryBank.exercise(candidate, variation: variation) if candidate["school_spatial"]
       return existing_exercise(candidate) unless candidate.fetch("school_story")
 
       person = candidate.fetch("person")
@@ -86,10 +90,9 @@ class SchoolStoryBank
     end
 
     def existing_stories
-      @existing_stories ||= (
-        12.times.map { |variation| StoryBank.exercise(variation: variation) } +
-        20.times.map { |variation| StoryBank.position_exercise(variation: variation) }
-      ).map do |story|
+      # Short spatial phrases have their own school bank. Keep the original
+      # size/action stories here; full-alphabet spatial stories stay unchanged.
+      @existing_stories ||= 12.times.map { |variation| StoryBank.exercise(variation: variation) }.map do |story|
         # The optional narrative contains harder words and is unnecessary here.
         story.merge("school_story" => false, "story_context" => "")
       end.freeze

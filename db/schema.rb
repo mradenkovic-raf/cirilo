@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_13_000100) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_13_000200) do
   create_table "attempts", force: :cascade do |t|
     t.integer "learner_id", null: false
     t.integer "practice_session_id", null: false
@@ -136,6 +136,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_13_000100) do
     t.index ["learner_id"], name: "one_active_mission_per_learner", unique: true, where: "status = 'active'"
   end
 
+  create_table "road_runs", force: :cascade do |t|
+    t.integer "practice_session_id", null: false
+    t.string "status", default: "active", null: false
+    t.string "token", null: false
+    t.json "obstacles", default: [], null: false
+    t.json "moves", default: [], null: false
+    t.integer "elapsed_ms", default: 0, null: false
+    t.integer "hits", default: 0, null: false
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["practice_session_id"], name: "index_road_runs_on_practice_session_id", unique: true
+  end
+
   create_table "shop_purchases", force: :cascade do |t|
     t.integer "learner_id", null: false
     t.string "item_key", null: false
@@ -156,5 +171,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_13_000100) do
   add_foreign_key "part_unlocks", "learners"
   add_foreign_key "part_unlocks", "practice_sessions"
   add_foreign_key "practice_sessions", "learners"
+  add_foreign_key "road_runs", "practice_sessions"
   add_foreign_key "shop_purchases", "learners"
 end

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Фен</title>
+  <path d="M106 104L123 149Q126 162 113 167L98 171Q88 174 84 163L66 116Z" fill="#4eabc1" stroke="#286177" stroke-width="4"/>
+<path d="M51 107C31 105 23 85 30 63Q34 41 58 40H113L148 55L193 51L199 87L153 96L113 114Z" fill="#69cadd" stroke="#286177" stroke-width="4" stroke-linejoin="round"/>
+<path d="M150 55L155 95M189 53L195 89" stroke="#286177" stroke-width="4"/><ellipse cx="56" cy="77" rx="23" ry="30" fill="#dfedf0" stroke="#286177" stroke-width="4"/><path d="M46 59V94M56 53V99M66 59V94" stroke="#8299a4" stroke-width="3"/><path d="M97 169Q100 188 130 181Q158 175 172 185" stroke="#526779" stroke-width="5" stroke-linecap="round"/><path d="M207 58L225 53M211 73H231M209 87L226 94" stroke="#abdce7" stroke-width="4" stroke-linecap="round"/><rect x="93" y="127" width="10" height="16" rx="4" fill="#f8cb75"/>
+</svg>

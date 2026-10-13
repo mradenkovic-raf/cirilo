@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     post :memorize, on: :member
     resources :attempts, only: [:create]
     resource :battle, only: [:create]
+    resource :drive, only: [:show], controller: "road_runs" do
+      post :start
+      post :finish
+      post :skip
+    end
   end
   resources :battles, only: [:show]
   post "/battles/:id/moves", to: "battles#move", as: :battle_moves

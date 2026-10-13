@@ -139,6 +139,14 @@ class SchoolPracticePlanner
   def school_story(index)
     return unless defined?(SchoolStoryBank)
 
+    if SchoolSpatialStoryBank.eligible(@letter_ids).any?
+      # One comprehension story and one spatial reading task per mission once
+      # the chosen letters permit it. New relations do not sit behind a long
+      # rotation of ownership sentences.
+      return SchoolStoryBank.exercise(letter_ids: @letter_ids, variation: @variation,
+        family: index == 10 ? :spatial : :reading)
+    end
+
     SchoolStoryBank.exercise(letter_ids: @letter_ids, variation: @variation * 2 + (index == 10 ? 1 : 0))
   end
 

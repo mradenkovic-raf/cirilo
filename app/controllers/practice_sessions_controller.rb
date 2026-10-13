@@ -8,6 +8,7 @@ class PracticeSessionsController < ApplicationController
     @learner = current_learner
     @practice_session = @learner.practice_sessions.find(params[:id])
     PracticePlanner.upgrade!(@practice_session)
+    return redirect_to practice_session_drive_path(@practice_session) if @practice_session.drive_pending?
     @mission = @practice_session
     @exercise = @practice_session.current_exercise_for_display
     @letter = @exercise && Curriculum.find(@exercise.fetch("letter_id"))

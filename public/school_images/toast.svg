@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Тост</title>
+  <path d="M52 80C26 40 60 23 92 31Q120 18 148 31C181 23 213 40 188 80V162Q187 174 173 174H66Q52 174 52 160Z" fill="#b66b31" stroke="#7d4928" stroke-width="4"/>
+<path d="M65 80C43 49 67 37 91 45Q120 31 149 45C173 37 197 49 174 80V155Q174 162 165 162H74Q65 162 65 153Z" fill="#e1a052"/>
+<path d="M83 82L152 146M105 73L163 125M78 105L129 151M86 143L151 82M77 121L127 75M110 149L165 99" stroke="#b77438" stroke-width="6" stroke-linecap="round" opacity=".75"/><path d="M68 56Q78 49 85 52M112 45H126" stroke="#ffdc98" stroke-width="7" stroke-linecap="round"/>
+</svg>

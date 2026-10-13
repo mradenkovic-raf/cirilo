@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Монета</title>
+  <ellipse cx="124" cy="173" rx="66" ry="10" fill="#e9e3d3"/><circle cx="127" cy="94" r="72" fill="#ce8426" stroke="#965b20" stroke-width="4"/><circle cx="117" cy="91" r="72" fill="#ffce56" stroke="#bf842d" stroke-width="4"/><circle cx="117" cy="91" r="58" stroke="#e7a533" stroke-width="5"/>
+<path d="M117 48L129 74L158 77L136 98L142 126L117 112L92 126L98 98L76 77L105 74Z" fill="#f2ac32" stroke="#be7c27" stroke-width="3" stroke-linejoin="round"/><path d="M80 47Q95 34 114 34" stroke="#fff2b2" stroke-width="7" stroke-linecap="round"/>
+</svg>

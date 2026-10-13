@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Орах</title>
+  <ellipse cx="122" cy="172" rx="100" ry="10" fill="#eee5d6"/><path d="M35 128C15 97 32 44 66 42C99 39 112 70 109 107C107 151 55 166 35 128Z" fill="#b88448" stroke="#77512e" stroke-width="4"/><path d="M67 45Q49 87 64 151M45 59Q66 67 38 91Q60 100 42 121M86 59Q68 82 91 92Q76 112 87 128" stroke="#885c31" stroke-width="5" stroke-linecap="round"/>
+<path d="M121 150Q97 132 116 94Q125 77 136 71Q146 52 171 56Q207 58 218 87Q223 119 197 145Q163 172 121 150Z" fill="#c49258" stroke="#79532f" stroke-width="4"/><path d="M132 139Q109 122 131 97Q135 82 151 86Q160 65 183 79Q203 82 203 106Q201 124 186 132Q175 153 156 142Q143 155 132 139Z" fill="#f1cf96" stroke="#ad7943" stroke-width="4"/><path d="M147 91L155 134M153 112L180 93M164 139L186 115" stroke="#be9057" stroke-width="4" stroke-linecap="round"/>
+</svg>

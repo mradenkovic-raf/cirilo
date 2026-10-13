@@ -17,6 +17,7 @@ class WritingGuidesTest < ActionDispatch::IntegrationTest
       end
       session.update!(exercises: [planned_exercise("trace"), writing], cursor: 0)
       solve_current_exercise(session)
+      DinoDrive.new(session).skip! if session.reload.drive_pending?
       saved_session = session.reload.attributes.deep_dup
       saved_learner = learner.reload.attributes.deep_dup
       saved_attempts = session.attempts.order(:id).map(&:attributes)

@@ -19,6 +19,7 @@ class FullReset
       learner.attempts.delete_all
       learner.battles.delete_all
       learner.part_unlocks.delete_all
+      RoadRun.where(practice_session_id: learner.practice_sessions.select(:id)).delete_all
       learner.practice_sessions.delete_all
       learner.letter_progresses.delete_all
       learner.letter_confusions.delete_all

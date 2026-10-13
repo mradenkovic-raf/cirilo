@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Клупа</title>
+  <path d="M59 112L53 177M181 112L187 177" stroke="#536a6c" stroke-width="10" stroke-linecap="round"/><path d="M59 155H181M48 93V64M191 93V64" stroke="#536a6c" stroke-width="8"/>
+<rect x="29" y="37" width="183" height="24" rx="5" fill="#d6a266" stroke="#906437" stroke-width="4"/><rect x="29" y="67" width="183" height="24" rx="5" fill="#d6a266" stroke="#906437" stroke-width="4"/>
+<path d="M38 106H202L216 128H24Z" fill="#e1b67c" stroke="#906437" stroke-width="4" stroke-linejoin="round"/><path d="M29 118H210M51 43H189M51 76H189" stroke="#c68f4e" stroke-width="3"/>
+</svg>

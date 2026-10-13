@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Ћебе</title>
+  <path d="M39 50H184Q197 50 197 66V159H53Q33 159 33 141V67Q33 50 39 50Z" fill="#ada0e4" stroke="#66578f" stroke-width="4"/>
+<path d="M48 66H181V137H48Z" fill="#c3b6ee"/><path d="M70 65V137M108 65V137M146 65V137" stroke="#8578bc" stroke-width="12"/><path d="M48 89H181M48 119H181" stroke="#e2d4f6" stroke-width="12"/><path d="M48 137H190V155H48Q33 155 33 145Q33 137 48 137Z" fill="#dbd1f1" stroke="#66578f" stroke-width="4"/><path d="M57 155V171M77 155V169M97 155V173M117 155V169M137 155V171M157 155V169M177 155V173" stroke="#8c7db8" stroke-width="5" stroke-linecap="round"/>
+</svg>

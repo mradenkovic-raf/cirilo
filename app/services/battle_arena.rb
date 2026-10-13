@@ -28,7 +28,8 @@ class BattleArena
       learner.battles.create!(practice_session: practice_session, dino_color: learner.dino_color,
         dino_species: learner.selected_dino,
         gear_snapshot: gear, player_hp: player_hp, player_max_hp: player_hp,
-        enemy_hp: enemy_hp, enemy_max_hp: enemy_hp)
+        enemy_hp: enemy_hp, enemy_max_hp: enemy_hp,
+        power_state: practice_session.road_run&.shield_earned? ? { "road_shield" => { "armed" => true } } : {})
     end
   end
 
@@ -43,7 +44,9 @@ class BattleArena
       gear_count: battle.gear_count, dino_color: battle.dino_color, dino_species: battle.dino_species,
       gear: battle.gear_snapshot.deep_dup, remaining_gear: battle.remaining_gear.deep_dup,
       player_move: last["player_move"], enemy_move: last["enemy_move"],
-      outcome: last["outcome"], dropped_part: last["dropped_part"],
+      outcome: last["outcome"], dropped_part: last["dropped_part"], blocked_by: last["blocked_by"],
+      road_shield_armed: battle.road_shield_armed?,
+      road_shield_earned: battle.power_state.key?("road_shield"),
       powers: Battle::POWER_PARTS.to_h { |power, _| [power, {
         owned: !!battle.owns_power?(power), used: battle.power_used?(power),
         available: battle.active? && !!battle.owns_power?(power) && !battle.power_used?(power),
@@ -70,7 +73,9 @@ class BattleArena
     end
 
     case last["outcome"]
-    when "blocked" then "Светлосни штит је зауставио погодак! Сви животи и делови су сачувани."
+    when "blocked"
+      last["blocked_by"] == "road_shield" ? "Штит из вожње је зауставио погодак! Срца и оклоп су сачувани." :
+        "Светлосни штит је зауставио погодак! Сви животи и делови су сачувани."
     when "dodge" then "Ракете су те склониле! Ову рунду нико није погођен."
     when "win" then "Погодак! Противник губи један живот."
     when "tie" then "Нерешено! Нико није изгубио живот. Изабери следећи потез."
@@ -183,13 +188,15 @@ class BattleArena
       "lose"
     end
     dropped_part = nil
+    blocked_by = nil
     if outcome == "win"
       @battle.enemy_hp -= 1
     elsif outcome == "lose"
-      if @battle.shield_armed?
+      if @battle.road_shield_armed? || @battle.shield_armed?
+        blocked_by = @battle.road_shield_armed? ? "road_shield" : "shield"
         powers = @battle.power_state.deep_dup
-        powers["shield"]["armed"] = false
-        powers["shield"]["blocked_round"] = @battle.round
+        powers[blocked_by]["armed"] = false
+        powers[blocked_by]["blocked_round"] = @battle.round
         @battle.power_state = powers
         outcome = "blocked"
       else
@@ -203,6 +210,7 @@ class BattleArena
     @battle.turn_history = @battle.turn_history + [{
       "round" => @battle.round, "player_move" => move, "enemy_move" => enemy_move,
       "outcome" => outcome, "dropped_part" => dropped_part,
+      "blocked_by" => blocked_by,
       "player_hp" => @battle.player_hp, "enemy_hp" => @battle.enemy_hp
     }]
     if @battle.enemy_hp.zero? || @battle.player_hp.zero?

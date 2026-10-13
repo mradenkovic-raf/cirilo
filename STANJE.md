@@ -1,6 +1,16 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-13, lokalna v20 na `127.0.0.1:3001` uvodi podrazumevani školski režim do Е i roditeljski izbor naučenih slova. Cela azbuka ostaje zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-13, lokalna v21 na `127.0.0.1:3001` dodaje vožnju na polovini misije, štit za arenu i više školskog sadržaja. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Dino-vožnja i više kratkog čitanja — v21
+
+Oba režima nude kratku vožnju nakon šest originalnih zadataka. Mrgud baca kamenje na tri trake; dete ima tri srca, 24 sekunde do cilja, dugmad/tastaturu/dodir/prevlačenje, pauzu i preskakanje. Osvojeni štit automatski čuva jedan pogodak u areni iste misije, pre redovnih moći/opreme. SQLite čuva jednu vožnju po misiji; server proverava trajanje i poteze, sam računa sudare i ne prima tvrdnju klijenta o pobedi. Privremeni tok vožnje u istom tabu koristi `sessionStorage`; osvojeni bonus je u bazi. Potpuni restart briše i ovu tabelu. XP i dvanaest obrazovnih koraka ostaju isti.
+
+Banka je proširena na 543 reči (+120), uz 22 nova SVG crteža, ukupno 30. Do Е sada ima 75 reči i 24 slikovna pojma. Dodato je 95 kratkih prostornih rečenica sa tačnim padežima. Od У, čim izabrana slova dopuštaju, jedan zadatak po misiji vežba odnos predmeta i auta/stola/kutije/ranca; drugi ostaje razumevanje rečenice. Nove relacije se ne gube iza duge rotacije starih pitanja. Broj školskih priča na celom skupu je 187. Puna azbuka čuva svoj raniji planer i dobija istu vožnju.
+
+Prošlo je 289 Rails testova / 93.331 tvrdnja i 35 JS testova, plus 1.000 poređenja obračuna vožnje između Ruby-ja i JavaScript-a. Test nedelja od 42 školske misije kroz Е daje 48 različitih ciljnih reči, osam rečenica, 504 zadatka i uobičajenih 6.090 XP. Browser potvrđuje stvarnu pobedu, poraz, pauzu/nastavak, refresh, preskakanje i prikaze 320/390/1280 px. [Dokazi i granice](qa/v21/PROVERA.md).
+
+Tačka povratka: tag `v20-stable-before-dino-drive` na `f7d36d9`; baza u `revisions/2026-10-13-v20-before-drive/`. Glavna lokalna baza migrirana je bez izmene ijednog postojećeg reda. Rad ostaje na grani `school-learning`; GitHub/Railway nisu menjani.
 
 ## Školska slova — v20
 

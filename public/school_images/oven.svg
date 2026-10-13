@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Рерна</title>
+  <rect x="43" y="28" width="154" height="148" rx="8" fill="#c8d9df" stroke="#526a77" stroke-width="4"/><path d="M51 177V183M188 177V183" stroke="#526a77" stroke-width="7" stroke-linecap="round"/>
+<rect x="54" y="75" width="132" height="87" rx="7" fill="#7895a4" stroke="#526a77" stroke-width="4"/><rect x="65" y="91" width="111" height="59" rx="5" fill="#314c60"/><path d="M72 111H169M72 129H169" stroke="#b0c2ca" stroke-width="3"/><path d="M78 116Q82 99 96 108Q113 90 129 106Q148 97 158 116V126H78Z" fill="#dcad62"/><path d="M72 85H168" stroke="#dce9ec" stroke-width="7" stroke-linecap="round"/><g fill="#f1f4f4" stroke="#526a77" stroke-width="3"><circle cx="73" cy="51" r="9"/><circle cx="104" cy="51" r="9"/><circle cx="135" cy="51" r="9"/><circle cx="166" cy="51" r="9"/></g>
+</svg>

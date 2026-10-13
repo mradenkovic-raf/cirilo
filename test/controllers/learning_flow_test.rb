@@ -41,6 +41,8 @@ class LearningFlowTest < ActionDispatch::IntegrationTest
     session.exercises.map { |exercise| exercise.fetch("kind") }.uniq.each do |kind|
       cursor = session.exercises.index { |exercise| exercise.fetch("kind") == kind }
       session.update!(cursor: cursor)
+      # This test visits renderers out of order; the drive has its own flow test.
+      DinoDrive.new(session).skip! if session.drive_pending?
       get practice_session_path(session)
       assert_response :success
       assert_select "[data-exercise][data-kind=?]", kind

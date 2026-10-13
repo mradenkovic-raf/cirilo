@@ -5,7 +5,7 @@ class SchoolWordBankTest < ActiveSupport::TestCase
 
   test "school bank contains many short normalized Serbian words" do
     words = SchoolWordBank.words
-    assert_operator words.length, :>=, 350
+    assert_operator words.length, :>=, 540
     assert_equal words.length, words.map { |entry| entry.fetch("word") }.uniq.length
 
     words.each do |entry|
@@ -43,9 +43,9 @@ class SchoolWordBankTest < ActiveSupport::TestCase
     pool = SchoolWordBank.eligible(ids)
     pictures = SchoolWordBank.picture_entries(ids)
 
-    assert_operator pool.length, :>=, 60
-    assert_operator pictures.length, :>=, 18
-    %w[МАМА ТАТА НОС САТ МОСТ МЕСО МЕТА СТЕНА ТЕНИС].each do |word|
+    assert_operator pool.length, :>=, 75
+    assert_operator pictures.length, :>=, 24
+    %w[МАМА ТАТА НОС САТ МОСТ МЕСО МЕТА СТЕНА ТЕНИС СЕМЕ ТОСТ САНТА МОНЕТА АНТЕНА АНАНАС].each do |word|
       assert_includes pictures.map { |entry| entry.fetch("word") }, word
     end
     %w[АНА НИНА ИМА НОСИ МЕСИ СЕМЕ ТЕСТО].each do |word|
@@ -75,9 +75,11 @@ class SchoolWordBankTest < ActiveSupport::TestCase
     assert_nil SchoolWordBank.find("НЕПОСТОЈЕЋАРЕЧ")
   end
 
-  test "early concrete words have specific safe local illustrations" do
-    %w[ОСА СОМ СТЕНА СТО СЕНО СИТО ТЕСТО НИТ].each do |word|
-      entry = SchoolWordBank.find(word)
+  test "concrete words have specific safe local illustrations" do
+    illustrated_words = SchoolWordBank.words.select { |entry| entry["image"].present? }
+    assert_operator illustrated_words.length, :>=, 30
+    illustrated_words.each do |entry|
+      word = entry.fetch("word")
       assert entry.fetch("picture"), word
       assert_match %r{\A/school_images/[a-z_]+\.svg\z}, entry.fetch("image")
       assert_includes SchoolWordBank.image_paths, entry.fetch("image")
@@ -94,8 +96,19 @@ class SchoolWordBankTest < ActiveSupport::TestCase
   end
 
   test "approximate species life stages and related objects remain text-only words" do
-    %w[ТУНА ШАРАН СМУЂ СИПА СОКО ОРАХ ЈОГУРТ МАЉ ГРОМ ОКЛОП ПИРАТ ЈАРЕ ЛАНЕ ПАЊ].each do |word|
+    %w[ТУНА ШАРАН СМУЂ СИПА СОКО ЈОГУРТ МАЉ ГРОМ ОКЛОП ПИРАТ ЈАРЕ ЛАНЕ РИС ПОНИ ВИШЊА ДУЊА].each do |word|
       assert_equal false, SchoolWordBank.find(word).fetch("picture"), word
+    end
+  end
+
+  test "newly illustrated words identify the object rather than a nearby emoji" do
+    %w[СЕМЕ ОРМАН ОРАХ ПАЊ ФЕН ЋЕБЕ ЏЕМ ЏАК ЏЕП ШЉИВА ВОЛАН ЖИР МЛИН].each do |word|
+      entry = SchoolWordBank.find(word)
+      assert entry.fetch("picture"), word
+      assert entry.fetch("image").present?, word
+    end
+    [%w[СЕМЕ БИЉКА], %w[ТОСТ ХЛЕБ], %w[МОНЕТА ЗЛАТО], %w[СЛИКА РАМ], %w[БУКЕТ ЦВЕЋЕ]].each do |left, right|
+      assert SchoolWordBank.visually_ambiguous?(SchoolWordBank.find(left), SchoolWordBank.find(right)), "#{left} / #{right}"
     end
   end
 

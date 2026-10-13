@@ -1,0 +1,313 @@
+{
+  "total_words": 543,
+  "length_counts": {
+    "2": 6,
+    "3": 94,
+    "4": 231,
+    "5": 159,
+    "6": 53
+  },
+  "stages": [
+    {
+      "through": "А",
+      "letters": 1,
+      "words": 0,
+      "new_words": 0,
+      "pictures": 0,
+      "sentences": 0
+    },
+    {
+      "through": "М",
+      "letters": 2,
+      "words": 1,
+      "new_words": 1,
+      "pictures": 1,
+      "sentences": 0
+    },
+    {
+      "through": "И",
+      "letters": 3,
+      "words": 4,
+      "new_words": 3,
+      "pictures": 1,
+      "sentences": 0
+    },
+    {
+      "through": "Т",
+      "letters": 4,
+      "words": 9,
+      "new_words": 5,
+      "pictures": 2,
+      "sentences": 0
+    },
+    {
+      "through": "О",
+      "letters": 5,
+      "words": 17,
+      "new_words": 8,
+      "pictures": 2,
+      "sentences": 0
+    },
+    {
+      "through": "Н",
+      "letters": 6,
+      "words": 30,
+      "new_words": 13,
+      "pictures": 4,
+      "sentences": 0
+    },
+    {
+      "through": "С",
+      "letters": 7,
+      "words": 51,
+      "new_words": 21,
+      "pictures": 15,
+      "sentences": 4
+    },
+    {
+      "through": "Е",
+      "letters": 8,
+      "words": 75,
+      "new_words": 24,
+      "pictures": 24,
+      "sentences": 8
+    },
+    {
+      "through": "Р",
+      "letters": 9,
+      "words": 109,
+      "new_words": 34,
+      "pictures": 34,
+      "sentences": 8
+    },
+    {
+      "through": "Ј",
+      "letters": 10,
+      "words": 123,
+      "new_words": 14,
+      "pictures": 37,
+      "sentences": 10
+    },
+    {
+      "through": "У",
+      "letters": 11,
+      "words": 137,
+      "new_words": 14,
+      "pictures": 41,
+      "sentences": 18
+    },
+    {
+      "through": "Ш",
+      "letters": 12,
+      "words": 155,
+      "new_words": 18,
+      "pictures": 47,
+      "sentences": 20
+    },
+    {
+      "through": "Л",
+      "letters": 13,
+      "words": 185,
+      "new_words": 30,
+      "pictures": 60,
+      "sentences": 29
+    },
+    {
+      "through": "Љ",
+      "letters": 14,
+      "words": 194,
+      "new_words": 9,
+      "pictures": 61,
+      "sentences": 29
+    },
+    {
+      "through": "З",
+      "letters": 15,
+      "words": 213,
+      "new_words": 19,
+      "pictures": 70,
+      "sentences": 35
+    },
+    {
+      "through": "В",
+      "letters": 16,
+      "words": 238,
+      "new_words": 25,
+      "pictures": 87,
+      "sentences": 37
+    },
+    {
+      "through": "Г",
+      "letters": 17,
+      "words": 263,
+      "new_words": 25,
+      "pictures": 97,
+      "sentences": 37
+    },
+    {
+      "through": "П",
+      "letters": 18,
+      "words": 299,
+      "new_words": 36,
+      "pictures": 111,
+      "sentences": 45
+    },
+    {
+      "through": "К",
+      "letters": 19,
+      "words": 355,
+      "new_words": 56,
+      "pictures": 150,
+      "sentences": 60
+    },
+    {
+      "through": "Д",
+      "letters": 20,
+      "words": 379,
+      "new_words": 24,
+      "pictures": 166,
+      "sentences": 103
+    },
+    {
+      "through": "Б",
+      "letters": 21,
+      "words": 408,
+      "new_words": 29,
+      "pictures": 187,
+      "sentences": 138
+    },
+    {
+      "through": "Њ",
+      "letters": 22,
+      "words": 424,
+      "new_words": 16,
+      "pictures": 197,
+      "sentences": 138
+    },
+    {
+      "through": "Х",
+      "letters": 23,
+      "words": 434,
+      "new_words": 10,
+      "pictures": 200,
+      "sentences": 142
+    },
+    {
+      "through": "Ж",
+      "letters": 24,
+      "words": 448,
+      "new_words": 14,
+      "pictures": 209,
+      "sentences": 143
+    },
+    {
+      "through": "Ч",
+      "letters": 25,
+      "words": 470,
+      "new_words": 22,
+      "pictures": 220,
+      "sentences": 146
+    },
+    {
+      "through": "Ћ",
+      "letters": 26,
+      "words": 481,
+      "new_words": 11,
+      "pictures": 227,
+      "sentences": 154
+    },
+    {
+      "through": "Ф",
+      "letters": 27,
+      "words": 495,
+      "new_words": 14,
+      "pictures": 237,
+      "sentences": 154
+    },
+    {
+      "through": "Ц",
+      "letters": 28,
+      "words": 520,
+      "new_words": 25,
+      "pictures": 254,
+      "sentences": 183
+    },
+    {
+      "through": "Џ",
+      "letters": 29,
+      "words": 531,
+      "new_words": 11,
+      "pictures": 262,
+      "sentences": 183
+    },
+    {
+      "through": "Ђ",
+      "letters": 30,
+      "words": 543,
+      "new_words": 12,
+      "pictures": 267,
+      "sentences": 187
+    }
+  ],
+  "default_week": {
+    "missions": 42,
+    "unique_missions": 42,
+    "tasks": 504,
+    "unique_target_words": 48,
+    "target_words": [
+      "АНАНАС",
+      "АНТЕНА",
+      "ИМАМО",
+      "ИМЕ",
+      "МАМА",
+      "МЕНЕ",
+      "МЕСИ",
+      "МЕСО",
+      "МЕСТО",
+      "МЕТА",
+      "МЕТЕ",
+      "МОНЕТА",
+      "МОСТ",
+      "НЕМА",
+      "НИНА",
+      "НИТ",
+      "НОС",
+      "НОСИ",
+      "НОТА",
+      "ОНА",
+      "ОСА",
+      "ОСАМ",
+      "САМО",
+      "САНТА",
+      "САТ",
+      "СЕМЕ",
+      "СЕНО",
+      "СИТ",
+      "СИТО",
+      "СМЕНА",
+      "СМЕТА",
+      "СНИМА",
+      "СО",
+      "СОМ",
+      "СТАН",
+      "СТАНЕ",
+      "СТЕНА",
+      "СТО",
+      "ТАМНО",
+      "ТАТА",
+      "ТЕНИС",
+      "ТЕСТ",
+      "ТЕСТО",
+      "ТЕТА",
+      "ТИ",
+      "ТИНА",
+      "ТОН",
+      "ТОСТ"
+    ],
+    "unique_sentences": 8,
+    "reading_tasks": 420,
+    "writing_tasks": 84,
+    "xp": 6090,
+    "rewards": 42
+  }
+}

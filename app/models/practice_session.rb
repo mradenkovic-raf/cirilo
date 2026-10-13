@@ -3,6 +3,7 @@ class PracticeSession < ApplicationRecord
   has_many :attempts, dependent: :destroy
   has_one :part_unlock, dependent: :destroy
   has_one :battle, dependent: :destroy
+  has_one :road_run, dependent: :destroy
 
   validates :status, inclusion: { in: %w[active completed] }
   validates :cursor, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -40,6 +41,18 @@ class PracticeSession < ApplicationRecord
 
   def completed?
     status == "completed"
+  end
+
+  def drive_checkpoint?
+    return false if completed? || exercises.empty?
+
+    original_count = exercises.count { |exercise| !exercise["recovery_of"] }
+    completed_count = exercises.first(cursor).count { |exercise| !exercise["recovery_of"] }
+    original_count >= 2 && completed_count == original_count / 2
+  end
+
+  def drive_pending?
+    drive_checkpoint? && !road_run&.resolved?
   end
 
   def total_exercises

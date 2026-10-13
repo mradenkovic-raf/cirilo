@@ -1,0 +1,46 @@
+{
+  "integrity": "ok",
+  "tables": {
+    "letter_progresses": {
+      "rows_before": 15,
+      "rows_after": 15,
+      "identical": true
+    },
+    "practice_sessions": {
+      "rows_before": 10,
+      "rows_after": 10,
+      "identical": true
+    },
+    "attempts": {
+      "rows_before": 124,
+      "rows_after": 124,
+      "identical": true
+    },
+    "part_unlocks": {
+      "rows_before": 9,
+      "rows_after": 9,
+      "identical": true
+    },
+    "battles": {
+      "rows_before": 9,
+      "rows_after": 9,
+      "identical": true
+    },
+    "shop_purchases": {
+      "rows_before": 0,
+      "rows_after": 0,
+      "identical": true
+    },
+    "letter_confusions": {
+      "rows_before": 1,
+      "rows_after": 1,
+      "identical": true
+    },
+    "learners": {
+      "rows_before": 4,
+      "rows_after": 4,
+      "identical": true
+    }
+  },
+  "new_road_runs": 0
+}

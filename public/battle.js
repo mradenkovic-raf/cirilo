@@ -154,6 +154,13 @@ import { burst } from './fx.js';
     $('[data-revealed-name]').textContent = moveNames[revealed] || '';
     putIcon($('[data-revealed-icon]'), revealed);
     $('[data-shield-ready]').hidden = !next.shield_armed;
+    const roadShield = $('[data-road-shield]');
+    if (roadShield) {
+      roadShield.hidden = !next.road_shield_earned;
+      roadShield.classList.toggle('is-spent', !next.road_shield_armed);
+      $('[data-road-shield-label]').textContent = next.road_shield_armed
+        ? 'Штит из вожње · чува 1 погодак' : 'Штит из вожње је искоришћен';
+    }
     powerButtons.forEach(button => {
       const power = button.dataset.battlePower;
       const status = next.powers?.[power] || {};

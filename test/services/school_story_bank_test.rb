@@ -44,7 +44,7 @@ class SchoolStoryBankTest < ActiveSupport::TestCase
     ids = SchoolCurriculum.letters.map { |letter| letter.fetch("id") }
     160.times do |variation|
       task = SchoolStoryBank.exercise(letter_ids: ids, variation: variation)
-      next unless task.fetch("school_story")
+      next unless task["story_dimension"] == "ownership"
 
       scenes = task.fetch("choices").map { |choice| choice.fetch("scene") }
       assert_equal 4, scenes.uniq.length
@@ -70,7 +70,7 @@ class SchoolStoryBankTest < ActiveSupport::TestCase
     assert_equal sentences.first(count), sentences.last(count)
   end
 
-  test "borrowed spatial stories retain their correct scene after answer ids are shuffled" do
+  test "borrowed stories retain their correct scene after answer ids are shuffled" do
     ids = SchoolCurriculum.letters.map { |letter| letter.fetch("id") }
     candidates = SchoolStoryBank.eligible(ids)
     candidates.each_with_index do |candidate, variation|

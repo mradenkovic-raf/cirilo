@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Волан</title>
+  <circle cx="120" cy="100" r="75" fill="#e8f2f6" stroke="#384f63" stroke-width="18"/><path d="M55 79L108 96M185 79L132 96M120 116V169" stroke="#4c677c" stroke-width="20" stroke-linecap="round"/><circle cx="120" cy="101" r="28" fill="#7fa1b7" stroke="#384f63" stroke-width="5"/><rect x="105" y="93" width="30" height="17" rx="7" fill="#d3e3ec"/><path d="M73 47Q96 29 124 31M54 121Q57 133 65 145" stroke="#7995a8" stroke-width="6" stroke-linecap="round"/>
+</svg>

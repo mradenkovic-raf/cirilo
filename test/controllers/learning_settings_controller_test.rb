@@ -72,6 +72,12 @@ class LearningSettingsControllerTest < ActionDispatch::IntegrationTest
     learner = school_learner
     session = PracticePlanner.start!(learner)
     while !session.reload.completed?
+      if session.drive_pending?
+        get practice_session_path(session)
+        assert_redirected_to practice_session_drive_path(session)
+        post skip_practice_session_drive_path(session)
+        assert_redirected_to practice_session_path(session)
+      end
       get practice_session_path(session)
       assert_response :success
       kind = session.current_exercise.fetch("kind")

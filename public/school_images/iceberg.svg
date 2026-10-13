@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Санта</title>
+  <path d="M16 142Q46 131 76 142T136 142T196 142T229 142V177H16Z" fill="#70cced"/>
+<path d="M39 143L69 80L93 91L125 29L153 66L177 62L205 143Z" fill="#e6f9ff" stroke="#79b8d5" stroke-width="4" stroke-linejoin="round"/>
+<path d="M125 29L139 104L158 142H110L101 89ZM69 80L81 136L94 143H39Z" fill="#b5e5f6"/>
+<path d="M177 62L171 111L183 142H205Z" fill="#8ed2ed"/>
+<path d="M23 147Q44 155 65 147T107 147T149 147T191 147T223 147" stroke="#f3fcff" stroke-width="5" stroke-linecap="round"/><path d="M46 166H72M165 167H196" stroke="#3cb0d8" stroke-width="4" stroke-linecap="round"/>
+</svg>

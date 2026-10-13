@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def static_module_imports
-    %w[application.js workshop.js battle.js shop.js fx.js writing.js variety.js mission_path.js trace_pad.js trace.js].to_h do |name|
+    %w[application.js workshop.js battle.js shop.js fx.js writing.js variety.js mission_path.js trace_pad.js trace.js dino_drive.js dino_drive_engine.js].to_h do |name|
       ["/#{name}", static_asset_path(name)]
     end
   end

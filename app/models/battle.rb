@@ -56,6 +56,10 @@ class Battle < ApplicationRecord
     owns_power?("shield") && power_state.dig("shield", "armed") == true
   end
 
+  def road_shield_armed?
+    power_state.dig("road_shield", "armed") == true
+  end
+
   private
 
   def completed_mission_belongs_to_learner

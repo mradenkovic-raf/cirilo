@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Млин</title>
+  <path d="M73 173L84 87H157L170 173Z" fill="#f2d7a0" stroke="#98704a" stroke-width="4"/><path d="M71 87L120 44L170 87Z" fill="#c76553" stroke="#88483d" stroke-width="4"/>
+<path d="M110 173V146Q120 132 131 146V173" fill="#8a7259"/><rect x="105" y="108" width="31" height="23" rx="3" fill="#80b6c9" stroke="#98704a" stroke-width="3"/>
+<path d="M54 31L182 146M57 147L180 25" stroke="#665d51" stroke-width="8"/>
+<path d="M55 26L43 40L85 79L99 63ZM177 24L192 39L151 80L135 64ZM181 145L194 132L153 96L140 109ZM56 149L43 134L83 96L97 110Z" fill="#c8dedb" stroke="#657a7c" stroke-width="3"/>
+<circle cx="119" cy="88" r="12" fill="#a99165" stroke="#665d51" stroke-width="4"/><path d="M52 176H192" stroke="#9bb975" stroke-width="7" stroke-linecap="round"/>
+</svg>

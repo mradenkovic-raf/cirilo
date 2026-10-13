@@ -1,0 +1,41 @@
+<% content_for :title, "Дино-вожња" %>
+<section class="drive-root" data-dino-drive
+  data-start-url="<%= start_practice_session_drive_path(@practice_session) %>"
+  data-finish-url="<%= finish_practice_session_drive_path(@practice_session) %>"
+  data-next-url="<%= practice_session_path(@practice_session) %>">
+  <script type="application/json" data-drive-state><%= raw json_escape((@race_state || {}).to_json) %></script>
+  <header class="drive-heading"><div><span class="drive-eyebrow">ПАУЗА ЗА АВАНТУРУ</span><h1>Дино-вожња</h1></div><span class="drive-prize" aria-label="Награда: један штит за арену"><%= battle_move_icon('guard') %><b>+1</b></span></header>
+  <div class="drive-board" data-drive-board tabindex="0" role="group" aria-label="Три траке. Стрелицама или додиром померај ауто и избегавај камење.">
+    <div class="drive-hills" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="drive-road" aria-hidden="true"><div></div><div></div><div></div></div>
+    <div class="drive-dashboard">
+      <div class="drive-hearts" data-drive-hearts role="img" aria-label="3 срца"><% 3.times do %><span><%= battle_move_icon('heart') %></span><% end %></div>
+      <div class="drive-distance" role="progressbar" aria-label="Пут до циља" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-drive-progress><span></span><b aria-hidden="true">⚑</b></div>
+      <button type="button" class="drive-pause" data-drive-pause aria-label="Пауза" hidden>Ⅱ</button>
+    </div>
+    <div class="drive-mrgud" data-drive-mrgud aria-hidden="true"><span class="drive-taunt" data-drive-taunt>Хе-хе!</span><%= battle_enemy_svg(enemy_hp: 3) %><span class="drive-mrgud-rock">◆</span></div>
+    <div class="drive-rocks" data-drive-rocks aria-hidden="true"></div>
+    <div class="drive-car" data-drive-car aria-hidden="true">
+      <span class="drive-exhaust"></span>
+      <div class="drive-driver"><%= colored_dino(@learner, variant: :compact) %></div>
+      <svg class="drive-car-body" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="88" rx="50" ry="8" fill="#182b38" fill-opacity=".25"/><rect x="7" y="52" width="18" height="37" rx="8" fill="#233442"/><rect x="95" y="52" width="18" height="37" rx="8" fill="#233442"/><path d="M24 29Q60 17 96 29L104 72Q60 89 16 72Z" fill="#ed7b49" stroke="#864423" stroke-width="3"/><path d="M26 33Q60 23 94 33L91 47Q60 53 29 47Z" fill="#aee9e3" stroke="#3e7574" stroke-width="3"/><path d="M20 59Q60 44 100 59L99 76Q60 86 21 76Z" fill="#ffd364"/><path d="M48 52H72L75 78H45Z" fill="#fff1ad"/><rect x="26" y="60" width="18" height="11" rx="5" fill="#fffce0"/><rect x="76" y="60" width="18" height="11" rx="5" fill="#fffce0"/><path d="M45 72H75" stroke="#9a562e" stroke-width="4" stroke-linecap="round"/></svg>
+    </div>
+    <div class="drive-overlay" data-drive-overlay>
+      <div class="drive-overlay-card">
+        <div class="drive-overlay-icon" data-drive-result-icon aria-hidden="true"><%= battle_move_icon('guard') %></div>
+        <h2 data-drive-title>Освоји штит!</h2>
+        <p data-drive-detail>Обилази камење.</p>
+        <div class="drive-demo" data-drive-demo aria-hidden="true"><span>←</span><span>🚗</span><span>→</span></div>
+        <button type="button" class="button primary drive-go" data-drive-start><%= ui_icon(:play) %> Вози!</button>
+        <button type="button" class="button primary drive-go" data-drive-resume hidden><%= ui_icon(:play) %> Настави вожњу</button>
+        <button type="button" class="button primary drive-go" data-drive-retry hidden><%= ui_icon(:reset) %> Сачувај резултат</button>
+        <a class="button primary drive-go" data-drive-next href="<%= practice_session_path(@practice_session) %>" hidden><%= ui_icon(:arrow) %> Даље</a>
+      </div>
+    </div>
+  </div>
+  <div class="drive-controls" aria-label="Помери ауто"><button type="button" data-drive-left disabled aria-label="Лева трака"><span aria-hidden="true">←</span></button><span class="drive-control-hint" aria-hidden="true">🚗</span><button type="button" data-drive-right disabled aria-label="Десна трака"><span aria-hidden="true">→</span></button></div>
+  <div class="drive-error" role="alert" data-drive-error hidden></div>
+  <p class="drive-live" role="status" aria-live="polite" aria-atomic="true" data-drive-live></p>
+  <%= button_to skip_practice_session_drive_path(@practice_session), class: 'drive-skip', form: { data: { drive_skip: true } } do %>Прескочи вожњу<% end %>
+  <noscript><p>За вожњу укључи JavaScript, или настави мисију дугметом „Прескочи вожњу”.</p></noscript>
+</section>

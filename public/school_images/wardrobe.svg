@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Орман</title>
+  <rect x="44" y="23" width="152" height="151" rx="8" fill="#b57845" stroke="#654733" stroke-width="4"/><path d="M52 173V184M188 173V184" stroke="#654733" stroke-width="9" stroke-linecap="round"/><rect x="54" y="34" width="64" height="128" rx="4" fill="#edc07e" stroke="#926335" stroke-width="3"/><rect x="123" y="34" width="63" height="128" rx="4" fill="#e6ae69" stroke="#926335" stroke-width="3"/><path d="M70 49V149M171 49V149" stroke="#ce954e" stroke-width="3"/><path d="M106 94V112M135 94V112" stroke="#684e3e" stroke-width="6" stroke-linecap="round"/><path d="M40 22H200" stroke="#7c522f" stroke-width="8" stroke-linecap="round"/>
+</svg>
