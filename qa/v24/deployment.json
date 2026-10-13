@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-13",
+  "url": "https://cirilo-production.up.railway.app",
+  "commit": "349d1de4aa86c5554f6383b3f80423045292bae2",
+  "deployment_id": "41580f93-5a61-42ba-bb55-af1857a8000e",
+  "status": "SUCCESS",
+  "ci_url": "https://github.com/mradenkovic-raf/cirilo/actions/runs/38464948633",
+  "rails_tests": 298,
+  "rails_assertions": 93412,
+  "javascript_tests": 62,
+  "audio_tests": 17,
+  "baseline_regressions": 4,
+  "physical_android_verified": false,
+  "database_migrations": false,
+  "resource_changes": false
+}

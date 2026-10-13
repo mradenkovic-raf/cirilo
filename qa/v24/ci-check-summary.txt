@@ -1,0 +1,16 @@
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.3178145Z 298 runs, 93412 assertions, 0 failures, 0 errors, 0 skips
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.5072841Z ℹ tests 10
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.5074860Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.5651951Z ℹ tests 5
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.5653435Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.6086185Z ℹ tests 6
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.6087549Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.8921106Z ℹ tests 17
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.8922254Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.9345343Z ℹ tests 5
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:16.9346798Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:17.0008515Z ℹ tests 13
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:17.0009318Z ℹ fail 0
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:17.0427359Z ℹ tests 6
+Rails and browser logic	UNKNOWN STEP	2026-10-13T20:43:17.0429154Z ℹ fail 0
+Docker and persistent SQLite	UNKNOWN STEP	2026-10-13T20:43:38.5254146Z PASS: Docker build, fresh root-owned volume, Rails UID 1000, HTTPS proxy, healthcheck, CSRF, host checks, and mission persistence across containers.

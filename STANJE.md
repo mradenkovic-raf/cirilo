@@ -1,6 +1,12 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-13, **v22 je javno objavljena na Railwayu**, uz zaštitu baze pred migracijom u commitu `11ebe3b`. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
+Aktuelno: 2026-10-13, **v24 je javno objavljena na Railwayu**, sa ispravkom pokretanja zvuka na Androidu u commitu `349d1de`. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
+
+## Android zvuk u igrama — v24
+
+Korisnik je prijavio da u Android Chrome-u čuje efekat uspešnog zadatka, ali ništa u vožnji/areni. Audio modul je reagovao samo na pointerdown i mogao je zauvek da ostane u čekanju prvog blokiranog resume zahteva. Sada touch/pen pokreće zvuk na puštanje, postoje touchend/click rezervne putanje, a nov stvarni gest ili uključivanje zvuka mogu ponoviti zaglavljeni zahtev. FX zadataka i glasnoća nisu menjani.
+
+Četiri nova regresiona scenarija padaju na starom kodu, a prolaze na ispravci; svih 17 audio i ukupno 62 JS testa prolaze. GitHub dodatno potvrđuje 298 Rails testova / 93.412 tvrdnji i Docker provere. Deployment `41580f93-5a61-42ba-bb55-af1857a8000e` za `349d1de` je SUCCESS; javna provera potvrđuje tačan novi audio fajl i nastavak stare misije. Nema migracija ili promene resursa. Korisnikova provera na fizičkom Androidu još nije potvrđena. [Dokazi](qa/v24/PROVERA.md).
 
 ## Objava školskog režima i igara — v23
 

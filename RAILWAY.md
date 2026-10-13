@@ -1,6 +1,6 @@
 # Railway — podešavanje i objavljivanje
 
-Poslednja objava: **2026-10-13**, verzija aplikacije v22 sa zaštitom baze pri migraciji, commit `11ebe3b`, deployment `9a85c6fb-c07d-4cfb-b879-48193ee37849`, status **SUCCESS**. Kod je u **javnom** repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), grana `main`. GitHub provere, javni HTTPS, tačne verzije novih skripti i nastavak stare misije preko istog stalnog cookie-ja prolaze. [Aktuelni rezultat](qa/v23/PROVERA.md); [prva objava i trial podešavanja](qa/v19/PROVERA.md).
+Poslednja objava: **2026-10-13**, v24 ispravka Android zvuka, commit `349d1de`, deployment `41580f93-5a61-42ba-bb55-af1857a8000e`, status **SUCCESS**. Kod je u **javnom** repozitorijumu [mradenkovic-raf/cirilo](https://github.com/mradenkovic-raf/cirilo), grana `main`. GitHub provere, javni HTTPS, tačne verzije novih skripti i nastavak stare misije preko istog stalnog cookie-ja prolaze. [Aktuelni rezultat](qa/v24/PROVERA.md); [objava školskog režima i rezerva baze](qa/v23/PROVERA.md); [prva objava i trial podešavanja](qa/v19/PROVERA.md).
 
 - Javna adresa: **https://cirilo-production.up.railway.app**
 - [Railway servis](https://railway.com/project/8a26bf67-82f2-47ff-8e58-86d672c1d319/service/22dc64c0-c31f-487f-978e-06d55b1bf499?environmentId=3276f7ec-16c0-45c9-92cc-63b935024066)
