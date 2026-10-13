@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Зид</title>
+<ellipse cx="120" cy="179" rx="101" ry="7" fill="#f0e5de"/>
+<path d="M21 58H79V25H136V58H220V169H21Z" fill="#e39475" stroke="#9b5d47" stroke-width="4" stroke-linejoin="round"/>
+<path d="M21 95H220M21 132H220M79 58H136M68 58V95M150 58V95M45 95V132M119 95V132M191 95V132M83 132V169M162 132V169" stroke="#f9d7b9" stroke-width="7"/>
+<path d="M30 70H56M88 37H122M132 143H150M51 108H90M159 73H200" stroke="#c9795d" stroke-width="4" stroke-linecap="round"/>
+</svg>

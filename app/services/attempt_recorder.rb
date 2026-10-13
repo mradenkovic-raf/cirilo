@@ -275,7 +275,7 @@ class AttemptRecorder
     entry = nil if entry && entry["picture"] == false
     meaning = entry && { word: entry.fetch("word"), emoji: entry.fetch("emoji"),
       sentence: @session.school_mode? ? "" : entry.fetch("sentence").sub("▢", entry.fetch("word").downcase) }
-    meaning[:image_url] = SchoolWordBank.image_url(entry) if meaning && @session.school_mode?
+    meaning[:image_url] = SchoolWordBank.image_url(entry) if meaning && entry["image"]
     {
       success: true, correct: attempt.correct?, duplicate: duplicate, recovery_required: recovery_required,
       score: attempt.score, letter_feedback: attempt.trace_metrics["feedback"],

@@ -1,14 +1,14 @@
 require "test_helper"
 
 class SchoolStoryBankTest < ActiveSupport::TestCase
-  test "the default learned set has eight distinct short comprehension sentences" do
+  test "the default learned set has twenty distinct short comprehension sentences" do
     candidates = SchoolStoryBank.eligible(SchoolCurriculum.default_ids)
-    assert_equal 8, candidates.length
-    expected = %w[Мама Тата].product(%w[сат месо сито тесто]).map { |person, object| "#{person} има #{object}." }
+    assert_equal 20, candidates.length
+    expected = %w[Мама Тата].product(%w[сат месо сито тесто семе сено тост со ананас сома]).map { |person, object| "#{person} има #{object}." }
     assert_equal expected.sort, candidates.map { |candidate| candidate.fetch("story_sentence") }.sort
     candidates.each do |candidate|
       assert SchoolCurriculum.known_text?(candidate.fetch("story_sentence"), SchoolCurriculum.default_ids)
-      assert_operator candidate.fetch("story_sentence").scan(/[[:alpha:]]+/).map(&:length).max, :<=, 5
+      assert_operator candidate.fetch("story_sentence").scan(/[[:alpha:]]+/).map(&:length).max, :<=, 6
     end
   end
 
@@ -42,7 +42,7 @@ class SchoolStoryBankTest < ActiveSupport::TestCase
 
   test "ownership choices require reading both the person and the object" do
     ids = SchoolCurriculum.letters.map { |letter| letter.fetch("id") }
-    160.times do |variation|
+    (SchoolStoryBank.eligible(ids).length * 2).times do |variation|
       task = SchoolStoryBank.exercise(letter_ids: ids, variation: variation)
       next unless task["story_dimension"] == "ownership"
 
@@ -53,10 +53,30 @@ class SchoolStoryBankTest < ActiveSupport::TestCase
       assert_equal 2, scenes.count { |scene| scene.fetch("object") == correct.fetch("object") }
       person = SchoolStoryBank::PEOPLE.find { |item| item.fetch("id") == correct.fetch("person") }
       object = SchoolStoryBank::OBJECTS.find { |item| item.fetch("id") == correct.fetch("object") }
+      alternative = SchoolStoryBank::OBJECTS.find { |item| scenes.any? { |scene| scene.fetch("object") == item.fetch("id") && item != object } }
+      if object["picture_group"]
+        assert_not_equal object["picture_group"], alternative["picture_group"], "Related pictures must not provide two valid interpretations"
+      end
       assert_equal "#{person.fetch('word')} има #{object.fetch('word')}.", task.fetch("story_sentence")
       assert_not_includes task.fetch("prompt"), person.fetch("word")
       assert_not_includes task.fetch("prompt"), object.fetch("word")
       task.fetch("choices").each { |choice| assert_match(/\AS[1-4]\z/, choice.fetch("value")) }
+    end
+  end
+
+  test "illustrated ownership stories use the word bank artwork without exposing its name" do
+    ids = SchoolCurriculum.default_ids
+    candidates = SchoolStoryBank.eligible(ids)
+    %w[seeds hay toast catfish].each do |object_id|
+      variation = candidates.index { |candidate| candidate.fetch("object").fetch("id") == object_id }
+      task = SchoolStoryBank.exercise(letter_ids: ids, variation: variation)
+      correct_scene = task.fetch("choices").find { |choice| choice.fetch("value") == task.fetch("answer") }.fetch("scene")
+      assert_includes SchoolWordBank.image_paths, correct_scene.fetch("image")
+      html = ApplicationController.render(partial: "practice_sessions/school_story", locals: { exercise: task })
+      document = Nokogiri::HTML.fragment(html)
+      correct = document.at_css("button[data-answer='#{task.fetch('answer')}']")
+      assert_match %r{\A/school_images/[a-z_]+\.svg\?v=[a-f0-9]{12}\z}, correct.at_css("image")["href"]
+      assert_no_match(/[А-Яа-яЂђЈјЉљЊњЋћЏџ]/, correct.text)
     end
   end
 
@@ -68,6 +88,19 @@ class SchoolStoryBankTest < ActiveSupport::TestCase
     end
     assert_equal count, sentences.first(count).uniq.length
     assert_equal sentences.first(count), sentences.last(count)
+  end
+
+  test "the default mission's two consecutive stories change both person and object" do
+    ids = SchoolCurriculum.default_ids
+    count = SchoolStoryBank.eligible(ids).length
+    scenes = count.times.map do |variation|
+      task = SchoolStoryBank.exercise(letter_ids: ids, variation: variation)
+      task.fetch("choices").find { |choice| choice.fetch("value") == task.fetch("answer") }.fetch("scene")
+    end
+    scenes.each_slice(2) do |first, second|
+      assert_not_equal first.fetch("person"), second.fetch("person")
+      assert_not_equal first.fetch("object"), second.fetch("object")
+    end
   end
 
   test "borrowed stories retain their correct scene after answer ids are shuffled" do

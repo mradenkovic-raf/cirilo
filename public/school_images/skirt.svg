@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Сукња</title>
+<ellipse cx="120" cy="177" rx="91" ry="8" fill="#efe5ed"/>
+<path d="M76 29H164L173 68L211 162Q120 184 29 162L67 68Z" fill="#cb76ad" stroke="#894273" stroke-width="4" stroke-linejoin="round"/>
+<path d="M76 29H164L170 53H70Z" fill="#a9518b" stroke="#894273" stroke-width="4"/>
+<path d="M84 62L59 162M108 62L101 169M131 62L140 169M157 62L182 162" stroke="#a9548e" stroke-width="5" stroke-linecap="round"/>
+<path d="M40 151Q120 173 201 151" stroke="#f0b8d8" stroke-width="6"/>
+</svg>

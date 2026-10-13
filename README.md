@@ -6,6 +6,14 @@ Javna aplikacija: **[cirilo-production.up.railway.app](https://cirilo-production
 
 V24 popravlja uključivanje muzike i efekata u igrama na dodir i oporavak blokiranog audio pokušaja. Posle objave osveži stranicu na telefonu. [Provera Android ispravke](qa/v24/PROVERA.md).
 
+## Više reči i manje pogađanja — v25 (lokalno)
+
+Školska banka sada ima **781 reč i oblik reči** (+238), od kojih je 710 dugo najviše pet slova. Do Е ima **120 reči umesto 75**, sa **37 slikovnih odgovora umesto 24**. Novi slikovni pojmovi uključuju omot, stan, mantu, totem i smet; osam dodatnih odgovora su množine sa odgovarajućim slikama više predmeta. Jednina i množina istog pojma nisu konkurentski odgovori. Dodato je **20 lokalnih SVG ilustracija**, bez spoljnih servisa.
+
+Režim cele azbuke dobio je još **48 kratkih slikovnih reči**, ukupno 160, sa rečenicama i slikama u zadacima i posle tačnog odgovora. Do Е ima **20 kratkih rečenica umesto 8**; dve priče u istoj misiji menjaju i osobu i predmet. I ostale školske etape imaju više kratkih reči i rečenica.
+
+Izbor reči uzima u obzir poslednjih šest školskih misija, uključujući promenu naučenih slova, i sve tri reči iz spajanja. Biranje reči za sliku češće nudi slične početke i dužine, pa prvo slovo nije dovoljno. Naučena slova, nagrade i odnos deset čitalačkih/dve pisaće vežbe ostaju isti. Započeta misija zadržava svoja pitanja; novo gradivo dobija sledeća. Ova verzija **još nije objavljena na Railwayu**. [Provere v25](qa/v25/PROVERA.md).
+
 ## Muzika, efekti i jasnije naočare — v22
 
 Vožnja i arena imaju različite tihe melodije. Skretanje, sudar, uspešan udarac, promašaj, štit i posebne moći imaju zasebne efekte; pobeda donosi kratku fanfaru i sintetizovan aplauz, a poraz silazni zvučni signal. Zvuk nastaje lokalno preko Web Audio API-ja, bez preuzimanja, novog servisa ili troška. Počinje tek posle dodira/tastera; postojeće dugme zvučnika uključuje/isključuje i muziku i efekte. Pauza vožnje, skriven tab i izlazak zaustavljaju muziku. Povratak na završenu igru ne ponavlja proslavu.
@@ -26,7 +34,7 @@ Podrazumevana igra koristi **А, М, И, Т, О, Н, С, Е**. U **Još → Za r
 
 Redosled: **А М И Т О Н С Е Р Ј У Ш Л Љ З В Г П К Д Б Њ Х Ж Ч Ћ Ф Ц Џ Ђ**. Igra sama ne dodaje školska slova. Reči, ponuđeni odgovori, pogrešna slova, rečenice, dopune i ponavljanje koriste samo roditeljev izbor. I slovarica prati taj izbor. Uputstva i ostali tekst interfejsa nisu ograničeni tim skupom.
 
-Školska banka ima **543 kratke reči od 2–6 slova**, od kojih je 490 do pet slova. Skup do Е ima 75 reči i 24 slikovna pojma, uključujući kratke glagole i imena za sastavljanje po sećanju. Za slikovne zadatke koriste se samo ilustrovani pojmovi; slike koje mogu isto da se protumače ne nude se zajedno. Kratke rečenice poput „Мама има сат“ zahtevaju prepoznavanje i osobe i predmeta. Prostorne priče ulaze tek kada su sva slova njihovog teksta poznata, uključujući padežne nastavke.
+Školska banka ima **781 kratku reč i oblik od 2–6 slova**, od kojih je 710 do pet slova. Skup do Е ima 120 reči i 37 slikovnih odgovora, uključujući kratke glagole i imena za sastavljanje po sećanju. Za slikovne zadatke koriste se samo ilustrovani pojmovi; slike koje mogu isto da se protumače ne nude se zajedno. Kratke rečenice poput „Мама има сат“ zahtevaju prepoznavanje i osobe i predmeta. Prostorne priče ulaze tek kada su sva slova njihovog teksta poznata, uključujući padežne nastavke.
 
 Misija i dalje ima 12 zadataka i uobičajenih 145 XP: deset zadataka čitanja/rada sa slovima i dve kratke vežbe pisanja. Na najranijim i vrlo uskim proizvoljnim skupovima nema dovoljno reči/slika, pa se nedostupne igre zamenjuju vežbama slova i pamćenja. Širinu sadržaja proveravamo kroz 42 misije (šest dnevno tokom nedelju dana); to nije dnevna obaveza niti ograničenje igranja. Ponavljanje reči kroz različite igre je namerno.
 
@@ -67,7 +75,7 @@ Pre promene napravljen je Git commit `ce45f7f`, tag `v14-stable-before-device-pr
 ## Šta radi
 
 - V14: pregledano je svih 60 velikih/malih štampanih oblika; ispravljena su 42 skupa poteza prema srpskim bukvarima. Brojevi početka imaju strelice smera; numeracije koje dele isti početak razmaknute su. Aktuelne putanje koriste i već sačuvani zadaci pisanja reči/dopune, bez promene pitanja, odgovora, cursor-a ili XP-a. [Izvori i pregled svih slova](qa/v14/IZVORI-POTEZA.md). Ocena i dalje meri oblik, ne kažnjava drugačiji redosled poteza.
-- Banka ima 112 reči: za svako slovo najmanje tri koje njime počinju, većinom četiri. Naredne misije rotiraju te primere; započeta misija čuva svoje reči. Slične slike ne pojavljuju se kao međusobni odgovori (npr. auto/džip, nos/njuška/njuh). Duže reči imaju prilagođen mobilni prikaz i ne prelamaju se usred ponuđenog odgovora.
+- Banka cele azbuke ima 160 reči: za svako slovo najmanje tri koje njime počinju, uz dodatne kratke primere iz v25. Naredne misije rotiraju te primere; započeta misija čuva svoje reči. Slične slike ne pojavljuju se kao međusobni odgovori (npr. auto/džip, nos/njuška/njuh). Duže reči imaju prilagođen mobilni prikaz i ne prelamaju se usred ponuđenog odgovora.
 - V13: protivnik je podešen za oko 75% pobeda u celoj borbi bez posebnih moći. Pomoć zavisi od početnih života, bez garantovanog ishoda. Naočare čuvaju otkriven potez, moći i jaka oprema mogu dodatno da pomognu. Cilj se podešava preko `BattleOpponent::TARGET_VICTORY_CHANCE`.
 - V12: arena pokazuje tri velika srca i pojedinačne komade oklopa. Pogodak označava samo izgubljenu ikonu uz „−1 ОКЛОП” ili „−1 СРЦЕ”; potrošene ikone ostaju prazne, a sva zarađena oprema ostaje u kolekciji.
 - V11: slika predmeta stoji uz slova dok dete piše reč. Umesto trake napretka njegov opremljeni dinosaurus ide po tačkama ka Mrgudu; dodatno ponavljanje produžava stazu. Arena jasno pokazuje pobedu uz medalju, zvezdice i melodiju, odnosno poraz uz poseban zvučni signal. Završnica sama dolazi u vidljivi deo ekrana; osvežavanje ne ponavlja slavlje. [Provere](qa/v11/PROVERA.md).

@@ -1,0 +1,336 @@
+{
+  "total_words": 781,
+  "full_alphabet_words": 160,
+  "local_illustrations": 50,
+  "length_counts": {
+    "2": 10,
+    "3": 129,
+    "4": 312,
+    "5": 259,
+    "6": 71
+  },
+  "stages": [
+    {
+      "through": "А",
+      "letters": 1,
+      "words": 0,
+      "new_words": 0,
+      "pictures": 0,
+      "sentences": 0
+    },
+    {
+      "through": "М",
+      "letters": 2,
+      "words": 1,
+      "new_words": 1,
+      "pictures": 1,
+      "sentences": 0
+    },
+    {
+      "through": "И",
+      "letters": 3,
+      "words": 4,
+      "new_words": 3,
+      "pictures": 1,
+      "sentences": 0
+    },
+    {
+      "through": "Т",
+      "letters": 4,
+      "words": 10,
+      "new_words": 6,
+      "pictures": 2,
+      "sentences": 0
+    },
+    {
+      "through": "О",
+      "letters": 5,
+      "words": 21,
+      "new_words": 11,
+      "pictures": 3,
+      "sentences": 0
+    },
+    {
+      "through": "Н",
+      "letters": 6,
+      "words": 39,
+      "new_words": 18,
+      "pictures": 7,
+      "sentences": 0
+    },
+    {
+      "through": "С",
+      "letters": 7,
+      "words": 77,
+      "new_words": 38,
+      "pictures": 20,
+      "sentences": 12
+    },
+    {
+      "through": "Е",
+      "letters": 8,
+      "words": 120,
+      "new_words": 43,
+      "pictures": 37,
+      "sentences": 20
+    },
+    {
+      "through": "Р",
+      "letters": 9,
+      "words": 159,
+      "new_words": 39,
+      "pictures": 47,
+      "sentences": 22
+    },
+    {
+      "through": "Ј",
+      "letters": 10,
+      "words": 177,
+      "new_words": 18,
+      "pictures": 50,
+      "sentences": 24
+    },
+    {
+      "through": "У",
+      "letters": 11,
+      "words": 197,
+      "new_words": 20,
+      "pictures": 55,
+      "sentences": 32
+    },
+    {
+      "through": "Ш",
+      "letters": 12,
+      "words": 217,
+      "new_words": 20,
+      "pictures": 61,
+      "sentences": 34
+    },
+    {
+      "through": "Л",
+      "letters": 13,
+      "words": 254,
+      "new_words": 37,
+      "pictures": 77,
+      "sentences": 43
+    },
+    {
+      "through": "Љ",
+      "letters": 14,
+      "words": 264,
+      "new_words": 10,
+      "pictures": 78,
+      "sentences": 43
+    },
+    {
+      "through": "З",
+      "letters": 15,
+      "words": 287,
+      "new_words": 23,
+      "pictures": 87,
+      "sentences": 49
+    },
+    {
+      "through": "В",
+      "letters": 16,
+      "words": 329,
+      "new_words": 42,
+      "pictures": 106,
+      "sentences": 53
+    },
+    {
+      "through": "Г",
+      "letters": 17,
+      "words": 360,
+      "new_words": 31,
+      "pictures": 117,
+      "sentences": 53
+    },
+    {
+      "through": "П",
+      "letters": 18,
+      "words": 409,
+      "new_words": 49,
+      "pictures": 132,
+      "sentences": 61
+    },
+    {
+      "through": "К",
+      "letters": 19,
+      "words": 499,
+      "new_words": 90,
+      "pictures": 179,
+      "sentences": 86
+    },
+    {
+      "through": "Д",
+      "letters": 20,
+      "words": 545,
+      "new_words": 46,
+      "pictures": 201,
+      "sentences": 145
+    },
+    {
+      "through": "Б",
+      "letters": 21,
+      "words": 590,
+      "new_words": 45,
+      "pictures": 227,
+      "sentences": 202
+    },
+    {
+      "through": "Њ",
+      "letters": 22,
+      "words": 615,
+      "new_words": 25,
+      "pictures": 239,
+      "sentences": 210
+    },
+    {
+      "through": "Х",
+      "letters": 23,
+      "words": 633,
+      "new_words": 18,
+      "pictures": 242,
+      "sentences": 214
+    },
+    {
+      "through": "Ж",
+      "letters": 24,
+      "words": 654,
+      "new_words": 21,
+      "pictures": 252,
+      "sentences": 215
+    },
+    {
+      "through": "Ч",
+      "letters": 25,
+      "words": 682,
+      "new_words": 28,
+      "pictures": 263,
+      "sentences": 222
+    },
+    {
+      "through": "Ћ",
+      "letters": 26,
+      "words": 699,
+      "new_words": 17,
+      "pictures": 271,
+      "sentences": 230
+    },
+    {
+      "through": "Ф",
+      "letters": 27,
+      "words": 718,
+      "new_words": 19,
+      "pictures": 283,
+      "sentences": 230
+    },
+    {
+      "through": "Ц",
+      "letters": 28,
+      "words": 755,
+      "new_words": 37,
+      "pictures": 308,
+      "sentences": 263
+    },
+    {
+      "through": "Џ",
+      "letters": 29,
+      "words": 766,
+      "new_words": 11,
+      "pictures": 316,
+      "sentences": 263
+    },
+    {
+      "through": "Ђ",
+      "letters": 30,
+      "words": 781,
+      "new_words": 15,
+      "pictures": 322,
+      "sentences": 267
+    }
+  ],
+  "default_week": {
+    "repeated_words_within_missions": 0,
+    "largest_adjacent_word_overlap": 4,
+    "unique_picture_words": 37,
+    "missions": 42,
+    "unique_missions": 42,
+    "tasks": 504,
+    "unique_target_words": 66,
+    "target_words": [
+      "АНА",
+      "АНАНАС",
+      "АНТЕНА",
+      "АНТЕНЕ",
+      "ЕМА",
+      "ИМАТИ",
+      "ИМЕ",
+      "ИСТИ",
+      "МАМА",
+      "МАНТА",
+      "МАСНО",
+      "МАСТ",
+      "МЕНЕ",
+      "МЕСИ",
+      "МЕСИМ",
+      "МЕСО",
+      "МЕСТО",
+      "МЕТА",
+      "МОНЕТА",
+      "МОНЕТЕ",
+      "МОСТ",
+      "МОТА",
+      "НИНА",
+      "НИТ",
+      "НИТИ",
+      "НОС",
+      "НОСИ",
+      "НОСИМ",
+      "НОСИО",
+      "НОТА",
+      "НОТЕ",
+      "ОМОТ",
+      "ОСА",
+      "ОСЕ",
+      "САНТА",
+      "САТ",
+      "СЕМЕ",
+      "СЕМЕНА",
+      "СЕНО",
+      "СИТА",
+      "СИТАН",
+      "СИТНА",
+      "СИТО",
+      "СМЕ",
+      "СМЕМО",
+      "СМЕНА",
+      "СМЕТ",
+      "СМЕТА",
+      "СМЕТИ",
+      "СНИМА",
+      "СНИМИ",
+      "СО",
+      "СОМ",
+      "СТАН",
+      "СТАНЕ",
+      "СТЕНА",
+      "СТЕНЕ",
+      "СТО",
+      "ТАМАН",
+      "ТАТА",
+      "ТЕМА",
+      "ТЕНИС",
+      "ТЕСНО",
+      "ТЕСТО",
+      "ТОСТ",
+      "ТОТЕМ"
+    ],
+    "unique_sentences": 20,
+    "reading_tasks": 420,
+    "writing_tasks": 84,
+    "xp": 6090,
+    "rewards": 42
+  }
+}

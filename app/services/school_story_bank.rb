@@ -13,6 +13,12 @@ class SchoolStoryBank
     { "id" => "meat", "word" => "месо" },
     { "id" => "sieve", "word" => "сито" },
     { "id" => "dough", "word" => "тесто" },
+    { "id" => "seeds", "word" => "семе", "image" => "/school_images/seeds.svg" },
+    { "id" => "hay", "word" => "сено", "image" => "/school_images/hay.svg" },
+    { "id" => "toast", "word" => "тост", "image" => "/school_images/toast.svg", "picture_group" => "bread" },
+    { "id" => "salt", "word" => "со", "emoji" => "🧂" },
+    { "id" => "pineapple", "word" => "ананас", "emoji" => "🍍" },
+    { "id" => "catfish", "word" => "сома", "image" => "/school_images/catfish.svg" },
     { "id" => "cake", "word" => "торту", "emoji" => "🎂" },
     { "id" => "egg", "word" => "јаје", "emoji" => "🥚" },
     { "id" => "car", "word" => "ауто", "emoji" => "🚗" },
@@ -25,10 +31,24 @@ class SchoolStoryBank
     { "id" => "banana", "word" => "банану", "emoji" => "🍌" },
     { "id" => "grapes", "word" => "грозд", "emoji" => "🍇" },
     { "id" => "honey", "word" => "мед", "emoji" => "🍯" },
-    { "id" => "bread", "word" => "хлеб", "emoji" => "🍞" },
+    { "id" => "bread", "word" => "хлеб", "emoji" => "🍞", "picture_group" => "bread" },
     { "id" => "candle", "word" => "свећу", "emoji" => "🕯️" },
     { "id" => "flower", "word" => "цвет", "emoji" => "🌷" },
-    { "id" => "hammer", "word" => "чекић", "emoji" => "🔨" }
+    { "id" => "hammer", "word" => "чекић", "emoji" => "🔨" },
+    { "id" => "apple", "word" => "јабуку", "emoji" => "🍎" },
+    { "id" => "strawberry", "word" => "јагоду", "emoji" => "🍓" },
+    { "id" => "kiwi", "word" => "киви", "emoji" => "🥝" },
+    { "id" => "melon", "word" => "дињу", "emoji" => "🍈" },
+    { "id" => "onion", "word" => "лук", "emoji" => "🧅" },
+    { "id" => "cheese", "word" => "сир", "emoji" => "🧀" },
+    { "id" => "key", "word" => "кључ", "emoji" => "🔑" },
+    { "id" => "book", "word" => "књигу", "emoji" => "📕" },
+    { "id" => "die", "word" => "коцку", "emoji" => "🎲" },
+    { "id" => "pencil", "word" => "оловку", "emoji" => "✏️" },
+    { "id" => "crown", "word" => "круну", "emoji" => "👑" },
+    { "id" => "bag", "word" => "торбу", "emoji" => "👜" },
+    { "id" => "bell", "word" => "звоно", "emoji" => "🔔" },
+    { "id" => "scissors", "word" => "маказе", "emoji" => "✂️" }
   ].freeze
 
   class << self
@@ -36,10 +56,16 @@ class SchoolStoryBank
       people = PEOPLE.select { |person| known?("#{person.fetch('word')} има", letter_ids) }
       objects = OBJECTS.select { |object| known?(object.fetch("word"), letter_ids) }
       ownership = if people.length >= 2 && objects.length >= 2
-        objects.product(people).map do |object, person|
-          { "story_sentence" => "#{person.fetch('word')} има #{object.fetch('word')}.",
-            "school_story" => true, "person" => person, "object" => object,
-            "people" => people, "objects" => objects }
+        objects.each_index.flat_map do |object_index|
+          # A mission takes two consecutive sentences. Offset each person's
+          # object so those tasks do not repeat the same noun, while a complete
+          # rotation still includes every person/object combination once.
+          people.each_with_index.map do |person, person_index|
+            object = objects.fetch((object_index + person_index) % objects.length)
+            { "story_sentence" => "#{person.fetch('word')} има #{object.fetch('word')}.",
+              "school_story" => true, "person" => person, "object" => object,
+              "people" => people, "objects" => objects }
+          end
         end
       else
         []
@@ -62,14 +88,16 @@ class SchoolStoryBank
       person = candidate.fetch("person")
       object = candidate.fetch("object")
       other_people = candidate.fetch("people") - [person]
-      other_objects = candidate.fetch("objects") - [object]
+      other_objects = candidate.fetch("objects").reject do |item|
+        item == object || (object["picture_group"].present? && item["picture_group"] == object["picture_group"])
+      end
       # Advance the alternative pair after a full rotation of target sentences.
       rotation = variation / candidates.length
       people = [person, other_people.fetch(rotation % other_people.length)].shuffle
       objects = [object, other_objects.fetch(rotation % other_objects.length)].shuffle
       scenes = people.product(objects).map do |actor, item|
         { "dimension" => "ownership", "person" => actor.fetch("id"),
-          "object" => item.fetch("id"), "emoji" => item["emoji"] }
+          "object" => item.fetch("id"), "emoji" => item["emoji"], "image" => item["image"] }
       end.shuffle
       choices = scenes.each_with_index.map { |scene, index| { "value" => "S#{index + 1}", "scene" => scene } }
       answer = choices.find do |choice|

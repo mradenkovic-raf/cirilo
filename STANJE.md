@@ -1,6 +1,15 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-13, **v24 je javno objavljena na Railwayu**, sa ispravkom pokretanja zvuka na Androidu u commitu `349d1de`. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
+Aktuelno: 2026-10-13, **v25 je završena lokalno** (više reči, slika i raznovrsnije čitanje; još nije objavljena). **v24 je javno objavljena na Railwayu**, sa ispravkom pokretanja zvuka na Androidu u commitu `349d1de`. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
+
+## V25 — proširenje reči i čitanja (lokalno)
+
+- Školska banka 543→781 reč/oblik; 710 do pet slova. Do Е: 75→120 reči, 24→37 slikovnih odgovora. Pet novih slikovnih pojmova ili ranije tekstualnih pojmova, osam slikovnih množina. САТИ, АТОМ i БРАВА ostaju tekstualni zbog nejasnog predstavljanja slikom.
+- Dvadeset novih lokalnih SVG ilustracija; ukupno 50. Slike množina prikazuju više predmeta i dele grupu značenja sa jedninom. Nova reč БОР je u grupi stabala; slični crteži ne nude se kao različiti tačni odgovori.
+- Cela azbuka: 112→160 reči, svaka nova sa kratkom dopunom rečenice; lokalne ilustracije prolaze kroz sve odgovarajuće zadatke i prikaz značenja posle odgovora.
+- Školske priče do Е: 8→20. Rečenice u istoj misiji menjaju i osobu i predmet. Kasnije škole imaju 160 rečenica o osobi/predmetu, ukupno 267 sa ostalim vrstama priča.
+- Planer koristi poslednjih šest školskih misija, prati sve reči iz spajanja i daje sličnije distraktore za sliku→reč. U 42 simulirane misije: 66 ciljnih reči, svih 37 slikovnih odgovora i svih 20 rečenica do Е; bez ponovljenih ciljnih reči unutar misije. Sva pitanja ostaju u izabranim slovima.
+- Nema migracije. Započete misije, napredak, XP i identiteti browsera ostaju. Provere koriste izdvojene test i browser baze; stvarna baza nije menjana. Detalji: [qa/v25/PROVERA.md](qa/v25/PROVERA.md). Javna verzija ostaje v24.
 
 ## Android zvuk u igrama — v24
 

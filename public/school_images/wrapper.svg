@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Омот</title>
+  <ellipse cx="120" cy="172" rx="95" ry="9" fill="#e8e9ef"/>
+  <path d="M26 45L34 49L41 40L48 46L55 37L184 46L191 39L198 46L207 42L211 154L203 150L196 159L189 153L181 163L57 153L48 159L41 152L33 157Z" fill="#e383a7" stroke="#9a456c" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M52 57L75 65L97 53L122 60L147 53L169 64L188 60L193 135L171 147L148 139L126 149L104 140L78 146L55 134Z" fill="#e5e9f0" stroke="#99a6b8" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M57 64L85 94L78 137M96 59L109 86L102 137M122 67L144 90L128 141M167 71L156 111L178 138M59 111L96 116L112 97L153 120L187 107" stroke="#bcc6d4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M68 65L91 82M116 64L131 85M161 114L181 98M85 126L96 126" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M35 62L39 137M44 61L47 139M200 62L201 139" stroke="#ffb8d2" stroke-width="3" stroke-linecap="round"/>
+</svg>

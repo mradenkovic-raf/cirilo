@@ -60,6 +60,45 @@ class SchoolPracticePlannerTest < ActiveSupport::TestCase
     assert_empty first.map { |task| task.fetch("id") } & second.map { |task| task.fetch("id") }
   end
 
+  test "school word rotation remembers older missions across letter and mode changes" do
+    learner = Learner.create!
+    variation = 3
+    previous_favorite = plan(learner, variation: variation).first.fetch("word")
+    picture_words = SchoolWordBank.picture_entries(learner.school_letter_ids).map { |entry| entry.fetch("word") }
+    fresh_word = (picture_words - [previous_favorite]).first
+    earlier_ids = SchoolCurriculum.canonical_ids(learner.school_letter_ids + ["r"])
+    save_words(learner, [previous_favorite], letter_ids: earlier_ids)
+    2.times { save_words(learner, picture_words - [previous_favorite, fresh_word]) }
+    learner.practice_sessions.create!(learning_mode: "full", status: "completed", exercises: [], cursor: 0)
+
+    assert_equal fresh_word, plan(learner, variation: variation).first.fetch("word"),
+      "A word absent from recent school missions should precede one seen three school missions ago"
+  end
+
+  test "all three matching words count toward variety within the mission" do
+    learner = Learner.create!
+    30.times do |variation|
+      tasks = plan(learner, variation: variation)
+      words = tasks.flat_map do |task|
+        [task["word"], *task.fetch("pair_words", []).map { |pair| pair.fetch("label") }].compact.uniq
+      end
+
+      assert_equal words.uniq, words, "Repeated target word in variation #{variation}: #{words.inspect}"
+    end
+  end
+
+  test "picture word choices encourage reading beyond the initial letter" do
+    learner = Learner.create!
+    planner = SchoolPracticePlanner.new(learner, letter_ids: learner.school_letter_ids, variation: 5)
+    task = planner.send(:build, SchoolWordBank.find("НОС"), Curriculum.find("n"), "picture_word", "upper", 0)
+
+    assert_operator task.fetch("options").count { |word| word.start_with?("Н") }, :>=, 2
+    assert_includes task.fetch("options"), "НОС"
+    entries = task.fetch("options").map { |word| SchoolWordBank.find(word) }
+    entries.combination(2) { |left, right| assert_not SchoolWordBank.visually_ambiguous?(left, right) }
+    assert_scoped(task, learner.school_letter_ids)
+  end
+
   test "review focus keeps the last two taught letters and revisits overdue weak known letters" do
     learner = Learner.create!
     learner.school_letter_ids.each do |id|
@@ -135,6 +174,12 @@ class SchoolPracticePlannerTest < ActiveSupport::TestCase
 
   def task_words(tasks)
     tasks.flat_map { |task| [task["word"], *task.fetch("pair_words", []).map { |pair| pair["label"] }] }.compact
+  end
+
+  def save_words(learner, words, letter_ids: learner.school_letter_ids)
+    exercises = words.map { |word| { "word" => word, "learning_mode" => "school", "school_letter_ids" => letter_ids } }
+    learner.practice_sessions.create!(learning_mode: "school", school_letter_ids: letter_ids,
+      status: "completed", exercises: exercises, cursor: exercises.length)
   end
 
   def assert_scoped(task, ids)

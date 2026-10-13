@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+<title>Нити</title>
+<g transform="translate(0 16) scale(0.58)"><path d="M25 139C44 143 40 91 68 78C98 63 109 110 103 129C94 157 60 140 76 118C100 86 138 71 161 83C186 97 147 139 175 147C194 153 205 113 218 98" stroke="#e5eaf0" stroke-width="10" stroke-linecap="round" transform="translate(0 5)"/>
+  <path d="M25 139C44 143 40 91 68 78C98 63 109 110 103 129C94 157 60 140 76 118C100 86 138 71 161 83C186 97 147 139 175 147C194 153 205 113 218 98" stroke="#bb355c" stroke-width="6" stroke-linecap="round"/>
+  <path d="M25 139L20 135M25 139L19 142M218 98L220 91M218 98L224 97" stroke="#bb355c" stroke-width="2" stroke-linecap="round"/></g>
+<g transform="translate(98 78) scale(0.57)"><path d="M25 139C44 143 40 91 68 78C98 63 109 110 103 129C94 157 60 140 76 118C100 86 138 71 161 83C186 97 147 139 175 147C194 153 205 113 218 98" stroke="#e5eaf0" stroke-width="10" stroke-linecap="round" transform="translate(0 5)"/>
+  <path d="M25 139C44 143 40 91 68 78C98 63 109 110 103 129C94 157 60 140 76 118C100 86 138 71 161 83C186 97 147 139 175 147C194 153 205 113 218 98" stroke="#bb355c" stroke-width="6" stroke-linecap="round"/>
+  <path d="M25 139L20 135M25 139L19 142M218 98L220 91M218 98L224 97" stroke="#bb355c" stroke-width="2" stroke-linecap="round"/></g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Багер</title>
+<ellipse cx="120" cy="178" rx="105" ry="7" fill="#e4e9ed"/>
+<rect x="24" y="137" width="120" height="32" rx="16" fill="#55616b" stroke="#38434b" stroke-width="4"/>
+<g fill="#b2bdc6" stroke="#38434b" stroke-width="3"><circle cx="45" cy="153" r="9"/><circle cx="73" cy="153" r="9"/><circle cx="101" cy="153" r="9"/><circle cx="125" cy="153" r="9"/></g>
+<path d="M34 107H82V54H125V139H34Z" fill="#edbd47" stroke="#8b652d" stroke-width="4" stroke-linejoin="round"/>
+<path d="M90 64H116V101H90Z" fill="#b4def0" stroke="#627f8f" stroke-width="3"/>
+<path d="M124 108L145 36L159 35L187 112L174 118L151 59L138 111Z" fill="#edbd47" stroke="#8b652d" stroke-width="4" stroke-linejoin="round"/>
+<path d="M176 111L183 131L207 122L221 157Q191 175 173 155L166 123Z" fill="#ae8944" stroke="#735832" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="151" cy="44" r="6" fill="#fff1af" stroke="#8b652d" stroke-width="3"/><path d="M151 57L132 116" stroke="#acb6b8" stroke-width="5"/>
+<path d="M38 119H62M39 129H63" stroke="#ad8235" stroke-width="4" stroke-linecap="round"/>
+</svg>

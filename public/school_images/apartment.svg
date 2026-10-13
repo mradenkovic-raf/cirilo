@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Стан</title>
+<ellipse cx="120" cy="181" rx="96" ry="7" fill="#e7edf1"/>
+<rect x="24" y="28" width="191" height="145" rx="6" fill="#f6e8d4" stroke="#687d90" stroke-width="5"/>
+<path d="M26 155H214V173H26Z" fill="#d5ac7a"/><path d="M139 29V83M139 117V156" stroke="#687d90" stroke-width="7"/>
+<path d="M139 84Q166 84 166 112H139" fill="#fff7e7" stroke="#687d90" stroke-width="3"/>
+<rect x="41" y="43" width="63" height="44" rx="3" fill="#a9dcf0" stroke="#6b99ad" stroke-width="4"/>
+<path d="M73 45V87M42 65H104" stroke="#fff" stroke-width="4"/>
+<rect x="41" y="107" width="72" height="35" rx="10" fill="#8fac77" stroke="#526d54" stroke-width="3"/>
+<rect x="34" y="119" width="86" height="28" rx="9" fill="#a7c08a" stroke="#526d54" stroke-width="3"/>
+<path d="M43 147V156M111 147V156" stroke="#526d54" stroke-width="5"/>
+<rect x="157" y="48" width="41" height="31" rx="3" fill="#a9dcf0" stroke="#6b99ad" stroke-width="3"/>
+<path d="M177 49V77" stroke="#fff" stroke-width="3"/>
+<rect x="155" y="109" width="46" height="43" rx="3" fill="#f8fcff" stroke="#8397a5" stroke-width="3"/>
+<path d="M154 109H203M179 110V149" stroke="#8397a5" stroke-width="3"/>
+<ellipse cx="177" cy="106" rx="11" ry="5" fill="#c1d8df" stroke="#8397a5" stroke-width="2"/>
+<path d="M186 98V92Q177 82 174 97" stroke="#8397a5" stroke-width="3" stroke-linecap="round"/>
+</svg>

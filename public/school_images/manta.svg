@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Манта</title>
+<ellipse cx="120" cy="171" rx="92" ry="9" fill="#e6f3f8"/>
+<path d="M124 119Q121 160 175 179Q199 186 219 171" stroke="#324e68" stroke-width="7" stroke-linecap="round"/>
+<path d="M119 58C93 79 65 49 23 35C29 88 65 132 104 139Q120 152 138 139C175 128 208 88 219 34C173 54 146 80 119 58Z" fill="#567c99" stroke="#324e68" stroke-width="4" stroke-linejoin="round"/>
+<path d="M32 51Q79 100 105 111Q121 129 137 110Q176 81 209 51Q184 127 137 139Q120 148 104 139Q58 122 32 51Z" fill="#98b9cc"/>
+<path d="M99 77Q92 58 101 48M140 76Q149 55 139 47" stroke="#324e68" stroke-width="8" stroke-linecap="round"/>
+<circle cx="102" cy="82" r="5" fill="#192e43"/><circle cx="139" cy="82" r="5" fill="#192e43"/>
+<path d="M111 101Q120 110 131 101" stroke="#324e68" stroke-width="4" stroke-linecap="round"/>
+<g fill="#b6d1dc"><circle cx="73" cy="83" r="4"/><circle cx="163" cy="93" r="4"/><circle cx="84" cy="101" r="3"/><circle cx="179" cy="75" r="3"/></g>
+</svg>

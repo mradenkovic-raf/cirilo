@@ -35,13 +35,18 @@ class WordBank
         choices << item
         break if choices.length == 4
       end
-      choices.shuffle.map { |item| { "value" => item.fetch("word"), "label" => item.fetch("emoji") } }
+      choices.shuffle.map do |item|
+        { "value" => item.fetch("word"), "label" => item.fetch("emoji") }.tap do |choice|
+          choice["image"] = item["image"] if item["image"]
+        end
+      end
     end
 
     # Different emoji can still mean the same thing to a beginning reader.
     # Share this rule across read-a-word, picture-word and matching exercises.
     def visually_ambiguous?(left, right)
       left.fetch("word") == right.fetch("word") || left.fetch("emoji") == right.fetch("emoji") ||
+        (left["image"].present? && left["image"] == right["image"]) ||
         (left["picture_group"].present? && left["picture_group"] == right["picture_group"])
     end
 

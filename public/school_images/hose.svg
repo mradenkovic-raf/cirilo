@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Црево</title>
+<ellipse cx="115" cy="167" rx="93" ry="10" fill="#e5eee5"/>
+<path d="M151 128C147 89 50 87 37 120C18 169 176 175 187 119C198 56 78 47 57 95C28 164 169 184 192 100C211 38 179 31 152 35" stroke="#3f7050" stroke-width="15" stroke-linecap="round"/>
+<path d="M151 128C147 89 50 87 37 120C18 169 176 175 187 119C198 56 78 47 57 95C28 164 169 184 192 100C211 38 179 31 152 35" stroke="#72ad6e" stroke-width="9" stroke-linecap="round"/>
+<path d="M153 26L129 28L121 41L130 49L155 43Z" fill="#e8b353" stroke="#95743a" stroke-width="3"/>
+<path d="M130 32L109 27L96 44L123 47Z" fill="#7d98aa" stroke="#455f74" stroke-width="3"/>
+<path d="M97 41L84 52M93 32L72 36M98 24L83 18" stroke="#8ecfe4" stroke-width="4" stroke-linecap="round"/>
+</svg>

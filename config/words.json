@@ -1249,5 +1249,602 @@
       "КРИЛО",
       "ПЕРАЈЕ"
     ]
+  },
+  {
+    "word": "СОМ",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture_group": "fish",
+    "image": "/school_images/catfish.svg",
+    "sentence": "Дуге бркове има риба ▢.",
+    "sentence_options": [
+      "САТ",
+      "СОК",
+      "СИР"
+    ]
+  },
+  {
+    "word": "СТО",
+    "emoji": "🍽️",
+    "category": "object",
+    "picture_group": "table",
+    "image": "/school_images/table.svg",
+    "sentence": "Тањир стоји на плочи коју држе четири ноге. То је ▢.",
+    "sentence_options": [
+      "САТ",
+      "СОМ",
+      "НОС"
+    ]
+  },
+  {
+    "word": "СИТО",
+    "emoji": "🥣",
+    "category": "object",
+    "image": "/school_images/sieve.svg",
+    "sentence": "За просејавање брашна служи ▢.",
+    "sentence_options": [
+      "СЕЛО",
+      "СЕНО",
+      "СИР"
+    ]
+  },
+  {
+    "word": "ТОСТ",
+    "emoji": "🍞",
+    "category": "food",
+    "picture_group": "bread",
+    "image": "/school_images/toast.svg",
+    "sentence": "Хрскаво запечен хлеб зове се ▢.",
+    "sentence_options": [
+      "МОСТ",
+      "НОС",
+      "САТ"
+    ]
+  },
+  {
+    "word": "САНТА",
+    "emoji": "🧊",
+    "category": "nature",
+    "picture_group": "ice",
+    "image": "/school_images/iceberg.svg",
+    "sentence": "На мору плута велики комад леда. То је ▢.",
+    "sentence_options": [
+      "ТОРТА",
+      "ЛОПТА",
+      "ПАНДА"
+    ]
+  },
+  {
+    "word": "АНАНАС",
+    "emoji": "🍍",
+    "category": "food",
+    "picture_group": "pineapple",
+    "sentence": "Воће са бодљикавом кором и зеленом круном је ▢.",
+    "sentence_options": [
+      "БАНАНА",
+      "ЈАБУКА",
+      "ЛИМУН"
+    ]
+  },
+  {
+    "word": "МЕСО",
+    "emoji": "🥩",
+    "category": "food",
+    "picture_group": "meat",
+    "sentence": "У месари се продаје ▢.",
+    "sentence_options": [
+      "МЕСЕЦ",
+      "МЕТЛА",
+      "МЕД"
+    ]
+  },
+  {
+    "word": "МЕТА",
+    "emoji": "🎯",
+    "category": "game",
+    "picture_group": "target",
+    "sentence": "Круг у који гађамо лоптицом је ▢.",
+    "sentence_options": [
+      "МЕТЛА",
+      "МАЧКА",
+      "МЕРА"
+    ]
+  },
+  {
+    "word": "СЕМЕ",
+    "emoji": "🌱",
+    "category": "nature",
+    "picture_group": "plant",
+    "image": "/school_images/seeds.svg",
+    "sentence": "Из њега може да никне биљка. То је ▢.",
+    "sentence_options": [
+      "СЕЛО",
+      "СЕНО",
+      "СЕДЛО"
+    ]
+  },
+  {
+    "word": "СЕНО",
+    "emoji": "🌾",
+    "category": "nature",
+    "picture_group": "grain",
+    "image": "/school_images/hay.svg",
+    "sentence": "Осушена трава за исхрану животиња је ▢.",
+    "sentence_options": [
+      "СЕМЕ",
+      "СЕЛО",
+      "САПУН"
+    ]
+  },
+  {
+    "word": "СТЕНА",
+    "emoji": "🪨",
+    "category": "nature",
+    "picture_group": "rock",
+    "image": "/school_images/cliff.svg",
+    "sentence": "Велика камена литица је ▢.",
+    "sentence_options": [
+      "СЕНКА",
+      "СЛИКА",
+      "СОБА"
+    ]
+  },
+  {
+    "word": "ТЕНИС",
+    "emoji": "🎾",
+    "category": "sport",
+    "picture_group": "tennis",
+    "sentence": "Рекетом преко мреже ударамо лоптицу. Играмо ▢.",
+    "sentence_options": [
+      "ФУДБАЛ",
+      "ШАХ",
+      "ЏУДО"
+    ]
+  },
+  {
+    "word": "ТЕСТО",
+    "emoji": "🥣",
+    "category": "food",
+    "picture_group": "dough",
+    "image": "/school_images/dough.svg",
+    "sentence": "Од брашна и воде меси се ▢.",
+    "sentence_options": [
+      "МЕСТО",
+      "СТАБЛО",
+      "СЕДЛО"
+    ]
+  },
+  {
+    "word": "АНТЕНА",
+    "emoji": "📡",
+    "category": "object",
+    "picture_group": "antenna",
+    "image": "/school_images/antenna.svg",
+    "sentence": "Сигнале за телевизор прима ▢.",
+    "sentence_options": [
+      "БАНАНА",
+      "ЛАМПА",
+      "КАПА"
+    ]
+  },
+  {
+    "word": "МОНЕТА",
+    "emoji": "🪙",
+    "category": "object",
+    "picture_group": "gold",
+    "image": "/school_images/coin.svg",
+    "sentence": "Округли метални новчић је ▢.",
+    "sentence_options": [
+      "РАКЕТА",
+      "МЕТЛА",
+      "ТОРТА"
+    ]
+  },
+  {
+    "word": "РАМ",
+    "emoji": "🖼️",
+    "category": "object",
+    "picture_group": "frame",
+    "sentence": "Око слике стоји дрвени ▢.",
+    "sentence_options": [
+      "РАК",
+      "МРАВ",
+      "САТ"
+    ]
+  },
+  {
+    "word": "ОРМАН",
+    "emoji": "🚪",
+    "category": "object",
+    "picture_group": "wardrobe",
+    "image": "/school_images/wardrobe.svg",
+    "sentence": "Одећу чувамо у великом делу намештаја са вратима. То је ▢.",
+    "sentence_options": [
+      "ОРАХ",
+      "ОБЛАК",
+      "ОРАО"
+    ]
+  },
+  {
+    "word": "ОРАХ",
+    "emoji": "🌰",
+    "category": "food",
+    "picture_group": "nut",
+    "image": "/school_images/walnut.svg",
+    "sentence": "Чврсту љуску разбијемо, а језгро једемо. То је ▢.",
+    "sentence_options": [
+      "ОРАО",
+      "ОБЛАК",
+      "ОРМАН"
+    ]
+  },
+  {
+    "word": "ПАЊ",
+    "emoji": "🪵",
+    "category": "nature",
+    "picture_group": "log",
+    "image": "/school_images/stump.svg",
+    "sentence": "После сече дрвета у земљи остаје ▢.",
+    "sentence_options": [
+      "КОЊ",
+      "ПАС",
+      "ПУЖ"
+    ]
+  },
+  {
+    "word": "ФЕН",
+    "emoji": "💨",
+    "category": "object",
+    "picture_group": "dryer",
+    "image": "/school_images/hairdryer.svg",
+    "sentence": "Мокру косу суши ▢.",
+    "sentence_options": [
+      "ФОКА",
+      "ФРУЛА",
+      "ФИЛМ"
+    ]
+  },
+  {
+    "word": "ЏАК",
+    "emoji": "💰",
+    "category": "object",
+    "picture_group": "sack",
+    "image": "/school_images/sack.svg",
+    "sentence": "Брашно је спаковано у велику врећу. То је ▢.",
+    "sentence_options": [
+      "ЏЕМ",
+      "ЏИП",
+      "ЏЕП"
+    ]
+  },
+  {
+    "word": "ЏЕП",
+    "emoji": "👖",
+    "category": "clothing",
+    "picture_group": "pocket",
+    "image": "/school_images/pocket.svg",
+    "sentence": "На панталонама имам мали отвор за ситнице. То је ▢.",
+    "sentence_options": [
+      "ЏАК",
+      "ЏИН",
+      "ЏИП"
+    ]
+  },
+  {
+    "word": "ШЉИВА",
+    "emoji": "🫐",
+    "category": "food",
+    "picture_group": "plum",
+    "image": "/school_images/plum.svg",
+    "sentence": "Љубичасто воће са једном коштицом је ▢.",
+    "sentence_options": [
+      "ЈАГОДА",
+      "БАНАНА",
+      "ЛИМУН"
+    ]
+  },
+  {
+    "word": "ВОЛАН",
+    "emoji": "🚘",
+    "category": "object",
+    "picture_group": "car",
+    "image": "/school_images/steering_wheel.svg",
+    "sentence": "Возач рукама окреће ▢.",
+    "sentence_options": [
+      "ВАЗДУХ",
+      "ВЕТАР",
+      "ВОСАК"
+    ]
+  },
+  {
+    "word": "ЖИР",
+    "emoji": "🌰",
+    "category": "nature",
+    "picture_group": "acorn",
+    "image": "/school_images/acorn.svg",
+    "sentence": "Плод храста са малом капицом је ▢.",
+    "sentence_options": [
+      "ЖАР",
+      "ЖИЦА",
+      "ЖБУН"
+    ]
+  },
+  {
+    "word": "МЛИН",
+    "emoji": "🌾",
+    "category": "place",
+    "picture_group": "grain",
+    "image": "/school_images/windmill.svg",
+    "sentence": "Жито у брашно меље ▢.",
+    "sentence_options": [
+      "ЛИМУН",
+      "ЛИСТ",
+      "МИШ"
+    ]
+  },
+  {
+    "word": "ЛАЛА",
+    "emoji": "🌷",
+    "category": "nature",
+    "picture_group": "tulip",
+    "sentence": "Цвет са латицама које личе на чашу је ▢.",
+    "sentence_options": [
+      "ЛАМПА",
+      "ЛИСИЦА",
+      "ЛОПТА"
+    ]
+  },
+  {
+    "word": "ЛИСТ",
+    "emoji": "🍃",
+    "category": "nature",
+    "picture_group": "leaves",
+    "sentence": "Раван зелени део биљке на грани је ▢.",
+    "sentence_options": [
+      "ЛАВ",
+      "ЛЕД",
+      "ЛОНАЦ"
+    ]
+  },
+  {
+    "word": "КРУШКА",
+    "emoji": "🍐",
+    "category": "food",
+    "picture_group": "pear",
+    "sentence": "Ово воће је уско код петељке, а широко при дну. То је ▢.",
+    "sentence_options": [
+      "БАНАНА",
+      "ГРОЖЂЕ",
+      "ЈАГОДА"
+    ]
+  },
+  {
+    "word": "ПАНДА",
+    "emoji": "🐼",
+    "category": "animal",
+    "picture_group": "panda",
+    "sentence": "Црно-бели медвед који једе бамбус је ▢.",
+    "sentence_options": [
+      "ПАТКА",
+      "ПЧЕЛА",
+      "ПУЖ"
+    ]
+  },
+  {
+    "word": "КОАЛА",
+    "emoji": "🐨",
+    "category": "animal",
+    "picture_group": "koala",
+    "sentence": "У Аустралији на дрвету живи сива ▢.",
+    "sentence_options": [
+      "КОЗА",
+      "КОКОШКА",
+      "КОБРА"
+    ]
+  },
+  {
+    "word": "СЛОН",
+    "emoji": "🐘",
+    "category": "animal",
+    "picture_group": "elephant",
+    "sentence": "Велике уши и дугачку сурлу има ▢.",
+    "sentence_options": [
+      "СОМ",
+      "СОВА",
+      "СЛЕПИЋ"
+    ]
+  },
+  {
+    "word": "САНКЕ",
+    "emoji": "🛷",
+    "category": "vehicle",
+    "picture_group": "sled",
+    "sentence": "По снегу низ брдо клизе наше ▢.",
+    "sentence_options": [
+      "ПАТИКЕ",
+      "МАСКЕ",
+      "ТАШНЕ"
+    ]
+  },
+  {
+    "word": "ГУМА",
+    "emoji": "🛞",
+    "category": "object",
+    "picture_group": "tire",
+    "sentence": "На точку аутомобила налази се црна ▢.",
+    "sentence_options": [
+      "ГРАНА",
+      "ГЉИВА",
+      "ГЛАВА"
+    ]
+  },
+  {
+    "word": "ВАЗА",
+    "emoji": "🏺",
+    "category": "object",
+    "picture_group": "vase",
+    "sentence": "Цвеће у води држи ▢.",
+    "sentence_options": [
+      "ВАТРА",
+      "ВУНА",
+      "ВРАНА"
+    ]
+  },
+  {
+    "word": "КАПА",
+    "emoji": "🧢",
+    "category": "clothing",
+    "picture_group": "cap",
+    "sentence": "На глави ме од хладноће чува ▢.",
+    "sentence_options": [
+      "ЧАРАПА",
+      "РУКАВ",
+      "ЧИЗМА"
+    ]
+  },
+  {
+    "word": "КЕКС",
+    "emoji": "🍪",
+    "category": "food",
+    "picture_group": "cookie",
+    "sentence": "Мали хрскави слаткиш из кутије је ▢.",
+    "sentence_options": [
+      "КЉУЧ",
+      "КРОВ",
+      "КАМЕН"
+    ]
+  },
+  {
+    "word": "КУТИЈА",
+    "emoji": "📦",
+    "category": "object",
+    "picture_group": "box",
+    "sentence": "Играчке чувамо у њој и затварамо је поклопцем. То је ▢.",
+    "sentence_options": [
+      "КРУШКА",
+      "КИША",
+      "КЉУЧ"
+    ]
+  },
+  {
+    "word": "ЛАМПА",
+    "emoji": "💡",
+    "category": "object",
+    "picture_group": "lamp",
+    "image": "/school_images/lamp.svg",
+    "sentence": "На мом столу светли ▢.",
+    "sentence_options": [
+      "ЛОПТА",
+      "ЛИМУН",
+      "ЛАЛА"
+    ]
+  },
+  {
+    "word": "МЕТЛА",
+    "emoji": "🧹",
+    "category": "object",
+    "picture_group": "broom",
+    "sentence": "Под чисти ▢.",
+    "sentence_options": [
+      "МЕТА",
+      "МЕСЕЦ",
+      "МИШ"
+    ]
+  },
+  {
+    "word": "РУЖА",
+    "emoji": "🌹",
+    "category": "nature",
+    "picture_group": "flower",
+    "sentence": "Мирисни цвет са трњем на стабљици је ▢.",
+    "sentence_options": [
+      "ЛАЛА",
+      "ЉИЉАН",
+      "ЛИСТ"
+    ]
+  },
+  {
+    "word": "РОБОТ",
+    "emoji": "🤖",
+    "category": "character",
+    "picture_group": "robot",
+    "sentence": "Машина са рукама и ногама из приче је ▢.",
+    "sentence_options": [
+      "РАКЕТА",
+      "РОДА",
+      "РАМ"
+    ]
+  },
+  {
+    "word": "СРЦЕ",
+    "emoji": "❤️",
+    "category": "body",
+    "picture_group": "heart",
+    "sentence": "У грудима куца ▢.",
+    "sentence_options": [
+      "СУНЦЕ",
+      "СЕМЕ",
+      "СИТО"
+    ]
+  },
+  {
+    "word": "ТАЊИР",
+    "emoji": "🍽️",
+    "category": "object",
+    "picture_group": "plate",
+    "sentence": "На сто за ручак стављам округли ▢.",
+    "sentence_options": [
+      "ТЕНИС",
+      "ТИГАР",
+      "ТОЧАК"
+    ]
+  },
+  {
+    "word": "ЦИГЛА",
+    "emoji": "🧱",
+    "category": "object",
+    "picture_group": "brick",
+    "sentence": "Црвени комад од печене глине за зидање је ▢.",
+    "sentence_options": [
+      "ЦИПЕЛА",
+      "ЦВЕТ",
+      "ЦРВ"
+    ]
+  },
+  {
+    "word": "ЈЕЛЕН",
+    "emoji": "🦌",
+    "category": "animal",
+    "picture_group": "deer",
+    "sentence": "Велике разгранате рогове носи ▢.",
+    "sentence_options": [
+      "ЗЕЦ",
+      "ВУК",
+      "ПАС"
+    ]
+  },
+  {
+    "word": "МОРЕ",
+    "emoji": "🌊",
+    "category": "nature",
+    "picture_group": "water",
+    "sentence": "Велика слана вода са таласима је ▢.",
+    "sentence_options": [
+      "ПОТОК",
+      "БАЗЕН",
+      "ЈЕЗЕРО"
+    ]
+  },
+  {
+    "word": "ПИЛЕ",
+    "emoji": "🐥",
+    "category": "animal",
+    "picture_group": "chick",
+    "sentence": "Мала жута птица која се излеже код кокошке је ▢.",
+    "sentence_options": [
+      "ПУЖ",
+      "ПАС",
+      "ПАУК"
+    ]
   }
 ]

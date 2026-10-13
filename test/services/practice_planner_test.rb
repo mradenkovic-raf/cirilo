@@ -12,6 +12,22 @@ class PracticePlannerTest < ActiveSupport::TestCase
   READING_KINDS = %w[read_word picture_word build_word repair_word word_pairs sentence memory_word story_action].freeze
   WRITING_KINDS = %w[trace write_word fill_letters].freeze
 
+  test "full alphabet tasks preserve the illustration and memory still hides it" do
+    entry = WordBank.find("СИТО")
+    letter = Curriculum.find("s")
+    %w[build_word write_word fill_letters].each do |kind|
+      task = PracticePlanner.send(:exercise, letter, entry, kind, "upper")
+      assert_equal entry.fetch("image"), task.fetch("image"), kind
+    end
+    %w[picture_word repair_word].each do |kind|
+      task = kind == "repair_word" ? VarietyBank.repair_word(entry, letter: letter) : VarietyBank.picture_word(entry)
+      assert_equal entry.fetch("image"), task.fetch("image"), kind
+    end
+    task = PracticePlanner.send(:exercise, letter, entry, "memory_word", "upper")
+    assert_nil task["image"]
+    assert_nil task["emoji"]
+  end
+
   test "mission persists with ten reading and letter tasks plus two handwriting tasks" do
     learner = test_learner
     session = PracticePlanner.start!(learner)

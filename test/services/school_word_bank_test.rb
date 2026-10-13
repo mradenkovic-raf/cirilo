@@ -5,7 +5,7 @@ class SchoolWordBankTest < ActiveSupport::TestCase
 
   test "school bank contains many short normalized Serbian words" do
     words = SchoolWordBank.words
-    assert_operator words.length, :>=, 540
+    assert_operator words.length, :>=, 780
     assert_equal words.length, words.map { |entry| entry.fetch("word") }.uniq.length
 
     words.each do |entry|
@@ -43,8 +43,8 @@ class SchoolWordBankTest < ActiveSupport::TestCase
     pool = SchoolWordBank.eligible(ids)
     pictures = SchoolWordBank.picture_entries(ids)
 
-    assert_operator pool.length, :>=, 75
-    assert_operator pictures.length, :>=, 24
+    assert_operator pool.length, :>=, 120
+    assert_operator pictures.length, :>=, 37
     %w[МАМА ТАТА НОС САТ МОСТ МЕСО МЕТА СТЕНА ТЕНИС СЕМЕ ТОСТ САНТА МОНЕТА АНТЕНА АНАНАС].each do |word|
       assert_includes pictures.map { |entry| entry.fetch("word") }, word
     end
@@ -77,7 +77,7 @@ class SchoolWordBankTest < ActiveSupport::TestCase
 
   test "concrete words have specific safe local illustrations" do
     illustrated_words = SchoolWordBank.words.select { |entry| entry["image"].present? }
-    assert_operator illustrated_words.length, :>=, 30
+    assert_operator illustrated_words.length, :>=, 50
     illustrated_words.each do |entry|
       word = entry.fetch("word")
       assert entry.fetch("picture"), word
@@ -132,10 +132,28 @@ class SchoolWordBankTest < ActiveSupport::TestCase
     assert_empty SchoolWordBank.distinct_pictures(nil, SchoolWordBank.words)
   end
 
+  test "singular and plural illustrations do not compete and hours are not clocks" do
+    [%w[НИТ НИТИ], %w[НОТА НОТЕ], %w[ОСА ОСЕ], %w[СИТО СИТА],
+      %w[СЕМЕ СЕМЕНА], %w[СТЕНА СТЕНЕ], %w[МОНЕТА МОНЕТЕ], %w[АНТЕНА АНТЕНЕ]].each do |single, plural|
+      left, right = [single, plural].map { |word| SchoolWordBank.find(word) }
+      assert left.fetch("picture"), single
+      assert right.fetch("picture"), plural
+      assert right["image"].present?, plural
+      assert SchoolWordBank.visually_ambiguous?(left, right), "#{single} / #{plural}"
+    end
+    %w[САТИ АТОМ БРАВА].each do |word|
+      assert_equal false, SchoolWordBank.find(word).fetch("picture"), word
+    end
+    %w[ОМОТ СТАН МАНТА ТОТЕМ СМЕТ].each do |word|
+      assert SchoolWordBank.find(word).fetch("image").present?, word
+    end
+  end
+
   test "synonyms and species that share an illustration cannot be competing pictures" do
-    [%w[СОМ ТУНА ШАРАН РИБА СМУЂ], %w[БАБА НАНА], %w[ДОМ КУЋА СЕЛО],
+    [%w[СОМ ТУНА ШАРАН РИБА СМУЂ МАНТА], %w[БАБА НАНА БАКА], %w[ДОМ КУЋА СЕЛО],
       %w[АУТО ЏИП], %w[ОСА ПЧЕЛА], %w[ЛАНЕ ЈЕЛЕН], %w[НОС ЊУШКА],
-      %w[ГРОМ МУЊА], %w[ДРВО ХРАСТ ЈЕЛА ШУМА], %w[НИТ ВУНА], %w[СУПА ЛОНАЦ]].each do |group|
+      %w[ГРОМ МУЊА], %w[ДРВО ХРАСТ ЈЕЛА ШУМА БОР], %w[НИТ ВУНА], %w[СУПА ЛОНАЦ],
+      %w[БРОД ЛАЂА ЧАМАЦ]].each do |group|
       group.combination(2).each do |left, right|
         assert SchoolWordBank.visually_ambiguous?(SchoolWordBank.find(left), SchoolWordBank.find(right)), "#{left} / #{right}"
       end

@@ -159,6 +159,7 @@ class PracticePlanner
         common.merge("word" => word, "answer" => word, "tiles" => WordBank.tiles(word),
           "memory_hidden" => false,
           "emoji" => kind == "build_word" ? entry.fetch("emoji") : nil,
+          "image" => kind == "build_word" ? entry["image"] : nil,
           "prompt" => kind == "build_word" ? "Шта је на слици? Састави реч." : "Запамти реч, па је састави без гледања.")
       when "write_word", "fill_letters"
         indices = kind == "write_word" ? (0...word.length).to_a : missing_indices(word, letter)
@@ -174,6 +175,7 @@ class PracticePlanner
           indices.include?(index) ? "_" : (letter_case == "lower" ? char.downcase : char)
         end.join
         common.merge("word" => word, "answer" => word, "emoji" => entry.fetch("emoji"),
+          "image" => entry["image"],
           "word_pattern" => pattern, "writing_letters" => letters,
           "prompt" => kind == "write_word" ? "Напиши целу реч, слово по слово." : "Изабери и напиши слова која недостају.")
       when "read_word"

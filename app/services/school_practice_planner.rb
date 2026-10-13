@@ -1,5 +1,6 @@
 class SchoolPracticePlanner
   MISSION_LENGTH = 12
+  RECENT_MISSION_LIMIT = 6
   # Reading remains the main activity; two separated breaks practise handwriting.
   PLAN = %w[read_word story_action build_word trace repair_word word_pairs memory_word read_word build_word write_word story_action picture_word].freeze
   PICTURE_KINDS = %w[read_word picture_word build_word repair_word word_pairs write_word fill_letters].freeze
@@ -93,8 +94,9 @@ class SchoolPracticePlanner
         actual_letter = (letter if entry.fetch("word").include?(letter.fetch("upper"))) ||
           focus.find { |candidate| entry.fetch("word").include?(candidate.fetch("upper")) } ||
           @letters.find { |candidate| entry.fetch("word").include?(candidate.fetch("upper")) }
-        @used_words[entry.fetch("word")] += 1
-        build(entry, actual_letter, kind, letter_case, index)
+        task = build(entry, actual_letter, kind, letter_case, index)
+        exercise_words(task).each { |word| @used_words[word] += 1 }
+        task
       end
     end
   end
@@ -130,10 +132,16 @@ class SchoolPracticePlanner
   def recent_words
     return {} unless @learner
 
-    @learner.practice_sessions.order(id: :desc).limit(2).flat_map do |session|
-      session.exercises.select { |task| task["learning_mode"] == "school" && task["school_letter_ids"] == @letter_ids }
-        .flat_map { |task| [task["word"], *task.fetch("pair_words", []).map { |pair| pair["label"] }] }
-    end.compact.tally
+    @learner.practice_sessions.where(learning_mode: "school").order(id: :desc).limit(RECENT_MISSION_LIMIT).flat_map do |session|
+      # Keep familiar words in the rotation when a parent adds another letter.
+      # Count missions, not retries or the main word repeated inside a pair task.
+      session.exercises.select { |task| task["learning_mode"] == "school" }
+        .flat_map { |task| exercise_words(task) }.uniq
+    end.tally
+  end
+
+  def exercise_words(task)
+    [task["word"], *task.fetch("pair_words", []).map { |pair| pair["label"] }].compact.uniq
   end
 
   def school_story(index)
@@ -193,7 +201,7 @@ class SchoolPracticePlanner
         "prompt" => "Прочитај реч и пронађи слику.")
     when "picture_word"
       task.merge("emoji" => entry.fetch("emoji"), "image" => entry["image"],
-        "options" => distinct_pictures(entry).map { |item| item.fetch("word") }.shuffle(random: @random),
+        "options" => distinct_pictures(entry, compare_words: true).map { |item| item.fetch("word") }.shuffle(random: @random),
         "prompt" => "Пронађи реч за слику.")
     when "build_word", "memory_word"
       pair = @confusions.find { |item| word.include?(item.expected_letter.fetch("upper")) }
@@ -213,11 +221,23 @@ class SchoolPracticePlanner
     end
   end
 
-  def distinct_pictures(entry, count: 4)
+  def distinct_pictures(entry, count: 4, compare_words: false)
     return [] unless entry
 
     result = [entry]
-    @pictures.shuffle(random: @random).sort_by { |candidate| @used_words[candidate.fetch("word")] }.each do |candidate|
+    @pictures.shuffle(random: @random).sort_by do |candidate|
+      word = candidate.fetch("word")
+      # Similar beginnings make children read beyond the first letter. Image
+      # ambiguity is still checked below, so every choice has one clear meaning.
+      similarity = if compare_words
+        target = entry.fetch("word")
+        [word.first == target.first ? 0 : 1, (word.length - target.length).abs,
+          -word.chars.zip(target.chars).count { |left, right| left == right }]
+      else
+        []
+      end
+      [@used_words[word], *similarity, @recent_words.fetch(word, 0)]
+    end.each do |candidate|
       next if result.any? { |chosen| SchoolWordBank.visually_ambiguous?(chosen, candidate) }
       result << candidate
       break if result.length >= count

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Смет</title>
+<path d="M21 153V58L35 44L49 58V139M68 142V43L82 29L96 43V132M113 136V63L127 49L141 63V130" fill="#ad815b" stroke="#79583f" stroke-width="4" stroke-linejoin="round"/>
+<path d="M20 78H144M20 110H143" stroke="#c7996a" stroke-width="13"/>
+<path d="M14 173Q32 145 63 150C83 145 80 115 105 102C142 82 154 127 176 137C196 147 214 145 228 168V180H14Z" fill="#f4fbff" stroke="#a9cddd" stroke-width="4"/>
+<path d="M31 171Q70 174 85 156M111 113Q142 108 154 139M165 166Q187 159 214 171" stroke="#c8e6f4" stroke-width="5" stroke-linecap="round"/>
+<path d="M160 53H198Q222 53 211 66M162 74H191M184 32H216" stroke="#a9d7e8" stroke-width="5" stroke-linecap="round"/>
+</svg>

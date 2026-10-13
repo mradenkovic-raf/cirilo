@@ -7,7 +7,7 @@ class VarietyBank
       pool = ranked_alternatives(entry).first(8).rotate(variation % 3)
       entries = distinct_pictures(entry, pool, count: 4)
       { "word" => entry.fetch("word"), "answer" => entry.fetch("word"),
-        "emoji" => entry.fetch("emoji"),
+        "emoji" => entry.fetch("emoji"), "image" => entry["image"],
         "options" => entries.map { |item| item.fetch("word") }.shuffle,
         "prompt" => "Шта је на слици? Пронађи реч." }
     end
@@ -23,6 +23,7 @@ class VarietyBank
       broken[index] = wrong
       options = ([expected] + alternatives.reject { |char| char == wrong }.uniq.first(3)).shuffle
       { "word" => word, "answer" => word, "emoji" => entry.fetch("emoji"),
+        "image" => entry["image"],
         "broken_word" => broken, "repair_options" => options,
         "prompt" => "Једно слово је погрешно. Поправи реч." }
     end
@@ -34,7 +35,11 @@ class VarietyBank
       # answer knows that relationship; the browser receives the two lists.
       picture_ids = %w[P1 P2 P3].shuffle
       words = entries.each_with_index.map { |item, index| { "id" => "W#{index + 1}", "label" => item.fetch("word") } }
-      pictures = entries.each_with_index.map { |item, index| { "id" => picture_ids[index], "emoji" => item.fetch("emoji") } }.shuffle
+      pictures = entries.each_with_index.map do |item, index|
+        { "id" => picture_ids[index], "emoji" => item.fetch("emoji") }.tap do |picture|
+          picture["image"] = item["image"] if item["image"]
+        end
+      end.shuffle
       pictures.rotate! if pictures.map { |item| item.fetch("id") } == picture_ids
       { "pair_words" => words, "pair_pictures" => pictures,
         "answer" => picture_ids.join(","), "prompt" => "Споји сваку реч са њеном сликом." }

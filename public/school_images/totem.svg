@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Тотем</title>
+<ellipse cx="120" cy="180" rx="65" ry="9" fill="#eae5da"/>
+<path d="M80 31L103 19H143L159 34V169H80Z" fill="#bc7443" stroke="#78472c" stroke-width="4"/>
+<path d="M80 44L26 55L33 85L80 78M159 44L214 55L207 85L159 78" fill="#e3a052" stroke="#78472c" stroke-width="4" stroke-linejoin="round"/>
+<path d="M37 61L77 52M39 72L77 63M164 53L204 62M164 64L201 73" stroke="#44909e" stroke-width="6"/>
+<path d="M85 37H153V80H85Z" fill="#57a5ad"/><path d="M91 48L113 58L91 66M148 48L127 58L148 66" fill="#f7ebcb" stroke="#34566a" stroke-width="3"/>
+<path d="M120 55L134 70L120 80L107 70Z" fill="#e9ad4b" stroke="#78472c" stroke-width="3"/>
+<path d="M83 91H156V132H83Z" fill="#dc7656"/>
+<path d="M90 102L111 98M131 98L151 102" stroke="#633e30" stroke-width="4" stroke-linecap="round"/><circle cx="103" cy="109" r="4" fill="#fff0ce"/><circle cx="138" cy="109" r="4" fill="#fff0ce"/>
+<path d="M104 121Q120 129 138 121" stroke="#633e30" stroke-width="4" stroke-linecap="round"/>
+<path d="M83 140H156V158H83Z" fill="#e9b14e"/><path d="M87 148H98M108 148H119M129 148H140M150 148H155" stroke="#78472c" stroke-width="4"/>
+<path d="M71 171H168" stroke="#78472c" stroke-width="9" stroke-linecap="round"/>
+</svg>

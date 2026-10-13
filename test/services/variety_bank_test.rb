@@ -65,8 +65,10 @@ class VarietyBankTest < ActiveSupport::TestCase
       words.each_with_index do |word, index|
         assert_equal %w[id label], word.keys.sort
         picture = pictures.find { |item| item.fetch("id") == answer.fetch(index) }
-        assert_equal %w[emoji id], picture.keys.sort
-        assert_equal WordBank.find(word.fetch("label")).fetch("emoji"), picture.fetch("emoji")
+        entry = WordBank.find(word.fetch("label"))
+        assert_equal entry["image"] ? %w[emoji id image] : %w[emoji id], picture.keys.sort
+        assert_equal entry.fetch("emoji"), picture.fetch("emoji")
+        assert_equal entry.fetch("image"), picture.fetch("image") if entry["image"]
       end
       assert_not (words.map { |item| item.fetch("label") } & %w[АУТО ЏИП]).length == 2
       groups = words.filter_map { |word| WordBank.find(word.fetch("label"))["picture_group"] }

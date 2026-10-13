@@ -1,6 +1,20 @@
 require "test_helper"
 
 class WordBankTest < ActiveSupport::TestCase
+  test "expanded full alphabet bank includes short illustrated everyday words" do
+    assert_operator WordBank.words.length, :>=, 160
+    %w[СОМ СТО СИТО ТОСТ САНТА МЕСО СЕМЕ СЕНО МОНЕТА ОРМАН ПАНДА РОБОТ].each do |word|
+      entry = WordBank.find(word)
+      assert entry, word
+      assert_operator word.length, :<=, 6
+    end
+    WordBank.words.select { |entry| entry["image"] }.each do |entry|
+      assert_includes SchoolWordBank.image_paths, entry.fetch("image")
+      choices = WordBank.picture_choices(entry)
+      assert_equal entry.fetch("image"), choices.find { |choice| choice.fetch("value") == entry.fetch("word") }.fetch("image")
+    end
+  end
+
   test "every Serbian letter rotates through at least three illustrated words starting with it" do
     Curriculum.letters.each do |letter|
       starting_words = WordBank.words.select { |entry| entry.fetch("word").start_with?(letter.fetch("upper")) }

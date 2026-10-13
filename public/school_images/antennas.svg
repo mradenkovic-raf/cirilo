@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+<title>Антене</title>
+<g transform="translate(0 16) scale(0.58)"><path d="M28 175H214" stroke="#ccd9e5" stroke-width="9" stroke-linecap="round"/><path d="M122 176V40" stroke="#506276" stroke-width="10" stroke-linecap="round"/>
+<path d="M60 45L181 92M54 78L183 129M72 113L165 150" stroke="#889caf" stroke-width="9" stroke-linecap="round"/>
+<path d="M139 31Q161 18 181 37M146 17Q173 1 195 24" stroke="#54bfd7" stroke-width="5" stroke-linecap="round"/>
+<rect x="109" y="64" width="25" height="63" rx="8" fill="#61778c" stroke="#394c63" stroke-width="3"/>
+<path d="M128 127V156Q151 151 148 173" stroke="#ec9953" stroke-width="4"/><path d="M99 176L121 150L144 176" stroke="#506276" stroke-width="7" stroke-linejoin="round"/></g>
+<g transform="translate(98 78) scale(0.57)"><path d="M28 175H214" stroke="#ccd9e5" stroke-width="9" stroke-linecap="round"/><path d="M122 176V40" stroke="#506276" stroke-width="10" stroke-linecap="round"/>
+<path d="M60 45L181 92M54 78L183 129M72 113L165 150" stroke="#889caf" stroke-width="9" stroke-linecap="round"/>
+<path d="M139 31Q161 18 181 37M146 17Q173 1 195 24" stroke="#54bfd7" stroke-width="5" stroke-linecap="round"/>
+<rect x="109" y="64" width="25" height="63" rx="8" fill="#61778c" stroke="#394c63" stroke-width="3"/>
+<path d="M128 127V156Q151 151 148 173" stroke="#ec9953" stroke-width="4"/><path d="M99 176L121 150L144 176" stroke="#506276" stroke-width="7" stroke-linejoin="round"/></g>
+</svg>

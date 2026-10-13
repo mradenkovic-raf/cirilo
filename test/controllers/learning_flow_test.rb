@@ -3,6 +3,24 @@ require_relative "../services/exercise_helpers"
 
 class LearningFlowTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
+
+  test "new full alphabet drawings render and survive the successful answer response" do
+    learner = test_learner
+    session = PracticePlanner.start!(learner)
+    task = PracticePlanner.send(:exercise, Curriculum.find("s"), WordBank.find("СИТО"), "build_word", "upper")
+    learner.letter_progresses.find_or_create_by!(letter_id: task.fetch("letter_id"))
+    session.update!(exercises: [task] + session.exercises.drop(1))
+    get practice_session_path(session)
+    assert_response :success
+    assert_select ".build-picture img.word-illustration[alt='']", count: 1 do |images|
+      assert_match %r{\A/school_images/sieve\.svg\?v=[a-f0-9]{12}\z}, images.first["src"]
+    end
+    post practice_session_attempts_path(session), params: correct_attributes(task), as: :json
+    assert_response :success
+    assert response.parsed_body.fetch("correct")
+    assert_match %r{\A/school_images/sieve\.svg\?v=[a-f0-9]{12}\z}, response.parsed_body.fetch("meaning").fetch("image_url")
+  end
+
   test "every main page renders with all thirty letters and matching reward names" do
     test_learner
     get root_path

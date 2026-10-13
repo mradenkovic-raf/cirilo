@@ -1,0 +1,133 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261013-5-b2jrbm5' as your home directory temporarily.
+Hold on, I am eager loading the application.
+All is good!
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261013-8-oxuszh8' as your home directory temporarily.
+
+Run options: --seed 27666
+
+# Running:
+
+...................................................................................................................................................................................................................................................................................................................
+
+Finished in 20.036359s, 15.3221 runs/s, 5930.8180 assertions/s.
+307 runs, 118832 assertions, 0 failures, 0 errors, 0 skips
+✔ goggles visibly reveal the next move, preserve it through a failed move, and expire after playing (3.054571ms)
+✔ refresh preserves revealed goggles without mistaking the previous round for the next move (0.488654ms)
+✔ winning the last round reveals and focuses the outcome, then celebrates once (1.111057ms)
+✔ losing the last round reveals a distinct defeat and plays a descending final cue (0.615683ms)
+✔ mute or unavailable audio preserves the visible final outcome (1.056321ms)
+✔ refresh and duplicate responses show saved outcomes without replaying celebration or sound (1.643613ms)
+✔ a hit removes only an armor icon and leaves all three hearts full (1.055197ms)
+✔ the last armor piece disappears before a later hit can remove a heart (1.856171ms)
+✔ ties, shields, dodges, and unchanged health never flash a lost icon (2.125841ms)
+✔ every round outcome has its own cue without replaying duplicate actions (7.423619ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23.758914
+✔ steering sounds only when the car changes lane, not at an edge or during the input delay (3.40097ms)
+✔ each collision sounds once, then the saved defeat stops music and plays the loss cue (0.964106ms)
+✔ crossing the finish line stops the track and triggers victory applause only after saving succeeds (2.762134ms)
+✔ tab hiding and back navigation pause music; resuming requires a tap and skipping stops it (0.627096ms)
+✔ refreshing a saved result stays silent and a restored active drive waits for resume (1.312487ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.464106
+✔ race awards a win only after the entire course, with zero, one or two collisions (0.757661ms)
+✔ third collision ends the race at its actual time, before any later rocks (0.086856ms)
+✔ a timestamped lane change affects its exact collision, never a preceding rock (0.069059ms)
+✔ lane controls accept only adjacent changes and enforce the server cooldown (0.128787ms)
+✔ background pause and a slow frame never skip a large section of the road (0.425944ms)
+✔ every single-lane rock leaves a reachable safe lane during a course (0.130385ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4.452991
+✔ music and effects stay silent until a real user gesture (6.136993ms)
+✔ touch and pen release unlock music and effects without a premature pointerdown resume (4.094309ms)
+✔ trusted touchend, click, and ordinary keyboard gestures provide audio fallbacks (2.55594ms)
+✔ fresh touch release retries a blocked pending resume while ordinary calls remain deduplicated (1.289579ms)
+✔ a trusted unmute alone unlocks muted loading and retries a previously blocked resume (1.243694ms)
+✔ drive and arena play distinct quiet melodies without multiplying loops (9.836323ms)
+✔ every requested effect has a different sound, and winning includes stereo handclaps (18.272334ms)
+✔ stopping music leaves the ending cue alive, while muting cuts off all scheduled sound (13.407086ms)
+✔ mute toggle and cross-tab storage stop immediately and resume only wanted music (0.627716ms)
+✔ muted loading and unavailable audio never interrupt either game (1.079834ms)
+✔ tab hiding stops sound and resumes music without replaying effects (0.989476ms)
+✔ ordinary async resume calls are deduplicated, rejected resumes are harmless, and late completion respects mute (1.108198ms)
+✔ repeated effects cannot accumulate voices and ended nodes disconnect (14.586583ms)
+✔ pagehide closes audio, releases listeners, and late calls cannot restart it (0.522715ms)
+✔ Browser Back restores cached arena audio but does not resume a paused driving game (1.635611ms)
+✔ cached pages re-read mute when restored, including a changed setting on another page (0.58487ms)
+✔ applause has short changing transients with headroom, rather than a clipped steady noise (15.55854ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.646726
+✔ saved progress moves the dinosaur and lights one dot per completed task, including the arena endpoint (0.63655ms)
+✔ recovery adds a dot without awarding progress and duplicate replies do not move again (0.138518ms)
+✔ invalid progress cannot replace the last saved path and pages without a path are supported (0.509398ms)
+✔ the car follows the sixth original task when recovery changes the route and becomes current after the answer (0.187973ms)
+✔ a completed drive keeps its result as later recovery tasks lengthen the route (0.122371ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4.394422
+✔ all 30 Serbian letters have words and finite uppercase/lowercase print guides (7.728761ms)
+✔ empty drawings, taps and tiny marks do not pass (0.104541ms)
+✔ school guides separate strokes and direct straight stems downwards (0.493755ms)
+✔ small hand wobble passes, large displacement does not (0.236015ms)
+✔ a missing stroke cannot be replaced by repeating another stroke (0.158783ms)
+✔ filling the whole board with scribbles does not pass (0.694566ms)
+✔ an unrelated shape does not pass (0.187754ms)
+✔ stroke direction and stroke order do not affect a complete trace (0.087099ms)
+✔ separate drawn paths are not connected across a lifted pointer (0.085762ms)
+✔ the dot of printed ј can be tapped, while dots alone cannot draw a letter (0.176855ms)
+✔ malformed input is safe and guide paths remain separate SVG paths (0.104453ms)
+✔ direction arrows follow straight and curved paths; a dot has no arrow (0.214003ms)
+✔ stroke numbers at the same start remain separate and inside the pad (0.767311ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14.486664
+✔ repair requires an explicit changed letter and only edits the chosen position (0.824577ms)
+✔ restoring the original letter is incomplete and undo restores the whole original word (0.145505ms)
+✔ repair displays lowercase but submits uppercase and retains the edited answer across locking (0.240016ms)
+✔ pairing requires a word first and all three distinct pictures before submitting (0.382377ms)
+✔ reassigning a picture releases its old word and undo restores both connections (0.167409ms)
+✔ pairing can deselect a word and keeps answers while pending or completed (0.141898ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5.535453

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Цуцла</title>
+<ellipse cx="120" cy="178" rx="68" ry="8" fill="#e8edf3"/>
+<path d="M100 92L101 73C89 47 102 26 120 26C142 26 150 48 139 72L141 92" fill="#f7c49c" stroke="#bc8268" stroke-width="4"/>
+<path d="M67 85Q80 75 99 81Q120 90 140 81Q161 75 174 85L182 109Q179 136 154 138Q119 123 87 138Q61 135 58 109Z" fill="#79c4d2" stroke="#438b9c" stroke-width="4"/>
+<circle cx="79" cy="106" r="7" fill="#e6faff"/><circle cx="161" cy="106" r="7" fill="#e6faff"/>
+<circle cx="120" cy="109" r="21" fill="#f3d36f" stroke="#b89036" stroke-width="4"/>
+<ellipse cx="120" cy="137" rx="30" ry="31" stroke="#d18c54" stroke-width="13"/>
+<ellipse cx="120" cy="135" rx="30" ry="31" stroke="#f8bc76" stroke-width="8"/>
+<path d="M110 42Q104 48 110 60" stroke="#ffe4cb" stroke-width="5" stroke-linecap="round"/>
+</svg>
