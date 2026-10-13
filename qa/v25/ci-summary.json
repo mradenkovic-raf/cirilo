@@ -1,0 +1,1 @@
+{"conclusion":"success","headSha":"92ba40ea23b50d1deb8fa35b051bc0d611b25aeb","jobs":[{"conclusion":"success","name":"Docker and persistent SQLite","status":"completed"},{"conclusion":"success","name":"Rails and browser logic","status":"completed"}],"status":"completed","url":"https://github.com/mradenkovic-raf/cirilo/actions/runs/38469432008"}

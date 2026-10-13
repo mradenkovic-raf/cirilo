@@ -1,0 +1,16 @@
+{
+  "projectId": "8a26bf67-82f2-47ff-8e58-86d672c1d319",
+  "environmentId": "3276f7ec-16c0-45c9-92cc-63b935024066",
+  "serviceId": "22dc64c0-c31f-487f-978e-06d55b1bf499",
+  "id": "fbe5c195-072c-4c4f-a50b-6d23eb9ad80e",
+  "status": "SUCCESS",
+  "createdAt": "2026-10-13T21:19:45.937Z",
+  "updatedAt": "2026-10-13T21:20:27.458Z",
+  "meta": {
+    "branch": "main",
+    "commitHash": "92ba40ea23b50d1deb8fa35b051bc0d611b25aeb",
+    "commitMessage": "Expand reading vocabulary and vary school word practice",
+    "reason": "deploy"
+  },
+  "url": "https://cirilo-production.up.railway.app"
+}

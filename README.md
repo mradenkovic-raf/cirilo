@@ -6,13 +6,13 @@ Javna aplikacija: **[cirilo-production.up.railway.app](https://cirilo-production
 
 V24 popravlja uključivanje muzike i efekata u igrama na dodir i oporavak blokiranog audio pokušaja. Posle objave osveži stranicu na telefonu. [Provera Android ispravke](qa/v24/PROVERA.md).
 
-## Više reči i manje pogađanja — v25 (lokalno)
+## Više reči i manje pogađanja — v25
 
 Školska banka sada ima **781 reč i oblik reči** (+238), od kojih je 710 dugo najviše pet slova. Do Е ima **120 reči umesto 75**, sa **37 slikovnih odgovora umesto 24**. Novi slikovni pojmovi uključuju omot, stan, mantu, totem i smet; osam dodatnih odgovora su množine sa odgovarajućim slikama više predmeta. Jednina i množina istog pojma nisu konkurentski odgovori. Dodato je **20 lokalnih SVG ilustracija**, bez spoljnih servisa.
 
 Režim cele azbuke dobio je još **48 kratkih slikovnih reči**, ukupno 160, sa rečenicama i slikama u zadacima i posle tačnog odgovora. Do Е ima **20 kratkih rečenica umesto 8**; dve priče u istoj misiji menjaju i osobu i predmet. I ostale školske etape imaju više kratkih reči i rečenica.
 
-Izbor reči uzima u obzir poslednjih šest školskih misija, uključujući promenu naučenih slova, i sve tri reči iz spajanja. Biranje reči za sliku češće nudi slične početke i dužine, pa prvo slovo nije dovoljno. Naučena slova, nagrade i odnos deset čitalačkih/dve pisaće vežbe ostaju isti. Započeta misija zadržava svoja pitanja; novo gradivo dobija sledeća. Ova verzija **još nije objavljena na Railwayu**. [Provere v25](qa/v25/PROVERA.md).
+Izbor reči uzima u obzir poslednjih šest školskih misija, uključujući promenu naučenih slova, i sve tri reči iz spajanja. Biranje reči za sliku češće nudi slične početke i dužine, pa prvo slovo nije dovoljno. Naučena slova, nagrade i odnos deset čitalačkih/dve pisaće vežbe ostaju isti. Započeta misija zadržava svoja pitanja; novo gradivo dobija sledeća. Ova verzija je **objavljena na Railwayu 2026-10-13** (`92ba40e`). [Provere v25](qa/v25/PROVERA.md).
 
 ## Muzika, efekti i jasnije naočare — v22
 

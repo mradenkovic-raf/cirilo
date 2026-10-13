@@ -1,6 +1,6 @@
 # V25 — više reči, ilustracija i raznovrsnije čitanje
 
-Status: lokalno završeno, nije objavljeno na Railwayu. Prethodna javna verzija ostaje v24 (`349d1de`); početna Git tačka ovog rada je `1cfceb1`.
+Status: **javno objavljeno 2026-10-13**, runtime commit `92ba40e`. Prethodna javna verzija je v24 (`349d1de`); početna Git tačka ovog rada je `1cfceb1`.
 
 ## Sadržaj
 
@@ -40,3 +40,14 @@ Simulacija ima rollback i radi samo u test okruženju. Broj misija je provera ra
 - Na 320 px nema horizontalnog preliva, slike su učitane; browser nema prijavljene JS greške/upozorenja. Snimci su `story-seeds-390.png`, `new-pictures-320.png`, `word-meaning-320.png` u ovom folderu (lokalno, izuzeti iz Gita).
 
 Probni browser koristi `storage/v25-browser.sqlite3` i localhost:3025. [Priprema pojedinačnog zadatka](prepare.rb) odbija bilo koju drugu bazu. Testovi koriste `storage/v25-test.sqlite3`, a audit `storage/v25-audit.sqlite3`; stvarni napredak nije korišćen ili resetovan. Nema migracije, promene nagrada ili novih spoljnih servisa. Sačuvane misije ostaju iste, a nova banka važi od sledeće misije. Fizički Android/iPhone nisu provereni u ovom koraku.
+
+
+## Javna objava
+
+GitHub `main` ažuriran je fast-forward spajanjem grane `codex/reading-vocabulary`. [CI za tačan commit](https://github.com/mradenkovic-raf/cirilo/actions/runs/38469432008) je uspešan, uključujući Rails/browser logiku, production provere i Docker sa trajnom SQLite bazom. [Konačni CI status](ci-summary.json) je merodavan; posmatranje je jednom prekinuo GitHub API HTTP 502, a ne neuspeh testova.
+
+Railway je povukao `92ba40ea23b50d1deb8fa35b051bc0d611b25aeb` iz postojećeg GitHub izvora. Za deployment **`fbe5c195-072c-4c4f-a50b-6d23eb9ad80e`** potvrđen je **SUCCESS**. [Potvrda](deployment.json). Javna adresa: https://cirilo-production.up.railway.app.
+
+[Pregled pre objave](public-before.txt) i [pregled posle objave](public-check.txt) potvrđuju nastavak iste probne misije i zadatka preko postojećeg stalnog cookie-ja. Prolaze HTTPS `/up`, školska podešavanja do Е, SHA/cache verzije postojećih game modula i identičan SHA svih 20 novih SVG ilustracija. [Read-only provera](public_release_check.py) ne šalje odgovore, ne pravi nove identitete/misije i ne ispisuje privatni cookie.
+
+Read-back Railway konfiguracije potvrđuje isti volume `/app/storage`, jedan servis/jednu repliku, 0,5 vCPU / 500 MB i uspavljivanje; nema staged promena. Nema nove migracije, promene tajnog ključa ili dodatnih resursa. Započete misije ostaju iste; nove reči dolaze od naredne misije.

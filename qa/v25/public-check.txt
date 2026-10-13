@@ -1,0 +1,28 @@
+PASS: HTTPS healthcheck.
+PASS: Same mission and task restored using only the permanent browser cookie.
+PASS: Exact release asset and cache version: game_audio.js
+PASS: Exact release asset and cache version: battle.js
+PASS: Exact release asset and cache version: dino_drive.js
+PASS: Exact release asset and cache version: mission_path.js
+PASS: Parent settings show school mode and default letters through Е.
+PASS: Exact new SVG and cache-version URL: antennas.svg
+PASS: Exact new SVG and cache-version URL: apartment.svg
+PASS: Exact new SVG and cache-version URL: cliffs.svg
+PASS: Exact new SVG and cache-version URL: coins.svg
+PASS: Exact new SVG and cache-version URL: excavator.svg
+PASS: Exact new SVG and cache-version URL: frying_pan.svg
+PASS: Exact new SVG and cache-version URL: hose.svg
+PASS: Exact new SVG and cache-version URL: manta.svg
+PASS: Exact new SVG and cache-version URL: notes.svg
+PASS: Exact new SVG and cache-version URL: pacifier.svg
+PASS: Exact new SVG and cache-version URL: pillow.svg
+PASS: Exact new SVG and cache-version URL: seeds_many.svg
+PASS: Exact new SVG and cache-version URL: sieves.svg
+PASS: Exact new SVG and cache-version URL: skirt.svg
+PASS: Exact new SVG and cache-version URL: snowdrift.svg
+PASS: Exact new SVG and cache-version URL: threads.svg
+PASS: Exact new SVG and cache-version URL: totem.svg
+PASS: Exact new SVG and cache-version URL: wall.svg
+PASS: Exact new SVG and cache-version URL: wasps.svg
+PASS: Exact new SVG and cache-version URL: wrapper.svg
+PASS: All 20 v25 illustrations match local SHA-256; saved mission remains unchanged.
