@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby
+require "sqlite3"
+require "tempfile"
+
+# Run before db:prepare, after the persistent volume is mounted. This is a
+# migration safety copy on the same volume, not a separate disaster backup.
+database_path = File.expand_path(ENV.fetch("DATABASE_PATH", "storage/production.sqlite3"))
+exit 0 unless File.exist?(database_path)
+
+def verify_backup(path)
+  raise "backup path is not a regular file" unless File.file?(path) && !File.symlink?(path)
+
+  SQLite3::Database.new(path, readonly: true) do |database|
+    raise "backup integrity check failed" unless database.execute("PRAGMA integrity_check") == [["ok"]]
+    raise "backup contains no tables" if database.get_first_value("SELECT count(*) FROM sqlite_master WHERE type = 'table'").zero?
+  end
+end
+
+begin
+  raise "database path is not a regular file" unless File.file?(database_path) && !File.symlink?(database_path)
+  versions = Dir.glob(File.expand_path("../db/migrate/[0-9]*_*.rb", __dir__)).map { |path| File.basename(path).split("_", 2).first }.sort
+  raise "no migration files found" if versions.empty?
+
+  SQLite3::Database.new(database_path, readonly: true) do |source|
+    source.busy_timeout = 5_000
+    tables = source.execute("SELECT name FROM sqlite_master WHERE type = 'table'").flatten
+    exit 0 if tables.empty?
+    applied = tables.include?("schema_migrations") ? source.execute("SELECT version FROM schema_migrations").flatten : []
+    pending = versions - applied
+    exit 0 if pending.empty?
+
+    directory = File.join(File.dirname(database_path), "migration-backups")
+    raise "backup directory must not be a symlink" if File.symlink?(directory)
+    Dir.mkdir(directory, 0o700) unless Dir.exist?(directory)
+    File.chmod(0o700, directory)
+    destination = File.join(directory, "#{File.basename(database_path)}-before-#{pending.max}.sqlite3")
+    if File.exist?(destination) || File.symlink?(destination)
+      verify_backup(destination)
+      File.chmod(0o600, destination)
+      puts "Migration backup already verified for target #{pending.max}; keeping the original snapshot."
+      exit 0
+    end
+
+    Tempfile.create([".pending-migration-", ".sqlite3"], directory) do |temporary|
+      temporary.close
+      SQLite3::Database.new(temporary.path) do |target|
+        backup = SQLite3::Backup.new(target, "main", source, "main")
+        begin
+          deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + 5
+          loop do
+            status = backup.step(-1)
+            break if status == SQLite3::Constants::ErrorCode::DONE
+            unless [SQLite3::Constants::ErrorCode::BUSY, SQLite3::Constants::ErrorCode::LOCKED].include?(status)
+              raise "SQLite backup returned error code #{status}"
+            end
+            raise "database remained busy during backup" if Process.clock_gettime(Process::CLOCK_MONOTONIC) >= deadline
+            sleep 0.05
+          end
+        ensure
+          backup.finish
+        end
+        # The source may use WAL. Make the completed snapshot self-contained,
+        # so it can be restored without temporary -wal/-shm sidecar files.
+        raise "backup could not leave WAL mode" unless target.get_first_value("PRAGMA journal_mode=DELETE") == "delete"
+      end
+      verify_backup(temporary.path)
+      File.open(temporary.path, "rb") { |file| file.fsync }
+      # A hard link publishes the completed file atomically without replacing
+      # an earlier snapshot, even if another startup won the race.
+      begin
+        File.link(temporary.path, destination)
+      rescue Errno::EEXIST
+        verify_backup(destination)
+      end
+      File.chmod(0o600, destination)
+      File.open(directory, "r") { |file| file.fsync }
+    end
+    puts "Migration backup verified and saved for target #{pending.max}."
+  end
+rescue StandardError => error
+  warn "Migration backup failed (#{error.class}): #{error.message}. Startup stopped before migrations."
+  exit 1
+end

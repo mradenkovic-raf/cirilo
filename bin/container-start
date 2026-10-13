@@ -15,5 +15,6 @@ if [ -n "${RAILWAY_ENVIRONMENT_ID:-}" ]; then
   esac
 fi
 
+bundle exec ruby bin/backup-before-migrate
 bin/rails db:prepare
 exec bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"

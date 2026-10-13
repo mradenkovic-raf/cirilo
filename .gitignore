@@ -4,6 +4,7 @@
 /log/*
 /tmp/*
 /storage/*.sqlite3*
+/storage/migration-backups/
 /.env
 /.env.*
 !/.env.example
