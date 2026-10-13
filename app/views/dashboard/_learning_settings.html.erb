@@ -1,0 +1,33 @@
+<% selected_ids = SchoolCurriculum.canonical_ids(@learner.school_letter_ids) %>
+<% cumulative = selected_ids == SchoolCurriculum.through(selected_ids.last) %>
+<section class="learning-settings" id="learning-settings" aria-labelledby="learning-settings-title">
+  <div class="learning-settings-heading"><span class="learning-settings-icon" aria-hidden="true">Аа</span><div><h2 id="learning-settings-title">Шта вежбамо?</h2><p>Изабери слова која је дете учило у школи.</p></div></div>
+  <%= form_with url: learning_settings_path, method: :patch, data: { learning_settings: true } do %>
+    <%= hidden_field_tag :learning_settings_revision, @learner.learning_settings_revision %>
+    <fieldset class="learning-modes"><legend class="adventure-visually-hidden">Начин игре</legend>
+      <label class="learning-mode"><%= radio_button_tag :learning_mode, 'school', @learner.school_mode? %><span><strong>📚 Школска слова</strong><small>Кратке речи од изабраних слова.</small></span></label>
+      <label class="learning-mode"><%= radio_button_tag :learning_mode, 'full', !@learner.school_mode? %><span><strong>🌍 Цела азбука</strong><small>Досадашња игра са свих 30 слова.</small></span></label>
+    </fieldset>
+    <div class="school-selection" data-school-selection>
+      <div class="school-through">
+        <label><%= radio_button_tag :letter_selection, 'through', cumulative %><span>Сва слова до</span></label>
+        <%= select_tag :through_letter, options_for_select(SchoolCurriculum.letters.each_with_index.map { |letter, index| ["#{letter['upper']} #{letter['lower']} · #{index + 1}. слово", letter['id']] }, selected_ids.last), 'aria-label': 'Последње научено слово', data: { through_letter: true } %>
+      </div>
+      <p class="school-letter-preview" data-school-letter-preview aria-live="polite"><%= SchoolCurriculum.letters_for(selected_ids).map { |letter| letter['upper'] }.join(' · ') %></p>
+      <details class="school-custom" <%= 'open' unless cumulative %>>
+        <summary>Изабери појединачна слова</summary>
+        <label class="school-custom-choice"><%= radio_button_tag :letter_selection, 'custom', !cumulative %><span>Користи само означена слова</span></label>
+        <%= hidden_field_tag 'school_letter_ids[]', '' %>
+        <div class="school-letter-grid">
+          <% SchoolCurriculum.letters.each do |letter| %>
+            <label class="school-letter"><%= check_box_tag 'school_letter_ids[]', letter['id'], selected_ids.include?(letter['id']), id: "school_letter_#{letter['id']}", data: { school_letter: letter['upper'] } %><span><%= letter['upper'] %><small><%= letter['lower'] %></small></span></label>
+          <% end %>
+        </div>
+      </details>
+      <p class="learning-settings-note">Нова слова додајеш ти. Игра их не откључава сама. Велика и мала штампана слова вежбамо заједно.</p>
+    </div>
+    <p class="learning-settings-note">Диносаурус, поени, опрема и другари остају исти у оба начина игре. Започета мисија се не мења; подешавање важи за следећу.</p>
+    <% if @active_session %><p class="learning-active-note">Мисија која је у току: <strong><%= @active_session.school_mode? ? "Школска слова — #{SchoolCurriculum.letters_for(@active_session.school_letter_ids).map { |letter| letter['upper'] }.join(' ')}" : 'Цела азбука' %></strong>.</p><% end %>
+    <%= submit_tag 'Сачувај избор', class: 'button primary' %>
+  <% end %>
+</section>

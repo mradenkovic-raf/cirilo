@@ -36,7 +36,7 @@ class DashboardController < ApplicationController
     @active_session = @learner.active_session
     @active_mission = @active_session
     @stats = @learner.statistics
-    @letters = Curriculum.letters
+    @letters = @learner.school_mode? ? SchoolCurriculum.letters_for(@learner.school_letter_ids) : Curriculum.letters
     @progress_by_letter = @learner.letter_progresses.index_by(&:letter_id)
     @next_letters = PracticePlanner.next_letters(@learner)
     @unlocks = @learner.part_unlocks.order(:position).to_a

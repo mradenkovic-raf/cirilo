@@ -6,6 +6,16 @@ class PracticeSession < ApplicationRecord
 
   validates :status, inclusion: { in: %w[active completed] }
   validates :cursor, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :learning_mode, inclusion: { in: %w[school full] }
+  validate do
+    if school_mode? && !SchoolCurriculum.valid_ids?(school_letter_ids)
+      errors.add(:school_letter_ids, "школска мисија мора да сачува изабрана слова")
+    end
+  end
+
+  def school_mode?
+    learning_mode == "school"
+  end
 
   def current_exercise
     exercises[cursor] unless completed?

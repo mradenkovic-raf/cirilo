@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Сом</title>
+  <path d="M18 154C56 144 84 164 123 155C167 144 190 151 221 143" stroke="#d7ecf8" stroke-width="10" stroke-linecap="round"/>
+  <g stroke="#293e50" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M90 79L115 41L132 82" fill="#658ba0"/>
+    <path d="M110 133L130 157L146 130" fill="#789eb1"/>
+    <path d="M63 94L25 65L32 105L22 141L65 122" fill="#658ba0"/>
+    <path d="M49 108C72 71 133 65 169 78C199 84 206 103 203 120C199 139 173 144 142 139C106 136 82 123 49 108Z" fill="#87adbd"/>
+    <path d="M59 114C107 114 139 127 200 117C200 137 173 141 143 136C109 134 82 122 59 114Z" fill="#d8e3df" stroke="none"/>
+    <path d="M139 111L122 130L149 129" fill="#658ba0"/>
+    <path d="M159 83C147 94 148 108 156 117" stroke="#52798d" stroke-width="3"/>
+    <circle cx="179" cy="96" r="6" fill="#fff"/>
+    <circle cx="181" cy="96" r="2.5" fill="#293e50" stroke="none"/>
+    <path d="M186 112Q198 116 205 110" stroke-width="3"/>
+    <path d="M202 111C214 104 224 106 232 96M200 117C215 118 223 123 228 132M194 120C207 130 208 144 217 150"/>
+    <path d="M182 113C173 124 167 129 157 130M190 119C183 134 177 141 170 145" stroke-width="3"/>
+  </g>
+</svg>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "/workshop/restore-dino", to: "dashboard#restore_dino", as: :restore_dino_workshop
   get "/alphabet", to: "dashboard#alphabet", as: :alphabet
   get "/progress", to: "dashboard#progress", as: :progress
+  patch "/progress/learning", to: "learning_settings#update", as: :learning_settings
   post "/progress/reset-shop", to: "shop#reset", as: :reset_shop_progress
   post "/progress/reset-all", to: "full_resets#create", as: :reset_all_progress
   get "/shop", to: "shop#index", as: :shop

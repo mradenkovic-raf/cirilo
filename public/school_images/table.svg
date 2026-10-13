@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Сто</title>
+  <ellipse cx="122" cy="178" rx="96" ry="9" fill="#e9e8e3"/>
+  <g stroke="#5b3c2e" stroke-width="4" stroke-linejoin="round">
+    <path d="M76 80H91L89 155H78Z" fill="#b86e42"/>
+    <path d="M190 85H205L207 156H194Z" fill="#b86e42"/>
+    <path d="M43 108H59L57 177H43Z" fill="#cf8c52"/>
+    <path d="M163 113H179L181 178H166Z" fill="#cf8c52"/>
+    <path d="M32 89L171 95L216 69V88L174 119L32 112Z" fill="#c98549"/>
+    <path d="M32 89L77 54L216 69L173 101Z" fill="#e9b57a"/>
+  </g>
+  <path d="M61 83L92 62M95 90L122 69M132 93L158 74M173 101V119" stroke="#bd804b" stroke-width="3" stroke-linecap="round"/>
+</svg>

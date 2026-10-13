@@ -26,7 +26,8 @@ class FullReset
       learner.update!(xp: 0, xp_spent: 0, completed_missions: 0,
         selected_dino: "rex", dino_color: "green", selected_theme: "meadow", selected_effect: "stars",
         last_dino_snapshot: {}, egg_state: {}, shop_generation: learner.shop_generation + 1,
-        dinosaur_generation: learner.dinosaur_generation + 1)
+        dinosaur_generation: learner.dinosaur_generation + 1,
+        learning_settings_revision: learner.learning_settings_revision + 1)
     end
     learner
   end

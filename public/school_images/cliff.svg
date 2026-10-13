@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Стена</title>
+  <path d="M27 176H219" stroke="#dcebdc" stroke-width="13" stroke-linecap="round"/>
+  <path d="M180 46L208 68L200 169L161 179L70 174L51 146L66 69L83 41Z" fill="#bac1c9" stroke="#3d4958" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M161 48L180 46L208 68L200 169L161 179L177 117Z" fill="#8b98a6"/>
+  <path d="M83 41L114 33L149 38L166 31L183 44L176 60L66 73L61 59Z" fill="#7ab66a" stroke="#3d4958" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M91 80L82 107L88 137L73 158M131 68L125 100L139 122L126 165M166 77L159 109L168 142M202 97L183 103M198 142L177 148M68 114L102 119M99 153L115 155M128 99L151 94" stroke="#6f7f91" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M31 177L42 168L54 176M205 180L213 169L224 179" fill="#8f9caa" stroke="#3d4958" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M86 42L85 31M93 40L100 30M152 39L148 26" stroke="#4e8c48" stroke-width="4" stroke-linecap="round"/>
+</svg>

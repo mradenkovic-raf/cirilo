@@ -2,6 +2,18 @@
 
 Rails aplikacija za decu koja uče srpsku ćirilicu. Obični server-rendered HTML, CSS i mali JavaScript moduli; bez Reacta, Vuea, frontend build procesa, prijave i profila. SQLite čuva zaseban napredak svakog browsera, a trajni šifrovani kolačić omogućava nastavak igre.
 
+## Školska slova — v20
+
+Podrazumevana igra koristi **А, М, И, Т, О, Н, С, Е**. U **Još → Za roditelja → Šta vežbamo?** roditelj bira poslednje naučeno slovo po redosledu bukvara ili označava pojedinačna slova. Druga opcija, **Cela azbuka**, zadržava dosadašnju igru. Izbor se pamti u bazi za isti browser; nema prijave i nema novih servisa.
+
+Redosled: **А М И Т О Н С Е Р Ј У Ш Л Љ З В Г П К Д Б Њ Х Ж Ч Ћ Ф Ц Џ Ђ**. Igra sama ne dodaje školska slova. Reči, ponuđeni odgovori, pogrešna slova, rečenice, dopune i ponavljanje koriste samo roditeljev izbor. I slovarica prati taj izbor. Uputstva i ostali tekst interfejsa nisu ograničeni tim skupom.
+
+Školska banka ima **423 kratke reči od 2–6 slova**, od kojih je 388 do pet slova. Skup do Е ima 67 reči, uključujući kratke glagole i imena za sastavljanje po sećanju. Za slikovne zadatke koriste se samo ilustrovani pojmovi; slike koje mogu isto da se protumače ne nude se zajedno. Kratke rečenice poput „Мама има сат“ zahtevaju prepoznavanje i osobe i predmeta. Prostorne priče ulaze tek kada su sva slova njihovog teksta poznata.
+
+Misija i dalje ima 12 zadataka i uobičajenih 145 XP: deset zadataka čitanja/rada sa slovima i dve kratke vežbe pisanja. Na najranijim i vrlo uskim proizvoljnim skupovima nema dovoljno reči/slika, pa se nedostupne igre zamenjuju vežbama slova i pamćenja. Širinu sadržaja proveravamo kroz 42 misije (šest dnevno tokom nedelju dana); to nije dnevna obaveza niti ograničenje igranja. Ponavljanje reči kroz različite igre je namerno.
+
+Dinosaurus, XP, kupovine, mapa i drugari zajednički su za oba načina igre. Započeta misija čuva svoj izbor slova i ostaje ista; roditeljska promena važi od sledeće. Potpuni restart briše napredak, ali zadržava roditeljev način igre i školska slova. Ranije sačuvane misije ostaju sa celom azbukom. [Provere i sačuvana verzija](qa/v20/PROVERA.md).
+
 ## Pokretanje na ovom računaru
 
 ```bash

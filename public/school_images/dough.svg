@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Тесто</title>
+  <path d="M37 136L184 129L221 157L213 175L48 179L20 158Z" fill="#dab17f" stroke="#846042" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M42 159L200 156M59 174L196 169" stroke="#be8d59" stroke-width="3" stroke-linecap="round"/>
+  <path d="M58 151C51 126 57 99 72 80C82 65 102 56 125 60C148 54 166 72 178 87C193 109 192 134 178 148C148 162 85 166 58 151Z" fill="#fff1ce" stroke="#a58a61" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M91 77C82 91 85 107 101 116M164 93C174 103 176 117 171 127M79 125C95 132 97 143 113 144" stroke="#dfc49a" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#fff9ea"><circle cx="131" cy="86" r="8"/><circle cx="142" cy="80" r="5"/><circle cx="141" cy="95" r="4"/><circle cx="42" cy="151" r="6"/><circle cx="202" cy="151" r="5"/><circle cx="191" cy="171" r="4"/><circle cx="55" cy="170" r="4"/><circle cx="31" cy="163" r="3"/><circle cx="177" cy="169" r="3"/></g>
+</svg>

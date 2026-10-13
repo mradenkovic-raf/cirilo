@@ -1,0 +1,62 @@
+<div class="story-prompt"><span class="story-prompt-icon" aria-hidden="true">📖</span><div class="story-sentence"><%= exercise.fetch("story_sentence") %></div></div>
+<div class="story-choices school-story-choices" role="group" aria-label="Изабери слику која одговара реченици">
+  <% exercise.fetch("choices").each_with_index do |choice, index| %>
+    <% scene = choice.fetch("scene"); person = scene.fetch("person"); woman = %w[mother grandmother].include?(person); older = %w[grandmother grandfather].include?(person) %>
+    <button type="button" class="choice story-choice" data-answer="<%= choice.fetch('value') %>" aria-label="Слика <%= index + 1 %>">
+      <svg class="story-scene school-story-scene" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
+        <ellipse cx="101" cy="137" rx="84" ry="7" fill="#233E35" opacity=".08"/>
+        <% if woman %>
+          <path d="M29 51Q25 12 57 13Q87 13 88 49L91 82H27Z" fill="<%= older ? '#BAC0BF' : '#634933' %>"/>
+          <% if older %><circle cx="56" cy="14" r="12" fill="#BAC0BF"/><% end %>
+        <% end %>
+        <path d="M46 69V86H68V69" fill="#EDB48E"/>
+        <path d="M30 92Q38 80 48 81H67Q83 83 89 97L95 136H21Z" fill="<%= woman ? '#AA73BA' : '#5C9FC0' %>"/>
+        <path d="M43 83 57 99 70 83" fill="<%= woman ? '#DDB6E6' : '#A8DBE3' %>"/>
+        <path d="M77 99Q100 123 132 116" stroke="#EDB48E" stroke-width="13" stroke-linecap="round"/>
+        <path d="M77 99 89 111" stroke="<%= woman ? '#AA73BA' : '#5C9FC0' %>" stroke-width="18" stroke-linecap="round"/>
+        <ellipse cx="32" cy="50" rx="5" ry="8" fill="#EDB48E"/><ellipse cx="81" cy="50" rx="5" ry="8" fill="#EDB48E"/>
+        <ellipse cx="56" cy="48" rx="24" ry="29" fill="#F5C8A5"/>
+        <% if woman %>
+          <path d="M32 44Q29 16 55 16Q82 16 80 41Q63 36 53 23Q46 41 32 44Z" fill="<%= older ? '#BAC0BF' : '#634933' %>"/>
+        <% else %>
+          <path d="M32 41Q28 17 55 16Q81 16 81 40L72 29Q51 33 38 28L36 44Z" fill="<%= older ? '#BAC0BF' : '#634933' %>"/>
+          <% if older %><path d="M42 66Q56 80 72 66L73 72Q56 90 41 71Z" fill="#BAC0BF"/><% end %>
+        <% end %>
+        <circle cx="47" cy="49" r="2.6" fill="#3F4139"/><circle cx="67" cy="49" r="2.6" fill="#3F4139"/>
+        <path d="M53 60Q57 64 62 60" stroke="#9F6656" stroke-width="2.4" stroke-linecap="round"/>
+        <% if older %><circle cx="47" cy="50" r="8" stroke="#718286" stroke-width="2"/><circle cx="67" cy="50" r="8" stroke="#718286" stroke-width="2"/><path d="M55 50H59" stroke="#718286" stroke-width="2"/><% end %>
+        <g transform="translate(139 89)">
+          <% case scene.fetch("object") %>
+          <% when "clock" %>
+            <path d="m-21 30-7 9m49-9 7 9" stroke="#477A88" stroke-width="5" stroke-linecap="round"/>
+            <circle r="34" fill="#7AB6C2" stroke="#477A88" stroke-width="3"/><circle r="27" fill="#FFFBEF"/>
+            <path d="M0-22V-18M22 0H18M0 22V18M-22 0H-18" stroke="#617B73" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M0-15V0H14" stroke="#4A665D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle r="3" fill="#4A665D"/>
+          <% when "meat" %>
+            <ellipse cy="25" rx="42" ry="12" fill="#C9DDD6"/>
+            <path d="M-35 4Q-39-22-8-28Q22-33 32-8Q48 14 21 27Q-11 36-31 19Z" fill="#E47877" stroke="#F6C7B1" stroke-width="7"/>
+            <path d="M-25 4Q-13-17 2-17M-8 19Q15 20 23 6" stroke="#F6C7B1" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="9" cy="-1" rx="11" ry="8" transform="rotate(-22)" fill="#FFF1D2"/><ellipse cx="9" cy="-1" rx="4" ry="3" fill="#DCAD91"/>
+          <% when "sieve" %>
+            <path d="M-30-8Q-30 27 0 30Q30 27 30-8" fill="#DFE7E0" stroke="#718F8D" stroke-width="3"/>
+            <path d="M-23-4Q-22 17-10 25M-11-4-5 28M1-4V29M13-4 6 28M24-4Q23 17 12 25M-28 3H28M-24 13H24M-17 22H17" stroke="#8EAAA4" stroke-width="1.5"/>
+            <path d="M27-9H46" stroke="#718F8D" stroke-width="8" stroke-linecap="round"/>
+            <ellipse cy="-9" rx="32" ry="10" fill="#F1F5ED" stroke="#718F8D" stroke-width="4"/><path d="M-25-8H25M-18-13 12-3M-6-16 25-6M-25-6 5-15" stroke="#8EAAA4" stroke-width="1.2"/>
+          <% when "dough" %>
+            <rect x="-40" y="3" width="80" height="36" rx="8" fill="#D9B587"/>
+            <path d="M-31 16Q-30-10-9-13Q12-18 25 2Q42 17 25 28Q10 37-13 29Q-33 32-31 16Z" fill="#F7DC9F" stroke="#D7AF6A" stroke-width="2"/>
+            <path d="m-34-15 67 12" stroke="#AC7850" stroke-width="8" stroke-linecap="round"/>
+            <path d="m-22-13 44 8" stroke="#C99B67" stroke-width="17" stroke-linecap="round"/>
+            <circle cx="-24" cy="29" r="2" fill="#FFF6DC"/><circle cx="31" cy="25" r="2" fill="#FFF6DC"/>
+          <% when "plum" %>
+            <path d="M0-25Q-27-32-31 0Q-30 32-5 34Q22 33 29 9Q34-20 11-26Z" fill="#8057AF" stroke="#563D7B" stroke-width="3"/><path d="M3-23Q-3 9-1 28" stroke="#A480C8" stroke-width="3"/>
+            <path d="M6-25Q4-36 11-40" stroke="#886340" stroke-width="4" stroke-linecap="round"/><path d="M9-31Q20-46 30-35Q27-23 9-31Z" fill="#79A45B"/>
+          <% else %>
+            <text class="school-story-object" x="0" y="26" text-anchor="middle"><%= scene.fetch("emoji") %></text>
+          <% end %>
+        </g>
+      </svg>
+      <span class="story-choice-number" aria-hidden="true"><%= index + 1 %></span>
+    </button>
+  <% end %>
+</div>

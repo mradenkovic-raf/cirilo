@@ -166,7 +166,8 @@ class AttemptRecorder
     source = if exercise["version"].to_i >= 6
       completed.reverse.find { |item| PracticePlanner::READING_KINDS.include?(item["kind"]) } ||
         PracticePlanner.reading_review(letter_id: exercise.fetch("letter_id"),
-          letter_case: exercise.fetch("case", "upper"), variation: @learner.completed_missions)
+          letter_case: exercise.fetch("case", "upper"), variation: @learner.completed_missions,
+          letter_ids: @session.school_mode? ? @session.school_letter_ids : nil)
     else
       completed.reverse.find { |item| item["kind"] == "trace" } || completed.last
     end
@@ -190,7 +191,7 @@ class AttemptRecorder
     copy.delete("retry_of")
     copy["memory_hidden"] = false if copy["kind"] == "memory_word"
     if copy["tiles"]
-      copy["tiles"] = WordBank.tiles(copy.fetch("word"))
+      copy["tiles"] = @session.school_mode? ? rearrange(copy.fetch("tiles")) : WordBank.tiles(copy.fetch("word"))
       copy["tiles"].rotate! if copy["tiles"] == exercise["tiles"]
     end
     if copy["choices"]
@@ -269,9 +270,12 @@ class AttemptRecorder
     awarded = duplicate ? 0 : attempt.xp_earned + (completed && attempt.correct? ? MISSION_BONUS : 0)
     exercise = @session.exercises.find { |item| item["id"] == attempt.exercise_id }
     recovery_required = !attempt.correct? && @session.current_exercise&.fetch("recovery_of", nil) == attempt.exercise_id
-    entry = attempt.correct? && exercise && exercise["word"] && WordBank.find(exercise["word"])
+    bank = @session.school_mode? ? SchoolWordBank : WordBank
+    entry = attempt.correct? && exercise && exercise["word"] && bank.find(exercise["word"])
+    entry = nil if entry && entry["picture"] == false
     meaning = entry && { word: entry.fetch("word"), emoji: entry.fetch("emoji"),
-      sentence: entry.fetch("sentence").sub("▢", entry.fetch("word").downcase) }
+      sentence: @session.school_mode? ? "" : entry.fetch("sentence").sub("▢", entry.fetch("word").downcase) }
+    meaning[:image_url] = SchoolWordBank.image_url(entry) if meaning && @session.school_mode?
     {
       success: true, correct: attempt.correct?, duplicate: duplicate, recovery_required: recovery_required,
       score: attempt.score, letter_feedback: attempt.trace_metrics["feedback"],

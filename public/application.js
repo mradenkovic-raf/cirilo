@@ -211,6 +211,11 @@ function setupExercise(root) {
     $('[data-task-title]', root).textContent = 'Реч је оживела!';
     const picture = $('[data-meaning-picture]', card);
     picture.textContent = meaning.emoji; picture.setAttribute('aria-label', meaning.word);
+    if (typeof meaning.image_url === 'string' && /^\/school_images\/[a-z_]+\.svg\?v=[a-f0-9]{12}$/.test(meaning.image_url)) {
+      const illustration = document.createElement('img');
+      illustration.src = meaning.image_url; illustration.alt = ''; illustration.className = 'word-illustration';
+      picture.replaceChildren(illustration);
+    }
     $('[data-meaning-word]', card).textContent = meaning.word;
     $('[data-meaning-sentence]', card).textContent = meaning.sentence;
     card.hidden = false;

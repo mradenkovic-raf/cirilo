@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_12_000100) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_13_000100) do
   create_table "attempts", force: :cascade do |t|
     t.integer "learner_id", null: false
     t.integer "practice_session_id", null: false
@@ -68,6 +68,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_12_000100) do
     t.integer "shop_generation", default: 1, null: false
     t.json "egg_state", default: {}, null: false
     t.string "device_token_digest"
+    t.string "learning_mode", default: "school", null: false
+    t.json "school_letter_ids", default: ["a", "m", "i", "t", "o", "n", "s", "e"], null: false
+    t.integer "learning_settings_revision", default: 0, null: false
     t.index ["device_token_digest"], name: "index_learners_on_device_token_digest", unique: true
     t.check_constraint "xp_spent >= 0 AND xp_spent <= xp", name: "learner_wallet_nonnegative"
   end
@@ -127,6 +130,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_12_000100) do
     t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "learning_mode", default: "full", null: false
+    t.json "school_letter_ids", default: [], null: false
     t.index ["learner_id"], name: "index_practice_sessions_on_learner_id"
     t.index ["learner_id"], name: "one_active_mission_per_learner", unique: true, where: "status = 'active'"
   end

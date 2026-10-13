@@ -1,5 +1,6 @@
 <% content_for :title, "Словарица" %>
 <section class="browse-heading alphabet-focus-heading"><h1>Словарица</h1><span aria-hidden="true">Аа</span></section>
+<% if @learner.school_mode? %><p class="alphabet-scope">Моја школска слова · <%= @letters.length %></p><% end %>
 <section class="alphabet-discovery" data-alphabet-discovery aria-label="Истражи слова">
   <div class="alphabet-tools">
     <div class="alphabet-find"><label for="alphabet-find-input">Пронађи слово</label><div class="alphabet-search-field"><%= ui_icon(:target) %><input id="alphabet-find-input" type="search" data-alphabet-search placeholder="А или авион" autocomplete="off" maxlength="40" spellcheck="false" aria-controls="alphabet-letters"><button type="button" data-alphabet-clear aria-label="Обриши претрагу" hidden><%= ui_icon(:close) %></button></div></div>
@@ -7,10 +8,11 @@
   </div>
   <span class="adventure-visually-hidden" data-alphabet-count role="status" aria-live="polite">Сва слова су ту.</span>
   <div id="alphabet-letters" class="alphabet-grid">
-    <% Curriculum.letters.each do |letter| %>
+    <% @letters.each do |source| %>
+      <% letter = school_alphabet_letter(source, @learner) %>
       <article id="letter-<%= letter['id'] %>" class="alphabet-card" data-alphabet-card data-alphabet-find="<%= [letter['upper'], letter['lower'], letter['word']].join(' ') %>">
         <div class="alphabet-glyph" aria-label="Велико <%= letter['upper'] %>, мало <%= letter['lower'] %>"><span class="letter-upper"><%= letter['upper'] %></span><span class="letter-lower"><%= letter['lower'] %></span></div>
-        <span class="word-emoji" aria-hidden="true"><%= letter['emoji'] %></span>
+        <span class="word-emoji" aria-hidden="true"><%= word_illustration(letter['emoji'], image: letter['image']) %></span>
         <div class="alphabet-word" data-alphabet-word data-word-upper="<%= letter['word'].upcase %>" data-word-lower="<%= letter['word'].downcase %>"><%= letter['word'].downcase %></div>
         <button class="alphabet-listen speak-button" type="button" data-speak="<%= letter['upper'] %>. <%= letter['word'] %>." aria-label="Чуј слово <%= letter['upper'] %> и реч <%= letter['word'] %>"><%= ui_icon(:sound) %><span>Чуј</span></button>
       </article>

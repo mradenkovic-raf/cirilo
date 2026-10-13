@@ -1,0 +1,2851 @@
+[
+  {
+    "word": "МАМА",
+    "emoji": "👩",
+    "category": "person",
+    "picture": true,
+    "picture_group": "adult_woman"
+  },
+  {
+    "word": "ИМ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "МИ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ИМА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ТИ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "МАТ",
+    "emoji": "♟️",
+    "category": "game",
+    "picture": false
+  },
+  {
+    "word": "ТАМА",
+    "emoji": "🌑",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "darkness"
+  },
+  {
+    "word": "ТАТА",
+    "emoji": "👨",
+    "category": "person",
+    "picture": true,
+    "picture_group": "adult_man"
+  },
+  {
+    "word": "ИМАТИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ТО",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ИМАО",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МОТА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ТАМО",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "ТОМА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "ИМАМО",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МОТАТИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "АНА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "НИТ",
+    "emoji": "🧵",
+    "category": "object",
+    "picture": true,
+    "picture_group": "thread",
+    "image": "/school_images/thread.svg"
+  },
+  {
+    "word": "ОНА",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ОНИ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ОНО",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ТОН",
+    "emoji": "🎵",
+    "category": "music",
+    "picture": false,
+    "picture_group": "music_note"
+  },
+  {
+    "word": "МИНА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "НАНА",
+    "emoji": "👵",
+    "category": "person",
+    "picture": false,
+    "picture_group": "older_woman"
+  },
+  {
+    "word": "НИНА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "НОТА",
+    "emoji": "🎵",
+    "category": "music",
+    "picture": true,
+    "picture_group": "music_note"
+  },
+  {
+    "word": "ТИНА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "ТОНИ",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "ТАМНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "СО",
+    "emoji": "🧂",
+    "category": "food",
+    "picture": true,
+    "picture_group": "salt"
+  },
+  {
+    "word": "НОС",
+    "emoji": "👃",
+    "category": "body",
+    "picture": true,
+    "picture_group": "nose"
+  },
+  {
+    "word": "ОСА",
+    "emoji": "🐝",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "striped_insect",
+    "image": "/school_images/wasp.svg"
+  },
+  {
+    "word": "САМ",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "САН",
+    "emoji": "💤",
+    "category": "state",
+    "picture": false
+  },
+  {
+    "word": "САТ",
+    "emoji": "⏰",
+    "category": "object",
+    "picture": true,
+    "picture_group": "clock"
+  },
+  {
+    "word": "СИТ",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "СОМ",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "fish",
+    "image": "/school_images/catfish.svg"
+  },
+  {
+    "word": "СТО",
+    "emoji": "🍽️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "table",
+    "image": "/school_images/table.svg"
+  },
+  {
+    "word": "МАСТ",
+    "emoji": "🧈",
+    "category": "food",
+    "picture": false,
+    "picture_group": "fat"
+  },
+  {
+    "word": "МОСТ",
+    "emoji": "🌉",
+    "category": "place",
+    "picture": true,
+    "picture_group": "bridge"
+  },
+  {
+    "word": "НОСИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ОСАМ",
+    "emoji": "8️⃣",
+    "category": "number",
+    "picture": false
+  },
+  {
+    "word": "САМО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "СИТО",
+    "emoji": "🥣",
+    "category": "object",
+    "picture": true,
+    "image": "/school_images/sieve.svg"
+  },
+  {
+    "word": "СТАН",
+    "emoji": "🏢",
+    "category": "place",
+    "picture": false,
+    "picture_group": "home"
+  },
+  {
+    "word": "СНИМА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "СТАНИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ИМЕ",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "СМЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МЕНЕ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "МЕСИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МЕСО",
+    "emoji": "🥩",
+    "category": "food",
+    "picture": true,
+    "picture_group": "meat"
+  },
+  {
+    "word": "МЕТА",
+    "emoji": "🎯",
+    "category": "game",
+    "picture": true,
+    "picture_group": "target"
+  },
+  {
+    "word": "МЕТЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "НЕМА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "СЕМЕ",
+    "emoji": "🌱",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "plant"
+  },
+  {
+    "word": "СЕНО",
+    "emoji": "🌾",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "grain",
+    "image": "/school_images/hay.svg"
+  },
+  {
+    "word": "ТЕМА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ТЕСТ",
+    "emoji": "📝",
+    "category": "school",
+    "picture": false
+  },
+  {
+    "word": "ТЕТА",
+    "emoji": "👩",
+    "category": "person",
+    "picture": false,
+    "picture_group": "adult_woman"
+  },
+  {
+    "word": "МЕНТА",
+    "emoji": "🌿",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "herb"
+  },
+  {
+    "word": "МЕСТО",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "СМЕНА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "СМЕТА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "СТЕНА",
+    "emoji": "🪨",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "rock",
+    "image": "/school_images/cliff.svg"
+  },
+  {
+    "word": "ТЕНИС",
+    "emoji": "🎾",
+    "category": "sport",
+    "picture": true,
+    "picture_group": "tennis"
+  },
+  {
+    "word": "ТЕСТО",
+    "emoji": "🥣",
+    "category": "food",
+    "picture": true,
+    "picture_group": "dough",
+    "image": "/school_images/dough.svg"
+  },
+  {
+    "word": "РАМ",
+    "emoji": "🖼️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "frame"
+  },
+  {
+    "word": "СИР",
+    "emoji": "🧀",
+    "category": "food",
+    "picture": true,
+    "picture_group": "cheese"
+  },
+  {
+    "word": "ТРН",
+    "emoji": "🌵",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "thorn"
+  },
+  {
+    "word": "МАРА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "МИРА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "МОРЕ",
+    "emoji": "🌊",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "water"
+  },
+  {
+    "word": "ОРАО",
+    "emoji": "🦅",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "eagle"
+  },
+  {
+    "word": "РАНА",
+    "emoji": "🩹",
+    "category": "body",
+    "picture": false
+  },
+  {
+    "word": "РАНО",
+    "emoji": "🔤",
+    "category": "time",
+    "picture": false
+  },
+  {
+    "word": "РИМА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "РОСА",
+    "emoji": "💧",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "АРЕНА",
+    "emoji": "🏟️",
+    "category": "place",
+    "picture": true,
+    "picture_group": "stadium"
+  },
+  {
+    "word": "ОРМАН",
+    "emoji": "🚪",
+    "category": "object",
+    "picture": false,
+    "picture_group": "wardrobe"
+  },
+  {
+    "word": "РИТАМ",
+    "emoji": "🥁",
+    "category": "music",
+    "picture": false
+  },
+  {
+    "word": "РОМАН",
+    "emoji": "📕",
+    "category": "object",
+    "picture": false,
+    "picture_group": "book"
+  },
+  {
+    "word": "СТАРО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ТОРТА",
+    "emoji": "🎂",
+    "category": "food",
+    "picture": true,
+    "picture_group": "cake"
+  },
+  {
+    "word": "ТРЕСЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МРАМОР",
+    "emoji": "🪨",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "rock"
+  },
+  {
+    "word": "СЕСТРА",
+    "emoji": "👧",
+    "category": "person",
+    "picture": false,
+    "picture_group": "child_girl"
+  },
+  {
+    "word": "СТРИНА",
+    "emoji": "👩",
+    "category": "person",
+    "picture": false,
+    "picture_group": "adult_woman"
+  },
+  {
+    "word": "МОЈ",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ЈАЈЕ",
+    "emoji": "🥚",
+    "category": "food",
+    "picture": true,
+    "picture_group": "egg"
+  },
+  {
+    "word": "ЈАМА",
+    "emoji": "🕳️",
+    "category": "place",
+    "picture": true,
+    "picture_group": "hole"
+  },
+  {
+    "word": "ЈАНА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "ЈАРЕ",
+    "emoji": "🐐",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "goat"
+  },
+  {
+    "word": "ЈАТО",
+    "emoji": "🐦",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "bird"
+  },
+  {
+    "word": "МАЈА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "СЈАЈ",
+    "emoji": "✨",
+    "category": "nature",
+    "picture": false
+  },
+  {
+    "word": "СЕЈЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "СИЈА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЈЕСЕН",
+    "emoji": "🍂",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "autumn"
+  },
+  {
+    "word": "СТОЈИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ТАЈНА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "УМ",
+    "emoji": "🧠",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "АУТО",
+    "emoji": "🚗",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "car"
+  },
+  {
+    "word": "РУНО",
+    "emoji": "🐑",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "sheep"
+  },
+  {
+    "word": "СУМА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ТУНА",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "fish"
+  },
+  {
+    "word": "УМОР",
+    "emoji": "🥱",
+    "category": "state",
+    "picture": false
+  },
+  {
+    "word": "УСТА",
+    "emoji": "👄",
+    "category": "body",
+    "picture": true,
+    "picture_group": "mouth"
+  },
+  {
+    "word": "ЈУТРО",
+    "emoji": "🌅",
+    "category": "time",
+    "picture": true,
+    "picture_group": "sunlight"
+  },
+  {
+    "word": "МУТНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "СУТРА",
+    "emoji": "🔤",
+    "category": "time",
+    "picture": false
+  },
+  {
+    "word": "УМЕТИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "РУМЕНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "МИШ",
+    "emoji": "🐭",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "mouse"
+  },
+  {
+    "word": "УШИ",
+    "emoji": "👂",
+    "category": "body",
+    "picture": true,
+    "picture_group": "ear"
+  },
+  {
+    "word": "ШТА",
+    "emoji": "🔤",
+    "category": "pronoun",
+    "picture": false
+  },
+  {
+    "word": "ШУМ",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ШАРА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ШЕМА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ШИРИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ШУМА",
+    "emoji": "🌲",
+    "category": "place",
+    "picture": true,
+    "picture_group": "trees"
+  },
+  {
+    "word": "МАШНА",
+    "emoji": "🎀",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "bow"
+  },
+  {
+    "word": "ШАРАН",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "fish"
+  },
+  {
+    "word": "ШЕШИР",
+    "emoji": "🎩",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "hat"
+  },
+  {
+    "word": "ШУШТИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ШИШМИШ",
+    "emoji": "🦇",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "bat"
+  },
+  {
+    "word": "ЛАН",
+    "emoji": "🌿",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "plant"
+  },
+  {
+    "word": "ЛЕТ",
+    "emoji": "✈️",
+    "category": "action",
+    "picture": false,
+    "picture_group": "aircraft"
+  },
+  {
+    "word": "ЛИМ",
+    "emoji": "🔩",
+    "category": "material",
+    "picture": false,
+    "picture_group": "metal"
+  },
+  {
+    "word": "ЛОС",
+    "emoji": "🫎",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "moose"
+  },
+  {
+    "word": "ШАЛ",
+    "emoji": "🧣",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "scarf"
+  },
+  {
+    "word": "ЈЕЛА",
+    "emoji": "🌲",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "trees"
+  },
+  {
+    "word": "ЈЕЛО",
+    "emoji": "🍽️",
+    "category": "food",
+    "picture": false,
+    "picture_group": "meal"
+  },
+  {
+    "word": "АЛАТ",
+    "emoji": "🛠️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "tool"
+  },
+  {
+    "word": "ЛАЛА",
+    "emoji": "🌷",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "tulip"
+  },
+  {
+    "word": "ЛАНЕ",
+    "emoji": "🦌",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "deer"
+  },
+  {
+    "word": "ЛЕТО",
+    "emoji": "☀️",
+    "category": "time",
+    "picture": false,
+    "picture_group": "sun"
+  },
+  {
+    "word": "ЛИСТ",
+    "emoji": "🍃",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "leaves"
+  },
+  {
+    "word": "МЛИН",
+    "emoji": "🌾",
+    "category": "place",
+    "picture": false,
+    "picture_group": "grain"
+  },
+  {
+    "word": "САЛА",
+    "emoji": "🏛️",
+    "category": "place",
+    "picture": false
+  },
+  {
+    "word": "СЕЛО",
+    "emoji": "🏡",
+    "category": "place",
+    "picture": true,
+    "picture_group": "home"
+  },
+  {
+    "word": "СЛОН",
+    "emoji": "🐘",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "elephant"
+  },
+  {
+    "word": "ШАЛА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ЈЕЛЕН",
+    "emoji": "🦌",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "deer"
+  },
+  {
+    "word": "ЛИМУН",
+    "emoji": "🍋",
+    "category": "food",
+    "picture": true,
+    "picture_group": "lemon"
+  },
+  {
+    "word": "СЛАМА",
+    "emoji": "🌾",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "grain"
+  },
+  {
+    "word": "СЛАНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "САЛАТА",
+    "emoji": "🥗",
+    "category": "food",
+    "picture": true,
+    "picture_group": "salad"
+  },
+  {
+    "word": "СТОЛАР",
+    "emoji": "🪚",
+    "category": "person",
+    "picture": false,
+    "picture_group": "tool"
+  },
+  {
+    "word": "ЉУТ",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "МАЉ",
+    "emoji": "🔨",
+    "category": "object",
+    "picture": false,
+    "picture_group": "hammer"
+  },
+  {
+    "word": "МУЉ",
+    "emoji": "🟫",
+    "category": "nature",
+    "picture": false
+  },
+  {
+    "word": "УЉЕ",
+    "emoji": "🫗",
+    "category": "food",
+    "picture": false,
+    "picture_group": "oil"
+  },
+  {
+    "word": "ЉУЉА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЉУТО",
+    "emoji": "🌶️",
+    "category": "quality",
+    "picture": false,
+    "picture_group": "pepper"
+  },
+  {
+    "word": "ШОЉА",
+    "emoji": "☕",
+    "category": "object",
+    "picture": true,
+    "picture_group": "cup"
+  },
+  {
+    "word": "ЉИЉАН",
+    "emoji": "⚜️",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "flower"
+  },
+  {
+    "word": "ЗЕЉЕ",
+    "emoji": "🥬",
+    "category": "food",
+    "picture": true,
+    "picture_group": "greens"
+  },
+  {
+    "word": "ЗИМА",
+    "emoji": "☃️",
+    "category": "time",
+    "picture": true,
+    "picture_group": "snowman"
+  },
+  {
+    "word": "ЗМАЈ",
+    "emoji": "🐉",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "dragon"
+  },
+  {
+    "word": "ЗРНО",
+    "emoji": "🌾",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "grain"
+  },
+  {
+    "word": "ЛАЗА",
+    "emoji": "🧒",
+    "category": "name",
+    "picture": false
+  },
+  {
+    "word": "МАЗИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МРАЗ",
+    "emoji": "❄️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "snow"
+  },
+  {
+    "word": "СУЗА",
+    "emoji": "💧",
+    "category": "body",
+    "picture": true,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "УЛАЗ",
+    "emoji": "🚪",
+    "category": "place",
+    "picture": false,
+    "picture_group": "door"
+  },
+  {
+    "word": "ЗЕМЉА",
+    "emoji": "🌍",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "earth"
+  },
+  {
+    "word": "ЗЛАТО",
+    "emoji": "🪙",
+    "category": "material",
+    "picture": true,
+    "picture_group": "gold"
+  },
+  {
+    "word": "ЗМИЈА",
+    "emoji": "🐍",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "snake"
+  },
+  {
+    "word": "ЗРЕЛО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ИЗЛАЗ",
+    "emoji": "🚪",
+    "category": "place",
+    "picture": false,
+    "picture_group": "door"
+  },
+  {
+    "word": "СТАЗА",
+    "emoji": "🛤️",
+    "category": "place",
+    "picture": false,
+    "picture_group": "path"
+  },
+  {
+    "word": "ЗЕЛЕНО",
+    "emoji": "🟢",
+    "category": "color",
+    "picture": true,
+    "picture_group": "green"
+  },
+  {
+    "word": "ВОЗ",
+    "emoji": "🚂",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "train"
+  },
+  {
+    "word": "ЛАВ",
+    "emoji": "🦁",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "lion"
+  },
+  {
+    "word": "УВО",
+    "emoji": "👂",
+    "category": "body",
+    "picture": true,
+    "picture_group": "ear"
+  },
+  {
+    "word": "ВАЗА",
+    "emoji": "🏺",
+    "category": "object",
+    "picture": true,
+    "picture_group": "vase"
+  },
+  {
+    "word": "ВИЛА",
+    "emoji": "🧚",
+    "category": "character",
+    "picture": true,
+    "picture_group": "fairy"
+  },
+  {
+    "word": "ВОЛИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ВРАТ",
+    "emoji": "🔤",
+    "category": "body",
+    "picture": false
+  },
+  {
+    "word": "ВУНА",
+    "emoji": "🧶",
+    "category": "material",
+    "picture": true,
+    "picture_group": "thread"
+  },
+  {
+    "word": "ЛЕВО",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "МУВА",
+    "emoji": "🪰",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "fly"
+  },
+  {
+    "word": "НОВО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ОВАН",
+    "emoji": "🐏",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "sheep"
+  },
+  {
+    "word": "СОВА",
+    "emoji": "🦉",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "owl"
+  },
+  {
+    "word": "ВАТРА",
+    "emoji": "🔥",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "fire"
+  },
+  {
+    "word": "ВЕСЛО",
+    "emoji": "🛶",
+    "category": "object",
+    "picture": false,
+    "picture_group": "paddle"
+  },
+  {
+    "word": "ВЕТАР",
+    "emoji": "🌬️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "wind"
+  },
+  {
+    "word": "ВОЛАН",
+    "emoji": "🚘",
+    "category": "object",
+    "picture": false,
+    "picture_group": "car"
+  },
+  {
+    "word": "ВРАНА",
+    "emoji": "🐦‍⬛",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "crow"
+  },
+  {
+    "word": "ВРАТА",
+    "emoji": "🚪",
+    "category": "object",
+    "picture": true,
+    "picture_group": "door"
+  },
+  {
+    "word": "ВРЕМЕ",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ТРАВА",
+    "emoji": "🌱",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "leaves"
+  },
+  {
+    "word": "ШЉИВА",
+    "emoji": "🫐",
+    "category": "food",
+    "picture": false,
+    "picture_group": "plum"
+  },
+  {
+    "word": "СЛАВУЈ",
+    "emoji": "🐦",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "bird"
+  },
+  {
+    "word": "ЈУГ",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "РОГ",
+    "emoji": "🦏",
+    "category": "body",
+    "picture": false,
+    "picture_group": "horn"
+  },
+  {
+    "word": "ТЕГ",
+    "emoji": "🏋️",
+    "category": "object",
+    "picture": false,
+    "picture_group": "weight"
+  },
+  {
+    "word": "ГЛАС",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ГОРЕ",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "ГРОМ",
+    "emoji": "⚡",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "lightning"
+  },
+  {
+    "word": "ГУМА",
+    "emoji": "🛞",
+    "category": "object",
+    "picture": true,
+    "picture_group": "tire"
+  },
+  {
+    "word": "ИГЛА",
+    "emoji": "🪡",
+    "category": "object",
+    "picture": true,
+    "picture_group": "needle"
+  },
+  {
+    "word": "ИГРА",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "СНЕГ",
+    "emoji": "❄️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "snow"
+  },
+  {
+    "word": "ТРАГ",
+    "emoji": "🐾",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "footprints"
+  },
+  {
+    "word": "ГЉИВА",
+    "emoji": "🍄",
+    "category": "food",
+    "picture": true,
+    "picture_group": "mushroom"
+  },
+  {
+    "word": "ГЛАВА",
+    "emoji": "🙂",
+    "category": "body",
+    "picture": true,
+    "picture_group": "head"
+  },
+  {
+    "word": "ГЛИНА",
+    "emoji": "🟤",
+    "category": "material",
+    "picture": false
+  },
+  {
+    "word": "ГЛУМА",
+    "emoji": "🎭",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ГРАНА",
+    "emoji": "🌿",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "branch"
+  },
+  {
+    "word": "ЈОГУРТ",
+    "emoji": "🥛",
+    "category": "food",
+    "picture": false,
+    "picture_group": "glass"
+  },
+  {
+    "word": "ЈОРГАН",
+    "emoji": "🛏️",
+    "category": "object",
+    "picture": false,
+    "picture_group": "blanket"
+  },
+  {
+    "word": "ГАВРАН",
+    "emoji": "🐦‍⬛",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "crow"
+  },
+  {
+    "word": "ГОРИЛА",
+    "emoji": "🦍",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "gorilla"
+  },
+  {
+    "word": "ПАС",
+    "emoji": "🐕",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "dog"
+  },
+  {
+    "word": "ПУТ",
+    "emoji": "🛣️",
+    "category": "place",
+    "picture": true,
+    "picture_group": "road"
+  },
+  {
+    "word": "РЕП",
+    "emoji": "🦎",
+    "category": "body",
+    "picture": false,
+    "picture_group": "tail"
+  },
+  {
+    "word": "ТОП",
+    "emoji": "🔤",
+    "category": "object",
+    "picture": false
+  },
+  {
+    "word": "ЛЕПО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ПЕВА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ПЕНА",
+    "emoji": "🫧",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "bubbles"
+  },
+  {
+    "word": "ПЕРО",
+    "emoji": "🪶",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "feather"
+  },
+  {
+    "word": "ПЕТА",
+    "emoji": "🦶",
+    "category": "body",
+    "picture": false,
+    "picture_group": "foot"
+  },
+  {
+    "word": "ПИЛА",
+    "emoji": "🪚",
+    "category": "object",
+    "picture": true,
+    "picture_group": "saw"
+  },
+  {
+    "word": "ПИЛЕ",
+    "emoji": "🐥",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "chick"
+  },
+  {
+    "word": "ПЛЕС",
+    "emoji": "💃",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ПЛУГ",
+    "emoji": "🚜",
+    "category": "object",
+    "picture": false,
+    "picture_group": "tractor"
+  },
+  {
+    "word": "ПОЉЕ",
+    "emoji": "🌾",
+    "category": "place",
+    "picture": false,
+    "picture_group": "grain"
+  },
+  {
+    "word": "ПРСТ",
+    "emoji": "☝️",
+    "category": "body",
+    "picture": true,
+    "picture_group": "finger"
+  },
+  {
+    "word": "ПУМА",
+    "emoji": "🐆",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "big_cat"
+  },
+  {
+    "word": "СИПА",
+    "emoji": "🦑",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "squid"
+  },
+  {
+    "word": "СУПА",
+    "emoji": "🍲",
+    "category": "food",
+    "picture": true,
+    "picture_group": "soup_pot"
+  },
+  {
+    "word": "ЛОПТА",
+    "emoji": "⚽",
+    "category": "object",
+    "picture": true,
+    "picture_group": "ball"
+  },
+  {
+    "word": "ПЕТАО",
+    "emoji": "🐓",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "rooster"
+  },
+  {
+    "word": "ПИРАТ",
+    "emoji": "🏴‍☠️",
+    "category": "character",
+    "picture": false,
+    "picture_group": "pirate"
+  },
+  {
+    "word": "ПЛАВО",
+    "emoji": "🔵",
+    "category": "color",
+    "picture": true,
+    "picture_group": "blue"
+  },
+  {
+    "word": "ПРАВО",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "ПРАСЕ",
+    "emoji": "🐷",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "pig"
+  },
+  {
+    "word": "ЛЕПТИР",
+    "emoji": "🦋",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "butterfly"
+  },
+  {
+    "word": "ПРАЗНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ВУК",
+    "emoji": "🐺",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "wolf"
+  },
+  {
+    "word": "КАП",
+    "emoji": "💧",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "КИТ",
+    "emoji": "🐳",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "whale"
+  },
+  {
+    "word": "КОС",
+    "emoji": "🐦‍⬛",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "crow"
+  },
+  {
+    "word": "ЛУК",
+    "emoji": "🧅",
+    "category": "food",
+    "picture": true,
+    "picture_group": "onion"
+  },
+  {
+    "word": "МАК",
+    "emoji": "🌺",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "flower"
+  },
+  {
+    "word": "ОКО",
+    "emoji": "👁️",
+    "category": "body",
+    "picture": true,
+    "picture_group": "eye"
+  },
+  {
+    "word": "РАК",
+    "emoji": "🦀",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "crab"
+  },
+  {
+    "word": "СОК",
+    "emoji": "🧃",
+    "category": "food",
+    "picture": true,
+    "picture_group": "juice"
+  },
+  {
+    "word": "КЉУН",
+    "emoji": "🐦",
+    "category": "body",
+    "picture": false,
+    "picture_group": "bird"
+  },
+  {
+    "word": "КАПА",
+    "emoji": "🧢",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "cap"
+  },
+  {
+    "word": "КЕКС",
+    "emoji": "🍪",
+    "category": "food",
+    "picture": true,
+    "picture_group": "cookie"
+  },
+  {
+    "word": "КЕСА",
+    "emoji": "🛍️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "bag"
+  },
+  {
+    "word": "КИВИ",
+    "emoji": "🥝",
+    "category": "food",
+    "picture": true,
+    "picture_group": "kiwi"
+  },
+  {
+    "word": "КИША",
+    "emoji": "🌧️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "rain"
+  },
+  {
+    "word": "КОЗА",
+    "emoji": "🐐",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "goat"
+  },
+  {
+    "word": "КОКА",
+    "emoji": "🐔",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "hen"
+  },
+  {
+    "word": "КОСА",
+    "emoji": "💇",
+    "category": "body",
+    "picture": true,
+    "picture_group": "hair"
+  },
+  {
+    "word": "КОСТ",
+    "emoji": "🦴",
+    "category": "body",
+    "picture": true,
+    "picture_group": "bone"
+  },
+  {
+    "word": "КРОВ",
+    "emoji": "🏠",
+    "category": "object",
+    "picture": false,
+    "picture_group": "home"
+  },
+  {
+    "word": "ПАРК",
+    "emoji": "🌳",
+    "category": "place",
+    "picture": false,
+    "picture_group": "trees"
+  },
+  {
+    "word": "СОКО",
+    "emoji": "🦅",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "eagle"
+  },
+  {
+    "word": "ЈЕЗИК",
+    "emoji": "👅",
+    "category": "body",
+    "picture": true,
+    "picture_group": "tongue"
+  },
+  {
+    "word": "КАМЕН",
+    "emoji": "🪨",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "rock"
+  },
+  {
+    "word": "КАНАП",
+    "emoji": "🪢",
+    "category": "object",
+    "picture": true,
+    "picture_group": "rope"
+  },
+  {
+    "word": "КОАЛА",
+    "emoji": "🐨",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "koala"
+  },
+  {
+    "word": "КРАВА",
+    "emoji": "🐄",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "cow"
+  },
+  {
+    "word": "КРУНА",
+    "emoji": "👑",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "crown"
+  },
+  {
+    "word": "КУПУС",
+    "emoji": "🥬",
+    "category": "food",
+    "picture": true,
+    "picture_group": "greens"
+  },
+  {
+    "word": "ЛОКВА",
+    "emoji": "💧",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "МЛЕКО",
+    "emoji": "🥛",
+    "category": "food",
+    "picture": true,
+    "picture_group": "glass"
+  },
+  {
+    "word": "ОКЛОП",
+    "emoji": "🛡️",
+    "category": "object",
+    "picture": false,
+    "picture_group": "shield"
+  },
+  {
+    "word": "ПАТКА",
+    "emoji": "🦆",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "duck"
+  },
+  {
+    "word": "ШКОЛА",
+    "emoji": "🏫",
+    "category": "place",
+    "picture": true,
+    "picture_group": "school"
+  },
+  {
+    "word": "КРЕВЕТ",
+    "emoji": "🛏️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "bed"
+  },
+  {
+    "word": "КРУШКА",
+    "emoji": "🍐",
+    "category": "food",
+    "picture": true,
+    "picture_group": "pear"
+  },
+  {
+    "word": "КУТИЈА",
+    "emoji": "📦",
+    "category": "object",
+    "picture": true,
+    "picture_group": "box"
+  },
+  {
+    "word": "РАКЕТА",
+    "emoji": "🚀",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "rocket"
+  },
+  {
+    "word": "СКАКАО",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ДАН",
+    "emoji": "☀️",
+    "category": "time",
+    "picture": false,
+    "picture_group": "sun"
+  },
+  {
+    "word": "ДИМ",
+    "emoji": "💨",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "smoke"
+  },
+  {
+    "word": "ДОМ",
+    "emoji": "🏠",
+    "category": "place",
+    "picture": true,
+    "picture_group": "home"
+  },
+  {
+    "word": "ЛЕД",
+    "emoji": "🧊",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "ice"
+  },
+  {
+    "word": "МЕД",
+    "emoji": "🍯",
+    "category": "food",
+    "picture": true,
+    "picture_group": "honey"
+  },
+  {
+    "word": "ВОДА",
+    "emoji": "💧",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "ГРАД",
+    "emoji": "🏙️",
+    "category": "place",
+    "picture": true,
+    "picture_group": "city"
+  },
+  {
+    "word": "ДЕДА",
+    "emoji": "👴",
+    "category": "person",
+    "picture": true,
+    "picture_group": "older_man"
+  },
+  {
+    "word": "ДЕТЕ",
+    "emoji": "🧒",
+    "category": "person",
+    "picture": true,
+    "picture_group": "child"
+  },
+  {
+    "word": "ДИНА",
+    "emoji": "🏜️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "dune"
+  },
+  {
+    "word": "ДОЛЕ",
+    "emoji": "🔤",
+    "category": "position",
+    "picture": false
+  },
+  {
+    "word": "ДРВО",
+    "emoji": "🌳",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "trees"
+  },
+  {
+    "word": "ДУГА",
+    "emoji": "🌈",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "rainbow"
+  },
+  {
+    "word": "МЕДА",
+    "emoji": "🧸",
+    "category": "object",
+    "picture": true,
+    "picture_group": "teddy"
+  },
+  {
+    "word": "РОДА",
+    "emoji": "🪿",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "bird"
+  },
+  {
+    "word": "ДУГМЕ",
+    "emoji": "🔘",
+    "category": "object",
+    "picture": true,
+    "picture_group": "button"
+  },
+  {
+    "word": "ПАНДА",
+    "emoji": "🐼",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "panda"
+  },
+  {
+    "word": "ЈАГОДА",
+    "emoji": "🍓",
+    "category": "food",
+    "picture": true,
+    "picture_group": "strawberry"
+  },
+  {
+    "word": "БИК",
+    "emoji": "🐂",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "cattle"
+  },
+  {
+    "word": "БОС",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ЗУБ",
+    "emoji": "🦷",
+    "category": "body",
+    "picture": true,
+    "picture_group": "tooth"
+  },
+  {
+    "word": "БАБА",
+    "emoji": "👵",
+    "category": "person",
+    "picture": true,
+    "picture_group": "older_woman"
+  },
+  {
+    "word": "БАРА",
+    "emoji": "💧",
+    "category": "place",
+    "picture": false,
+    "picture_group": "water_drop"
+  },
+  {
+    "word": "БЕБА",
+    "emoji": "👶",
+    "category": "person",
+    "picture": true,
+    "picture_group": "baby"
+  },
+  {
+    "word": "БОЈА",
+    "emoji": "🎨",
+    "category": "object",
+    "picture": true,
+    "picture_group": "paint"
+  },
+  {
+    "word": "БРЕГ",
+    "emoji": "⛰️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "rock"
+  },
+  {
+    "word": "БРОД",
+    "emoji": "🚢",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "ship"
+  },
+  {
+    "word": "БУБА",
+    "emoji": "🐞",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "ladybird"
+  },
+  {
+    "word": "БУРЕ",
+    "emoji": "🛢️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "barrel"
+  },
+  {
+    "word": "РИБА",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "fish"
+  },
+  {
+    "word": "СОБА",
+    "emoji": "🛏️",
+    "category": "place",
+    "picture": false,
+    "picture_group": "room"
+  },
+  {
+    "word": "БАЛОН",
+    "emoji": "🎈",
+    "category": "object",
+    "picture": true,
+    "picture_group": "balloon"
+  },
+  {
+    "word": "БЛАТО",
+    "emoji": "🟫",
+    "category": "nature",
+    "picture": false
+  },
+  {
+    "word": "ЗЕБРА",
+    "emoji": "🦓",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "zebra"
+  },
+  {
+    "word": "ОБЛАК",
+    "emoji": "☁️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "cloud"
+  },
+  {
+    "word": "ЈАБУКА",
+    "emoji": "🍎",
+    "category": "food",
+    "picture": true,
+    "picture_group": "apple"
+  },
+  {
+    "word": "БАНАНА",
+    "emoji": "🍌",
+    "category": "food",
+    "picture": true,
+    "picture_group": "banana"
+  },
+  {
+    "word": "БОМБОН",
+    "emoji": "🍬",
+    "category": "food",
+    "picture": true,
+    "picture_group": "candy"
+  },
+  {
+    "word": "КОЊ",
+    "emoji": "🐴",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "horse"
+  },
+  {
+    "word": "ПАЊ",
+    "emoji": "🪵",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "log"
+  },
+  {
+    "word": "ЊИВА",
+    "emoji": "🌾",
+    "category": "place",
+    "picture": false,
+    "picture_group": "grain"
+  },
+  {
+    "word": "ЊИШЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ДИЊА",
+    "emoji": "🍈",
+    "category": "food",
+    "picture": true,
+    "picture_group": "melon"
+  },
+  {
+    "word": "МУЊА",
+    "emoji": "⚡",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "lightning"
+  },
+  {
+    "word": "ПЕЊЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "САЊА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЊУШКА",
+    "emoji": "🐽",
+    "category": "body",
+    "picture": true,
+    "picture_group": "nose"
+  },
+  {
+    "word": "БУБАЊ",
+    "emoji": "🥁",
+    "category": "music",
+    "picture": true,
+    "picture_group": "drum"
+  },
+  {
+    "word": "КЊИГА",
+    "emoji": "📖",
+    "category": "object",
+    "picture": true,
+    "picture_group": "book"
+  },
+  {
+    "word": "СВИЊА",
+    "emoji": "🐖",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "pig"
+  },
+  {
+    "word": "ТАЊИР",
+    "emoji": "🍽️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "plate"
+  },
+  {
+    "word": "ТРЕШЊА",
+    "emoji": "🍒",
+    "category": "food",
+    "picture": true,
+    "picture_group": "cherry"
+  },
+  {
+    "word": "ХУК",
+    "emoji": "🔤",
+    "category": "concept",
+    "picture": false
+  },
+  {
+    "word": "ОРАХ",
+    "emoji": "🌰",
+    "category": "food",
+    "picture": false,
+    "picture_group": "nut"
+  },
+  {
+    "word": "ХЛАД",
+    "emoji": "🌳",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "tree"
+  },
+  {
+    "word": "ХЛЕБ",
+    "emoji": "🍞",
+    "category": "food",
+    "picture": true,
+    "picture_group": "bread"
+  },
+  {
+    "word": "ХОДА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МАХНЕ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ХРАНА",
+    "emoji": "🍽️",
+    "category": "food",
+    "picture": false,
+    "picture_group": "meal"
+  },
+  {
+    "word": "ХРАСТ",
+    "emoji": "🌳",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "trees"
+  },
+  {
+    "word": "ХЛАДНО",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ЈЕЖ",
+    "emoji": "🦔",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "hedgehog"
+  },
+  {
+    "word": "ЖИР",
+    "emoji": "🌰",
+    "category": "nature",
+    "picture": false,
+    "picture_group": "acorn"
+  },
+  {
+    "word": "НОЖ",
+    "emoji": "🔪",
+    "category": "object",
+    "picture": true,
+    "picture_group": "knife"
+  },
+  {
+    "word": "ПУЖ",
+    "emoji": "🐌",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "snail"
+  },
+  {
+    "word": "БРЖЕ",
+    "emoji": "🔤",
+    "category": "quality",
+    "picture": false
+  },
+  {
+    "word": "ЖАБА",
+    "emoji": "🐸",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "frog"
+  },
+  {
+    "word": "ЖЕЛИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЖИТО",
+    "emoji": "🌾",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "grain"
+  },
+  {
+    "word": "ЖУТО",
+    "emoji": "🟡",
+    "category": "color",
+    "picture": true,
+    "picture_group": "yellow"
+  },
+  {
+    "word": "ЛЕЖИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МРЕЖА",
+    "emoji": "🥅",
+    "category": "object",
+    "picture": true,
+    "picture_group": "net"
+  },
+  {
+    "word": "УЧИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЧАЈ",
+    "emoji": "🍵",
+    "category": "food",
+    "picture": true,
+    "picture_group": "tea"
+  },
+  {
+    "word": "КЉУЧ",
+    "emoji": "🔑",
+    "category": "object",
+    "picture": true,
+    "picture_group": "key"
+  },
+  {
+    "word": "ТРЧИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЧАША",
+    "emoji": "🥛",
+    "category": "object",
+    "picture": true,
+    "picture_group": "glass"
+  },
+  {
+    "word": "ЧИТА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЧУПА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "МАЧКА",
+    "emoji": "🐈",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "cat"
+  },
+  {
+    "word": "ОБРУЧ",
+    "emoji": "⭕",
+    "category": "object",
+    "picture": true,
+    "picture_group": "hoop"
+  },
+  {
+    "word": "ПЧЕЛА",
+    "emoji": "🐝",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "striped_insect"
+  },
+  {
+    "word": "ТОЧАК",
+    "emoji": "🛞",
+    "category": "object",
+    "picture": true,
+    "picture_group": "tire"
+  },
+  {
+    "word": "ХРЧАК",
+    "emoji": "🐹",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "hamster"
+  },
+  {
+    "word": "ЧЕСМА",
+    "emoji": "🚰",
+    "category": "object",
+    "picture": true,
+    "picture_group": "tap"
+  },
+  {
+    "word": "ЧЕШАЉ",
+    "emoji": "🪮",
+    "category": "object",
+    "picture": true,
+    "picture_group": "comb"
+  },
+  {
+    "word": "ЧИЗМА",
+    "emoji": "👢",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "boot"
+  },
+  {
+    "word": "ЋУП",
+    "emoji": "🏺",
+    "category": "object",
+    "picture": true,
+    "picture_group": "vase"
+  },
+  {
+    "word": "НОЋ",
+    "emoji": "🌙",
+    "category": "time",
+    "picture": true,
+    "picture_group": "moon"
+  },
+  {
+    "word": "ЋЕБЕ",
+    "emoji": "🛏️",
+    "category": "object",
+    "picture": false,
+    "picture_group": "blanket"
+  },
+  {
+    "word": "ЋУТИ",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ВОЋЕ",
+    "emoji": "🍎",
+    "category": "food",
+    "picture": false,
+    "picture_group": "apple"
+  },
+  {
+    "word": "КУЋА",
+    "emoji": "🏠",
+    "category": "place",
+    "picture": true,
+    "picture_group": "home"
+  },
+  {
+    "word": "ЋУРКА",
+    "emoji": "🦃",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "turkey"
+  },
+  {
+    "word": "СВЕЋА",
+    "emoji": "🕯️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "candle"
+  },
+  {
+    "word": "ЧЕКИЋ",
+    "emoji": "🔨",
+    "category": "object",
+    "picture": true,
+    "picture_group": "hammer"
+  },
+  {
+    "word": "ФЕН",
+    "emoji": "💨",
+    "category": "object",
+    "picture": false,
+    "picture_group": "dryer"
+  },
+  {
+    "word": "ШЕФ",
+    "emoji": "🧑‍🍳",
+    "category": "person",
+    "picture": false,
+    "picture_group": "cook"
+  },
+  {
+    "word": "КАФА",
+    "emoji": "☕",
+    "category": "food",
+    "picture": true,
+    "picture_group": "cup"
+  },
+  {
+    "word": "СОФА",
+    "emoji": "🛋️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "sofa"
+  },
+  {
+    "word": "ФОКА",
+    "emoji": "🦭",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "seal"
+  },
+  {
+    "word": "ЋУФТА",
+    "emoji": "🧆",
+    "category": "food",
+    "picture": true,
+    "picture_group": "meatball"
+  },
+  {
+    "word": "ФАРМА",
+    "emoji": "🏡",
+    "category": "place",
+    "picture": false,
+    "picture_group": "farm"
+  },
+  {
+    "word": "ФЛАША",
+    "emoji": "🍼",
+    "category": "object",
+    "picture": true,
+    "picture_group": "bottle"
+  },
+  {
+    "word": "ФРУЛА",
+    "emoji": "🪈",
+    "category": "music",
+    "picture": true,
+    "picture_group": "flute"
+  },
+  {
+    "word": "ДЕЛФИН",
+    "emoji": "🐬",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "dolphin"
+  },
+  {
+    "word": "ЖИРАФА",
+    "emoji": "🦒",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "giraffe"
+  },
+  {
+    "word": "КРОФНА",
+    "emoji": "🍩",
+    "category": "food",
+    "picture": true,
+    "picture_group": "doughnut"
+  },
+  {
+    "word": "ЗЕЦ",
+    "emoji": "🐇",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "rabbit"
+  },
+  {
+    "word": "ЦРВ",
+    "emoji": "🪱",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "worm"
+  },
+  {
+    "word": "ЖИЦА",
+    "emoji": "🔤",
+    "category": "object",
+    "picture": false
+  },
+  {
+    "word": "ОВЦА",
+    "emoji": "🐑",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "sheep"
+  },
+  {
+    "word": "СРЦЕ",
+    "emoji": "❤️",
+    "category": "body",
+    "picture": true,
+    "picture_group": "heart"
+  },
+  {
+    "word": "ЦВЕТ",
+    "emoji": "🌸",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "flower"
+  },
+  {
+    "word": "ЦРТА",
+    "emoji": "🔤",
+    "category": "action",
+    "picture": false
+  },
+  {
+    "word": "ЛАНАЦ",
+    "emoji": "⛓️",
+    "category": "object",
+    "picture": true,
+    "picture_group": "chain"
+  },
+  {
+    "word": "ЛОНАЦ",
+    "emoji": "🍲",
+    "category": "object",
+    "picture": true,
+    "picture_group": "soup_pot"
+  },
+  {
+    "word": "ПТИЦА",
+    "emoji": "🐦",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "bird"
+  },
+  {
+    "word": "РАНАЦ",
+    "emoji": "🎒",
+    "category": "object",
+    "picture": true,
+    "picture_group": "backpack"
+  },
+  {
+    "word": "СУНЦЕ",
+    "emoji": "☀️",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "sunlight"
+  },
+  {
+    "word": "ЦВЕЋЕ",
+    "emoji": "💐",
+    "category": "nature",
+    "picture": true,
+    "picture_group": "flowers"
+  },
+  {
+    "word": "ЦИГЛА",
+    "emoji": "🧱",
+    "category": "object",
+    "picture": true,
+    "picture_group": "brick"
+  },
+  {
+    "word": "ЦРТЕЖ",
+    "emoji": "🖍️",
+    "category": "object",
+    "picture": false,
+    "picture_group": "drawing"
+  },
+  {
+    "word": "ЧАМАЦ",
+    "emoji": "🛶",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "boat"
+  },
+  {
+    "word": "ЛИСИЦА",
+    "emoji": "🦊",
+    "category": "animal",
+    "picture": true,
+    "picture_group": "fox"
+  },
+  {
+    "word": "ЦИПЕЛА",
+    "emoji": "👟",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "shoe"
+  },
+  {
+    "word": "ЦРВЕНО",
+    "emoji": "🔴",
+    "category": "color",
+    "picture": true,
+    "picture_group": "red"
+  },
+  {
+    "word": "ЏАК",
+    "emoji": "💰",
+    "category": "object",
+    "picture": false,
+    "picture_group": "sack"
+  },
+  {
+    "word": "ЏЕЗ",
+    "emoji": "🎷",
+    "category": "music",
+    "picture": false,
+    "picture_group": "saxophone"
+  },
+  {
+    "word": "ЏЕМ",
+    "emoji": "🫙",
+    "category": "food",
+    "picture": false,
+    "picture_group": "jam"
+  },
+  {
+    "word": "ЏЕП",
+    "emoji": "👖",
+    "category": "clothing",
+    "picture": false,
+    "picture_group": "pocket"
+  },
+  {
+    "word": "ЏИП",
+    "emoji": "🚙",
+    "category": "vehicle",
+    "picture": true,
+    "picture_group": "car"
+  },
+  {
+    "word": "ЏУДО",
+    "emoji": "🥋",
+    "category": "sport",
+    "picture": true,
+    "picture_group": "martial_arts"
+  },
+  {
+    "word": "ЏОКЕР",
+    "emoji": "🃏",
+    "category": "game",
+    "picture": true,
+    "picture_group": "joker"
+  },
+  {
+    "word": "ЂАК",
+    "emoji": "🧑‍🎓",
+    "category": "person",
+    "picture": true,
+    "picture_group": "student"
+  },
+  {
+    "word": "ЂОН",
+    "emoji": "👟",
+    "category": "clothing",
+    "picture": false,
+    "picture_group": "shoe"
+  },
+  {
+    "word": "ЂАВО",
+    "emoji": "👿",
+    "category": "character",
+    "picture": true,
+    "picture_group": "devil"
+  },
+  {
+    "word": "ЛЕЂА",
+    "emoji": "🔤",
+    "category": "body",
+    "picture": false
+  },
+  {
+    "word": "СМУЂ",
+    "emoji": "🐟",
+    "category": "animal",
+    "picture": false,
+    "picture_group": "fish"
+  },
+  {
+    "word": "РОЂАК",
+    "emoji": "🧑",
+    "category": "person",
+    "picture": false
+  },
+  {
+    "word": "ЂЕРДАН",
+    "emoji": "📿",
+    "category": "clothing",
+    "picture": true,
+    "picture_group": "necklace"
+  },
+  {
+    "word": "ЂУМБИР",
+    "emoji": "🫚",
+    "category": "food",
+    "picture": true,
+    "picture_group": "ginger"
+  }
+]

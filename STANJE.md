@@ -1,6 +1,18 @@
 # Ћирило — stanje projekta
 
-Aktuelno: 2026-10-12, v19 objava radi na [cirilo-production.up.railway.app](https://cirilo-production.up.railway.app), uz javni GitHub repozitorijum i mali Railway trial servis. Dečja igra ostaje v17: čitanje prostornih odnosa u, na, pored, ispred i iza, dve kratke priče po misiji i odnos 10 čitanja / 2 pisanja. Odvojeni napredak po browseru, 112 reči, potezi slova, arena, dvorište i ostale igre ostaju. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+Aktuelno: 2026-10-13, lokalna v20 na `127.0.0.1:3001` uvodi podrazumevani školski režim do Е i roditeljski izbor naučenih slova. Cela azbuka ostaje zasebna opcija. Javna Railway aplikacija i `main` ostaju na v19; ova izmena još nije objavljena. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs.
+
+## Školska slova — v20
+
+Roditelj u „Šta vežbamo?” bira školska slova ili celu azbuku, poslednje slovo po bukvaru ili proizvoljan podskup. Tačan redosled je А М И Т О Н С Е Р Ј У Ш Л Љ З В Г П К Д Б Њ Х Ж Ч Ћ Ф Ц Џ Ђ; podrazumevano je prvih osam, do Е. Školska igra ne uvodi slova automatski. Čitav sadržaj zadatka, uključujući pogrešne ponuđene odgovore i ponavljanje posle greške, ostaje unutar izbora. Uputstva interfejsa nisu ograničena.
+
+Nova školska banka ima 423 reči od 2–6 slova, 388 do pet slova. Do Е je dostupno 67 reči, 18 ilustrovanih pojmova i osam rečenica sa osobom i predmetom. Osam novih SVG crteža uklanja nejasne emoji i širi početnu ponudu. Imena/glagoli bez odgovarajuće slike koriste se za pamćenje. Za kasnije skupove postojeće prostorne priče ulaze tek kada su sva slova njihovih rečenica poznata. Stara banka od 112 reči i kompletna igra cele azbuke sačuvane su.
+
+Odigrana test nedelja od 42 misije daje 44 različite ciljane reči, osam rečenica, 504 zadatka (420 čitanja / 84 pisanja), 42 nagrade i 6.090 XP. Različite kombinacije uz namerno ponavljanje reči podržavaju vežbanje; to nije obavezan dnevni broj igara. Na najmanjim skupovima izbor je prirodno uži.
+
+Promena režima/slova važi od sledeće misije; aktivna čuva svoja pitanja i snimljen skup slova. Nagrade i napredak zajednički su, bez novih profila. Potpuni restart čuva roditeljska podešavanja. Prošlo je 264 Rails testa / 75.007 tvrdnji, 29 JS testova, provera svih prefiksa i pojedinačnih slova i zaseban pregled svih parova slova. Roditeljska forma, izbor slike, greška/ponavljanje, nova rečenica i SVG značenje provereni su u browseru na 320 px. [Dokazi i granice](qa/v20/PROVERA.md).
+
+Kod pre promene čuva tag `v19-stable-before-school-mode`; rad je na grani `school-learning`. Baza je rezervisana u `revisions/2026-10-13-v19-before-school-mode/`. Migracija i na kopiji i na glavnoj lokalnoj bazi čuva sve stare redove i vrednosti. Stare misije ostaju u režimu cele azbuke. Railway i GitHub nisu menjani u ovoj iteraciji.
 
 ## Javna objava na trial nalogu — v19
 

@@ -5,6 +5,7 @@
     <p>Бришу се сви <strong>XP поени, куповине, опрема, борбе и мисије</strong>, укључујући мисију у току. Бришу се и вежбана слова, одговори и забележене замене слова.</p>
     <p><strong>Мапа се враћа на први корак, а сви спасени другари одлазе из дворишта.</strong> Дете ће их поново спасавати од почетка. Дино поново постаје зелени рекс, уз ливаду и звездице.</p>
     <p>Бришу се и јаје, напредак излегања и име излеженог другара.</p>
+    <p>Изабрани начин игре и школска слова остају подешени.</p>
     <%= form_with url: reset_all_progress_path, method: :post, class: 'parent-reset-form' do %>
       <%= hidden_field_tag :shop_generation, @learner.shop_generation, id: 'full_shop_generation' %>
       <%= hidden_field_tag :dinosaur_generation, @learner.dinosaur_generation, id: 'full_dinosaur_generation' %>

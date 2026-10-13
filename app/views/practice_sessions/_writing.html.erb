@@ -2,7 +2,7 @@
 
 <div class="word-writing" data-word-writing data-filling="<%= filling %>">
   <div class="writing-prompt <%= 'writing-prompt--long' if exercise['word'].length >= 7 %>">
-  <div class="writing-picture" role="img" aria-label="<%= filling ? 'Слика за реч коју дописујеш' : exercise['word'] %>"><%= WordBank.find(exercise['word'])&.fetch('emoji') %></div>
+  <div class="writing-picture" role="img" aria-label="<%= filling ? 'Слика за реч коју дописујеш' : exercise['word'] %>"><%= word_illustration(exercise['emoji'] || WordBank.find(exercise['word'])&.fetch('emoji'), image: exercise['image']) %></div>
   <div class="writing-word" role="group" aria-label="Реч коју пишеш">
     <% exercise['word_pattern'].chars.each_with_index do |char, index| %>
       <% if exercise['writing_letters'].any? { |letter| letter['index'] == index } %>

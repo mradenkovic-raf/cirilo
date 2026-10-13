@@ -1,0 +1,35 @@
+{
+  "letter_progresses": {
+    "rows_preserved": 12,
+    "all_original_values_unchanged": true
+  },
+  "practice_sessions": {
+    "rows_preserved": 8,
+    "all_original_values_unchanged": true
+  },
+  "attempts": {
+    "rows_preserved": 98,
+    "all_original_values_unchanged": true
+  },
+  "part_unlocks": {
+    "rows_preserved": 7,
+    "all_original_values_unchanged": true
+  },
+  "battles": {
+    "rows_preserved": 7,
+    "all_original_values_unchanged": true
+  },
+  "shop_purchases": {
+    "rows_preserved": 0,
+    "all_original_values_unchanged": true
+  },
+  "letter_confusions": {
+    "rows_preserved": 0,
+    "all_original_values_unchanged": true
+  },
+  "learners": {
+    "rows_preserved": 4,
+    "all_original_values_unchanged": true
+  },
+  "integrity_check": "ok"
+}

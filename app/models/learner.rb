@@ -21,6 +21,17 @@ class Learner < ApplicationRecord
   validates :selected_dino, inclusion: { in: ShopCatalog.values_for("dino") }
   validates :selected_theme, inclusion: { in: ShopCatalog.values_for("theme") }
   validates :selected_effect, inclusion: { in: ShopCatalog.values_for("effect") }
+  validates :learning_mode, inclusion: { in: %w[school full] }
+  validates :learning_settings_revision, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validate :valid_school_letters
+
+  def school_mode?
+    learning_mode == "school"
+  end
+
+  def learning_letters
+    school_mode? ? SchoolCurriculum.letters_for(school_letter_ids) : Curriculum.ordered_letters
+  end
 
   def self.device_digest(token)
     Digest::SHA256.hexdigest(token)
@@ -85,6 +96,10 @@ class Learner < ApplicationRecord
   end
 
   private
+
+  def valid_school_letters
+    errors.add(:school_letter_ids, "изабери бар једно слово азбуке") unless SchoolCurriculum.valid_ids?(school_letter_ids)
+  end
 
   def assign_device_digest
     self.device_token_digest ||= self.class.device_digest(SecureRandom.urlsafe_base64(32))

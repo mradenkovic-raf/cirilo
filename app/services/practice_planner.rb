@@ -29,6 +29,12 @@ class PracticePlanner
     end
 
     def next_letters(learner)
+      return SchoolPracticePlanner.next_letters(learner) if learner.school_mode?
+
+      full_next_letters(learner)
+    end
+
+    def full_next_letters(learner)
       known = learner.letter_progresses.index_by(&:letter_id)
       return Curriculum.ordered_letters.first(3) if known.empty?
 
@@ -55,7 +61,11 @@ class PracticePlanner
       adapted
     end
 
-    def reading_review(letter_id:, letter_case:, variation:)
+    def reading_review(letter_id:, letter_case:, variation:, letter_ids: nil)
+      if letter_ids
+        return SchoolPracticePlanner.reading_review(letter_id: letter_id, letter_case: letter_case,
+          variation: variation, letter_ids: letter_ids)
+      end
       letter = Curriculum.find(letter_id)
       entry = WordBank.for_letter(letter, variation: variation)
       exercise(letter, entry, "read_word", letter_case)
@@ -65,25 +75,40 @@ class PracticePlanner
 
     def build_session!(learner)
       focus = next_letters(learner)
-      focus.each { |letter| learner.letter_progresses.find_or_create_by!(letter_id: letter.fetch("id")) }
-      learner.practice_sessions.create!(exercises: mission_exercises(focus, learner),
+      ids = learner.school_mode? ? SchoolCurriculum.canonical_ids(learner.school_letter_ids) : []
+      exercises = if learner.school_mode?
+        variation = learner.practice_sessions.where(status: "completed", learning_mode: "school")
+          .where("school_letter_ids = ?", ids.to_json).count
+        SchoolPracticePlanner.exercises(learner, letter_ids: ids, variation: variation)
+      else
+        mission_exercises(focus, learner)
+      end
+      (focus.map { |letter| letter.fetch("id") } + exercises.map { |exercise| exercise.fetch("letter_id") }).uniq.each do |id|
+        learner.letter_progresses.find_or_create_by!(letter_id: id)
+      end
+      learner.practice_sessions.create!(exercises: exercises, learning_mode: learner.learning_mode, school_letter_ids: ids,
         focus_letters: focus.map { |letter| letter.fetch("id") })
     end
 
     def upgrade_locked!(session, learner)
       return session if session.completed?
       remaining = session.exercises.drop(session.cursor)
-      # Keep all saved V3–V7 missions intact, including the heavier old writing
-      # mix. The new balance starts with the next mission, never halfway through.
+      # Preserve compatible saved questions and their original mode/scope.
+      # New parent settings only apply when creating the following mission.
       return session if remaining.any? && remaining.all? { |exercise| COMPATIBLE_VERSIONS.include?(exercise["version"]) }
 
       focus = session.focus_letters.filter_map { |id| Curriculum.find(id) }
-      focus = (focus + next_letters(learner)).uniq { |letter| letter.fetch("id") }.first(3)
+      focus = (focus + (session.school_mode? ? SchoolCurriculum.letters_for(session.school_letter_ids) : full_next_letters(learner))).uniq { |letter| letter.fetch("id") }.first(3)
       focus.each { |letter| learner.letter_progresses.find_or_create_by!(letter_id: letter.fetch("id")) }
       # Completed exercise IDs, attempts, cursor and earned XP stay untouched.
       # A page left open before this change receives a normal stale-task reply.
       completed = session.exercises.first(session.cursor)
-      fresh = mission_exercises(focus, learner)
+      fresh = if session.school_mode?
+        SchoolPracticePlanner.exercises(learner, letter_ids: session.school_letter_ids, variation: learner.completed_missions)
+      else
+        mission_exercises(focus, learner)
+      end
+      fresh.each { |exercise| learner.letter_progresses.find_or_create_by!(letter_id: exercise.fetch("letter_id")) }
       replacement = fresh.drop(session.cursor)
       replacement = [fresh.first] if replacement.empty?
       session.update!(exercises: completed + replacement,

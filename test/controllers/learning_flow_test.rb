@@ -4,6 +4,7 @@ require_relative "../services/exercise_helpers"
 class LearningFlowTest < ActionDispatch::IntegrationTest
   include ExerciseHelpers
   test "every main page renders with all thirty letters and matching reward names" do
+    test_learner
     get root_path
     assert_response :success
     assert_select "h1", 1

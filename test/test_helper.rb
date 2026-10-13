@@ -8,7 +8,9 @@ class ActiveSupport::TestCase
   private
 
   def test_learner
-    @test_learner ||= Learner.create!
+    # Existing regression scenarios exercise the original full-alphabet game.
+    # School-mode tests create learners explicitly and verify the new default.
+    @test_learner ||= Learner.create!(learning_mode: "full")
   end
 end
 
@@ -30,5 +32,7 @@ class ActionDispatch::IntegrationTest
     token = jar.encrypted[:cirilo_device]
     assert token.present?, "The device cookie must decrypt successfully"
     @test_learner = Learner.find_by!(device_token_digest: Learner.device_digest(token))
+    @test_learner.update!(learning_mode: "full")
+    @test_learner
   end
 end

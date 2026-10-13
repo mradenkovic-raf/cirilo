@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Сено</title>
+  <ellipse cx="122" cy="177" rx="95" ry="9" fill="#e8efd4"/>
+  <path d="M42 165C59 142 58 112 82 85C96 68 100 48 120 40C141 48 149 65 158 82C181 113 190 142 207 165C166 183 82 183 42 165Z" fill="#e9c15b" stroke="#876126" stroke-width="4" stroke-linejoin="round"/>
+  <g stroke="#ba8d34" stroke-width="4" stroke-linecap="round">
+    <path d="M118 51L104 78L108 105M128 58L138 82L141 108M89 92L76 123L67 144M107 90L98 121L84 153M122 97L119 125L112 156M149 94L156 118L168 144M166 118L180 146L185 161M145 122L150 149L144 165M76 157L71 169M99 143L99 168M168 151L173 171"/>
+  </g>
+  <g stroke="#f8dda0" stroke-width="3" stroke-linecap="round">
+    <path d="M108 59L96 90M128 77L128 96M87 117L77 140M118 115L113 143M136 109L143 139M165 132L174 150M127 140L126 166"/>
+  </g>
+  <path d="M37 169L55 167M49 178L71 174M195 169L218 176M183 180L204 182" stroke="#ba8d34" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -32,7 +32,7 @@
     <div class="exercise-content">
       <h1 data-task-title><%= task_title %></h1><%= render 'steps', exercise: @exercise %><div data-task-body><% if @exercise['review_only'] %><p class="retry-label">↻ Понови, па настави.</p><% end %>
       <% if kind == 'story_action' %>
-        <%= render 'story', exercise: @exercise %>
+        <%= render (@exercise['school_story'] ? 'school_story' : 'story'), exercise: @exercise %>
       <% elsif %w[picture_word repair_word word_pairs].include?(kind) %>
         <%= render 'variety', exercise: @exercise %>
       <% elsif %w[write_word fill_letters].include?(kind) %>

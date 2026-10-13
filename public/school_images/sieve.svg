@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <title>Сито</title>
+  <defs>
+    <pattern id="mesh" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0H10V10" stroke="#82939d" stroke-width="1.8"/></pattern>
+    <clipPath id="inside"><ellipse cx="120" cy="93" rx="82" ry="44"/></clipPath>
+  </defs>
+  <ellipse cx="120" cy="166" rx="94" ry="9" fill="#e8edf0"/>
+  <path d="M25 91V116C25 146 67 165 120 165C173 165 215 146 215 116V91" fill="#ce995a" stroke="#684c33" stroke-width="4"/>
+  <path d="M37 112V130M202 112V130M120 143V159M65 135V149M175 135V150" stroke="#b37c43" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="120" cy="93" rx="95" ry="56" fill="#ebc48b" stroke="#684c33" stroke-width="4"/>
+  <ellipse cx="120" cy="93" rx="82" ry="44" fill="#eef4f5"/>
+  <path d="M32 53H208V139H32Z" fill="url(#mesh)" clip-path="url(#inside)"/>
+  <ellipse cx="120" cy="93" rx="82" ry="44" stroke="#967044" stroke-width="4"/>
+</svg>

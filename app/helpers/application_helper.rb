@@ -1,4 +1,19 @@
 module ApplicationHelper
+  def school_alphabet_letter(letter, learner)
+    return letter unless learner.school_mode?
+
+    entries = SchoolWordBank.picture_entries(learner.school_letter_ids)
+      .select { |entry| entry.fetch("word").include?(letter.fetch("upper")) }
+    entry = entries.min_by { |item| [item.fetch("word").start_with?(letter.fetch("upper")) ? 0 : 1, item.fetch("word").length, item.fetch("word")] }
+    letter.merge("word" => entry ? entry.fetch("word") : letter.fetch("upper"), "emoji" => entry ? entry.fetch("emoji") : "✦", "image" => entry&.fetch("image", nil))
+  end
+
+  def word_illustration(emoji, image: nil)
+    return emoji unless image && SchoolWordBank.image_paths.include?(image)
+
+    image_tag(static_asset_path(image.delete_prefix("/")), alt: "", class: "word-illustration", draggable: false)
+  end
+
   # Plain public assets have no build pipeline. A content version keeps cached
   # CSS and all relative module imports in step with the rendered page.
   def static_asset_path(name)
