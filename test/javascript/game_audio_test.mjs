@@ -13,17 +13,17 @@ class Surface {
     this.listeners.get(name).add(callback);
   }
   removeEventListener(name, callback) { this.listeners.get(name)?.delete(callback); }
-  emit(name, event = {}) { for (const callback of this.listeners.get(name) || []) callback(event); }
+  emit(name, event = {}) { for (const callback of this.listeners.get(name) || []) callback({ type: name, ...event }); }
   get listenerCount() { return [...this.listeners.values()].reduce((sum, group) => sum + group.size, 0); }
 }
 
-function fixture({ mode = 'drive', muted = false, supported = true, initialState = 'running', rejectResume = false, storedOnly = false } = {}) {
+function fixture({ mode = 'drive', muted = false, supported = true, initialState = 'running', rejectResume = false, blockResume = false, storedOnly = false } = {}) {
   const document = new Surface(), window = new Surface(), contexts = [], timers = new Map();
   const toggle = { pressed: String(muted), getAttribute() { return this.pressed; } };
   document.hidden = false;
   document.querySelector = () => storedOnly ? null : toggle;
   window.localStorage = { getItem: () => String(muted) };
-  let timerId = 0;
+  let timerId = 0, resumeAllowed = !blockResume;
   const param = () => ({ value: 0, events: [],
     setValueAtTime(value, time) { this.events.push(['set', value, time]); },
     linearRampToValueAtTime(value, time) { this.events.push(['linear', value, time]); },
@@ -34,6 +34,7 @@ function fixture({ mode = 'drive', muted = false, supported = true, initialState
       contexts.push(this);
       this.state = initialState; this.currentTime = 0; this.sampleRate = 8000;
       this.sources = []; this.gains = []; this.buffers = []; this.resumeCalls = 0; this.closeCalls = 0;
+      this.pendingResumes = [];
     }
     createGain() {
       const gain = { gain: param(), connected: false, connect(to) { this.connected = true; this.to = to; }, disconnect() { this.connected = false; } };
@@ -58,7 +59,11 @@ function fixture({ mode = 'drive', muted = false, supported = true, initialState
     resume() {
       this.resumeCalls++;
       if (rejectResume) return Promise.reject(new Error('Audio gesture denied'));
-      return Promise.resolve().then(() => { this.state = 'running'; this.onstatechange?.(); });
+      if (!resumeAllowed) return new Promise(resolve => this.pendingResumes.push(resolve));
+      return Promise.resolve().then(() => {
+        this.state = 'running'; this.onstatechange?.();
+        this.pendingResumes.splice(0).forEach(resolve => resolve());
+      });
     }
     suspend() { this.state = 'suspended'; this.onstatechange?.(); return Promise.resolve(); }
     close() { this.closeCalls++; this.state = 'closed'; return Promise.resolve(); }
@@ -79,12 +84,13 @@ function fixture({ mode = 'drive', muted = false, supported = true, initialState
   return {
     game: sandbox.game, document, window, toggle, contexts, timers,
     get context() { return contexts[0]; },
-    gesture(event = {}) { document.emit('pointerdown', { isTrusted: true, ...event }); },
+    gesture(event = {}, type = 'pointerdown') { document.emit(type, { isTrusted: true, pointerType: 'mouse', ...event }); },
+    allowResume() { resumeAllowed = true; },
     tick(seconds = .08) { contexts[0]?.advance(seconds); for (const timer of [...timers.values()]) timer.callback(); },
     async mute(value) {
       // The document click occurs after application.js changes the button.
       toggle.pressed = String(value);
-      document.emit('click', { target: { closest: () => toggle } });
+      document.emit('click', { isTrusted: true, target: { closest: () => toggle } });
       await Promise.resolve();
     }
   };
@@ -104,6 +110,77 @@ test('music and effects stay silent until a real user gesture', () => {
   assert.equal(f.timers.size, 1);
   assert.ok(live(f).length > 0);
   f.game.dispose();
+});
+
+test('touch and pen release unlock music and effects without a premature pointerdown resume', async () => {
+  for (const pointerType of ['touch', 'pen']) {
+    const f = fixture({ initialState: 'suspended' });
+    f.game.setPlaying(true);
+    f.gesture({ pointerType });
+    assert.equal(f.contexts.length, 0, `${pointerType} pointerdown is not an audio activation`);
+    f.gesture({ pointerType, isTrusted: false }, 'pointerup');
+    assert.equal(f.contexts.length, 0);
+    f.gesture({ pointerType }, 'pointerup'); await flush();
+    assert.equal(f.context.resumeCalls, 1);
+    assert.equal(f.timers.size, 1);
+    const musicCount = live(f).length;
+    f.game.play('hit');
+    assert.ok(live(f).length > musicCount, 'effects work after the same touch release');
+    f.game.dispose();
+  }
+});
+
+test('trusted touchend, click, and ordinary keyboard gestures provide audio fallbacks', async () => {
+  for (const type of ['touchend', 'click', 'keydown']) {
+    const f = fixture({ initialState: 'suspended' }); f.game.setPlaying(true);
+    f.gesture({ isTrusted: false, key: 'ArrowLeft' }, type);
+    assert.equal(f.contexts.length, 0);
+    f.gesture({ key: 'ArrowLeft' }, type); await flush();
+    assert.equal(f.timers.size, 1, type);
+    f.game.dispose();
+  }
+  const f = fixture(); f.game.setPlaying(true);
+  for (const event of [{ key: 'Escape' }, { key: 'Shift' }, { key: 'r', ctrlKey: true }, { key: 'ArrowLeft', repeat: true }]) {
+    f.gesture(event, 'keydown');
+  }
+  assert.equal(f.contexts.length, 0, 'shortcuts, modifier keys, and repeat do not unexpectedly start music');
+  f.game.dispose();
+});
+
+test('fresh touch release retries a blocked pending resume while ordinary calls remain deduplicated', async () => {
+  const f = fixture({ initialState: 'suspended', blockResume: true });
+  f.game.setPlaying(true); f.gesture();
+  await flush();
+  assert.equal(f.context.state, 'suspended');
+  assert.equal(f.context.pendingResumes.length, 1, 'blocked browser resume stays pending instead of rejecting');
+  for (let attempt = 0; attempt < 5; attempt++) { f.game.setPlaying(true); f.game.play('hit'); }
+  assert.equal(f.context.resumeCalls, 1);
+  f.allowResume();
+  f.gesture({ pointerType: 'touch' });
+  assert.equal(f.context.resumeCalls, 1, 'touchdown must not retry before activation');
+  f.gesture({ pointerType: 'touch' }, 'pointerup'); await flush();
+  assert.equal(f.context.resumeCalls, 2);
+  assert.equal(f.context.state, 'running'); assert.equal(f.timers.size, 1);
+  const musicCount = live(f).length; f.game.play('crash');
+  assert.ok(live(f).length > musicCount);
+  await f.mute(true); assert.equal(live(f).length, 0);
+  await f.mute(false); assert.equal(f.timers.size, 1);
+  f.game.dispose();
+});
+
+test('a trusted unmute alone unlocks muted loading and retries a previously blocked resume', async () => {
+  for (const previouslyBlocked of [false, true]) {
+    const f = fixture({ initialState: 'suspended', muted: !previouslyBlocked, blockResume: previouslyBlocked });
+    f.game.setPlaying(true);
+    f.gesture();
+    if (previouslyBlocked) {
+      assert.equal(f.context.pendingResumes.length, 1);
+      await f.mute(true); f.allowResume();
+    } else assert.equal(f.contexts.length, 0);
+    await f.mute(false); await flush();
+    assert.equal(f.context.state, 'running'); assert.equal(f.timers.size, 1);
+    f.game.dispose();
+  }
 });
 
 test('drive and arena play distinct quiet melodies without multiplying loops', () => {
@@ -206,10 +283,10 @@ test('tab hiding stops sound and resumes music without replaying effects', async
   f.game.dispose();
 });
 
-test('async resume is deduplicated, rejected resumes are harmless, and late completion respects mute', async () => {
+test('ordinary async resume calls are deduplicated, rejected resumes are harmless, and late completion respects mute', async () => {
   for (const rejectResume of [false, true]) {
     const f = fixture({ initialState: 'suspended', rejectResume });
-    f.game.setPlaying(true); f.gesture(); f.gesture(); f.game.play('hit');
+    f.game.setPlaying(true); f.gesture(); f.game.setPlaying(true); f.game.play('hit');
     assert.equal(f.context.resumeCalls, 1);
     await flush();
     assert.equal(f.timers.size, rejectResume ? 0 : 1);

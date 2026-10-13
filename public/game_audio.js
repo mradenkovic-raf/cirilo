@@ -13,7 +13,8 @@ export function createGameAudio(mode) {
   const win = typeof window === 'undefined' ? null : window;
   const voices = new Set();
   let context, master, musicBus, effectsBus, noiseBuffer, applauseBuffer;
-  let playing = false, unlocked = false, disposed = false, resuming = false, parked = false;
+  let playing = false, unlocked = false, disposed = false, parked = false;
+  let resumeSequence = 0, pendingResume = 0;
   let timer = null, nextAt = 0, step = 0, lastCue = null, lastCueAt = -Infinity;
   let silent = readMute();
 
@@ -138,7 +139,7 @@ export function createGameAudio(mode) {
     timer = setInterval(scheduleMusic, 80);
   }
 
-  function ensureAudio() {
+  function ensureAudio(activation = false) {
     if (!audible()) return;
     try {
       if (!context) {
@@ -154,31 +155,38 @@ export function createGameAudio(mode) {
         };
       }
       if (context.state === 'running') startMusic();
-      else if (context.state !== 'closed' && !resuming) {
-        resuming = true;
+      else if (context.state !== 'closed' && (!pendingResume || activation)) {
+        // A blocked mobile resume() can remain pending rather than reject.
+        // A fresh user activation must be able to retry that request.
+        const request = ++resumeSequence;
+        pendingResume = request;
         Promise.resolve(context.resume()).then(() => {
-          resuming = false;
+          if (pendingResume === request) pendingResume = 0;
           if (!audible()) silenceAll();
           else startMusic();
-        }).catch(() => { resuming = false; });
+        }).catch(() => { if (pendingResume === request) pendingResume = 0; });
       }
-    } catch { silenceAll(); }
+    } catch { pendingResume = 0; silenceAll(); }
   }
 
   function gesture(event) {
     if (event.isTrusted !== true || event.repeat) return;
+    // Touch/pen activate browser audio on release; their pointerdown does not.
+    if (event.type === 'pointerdown' && event.pointerType !== 'mouse') return;
+    if (event.type === 'keydown' && (event.ctrlKey || event.altKey || event.metaKey ||
+      ['Escape', 'Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'NumLock', 'ScrollLock'].includes(event.key))) return;
     unlocked = true;
-    ensureAudio();
+    ensureAudio(true);
   }
 
-  function muteChanged() {
+  function muteChanged(activation = false) {
     silent = readMute();
     if (silent) silenceAll();
-    else ensureAudio();
+    else ensureAudio(activation);
   }
 
   function clicked(event) {
-    if (event.target.closest?.('.sound-toggle')) queueMicrotask(muteChanged);
+    if (event.target?.closest?.('.sound-toggle')) queueMicrotask(() => muteChanged(event.isTrusted === true));
   }
 
   function storageChanged(event) {
@@ -262,6 +270,9 @@ export function createGameAudio(mode) {
     playing = false;
     silenceAll();
     doc?.removeEventListener('pointerdown', gesture, true);
+    doc?.removeEventListener('pointerup', gesture, true);
+    doc?.removeEventListener('touchend', gesture, true);
+    doc?.removeEventListener('click', gesture, true);
     doc?.removeEventListener('keydown', gesture, true);
     doc?.removeEventListener('click', clicked);
     doc?.removeEventListener('visibilitychange', visibilityChanged);
@@ -277,6 +288,9 @@ export function createGameAudio(mode) {
   }
 
   doc?.addEventListener('pointerdown', gesture, { capture: true, passive: true });
+  doc?.addEventListener('pointerup', gesture, { capture: true, passive: true });
+  doc?.addEventListener('touchend', gesture, { capture: true, passive: true });
+  doc?.addEventListener('click', gesture, true);
   doc?.addEventListener('keydown', gesture, true);
   doc?.addEventListener('click', clicked);
   doc?.addEventListener('visibilitychange', visibilityChanged);
