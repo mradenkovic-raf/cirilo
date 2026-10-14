@@ -207,7 +207,7 @@ test('a trusted unmute alone unlocks muted loading and retries a previously bloc
 });
 
 test('drive and arena load their own local track once and keep exactly one quiet music loop', async () => {
-  for (const [mode, url] of [['drive', '/audio/bouncy-toy-time.mp3?v=1'], ['arena', '/audio/strasni-mrguuud.mp3?v=1']]) {
+  for (const [mode, url] of [['drive', '/audio/bouncy-toy-time.mp3?v=1'], ['arena', '/audio/strasni-mrguuud.mp3?v=2']]) {
     const f = fixture({ mode }); f.gesture();
     for (let attempt = 0; attempt < 20; attempt++) f.game.setPlaying(true);
     await flush();

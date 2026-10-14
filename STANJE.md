@@ -4,7 +4,7 @@ Aktuelno: 2026-10-13, **v25 je javno objavljena na Railwayu**, commit `92ba40e`,
 
 ## V26 — nova muzika igara (lokalno, 2026-10-14)
 
-Vožnja koristi korisnikovu „Bouncy Toy Time”, arena „Strašni Mrguuuud”. Lokalni MP3 fajlovi imaju ukupno 0,83 MB, bez omota i dodatnih metapodataka, sa ujednačenom glasnoćom. Izvorni fajlovi nisu menjani. Novi buffer loop zamenjuje sintetizovanu melodiju; efekti i prethodna Android aktivacija ostaju. Muzika se nastavlja sa iste pozicije posle pauze/utišavanja. Zakašnjelo učitavanje ne oživljava završenu igru; izlazak prekida preuzimanje i oslobađa audio.
+Vožnja koristi korisnikovu „Bouncy Toy Time”, arena „Мргуд, Страшни Мргуд” (naknadni korisnikov izbor, URL verzija 2). Lokalni MP3 fajlovi imaju ukupno 1,43 MB, bez omota i dodatnih metapodataka, sa ujednačenom glasnoćom. Izvorni fajlovi nisu menjani. Novi buffer loop zamenjuje sintetizovanu melodiju; efekti i prethodna Android aktivacija ostaju. Muzika se nastavlja sa iste pozicije posle pauze/utišavanja. Zakašnjelo učitavanje ne oživljava završenu igru; izlazak prekida preuzimanje i oslobađa audio.
 
 Prolazi 23 audio testa i svih sedam JS test datoteka, plus 10 Rails testova identiteta uređaja. HTTP potvrđuje oba MP3 snimka; stvarni browser proverava vožnju, potez arene i kontrole zvuka bez JS grešaka. Fizički telefon i slušni kvalitet nisu provereni. Nema migracija, izmene glavne baze ili objave. [Dokazi](qa/v26/PROVERA.md).
 

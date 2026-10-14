@@ -2,7 +2,7 @@
 // A game requests music with setPlaying(true); the first real gesture unlocks it.
 const TRACKS = {
   drive: '/audio/bouncy-toy-time.mp3?v=1',
-  arena: '/audio/strasni-mrguuud.mp3?v=1'
+  arena: '/audio/strasni-mrguuud.mp3?v=2'
 };
 const MAX_VOICES = 28;
 const frequency = note => 440 * 2 ** ((note - 69) / 12);
