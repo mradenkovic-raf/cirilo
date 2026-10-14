@@ -1,0 +1,15 @@
+✔ test/javascript/battle_test.mjs (47.238704ms)
+✔ test/javascript/dino_drive_audio_test.mjs (52.137697ms)
+✔ test/javascript/dino_drive_test.mjs (30.888743ms)
+✔ test/javascript/game_audio_test.mjs (175.832243ms)
+✔ test/javascript/mission_path_test.mjs (38.167847ms)
+✔ test/javascript/trace_test.mjs (37.954407ms)
+✔ test/javascript/variety_test.mjs (38.548745ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.945169

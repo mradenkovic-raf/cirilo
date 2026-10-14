@@ -6,6 +6,8 @@ Javna aplikacija: **[cirilo-production.up.railway.app](https://cirilo-production
 
 V24 popravlja uključivanje muzike i efekata u igrama na dodir i oporavak blokiranog audio pokušaja. Posle objave osveži stranicu na telefonu. [Provera Android ispravke](qa/v24/PROVERA.md).
 
+Lokalna v26 menja pozadinsku muziku korisnikovim numerama: **„Bouncy Toy Time” za vožnju**, **„Strašni Mrguuuud” za arenu**. Kompaktni MP3 snimci ponavljaju se uz postojeće efekte i zajedničko dugme za zvuk. [Provere](qa/v26/PROVERA.md). Ova izmena još nije objavljena.
+
 ## Više reči i manje pogađanja — v25
 
 Školska banka sada ima **781 reč i oblik reči** (+238), od kojih je 710 dugo najviše pet slova. Do Е ima **120 reči umesto 75**, sa **37 slikovnih odgovora umesto 24**. Novi slikovni pojmovi uključuju omot, stan, mantu, totem i smet; osam dodatnih odgovora su množine sa odgovarajućim slikama više predmeta. Jednina i množina istog pojma nisu konkurentski odgovori. Dodato je **20 lokalnih SVG ilustracija**, bez spoljnih servisa.

@@ -2,6 +2,12 @@
 
 Aktuelno: 2026-10-13, **v25 je javno objavljena na Railwayu**, commit `92ba40e`, deployment `fbe5c195-072c-4c4f-a50b-6d23eb9ad80e`, status **SUCCESS**. Uključuje više reči/slika i raznovrsnije čitanje, kao i prethodnu Android audio ispravku. Lokalni server ostaje na `127.0.0.1:3001`. Podrazumevani školski režim do Е i roditeljski izbor naučenih slova ostaju; cela azbuka je zasebna opcija. Zvučni vodič je odložen. Ovaj folder sadrži Rails aplikaciju za učenje srpske ćirilice; ne sadrži prezentacije niti prethodni kurs. Stariji odeljci opisuju tadašnje stanje.
 
+## V26 — nova muzika igara (lokalno, 2026-10-14)
+
+Vožnja koristi korisnikovu „Bouncy Toy Time”, arena „Strašni Mrguuuud”. Lokalni MP3 fajlovi imaju ukupno 0,83 MB, bez omota i dodatnih metapodataka, sa ujednačenom glasnoćom. Izvorni fajlovi nisu menjani. Novi buffer loop zamenjuje sintetizovanu melodiju; efekti i prethodna Android aktivacija ostaju. Muzika se nastavlja sa iste pozicije posle pauze/utišavanja. Zakašnjelo učitavanje ne oživljava završenu igru; izlazak prekida preuzimanje i oslobađa audio.
+
+Prolazi 23 audio testa i svih sedam JS test datoteka, plus 10 Rails testova identiteta uređaja. HTTP potvrđuje oba MP3 snimka; stvarni browser proverava vožnju, potez arene i kontrole zvuka bez JS grešaka. Fizički telefon i slušni kvalitet nisu provereni. Nema migracija, izmene glavne baze ili objave. [Dokazi](qa/v26/PROVERA.md).
+
 ## V25 — proširenje reči i čitanja (objavljeno)
 
 - Školska banka 543→781 reč/oblik; 710 do pet slova. Do Е: 75→120 reči, 24→37 slikovnih odgovora. Pet novih slikovnih pojmova ili ranije tekstualnih pojmova, osam slikovnih množina. САТИ, АТОМ i БРАВА ostaju tekstualni zbog nejasnog predstavljanja slikom.

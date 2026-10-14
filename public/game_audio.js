@@ -1,8 +1,8 @@
-// Original, locally synthesized music and effects: no downloads or audio service.
+// User-supplied music is served by this app; effects are synthesized locally.
 // A game requests music with setPlaying(true); the first real gesture unlocks it.
 const TRACKS = {
-  drive: { step: .16, melody: [76, 79, 81, 79, 76, 74, 72, null, 74, 76, 79, 76, 74, 72, 67, null], bass: [48, 53, 55, 48] },
-  arena: { step: .19, melody: [72, null, 76, 79, 74, null, 77, 81, 76, 79, 84, 79, 77, 74, 71, null], bass: [48, 50, 55, 55] }
+  drive: '/audio/bouncy-toy-time.mp3?v=1',
+  arena: '/audio/strasni-mrguuud.mp3?v=1'
 };
 const MAX_VOICES = 28;
 const frequency = note => 440 * 2 ** ((note - 69) / 12);
@@ -15,7 +15,9 @@ export function createGameAudio(mode) {
   let context, master, musicBus, effectsBus, noiseBuffer, applauseBuffer;
   let playing = false, unlocked = false, disposed = false, parked = false;
   let resumeSequence = 0, pendingResume = 0;
-  let timer = null, nextAt = 0, step = 0, lastCue = null, lastCueAt = -Infinity;
+  let musicBuffer = null, musicSource = null, musicLoading = null, musicRequest = null;
+  let musicOffset = 0, musicStartedAt = 0, musicFailed = false;
+  let lastCue = null, lastCueAt = -Infinity;
   let silent = readMute();
 
   function readMute() {
@@ -41,9 +43,10 @@ export function createGameAudio(mode) {
   }
 
   function stopMusic() {
-    if (timer !== null) clearInterval(timer);
-    timer = null;
-    stopVoices('music');
+    if (!musicSource) return;
+    musicOffset = (musicOffset + Math.max(0, context.currentTime - musicStartedAt)) % musicBuffer.duration;
+    try { musicSource.stop(); musicSource.disconnect(); } catch { /* Already stopped. */ }
+    musicSource = null;
   }
 
   function silenceAll() { stopMusic(); stopVoices(); }
@@ -51,7 +54,7 @@ export function createGameAudio(mode) {
   function sourceVoice(source, at, duration, volume, kind, attack = .008, hold = 0) {
     // Both ended and interrupted sources release their nodes. Repeated taps are bounded.
     while (voices.size >= MAX_VOICES) {
-      const oldest = [...voices].find(voice => voice.kind === 'music') || voices.values().next().value;
+      const oldest = voices.values().next().value;
       try { oldest.source.stop(); } catch { /* Already stopped. */ }
       removeVoice(oldest);
     }
@@ -118,25 +121,43 @@ export function createGameAudio(mode) {
     sourceVoice(source, at, 1.85, .75, 'effect', .04, 1.35);
   }
 
-  function scheduleMusic() {
-    if (!audible() || !playing || context?.state !== 'running') { stopMusic(); return; }
-    // No catching up a throttled/background timer with a burst of old notes.
-    if (nextAt < context.currentTime) nextAt = context.currentTime + .025;
-    while (nextAt < context.currentTime + .18) {
-      const note = track.melody[step % track.melody.length];
-      if (note !== null) tone(frequency(note), nextAt, track.step * .8, .26, 'triangle', null, 'music');
-      if (step % 4 === 0) tone(frequency(track.bass[Math.floor(step / 4) % track.bass.length]), nextAt, track.step * 2.1, .3, 'sine', null, 'music');
-      if (step % 2 === 1) tone(130, nextAt, .055, .16, 'sine', 55, 'music');
-      nextAt += track.step;
-      step++;
-    }
+  function startMusic() {
+    if (!playing || !audible() || context?.state !== 'running' || musicSource || musicFailed) return;
+    if (!musicBuffer) { loadMusic(); return; }
+    try {
+      musicSource = context.createBufferSource();
+      musicSource.buffer = musicBuffer;
+      musicSource.loop = true;
+      musicSource.connect(musicBus);
+      musicStartedAt = context.currentTime;
+      musicSource.start(0, musicOffset);
+    } catch { stopMusic(); }
   }
 
-  function startMusic() {
-    if (!playing || !audible() || context?.state !== 'running' || timer !== null) return;
-    nextAt = context.currentTime + .025;
-    scheduleMusic();
-    timer = setInterval(scheduleMusic, 80);
+  function loadMusic() {
+    if (musicLoading || musicBuffer || musicFailed || disposed || !context || !win?.fetch) return;
+    // Decode into the SAME context unlocked by touch/pen release. An HTML audio
+    // element started after an async download would need its own mobile gesture.
+    musicLoading = (async () => {
+      try {
+        musicRequest = win.AbortController ? new win.AbortController() : null;
+        const response = await win.fetch(track, { signal: musicRequest?.signal, credentials: 'omit' });
+        if (!response.ok) throw new Error('Music unavailable');
+        const data = await response.arrayBuffer();
+        if (disposed) return;
+        const buffer = await context.decodeAudioData(data);
+        if (disposed) return;
+        musicBuffer = buffer;
+        startMusic(); // Rechecks playing, mute, visibility and context state.
+      } catch {
+        // A missing/invalid track must not interrupt gameplay or sound effects.
+        // Retry only on a later gesture, not on every render or sound effect.
+        musicFailed = true;
+      } finally {
+        musicLoading = null;
+        musicRequest = null;
+      }
+    })();
   }
 
   function ensureAudio(activation = false) {
@@ -147,13 +168,15 @@ export function createGameAudio(mode) {
         if (!Audio) return;
         context = new Audio();
         master = context.createGain(); master.gain.value = .34; master.connect(context.destination);
-        musicBus = context.createGain(); musicBus.gain.value = .14; musicBus.connect(master);
+        musicBus = context.createGain(); musicBus.gain.value = .6; musicBus.connect(master);
         effectsBus = context.createGain(); effectsBus.gain.value = .55; effectsBus.connect(master);
         context.onstatechange = () => {
           if (context?.state === 'running') startMusic();
           else stopMusic();
         };
       }
+      if (activation) musicFailed = false;
+      if (playing) loadMusic();
       if (context.state === 'running') startMusic();
       else if (context.state !== 'closed' && (!pendingResume || activation)) {
         // A blocked mobile resume() can remain pending rather than reject.
@@ -269,6 +292,7 @@ export function createGameAudio(mode) {
     disposed = true;
     playing = false;
     silenceAll();
+    musicRequest?.abort();
     doc?.removeEventListener('pointerdown', gesture, true);
     doc?.removeEventListener('pointerup', gesture, true);
     doc?.removeEventListener('touchend', gesture, true);
@@ -284,7 +308,7 @@ export function createGameAudio(mode) {
       try { master?.disconnect(); musicBus?.disconnect(); effectsBus?.disconnect(); } catch { /* Already disconnected. */ }
       try { Promise.resolve(context.close()).catch(() => {}); } catch { /* Closing an interrupted context is optional. */ }
     }
-    noiseBuffer = null; applauseBuffer = null;
+    noiseBuffer = null; applauseBuffer = null; musicBuffer = null;
   }
 
   doc?.addEventListener('pointerdown', gesture, { capture: true, passive: true });

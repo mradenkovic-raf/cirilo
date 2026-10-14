@@ -1,0 +1,11 @@
+`/home/milos` is not writable.
+Bundler will use `/tmp/bundler20261014-6-3wwevs6' as your home directory temporarily.
+
+Run options: --seed 7560
+
+# Running:
+
+..........
+
+Finished in 0.469051s, 21.3196 runs/s, 373.0938 assertions/s.
+10 runs, 175 assertions, 0 failures, 0 errors, 0 skips
