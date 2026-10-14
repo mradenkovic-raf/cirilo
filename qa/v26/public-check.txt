@@ -1,0 +1,11 @@
+PASS: HTTPS healthcheck.
+PASS: Same mission and task restored using only the permanent browser cookie.
+PASS: Exact release asset and cache version: game_audio.js
+PASS: Exact release asset and cache version: battle.js
+PASS: Exact release asset and cache version: dino_drive.js
+PASS: Exact release asset and cache version: mission_path.js
+PASS: Parent settings show school mode and default letters through Е.
+PASS: Drive uses Bouncy Toy Time; arena uses the replacement Mrgud track (v2).
+PASS: Exact MP3 SHA-256, audio/mpeg, no cookies: /audio/bouncy-toy-time.mp3?v=1
+PASS: Exact MP3 SHA-256, audio/mpeg, no cookies: /audio/strasni-mrguuud.mp3?v=2
+PASS: Both production music files match this release; saved mission remains unchanged.

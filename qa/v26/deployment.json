@@ -1,0 +1,11 @@
+{
+  "id": "629b43f4-7e51-41a2-8529-024ef0505740",
+  "status": "SUCCESS",
+  "commit": "7f5439a680cb9668a91232720e593cb77bdbcf52",
+  "createdAt": "2026-10-14T08:15:20.108Z",
+  "updatedAt": "2026-10-14T08:15:59.385Z",
+  "projectId": "8a26bf67-82f2-47ff-8e58-86d672c1d319",
+  "environmentId": "3276f7ec-16c0-45c9-92cc-63b935024066",
+  "serviceId": "22dc64c0-c31f-487f-978e-06d55b1bf499",
+  "publicUrl": "https://cirilo-production.up.railway.app"
+}

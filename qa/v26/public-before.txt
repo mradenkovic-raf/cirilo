@@ -1,0 +1,1 @@
+PASS: Same mission and task restored using only the permanent browser cookie.

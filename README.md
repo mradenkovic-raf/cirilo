@@ -6,7 +6,7 @@ Javna aplikacija: **[cirilo-production.up.railway.app](https://cirilo-production
 
 V24 popravlja uključivanje muzike i efekata u igrama na dodir i oporavak blokiranog audio pokušaja. Posle objave osveži stranicu na telefonu. [Provera Android ispravke](qa/v24/PROVERA.md).
 
-Lokalna v26 menja pozadinsku muziku korisnikovim numerama: **„Bouncy Toy Time” za vožnju**, **„Мргуд, Страшни Мргуд” za arenu**. Kompaktni MP3 snimci ponavljaju se uz postojeće efekte i zajedničko dugme za zvuk. [Provere](qa/v26/PROVERA.md). Ova izmena još nije objavljena.
+V26, objavljena 2026-10-14, menja pozadinsku muziku korisnikovim numerama: **„Bouncy Toy Time” za vožnju**, **„Мргуд, Страшни Мргуд” za arenu**. Kompaktni MP3 snimci ponavljaju se uz postojeće efekte i zajedničko dugme za zvuk. [Provere i objava](qa/v26/PROVERA.md).
 
 ## Više reči i manje pogađanja — v25
 

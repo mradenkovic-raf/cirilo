@@ -1,0 +1,119 @@
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* main Check · 38533497536
+Triggered via push less than a minute ago
+
+JOBS
+* Rails and browser logic (ID 115750697480)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Run actions/setup-node@v7
+  ✓ Run bin/rails db:prepare
+  * Run bin/check
+  * Production proxy and browser persistence
+  * Post Run actions/setup-node@v7
+  * Post Run actions/checkout@v7
+* Docker and persistent SQLite (ID 115750697903)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  * Run bin/check-container
+  * Post Run actions/checkout@v7
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* main Check · 38533497536
+Triggered via push less than a minute ago
+
+JOBS
+* Rails and browser logic (ID 115750697480)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Run actions/setup-node@v7
+  ✓ Run bin/rails db:prepare
+  * Run bin/check
+  * Production proxy and browser persistence
+  * Post Run actions/setup-node@v7
+  * Post Run actions/checkout@v7
+* Docker and persistent SQLite (ID 115750697903)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  * Run bin/check-container
+  * Post Run actions/checkout@v7
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* main Check · 38533497536
+Triggered via push about 1 minute ago
+
+JOBS
+* Rails and browser logic (ID 115750697480)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Run actions/setup-node@v7
+  ✓ Run bin/rails db:prepare
+  * Run bin/check
+  * Production proxy and browser persistence
+  * Post Run actions/setup-node@v7
+  * Post Run actions/checkout@v7
+* Docker and persistent SQLite (ID 115750697903)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  * Run bin/check-container
+  * Post Run actions/checkout@v7
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* main Check · 38533497536
+Triggered via push about 1 minute ago
+
+JOBS
+✓ Rails and browser logic in 1m12s (ID 115750697480)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Run actions/setup-node@v7
+  ✓ Run bin/rails db:prepare
+  ✓ Run bin/check
+  ✓ Production proxy and browser persistence
+  ✓ Post Run actions/setup-node@v7
+  ✓ Post Run actions/checkout@v7
+  ✓ Complete job
+* Docker and persistent SQLite (ID 115750697903)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  * Run bin/check-container
+  * Post Run actions/checkout@v7
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Rails and browser logic: .github#1
+
+✓ main Check · 38533497536
+Triggered via push about 1 minute ago
+
+JOBS
+✓ Rails and browser logic in 1m12s (ID 115750697480)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Run actions/setup-node@v7
+  ✓ Run bin/rails db:prepare
+  ✓ Run bin/check
+  ✓ Production proxy and browser persistence
+  ✓ Post Run actions/setup-node@v7
+  ✓ Post Run actions/checkout@v7
+  ✓ Complete job
+✓ Docker and persistent SQLite in 1m24s (ID 115750697903)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7
+  ✓ Run bin/check-container
+  ✓ Post Run actions/checkout@v7
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Rails and browser logic: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Docker and persistent SQLite: .github#1
+
